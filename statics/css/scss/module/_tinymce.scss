@@ -1,0 +1,170 @@
+@charset "UTF-8";
+
+.title_bdr{
+	border-radius: 3px;
+	padding: 6px;
+	margin-bottom: 20px;
+	text-shadow: 1px 1px 0px #FFF;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+}
+
+.title_bdr_btm{
+	margin-bottom: 15px;
+	margin-top: 10px;
+	padding: 20px 15px;
+	text-shadow: 1px 1px 0px #FFF;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+}
+
+
+.title_bdr_tbtm{
+	margin-bottom: 15px;
+	padding-top: 18px;
+	padding-bottom: 18px;
+	padding-left: 0px;
+  border-bottom-style: solid;
+  border-bottom-width: 4px;
+  
+  border-top-style: solid;
+  border-top-width: 2px;
+	}
+
+.heading{
+	padding-left: 15px;
+	margin-bottom: 15px;
+	line-height: 35px;
+  border-left-style: solid;
+  border-left-width: 4px;
+}
+
+.heading_md{
+	padding-left: 15px;
+	margin-bottom: 15px;
+  border-left-style: solid;
+  border-left-width: 8px;
+}
+
+.memo_block{
+    background-color: #F2F2F2;
+    padding: 2.3em 1em 1em;
+    position: relative;
+    margin: 10px 0;
+    border-top: 1px solid #CCD1D9;
+    border-bottom: 1px solid #CCD1D9;
+    clear: both;
+
+    &:before {
+        content: "MEMO";
+        font-size: 120%;
+        line-height: 1em;
+        font-family: "ＭＳ Ｐゴシック", sans-serif;
+        color: #999;
+        position: absolute;
+        left: 18px;
+        top: 10px;
+    }
+
+    &:after {
+        content: "\f464";
+        font-size: 100%;
+        line-height: 0em;
+        font-family: "dashicons";
+        color: #999;
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+    }
+}
+
+.tips_block{
+    background-color: #F2F2F2;
+    padding: 2.3em 1em 1em;
+    position: relative;
+    margin: 10px 0;
+    border-top: 1px solid #CCD1D9;
+    border-bottom: 1px solid #CCD1D9;
+    clear: both;
+
+    &:before {
+        content: "TIPS";
+        font-size: 120%;
+        line-height: 1em;
+        font-family: "ＭＳ Ｐゴシック", sans-serif;
+        color: #999;
+        position: absolute;
+        left: 18px;
+        top: 10px;
+    }
+}
+
+.alert_block-attention{
+    background-color: #FDF0F1;
+    padding: 2.3em 1em 1em;
+    position: relative;
+    margin: 10px 0;
+    border-top: 3px solid #F37072;
+    border-bottom: 1px solid #F37072;
+    clear: both;
+
+    &:before {
+        content: "ご注意";
+        font-size: 110%;
+        line-height: 1em;
+        font-family: "ＭＳ Ｐゴシック", sans-serif;
+        color: #F37072;
+        position: absolute;
+        left: 18px;
+        top: 10px;
+    }
+
+    &:after {
+        content: "\f534";
+        font-size: 100%;
+        line-height: 0em;
+        font-family: "dashicons";
+        color: #F37072;
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+    }
+}
+
+.alert_block-news{
+    background-color: #F2F2F2;
+    padding: 2.3em 1em 1em;
+    position: relative;
+    margin: 10px 0;
+    border-top: 1px solid #D5D5D5;
+    border-bottom: 1px solid #D5D5D5;
+    clear: both;
+
+    &:before {
+        content: "NEWS";
+        font-size: 120%;
+        line-height: 1em;
+        font-family: "ＭＳ Ｐゴシック", sans-serif;
+        color: #999;
+        position: absolute;
+        left: 18px;
+        top: 10px;
+    }
+
+    &:after {
+        content: "\f323";
+        font-size: 100%;
+        line-height: 0em;
+        font-family: "dashicons";
+        color: #999;
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+    }
+}
+
+span.line_marker{
+  font-weight: 700;
+  font-size: 1.02em;
+	text-shadow: 1px 1px 1px #FFFFFF;
+}

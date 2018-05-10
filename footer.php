@@ -1,0 +1,153 @@
+<?php
+global $theme_opt;
+global $post_type_set;
+global $page_info;
+global $user_setting;
+
+$hide_footer = false;
+
+if( is_singular() ){
+	$page_info = get_post_meta($post->ID,'page_info',true);
+}
+
+// =============================
+// check display footer
+if(
+	!empty( $post_type_set ) &&
+	in_array('hide_footer',$post_type_set)
+){
+	$hide_footer = true;
+}
+
+if(
+	is_singular() &&
+	!empty( $page_info['hide_footer'] )
+){
+	$hide_footer = true;
+}
+		
+
+
+
+
+
+//display Google Map
+if($theme_opt['base']['google_map'] && !$hide_footer ){
+  echo '<div class="mod-footer_map onlyPC" style="margin-bottom: -55px;">';
+  echo do_shortcode('[GoogleMap width="100%" height="250"]');
+  echo '</div>';
+};
+?>
+
+<footer class="footer">
+  <a class="footer_for_top footer_bkg smoothscroll" href="#header">TOP</a>
+  
+  <?php
+	echo '<div class="container">';
+
+  
+  // action essence_before_footer_content =============================
+  if ( current_user_can( 'administrator' ) && $user_setting['display_shortcode'] ) { echo '<span class="do_action">do_action: [essence_before_footer_content]</span>';}
+  do_action( 'essence_before_footer_content' );
+  // ^action =============================
+	
+	
+	
+
+	if (has_nav_menu('FooterNavi')) {
+		wp_nav_menu( array(
+					'theme_location' => 'FooterNavi',
+					'container'       => 'ul',
+					'menu_id'      => '',
+					'menu_class'      => 'footer-sitemap nav-font',
+					'depth' => 3,
+					'echo'            => true,
+		) );
+	}
+
+
+
+  // action essence_after_footer_content =============================
+  if ( current_user_can( 'administrator' ) && $user_setting['display_shortcode'] ) { echo '<span class="do_action">do_action: [essence_after_footer_content]</span>';}
+  do_action( 'essence_after_footer_content' );
+  // ^action =============================
+
+	echo '<br class="clear" />';
+
+	//if display footer
+	if( !$hide_footer ){
+		if (has_nav_menu('FooterSiteMap')) {
+			wp_nav_menu( array(
+						'theme_location' => 'FooterSiteMap',
+						'container'       => 'ul',
+						'menu_id'      => '',
+						'menu_class'      => 'footer-sitemap nav-font',
+						'depth' => 3,
+						'echo'            => true,
+			) );
+		}
+		
+		//footer widget
+		if(!function_exists('dynamic_sidebar') || !dynamic_sidebar('footer')):
+			//footer
+		endif;
+
+		if( !empty(get_theme_mod( 'footer_logo_url' )) )
+			$footer_logo = '<img class="img-responsive" src="'.esc_url( get_theme_mod( 'footer_logo_url' ) ).'" alt="'.get_bloginfo('name').'-footer-logo" title="'.get_bloginfo('name').'">';
+
+		else
+			$footer_logo = get_bloginfo('name');
+
+		echo '<h1 class="footer_logo-block"><a href="'.home_url().'">';
+			echo $footer_logo;
+		echo '</a></h1>';
+  
+  }//^ if display footer
+  
+  
+  echo '</div>'; //container
+  ?>
+
+
+	<div class="copyright text-center"><p>Copyright <?php _e('(c)','salonote-essence');?><?php $year = date('Y');echo $year; ?> <?php bloginfo( $name ); ?> .All rights reserved.</p></div>
+</footer>
+
+
+
+
+
+
+<?php
+  wp_footer();
+
+  // action essence_after_footer =============================
+  if ( current_user_can( 'administrator' ) && $user_setting['display_shortcode'] ) { echo '<span class="do_action">do_action: [essence_after_footer]</span>';}
+  do_action( 'essence_after_footer' );
+  // ^action =============================
+
+
+
+?>
+</div><!-- /body-wrap -->
+
+
+<noscript id="deferred-styles">
+	<link rel="stylesheet" id="dashicons-css" href="<?php home_url();?>/wp-includes/css/dashicons.min.css?ver=4.9.5" type="text/css" media="all" />
+	<link rel="stylesheet" id="colorbox-css" href="<?php echo get_template_directory_uri();?>/statics/js/colorbox/colorbox.css?ver=4.9.5" type="text/css" media="all" />
+</noscript>
+<script>
+	var loadDeferredStyles = function() {
+		var addStylesNode = document.getElementById("deferred-styles");
+		var replacement = document.createElement("div");
+		replacement.innerHTML = addStylesNode.textContent;
+		document.body.appendChild(replacement)
+		addStylesNode.parentElement.removeChild(addStylesNode);
+	};
+	var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+			window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+	if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+	else window.addEventListener('load', loadDeferredStyles);
+</script>
+
+</body>
+</html>

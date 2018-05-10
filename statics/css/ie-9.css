@@ -1,0 +1,17 @@
+/* CSS Document */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .header-ad-banner__block:not(:target) {
+    width: 40%; }
+    .header-ad-banner__block:not(:target) img {
+      width: 100%;
+      height: auto; }
+
+  .header-info-block__left:not(:target),
+  .header-ad-banner__block:not(:target) {
+    display: inline-block; }
+
+  #head-nav.nav-justified:not(:target) {
+    display: table; }
+    #head-nav.nav-justified:not(:target) > li:not(:target) {
+      display: table-cell;
+      width: auto; } }

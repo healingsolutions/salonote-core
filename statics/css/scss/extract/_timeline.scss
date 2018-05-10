@@ -1,0 +1,93 @@
+/* CSS Document */
+
+.timeline-type-group{
+	position: relative;
+	margin-bottom: 45px !important;
+	margin-left: 7%;
+	width: 93%;
+	
+	&::after{
+		content: '';
+		position: absolute;
+		top: -20px;
+		bottom: -20px;
+		width: 3px;
+	}
+	
+	
+	.list_item_block{
+		position: relative;
+		margin: 0 20px 20px;
+		padding: 10px;
+		border-width: 2px;
+    border-style: solid;
+		border-radius: 4px;
+		display: inline-block;
+		width: 100%;
+    
+		
+		&::before{
+			content: "";
+			position: absolute;
+			left: -56px;
+			top: 7px;
+			font-size: 3rem;
+			z-index: 10;
+			border: 5px solid #FFFFFF;
+			border-radius: 50%;
+			height: 30px;
+			width: 30px;
+		}
+    
+    &::after{
+			content: "";
+      position: absolute;
+      left: -28px;
+      top: 21px;
+      font-size: 3rem;
+      z-index: 10;
+      width: 26px;
+      height: 2px;
+		}
+		
+		
+		
+		
+	}
+}//timeline-type-group
+
+@media screen and (min-width: 768px) {
+   .timeline-type-group{
+		 //margin-left: 20vw;
+
+			&::after{
+				left: 5px;
+			}
+		 
+		 .list_block_figure{
+				float: left;
+				 margin-right: 10px;
+			}
+		 
+		 time.list_block_date{
+			position: absolute;
+			left: -130px;
+			top: 13px;
+		}
+		 
+	}// timeline-type-group
+}// media
+
+
+@media screen and (max-width: 768px) {
+	.timeline-type-group{
+
+		
+		&::after{
+				left: 5px;
+			}
+		.list_item_block{
+			width: 80vw;
+		}
+	}
+}

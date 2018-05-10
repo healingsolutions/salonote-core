@@ -1,0 +1,1 @@
+jQuery(function($){$("select.link-to option").remove()});

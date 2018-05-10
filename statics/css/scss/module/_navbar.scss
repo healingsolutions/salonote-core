@@ -1,0 +1,311 @@
+@charset "UTF-8";
+
+
+
+
+  #header_nav.navbar-block{
+    position: relative;
+    z-index: 999;
+    margin-bottom: 0px;
+    @include clearfix;
+    
+    //---------------
+    //base
+    
+    a,
+    a:hover{
+      text-decoration: none;
+    }
+    
+
+    &.fixed{
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+  
+    //==========================
+    // main-menu
+    ul.menu{
+      list-style: none;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      display: table;
+      min-height: 30px;
+
+      > li{
+        list-style: none;
+        display: table-cell;
+        padding: 0px;
+        text-align: center;
+        @include _transition_(background-color,0.3);
+        
+        &:hover{
+          @include _transition_(background-color,0.3);
+          > a{
+            top: -2px;
+            margin-bottom: -2px;
+            @include _transition_(top,0.3);
+
+          }
+        }
+        
+        > a{
+          padding: 10px;
+          display: block;
+          position: relative;
+          top: 0;
+          @include _transition_(top,0.3);
+        
+          span {
+            margin: 0;
+            text-align: center;
+            display: block;
+            font-size: 0.5em;
+            line-height: 0.8;
+						@include opacity(80);
+          }
+          
+        }
+        
+        //==========================
+        // sub-menu
+        > ul.sub-menu{
+            max-height: 0;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            overflow: hidden;
+            text-align: left;
+            @include _transition_(max-height,0.3);
+
+            li{
+              display: block;
+              clear: both;
+              @include _transition_(background-color,0.3);
+              
+              &:hover{
+                @include _transition_(background-color,0.3);
+              }
+              
+
+              ul{
+                padding-left: 10px;
+                word-break: normal;
+              }
+
+              > a{
+                width: 100%;
+                height:  100%;
+                display:  block;
+                padding: 10px 15px;
+              }
+            }
+
+          }
+
+        //==========================
+        // display sub-menu
+        &:hover > ul{
+          max-height: 100%;
+          display: block;
+          @include _transition_(max-height,0.3);
+        }
+
+      }// main-menu > li
+    }//ul.main-menu
+  }//#header_nav
+  
+  
+  // ===================================
+  //sp-menu
+  .sp-navbar-unit{
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    height: 50px;
+    overflow: hidden;
+    -webkit-transition: height 0.3s;
+      -moz-transition: height 0.3s;
+      -ms-transition: height 0.3s;
+      -o-transition: height 0.3s;
+      transition: height 0.3s;
+    
+    &.open{
+      min-height: 100vh;
+      -webkit-transition: height 0.3s;
+        -moz-transition: height 0.3s;
+        -ms-transition: height 0.3s;
+        -o-transition: height 0.3s;
+        transition: height 0.3s;
+    }
+
+
+    .navbar-logo-block{
+      margin-left: 10px;
+			margin-right: 50px;
+      height: 50px;
+      line-height: 50px;
+			
+			
+      img{
+        max-height: 36px;
+        width: auto;
+      }
+    }
+    
+    .navbar-button{
+			
+      border-radius: 50%;
+      height: 40px;
+      width: 40px;
+      line-height: 1.5;
+      text-align: center;
+      vertical-align: middle;
+      position: absolute;
+      right: 5px;
+      top: 0px;
+      z-index: 9999;
+      display: block;
+      
+      span{
+        font-size: .6rem;
+        display: block;
+        height: 10px;
+        line-height: 1;
+        margin-top: -1em;
+      }
+      
+      &::before{
+        font-size: 2rem;
+        display: block;
+        content: "\f333";
+        font-family: "dashicons";
+      }
+    }
+    &.open .navbar-button::before{     
+      content: "\f158";
+      font-family: "dashicons";
+    }
+    
+    .navbar-block{
+      height: 100%;
+      bottom: -50px;
+      top: 0;
+      padding-bottom: 65px;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      
+      position: relative;
+      margin-top: 10px;
+      
+      li{
+        a{
+          font-size: 0.8em;
+          padding-left: 5px;
+          display: block;
+        }
+      }
+      
+      .current-menu-item{
+        a{
+          font-weight: 700;
+        }
+        
+        .sub-menu{
+          a{
+          }
+        }
+      }
+      
+      .sub-menu{
+        display: none;
+        line-height: 1.3em;
+        margin-bottom: -2px;
+        
+        li{
+          margin: 0;
+          line-height: 3em;
+          padding-left: 15px;
+          
+        }
+      }
+      
+      ul,li{
+        list-style: none;
+        padding-left: 0;
+        position: relative;
+      }
+      ul.menu > li{
+        border-bottom: 1px solid rgba(255,255,255,0.24);
+        line-height: 3em;
+        margin: 0;
+        
+        .open-nav-button:before{
+          font-size: 1.6em;
+          content: "\f502";
+          font-family: "dashicons";
+          position: absolute;
+          right: 15px;
+          top: 0;
+        }
+        
+        .open-nav-button.active:before{
+          content: "\f153";
+          font-family: "dashicons";
+          position: absolute;
+          right: 15px;
+          top: 0;
+        }
+
+      }//ul.menu > li
+    }//navbar-block
+    
+    
+    .navbar-info-block{
+      margin-top: 25px;
+      text-align: center;
+      a{
+        display: inline-block;
+        width: 80%;
+        min-width: 300px;
+        padding: 5px 10px;
+        font-weight: 700;
+        font-size: 1.3em;
+      }
+      
+      dl{
+        margin:10px;
+        dt{
+          display: inline-block;
+          font-weight: 700;
+          margin-right: 10px;
+        }
+        dd{
+          display: inline-block;
+        }
+      }
+    }
+    
+  }//sp-navbar-unit
+
+
+@media screen and (min-width: 768px) {
+  .sp-navbar-unit{
+    display: none !important;
+  }  
+}
+@media screen and (max-width: 768px) {
+  
+  .sp-navbar-unit{
+    display: fixed;
+  }
+  #header_nav.navbar-block{
+    display: none;
+  }
+}

@@ -1,0 +1,25 @@
+body{
+  .breadcrumb{
+    background-color: initial;
+		font-size: 0.6em;
+    
+    a{
+      @include _transition_(opacity,0.2);
+      &:hover{
+        @include _transition_(opacity,0.2);
+        text-decoration: none;
+        filter:alpha(opacity=50);
+        -moz-opacity: 0.5;
+        opacity: 0.5;
+      }
+    }
+  }
+
+  .breadcrumb-item +.breadcrumb-item::before{
+    content: "\f139" !important;
+    line-height: 1;
+		font-size: 1.4em;
+    vertical-align: middle;
+    font-family: "dashicons";
+  }
+}

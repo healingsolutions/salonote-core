@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+body{
+	a,a:hover{
+		text-decoration: none;
+	}
+}
+
+
+/* 正規表現による一括指定 */
+div[class^="l-"]{
+	//vertical-align: top;
+}
+div[class$="__item"]{
+	//padding: 7px;
+	box-sizing: border-box;
+}
+
+.ancor {
+    margin-top:-50px;
+    padding-top:50px;
+}
+
+.clear{
+  clear:  both;
+}
+
+iframe{
+  max-width: 100% !important;
+}
+
+
+
+//======================================
+//float
+//--------------------
+.center{
+	margin-left: auto;
+	margin-right: auto;
+}
+.float-left{ float: left;}
+.float-right{ float: right;}
+.float-none{
+	//float: none;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+//======================================
+//hr
+//--------------------
+hr{
+  display:  block;
+  width: 100%;
+  clear:  both;
+  margin:  5px 0px 35px;
+  height:  1px;
+  border:  none;
+}
+
+
+
+.flex-block{
+    @include flex;
+
+    }
+.flex-block-wrap{
+    @include flex-wrap;
+    
+        &.center{
+              -webkit-justify-content: center;
+              justify-content: center;
+              text-align: center;
+        }
+				&.row:before{
+					content: none;
+				}
+    }
+ 
+.inline-block{
+	display: inline-block;
+}
+
+.position-fixed{
+	position: fixed;
+}

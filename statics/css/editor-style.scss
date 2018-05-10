@@ -1,0 +1,320 @@
+@charset "UTF-8";
+
+//bootstrap
+
+
+@import "scss/wordpress";
+
+@import "bootstrap/functions";
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+@import "bootstrap/tables";
+
+@import "scss/global";
+@import "scss/base";
+
+@import "scss/module/list";
+@import "scss/module/text";
+@import "scss/module/image";
+@import "scss/module/font-icon";
+@import "scss/module/tinymce";
+@import "scss/module/carousel";
+@import "scss/module/cover-image";
+@import "scss/module/headline";
+@import "scss/module/block";
+@import "scss/module/button";
+@import "scss/module/movie";
+
+
+body{
+  font-family: 'Helvetica Neue', Helvetica, Arial, 'Hiragino Sans', "ヒラギノ角ゴシック", 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ Pro W3', Roboto, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', sans-serif;
+}
+
+.mce-content-body{
+    margin: 10px;
+    }
+
+hr{
+    display: inline-block;
+    border: 0;
+    height: 2px;
+    background-color: #ccc;
+    width: 100%;
+    clear: both;
+    float: none;
+    }
+
+ul{
+    list-style-type: disc;
+    padding-left: 25px;
+    margin-bottom: 50px;
+    }
+
+span.br.onlySP{
+    display: inline-block;
+    background-color: #ccc;
+    font-size: 12px;
+    color: #666;
+    padding: 2px 5px;
+    }
+
+.link-btn-wrap  a{
+    background-color: #cccccc;
+    }
+
+h1,h2,h3,h4,h5,h6{
+    margin-bottom:15px;
+    }
+
+
+
+/*
+div:before{
+	content: "div["attr(class)"] ";
+	position: absolute;
+	top: -15px;
+	left: 0px;
+	background:#FF0004;
+	border-radius: 5px 5px 0 0;
+	padding: 2px 10px;
+	font-size: 10px;
+	line-height: 10px;
+	color: #FFFFFF;
+}
+*/
+
+
+
+body#tinymce{
+	
+	p{
+		position: relative;
+	}
+	.text-cover-block{
+		clear: both;
+		position: relative;
+		&:before{
+			content: '↑ 上の要素に重なります';
+		}
+	}
+	.block-unit{
+		display: table-cell;
+		padding: 0;
+		vertical-align: top;
+		box-sizing: border-box;
+		min-width: 250px;
+		
+		&:before{
+			content: '横並びブロック';
+		}
+		
+		> *:first-child{
+			margin-top: 0;
+			padding-top: 0;
+			
+			img{
+				margin-top: 0;
+			}
+		}
+	}
+	
+	
+
+	> div{
+		position: relative;
+		border: 4px solid #CCCCCC;
+		border-radius: 5px;
+		padding: 15px;
+		margin: 15px auto;
+		
+		span{
+			border: 2px solid #EEEEEE;
+			padding: 2px;
+		}
+	}
+
+	> div::before{
+		content: 'div';
+		position: absolute;
+		top: -15px;
+		left: 0px;
+		background:#7A7A7A;
+		border-radius: 5px 5px 0 0;
+		padding: 2px 10px;
+		font-size: 10px;
+		line-height: 10px;
+		color: #FFFFFF;
+	}
+
+
+	> section[class*="l-box_style"],
+	> div[class*="l-box_style"],
+	> div[class*="point_block"]{
+		position: relative;
+		border: 4px solid #CCCCCC;
+		border-radius: 5px;
+		padding: 15px;
+		margin: 15px auto;
+	}
+
+	> div[data-mce-bogus="all"]{
+		border: none;
+		padding: auto;
+		margin: auto;
+	}
+	> div[data-mce-bogus="all"]::before{
+		content: none;
+	}
+	
+	> div.separate-block
+	{
+		&::befor{
+			content: '分割ブロック';
+		}
+		> div{
+			position: relative;
+			border: 4px solid #D1E2F1;
+			border-radius: 5px;
+			padding: 15px;
+			margin: 15px auto;
+		}
+	}
+	
+	 > section[class*="l-box_style"]:before,
+	 > div[class*="point_block"]:before,
+	 div[class*="l-box_style"]:before
+	{
+		content: '飾り枠 -- 実際の表示はstyle.cssに記載 --';
+		position: absolute;
+		top: -15px;
+		left: 0px;
+		background:#7A7A7A;
+		border-radius: 5px 5px 0 0;
+		padding: 2px 10px;
+		font-size: 10px;
+		line-height: 10px;
+		color: #FFFFFF;
+	}
+	
+	
+	> section.content-section{
+		position: relative;
+		border: 3px solid #F16C6E !important;;
+		padding: 50px 10px;
+		margin: 25px 0;
+		&::before{
+			content: 'super section' !important;
+			position: absolute;
+			top: -15px;
+			left: 0px;
+			background:#F16C6E !important;;
+			border-radius: 5px 5px 0 0;
+			padding: 2px 10px;
+			font-size: 10px;
+			line-height: 10px;
+			color: #FFFFFF;
+		}
+	}
+	
+	img.alignleft,
+	img.alignright{
+		max-width: 50vw;
+	}
+	div{
+		> img.alignleft,
+		> img.alignright{
+			max-width: 100%;
+		}
+	}
+	
+	
+	div.vertical-middle,
+	div.block-vertical-rl{
+		position: relative;
+		writing-mode: inherit;
+		-webkit-writing-mode: inherit;
+	  -ms-writing-mode: inherit;
+		border: 4px solid #E78A8B;
+		border-radius: 5px;
+		padding: 15px;
+		margin: 15px auto;
+		
+		&::after{
+			content: '縦書きブロック';
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			background: #E78A8B;
+			border-radius: 0 0 5px 5px;
+			padding: 2px 10px;
+			font-size: 10px;
+			line-height: 10px;
+			color: #FFFFFF;
+			text-indent: 0em;
+		}
+	}
+	
+	div.block-vertical-rl::after{
+		content: '縦書きブロック';
+	}
+	div.vertical-middle::after{
+		content: '縦中央揃え';
+	}
+
+	
+	
+	
+	hr.block-horizon.has_bkg{
+		height: 30px;
+	}
+	
+}//body#tinymce{
+
+
+// gallery =============================================
+
+.gallery-columns-1 .gallery-item {
+	width: 100%;
+}
+
+.gallery-columns-2 .gallery-item {
+	width: 50%;
+}
+
+.gallery-columns-3 .gallery-item {
+	width: 33.333%;
+}
+
+.ie8 .gallery-columns-3 .gallery-item,
+.ie7 .gallery-columns-3 .gallery-item {
+	width: 33%;
+}
+
+.gallery-columns-4 .gallery-item {
+	width: 25%;
+}
+
+.gallery-columns-5 .gallery-item {
+	width: 20%;
+}
+
+.gallery-columns-6 .gallery-item {
+	width: 16.665%;
+}
+
+.gallery-columns-7 .gallery-item {
+	width: 14.285%;
+}
+
+.gallery-columns-8 .gallery-item {
+	width: 12.5%;
+}
+
+.gallery-columns-9 .gallery-item {
+	width: 11.111%;
+}
+
+
+
+
+

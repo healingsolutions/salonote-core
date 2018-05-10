@@ -1,0 +1,139 @@
+@charset "UTF-8";
+
+
+// =====================================
+//必須class
+
+.wp-caption{
+  display: inherit;
+};
+.wp-caption-text{
+  display: inherit;
+};
+.gallery-caption{
+  display: inherit;
+};
+.bypostauthor{
+  display: inherit;
+};
+.screen-reader-text{
+  display: inherit;
+};
+
+
+
+// =====================================
+
+body.admin-bar{
+  margin-top:  32px;
+  z-index:  100;
+
+}
+
+
+//image
+img.alignleft{
+  float: left;
+  margin: 0px 15px 15px 0px;
+}
+img.alignright{
+  float: right;
+  margin: 0px 0px 15px 15px;
+}
+img.aligncenter{
+  float: none;
+	clear: both;
+	margin-top: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 15px;
+	text-align: center;
+	display: block;
+}
+
+img[class*="align"]{
+  max-width:  100%;
+  height:  auto;
+  margin-top: 5px; /* 画像の上の余白*/
+  //box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.8); /*横方向　下方向　ぼかし　広がり　色 */
+}
+
+img[class*="wp-image-"] {
+	margin-top: 15px;
+	margin-bottom: 25px;
+	
+	&:first-child {
+		margin-top: 7px;
+	}
+}
+
+
+img[class*="wp-image-"].alignnone.size-large{
+  width: 100%;
+  height: auto;
+}
+
+.mejs-inner,
+.mejs-layers{
+	height: 100%;
+}
+
+
+.do_action{
+  display: none;
+}
+body.customize-partial-edit-shortcuts-shown .do_action{
+  display: block;
+  text-align: left;
+  width: 100%;
+  color: #B0B0B0;
+}
+
+
+
+
+
+blockquote{
+    background-color: #F2F2F2;
+    margin: 15px 0  25px;
+    padding:2em 1em;
+    position:relative;
+  
+    h1,h2,h3{
+      &:first-child{
+        margin-top:  0;
+      }
+    }
+  
+    &:before{
+      content:"“";
+      font-size:400%;
+      line-height:1em;
+      font-family:"ＭＳ Ｐゴシック",sans-serif;
+      color:#999;
+      position:absolute;
+      left:0;
+      top:0;
+    }
+      
+    &:after{
+      content:"”";
+      font-size:400%;
+      line-height:0em;
+      font-family:"ＭＳ Ｐゴシック",sans-serif;
+      color:#999;
+      position:absolute;
+      right:0;
+      bottom:0;
+    }
+}
+
+
+
+
+.pre_code-block{
+  background-color: #383838;
+	color: #FFFFFF;
+  //text-shadow: 1px 1px 1px #FFFFFF;
+  padding: 10px;
+}

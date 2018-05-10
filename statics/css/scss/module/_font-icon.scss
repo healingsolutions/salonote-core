@@ -1,0 +1,33 @@
+/* CSS Document */
+
+.nextprev_paging-unit{
+  position: relative;
+  margin: 15px auto;
+  @include clearfix;
+  
+  .previous,
+  .next{
+    max-width: 40%;
+    display: inline-block;
+  }
+  
+  .previous{
+    float: left;
+  }
+  .next{
+    float: right;
+  }
+  
+  > div a:before,
+  > div a:after{
+    font-family: "dashicons";
+  }
+  .previous a:before{
+    content: "\f341";
+    margin-right: 10px;
+  }
+  .next a:after{
+    content: "\f345";
+    margin-left: 10px;
+  }
+}

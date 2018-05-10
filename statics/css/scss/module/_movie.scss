@@ -1,0 +1,18 @@
+/* CSS Document */
+
+.movie-block{
+	position: relative;
+	
+	&::after{
+		position: absolute;
+		content: "\f236";
+		font-family: "dashicons";
+		text-align: center;
+		display: block;
+		left: 0;
+		right: 0;
+		top: -0.5em;
+		font-size: 5em;
+		color: #FFFFFF;
+	}
+}

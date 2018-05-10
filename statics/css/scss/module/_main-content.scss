@@ -1,0 +1,56 @@
+/* CSS Document */
+
+.main-content-unit{
+  @include clearfix;
+  
+  //padding-top: 50px;
+  //padding-bottom: 50px;
+
+  &.has_sidebar{
+    .main-content-block{
+			margin-top: 25px;
+			margin-bottom: 25px;
+			padding-bottom: 50px;
+			vertical-align: top;
+			display: inline-block;
+			padding: 25px;
+			
+			.entry_block_content{
+			}
+    }
+  }
+  
+  
+	&.none_container{
+		margin-top: 0px;
+		margin-bottom: 0px;
+		.entry_block_content{
+			margin-top: 0px;
+			margin-bottom: 0px;
+			padding-bottom: 25px;
+		}
+	}
+	
+	&.none_sidebar{
+		margin-top: 0px;
+    .main-content-block{
+      width: 100%;
+			margin-bottom: 0px;
+    }
+		.entry_block_content{
+			margin-top: 0px;
+			margin-bottom: 0px;
+			padding-bottom: 25px;
+		}
+  }
+	
+}
+
+
+section.content-section{
+  padding: 50px 15px;
+  
+  background-position: center center;
+  background-size: cover;
+}
+

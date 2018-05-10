@@ -1,0 +1,112 @@
+/* CSS Document */
+
+.img-responsive{
+  max-width: 100%;
+  height: auto;
+}
+
+.shadow-box{
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+	@include _transition_(box-shadow,0.3);
+	&:hover{
+		box-shadow: 0 3px 18px rgba(0, 0, 0, 0.4);
+		@include _transition_(box-shadow,0.3);
+	}
+}
+
+.img-rounded{
+  border-radius: 5px;
+}
+
+.img-circled{
+	border-radius: 50%;
+}
+
+.hover_figure{
+  overflow: hidden;
+  img{
+    @include transform(scale(1));
+    @include _transition_(transform , 0.3);
+  }
+}
+
+*:hover > .hover_figure{
+
+  img{
+    @include transform(scale(1.02));
+    @include _transition_(transform , 0.3);
+  }
+  
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.gallery-bkg{
+  position: fixed;
+  overflow: hidden;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  display: none;
+  filter:alpha(opacity=30);
+    -moz-opacity: 0.3;
+    opacity: 0.3;
+  
+  .active{
+    z-index: 10;
+  }
+  .old{
+    z-index: 1;
+  }
+  
+  img{
+    min-width: 100%;
+    minb-height: 100%;
+  }
+  
+}
+
+
+@for $i from 1 through 9 {
+	.w-#{$i*10}{
+		width: #{$i*10}vw
+		}
+}
+
+.gallery{
+  margin-top: 25px !important;
+  margin-bottom: 25px !important;
+  .gallery-item{
+    margin: 0;
+    margin-top: 0 !important;
+    a{
+      display: block;
+      padding: 5px;
+      overflow: hidden;
+      
+      img{
+        max-width: 100%;
+        height: auto;
+        border: none !important;
+        @include box-shadow(0px 0px 4px #CCCCCC);
+        @include transform(scale(1));
+        @include _transition_(transform , 0.3);
+        
+        &:hover{
+          @include transform(scale(1.02));
+          @include _transition_(transform , 0.3);
+        }
+      }
+    }
+  }
+}//gallery

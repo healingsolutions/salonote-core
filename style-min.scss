@@ -1,0 +1,106 @@
+/*
+/*
+Theme Name: salonote-essence
+Theme URI: https://www.healing-solutions.jp/
+Author: Healing Solutions
+Author URI: https://www.healing-solutions.jp/profile/mizuno/
+Description: salonote-essence
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Description: SaloNote
+Text Domain: salonote-essence
+Tags: one-column, two-columns, right-sidebar, left-sidebar, custom-header, custom-menu, editor-style, featured-images, post-formats, rtl-language-support, sticky-post, translation-ready
+*/
+@charset "utf-8"; 
+
+@import "statics/css/scss/global";
+@import "statics/css/scss/normarize";
+
+//bootstrap
+@import "statics/css/bootstrap/functions";
+@import "statics/css/bootstrap/variables";
+@import "statics/css/bootstrap/mixins";
+@import "statics/css/bootstrap/root";
+@import "statics/css/bootstrap/reboot";
+@import "statics/css/bootstrap/type";
+@import "statics/css/bootstrap/images";
+@import "statics/css/bootstrap/code";
+@import "statics/css/bootstrap/grid";
+@import "statics/css/bootstrap/tables";
+@import "statics/css/bootstrap/forms";
+@import "statics/css/bootstrap/buttons";
+@import "statics/css/bootstrap/transitions";
+@import "statics/css/bootstrap/dropdown";
+@import "statics/css/bootstrap/button-group";
+@import "statics/css/bootstrap/input-group";
+@import "statics/css/bootstrap/custom-forms";
+@import "statics/css/bootstrap/nav";
+@import "statics/css/bootstrap/navbar";
+@import "statics/css/bootstrap/card";
+@import "statics/css/bootstrap/breadcrumb";
+@import "statics/css/bootstrap/pagination";
+@import "statics/css/bootstrap/badge";
+//@import "statics/css/bootstrap/jumbotron";
+@import "statics/css/bootstrap/alert";
+//@import "statics/css/bootstrap/progress";
+@import "statics/css/bootstrap/media";
+@import "statics/css/bootstrap/list-group";
+@import "statics/css/bootstrap/close";
+//@import "statics/css/bootstrap/modal";
+//@import "statics/css/bootstrap/tooltip";
+//@import "statics/css/bootstrap/popover";
+//@import "statics/css/bootstrap/carousel";
+@import "statics/css/bootstrap/utilities";
+@import "statics/css/bootstrap/print";
+
+// base
+
+@import "statics/css/scss/base";
+
+
+
+
+// module
+@import "statics/css/scss/module/header";
+@import "statics/css/scss/module/navbar";
+@import "statics/css/scss/module/breadcrumb";
+@import "statics/css/scss/module/footer";
+@import "statics/css/scss/module/main-content";
+@import "statics/css/scss/module/sidebar";
+@import "statics/css/scss/module/list";
+@import "statics/css/scss/module/text";
+@import "statics/css/scss/module/entry";
+@import "statics/css/scss/module/image";
+@import "statics/css/scss/module/font-icon";
+@import "statics/css/scss/module/tinymce";
+@import "statics/css/scss/module/carousel";
+@import "statics/css/scss/module/cover-image";
+@import "statics/css/scss/module/headline";
+@import "statics/css/scss/module/block";
+@import "statics/css/scss/module/button";
+@import "statics/css/scss/module/page-nav";
+@import "statics/css/scss/module/sns";
+@import "statics/css/scss/module/loader";
+@import "statics/css/scss/module/movie";
+@import "statics/css/scss/module/pagenation";
+@import "statics/css/scss/module/taxonomy";
+
+//wordpress
+@import "statics/css/scss/wordpress";
+@import "statics/css/scss/woocommerce/woo";
+//@import "statics/css/scss/bbpress/bbpress";
+
+
+//extract
+@import "statics/css/scss/extract/timeline";
+
+//SP
+
+@import "statics/css/scss/media/min-768px";
+@import "statics/css/scss/media/min-1000px";
+@import "statics/css/scss/media/max-768px";
+@import "statics/css/scss/media/max-481px";
+@import "statics/css/scss/media/max-321px";
+
+

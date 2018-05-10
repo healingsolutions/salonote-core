@@ -1,0 +1,67 @@
+/* CSS Document */
+.main-content-unit{
+
+  &.has_sidebar{
+    #sidebar{
+			margin-top: 25px;
+			margin-bottom: 25px;
+			display: inline-block;
+			vertical-align: top;
+    }
+  }
+}
+
+
+
+// side list =======================
+
+.side_list{
+
+	ul.list-bordered{
+		margin: 0;
+		li{
+			margin: 0;
+			padding: 0;
+			
+			&.parent-list-item{
+				
+			}
+			
+			&.child-list-item{
+				padding-left: 15px;
+			}
+			
+			&.current{
+				a{
+					border-right-style: solid;
+					border-right-width: 4px;
+				}
+			}
+			a{
+				padding: 0.4em;
+				display: block;
+				border-right-width: 0px;
+				cursor: pointer;
+				position: relative;
+				z-index: 100;
+				@include _transition_( border-right-width , 0.3 );
+				
+				&:hover{
+					filter:alpha(opacity=50);
+						-moz-opacity: 0.5;
+						opacity: 0.5;
+					border-right-style: solid;
+					border-right-width: 4px;
+					@include _transition_( border-right-width , 0.3 );
+				}
+			}
+			
+		}
+	}
+	
+}
+
+.sidebar_inner{
+	padding-bottom: 100px;
+	@include _transition_(top,0.8);
+}

@@ -1,0 +1,27 @@
+/* CSS Document */
+
+    
+.entry_block_title{
+	font-weight: 800;
+}
+.entry_block_sub_title{
+}
+time.entry_block_date{
+
+  font-size: 0.7em;
+  filter:alpha(opacity=50);
+  -moz-opacity: 0.5;
+  opacity: 0.5;
+  display: block;
+	margin: 15px 0;
+}
+.entry_block_excerpt{
+  margin: 15px auto;
+  padding: 15px;
+  background-color:#EDEDED;
+  border-bottom: 2px solid #DEDEDE;
+}
+.entry_block_content{
+  margin: 25px auto;
+	line-height: 2;
+}

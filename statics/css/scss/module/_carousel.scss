@@ -1,0 +1,42 @@
+/* CSS Document */
+
+#header-carousel{
+  position: relative;
+  max-height: 95vh;
+  overflow: hidden;
+  vertical-align: middle;
+
+  .carousel-item{
+    position: relative;
+    img{
+      min-width: 100%;
+      height: auto;
+    }
+    
+    .slick-text{
+      position: absolute;
+      top: 20%;
+      margin: 0 10%;
+      z-index: 10;
+      @include opacity(0);
+      @include _transition_(opacity,3);
+      @include _transition_(top,3)
+    }
+  }
+  
+  
+  .slick-active .slick-text{
+    top: 10%;
+    filter:alpha(opacity=50);
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+    @include _transition_(opacity,3);
+    @include _transition_(top,3);
+  }
+  
+}
+
+
+.slick-slider{
+  margin-bottom: 0 !important;
+}

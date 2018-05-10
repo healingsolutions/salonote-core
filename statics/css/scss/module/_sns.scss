@@ -1,0 +1,61 @@
+/* CSS Document */
+
+
+.sns-block{
+	display: none;
+	position: relative;
+  text-align: center;
+  
+  
+}
+
+
+.sns-buttons-unit{
+	clear: both;
+	margin: 25px 0;
+	
+	ul{
+    @include flex;
+    list-style: none;
+    margin: 0 auto;
+		padding:0;
+    
+    li{
+      list-style: none;
+			width: 25%;
+			padding:0;
+			margin: 0;
+			position: relative;
+			top: 0;
+			@include _transition_(all,0.3);
+
+			&:hover{
+				top: -4px;
+				@include opacity(70);
+				@include _transition_(all,0.3);
+			}
+			
+			a{
+				display: block;
+				color:  #FFFFFF;
+				text-align: center;
+				padding: 7px;
+				
+			}
+			
+			
+			&.sns-block-line{
+				background-color: #01C101;
+			}
+			&.sns-block-twitter{
+				background-color: #55ACEE;
+			}
+			&.sns-block-facebook{
+				background-color: #3A5897;
+			}
+			&.sns-block-google{
+				background-color: #DC4E41;	
+			}
+    }
+  }
+}

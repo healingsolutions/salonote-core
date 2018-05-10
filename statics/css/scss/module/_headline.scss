@@ -1,0 +1,82 @@
+/* CSS Document */
+
+
+@for $i from 0 through 5 {
+	h#{$i+1}, .h#{$i+1} {
+		line-height:1.5;
+		letter-spacing: -0.03em;
+		}
+}
+
+.inline_title{
+	font-size: 1.2em;
+}
+
+
+
+
+//headline下線
+.headline_bdr-left{
+    position: relative;
+    font-size: 34px;
+    padding-bottom: 7px;
+    border-bottom: 4px solid #ccc;
+  
+    &::after {
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      z-index: 2;
+      content: '';
+      width: 20%;
+      height: 4px;
+      //background-color: #3498db;
+    }
+}
+
+
+
+//スタイリング見出し
+.style_hd_1
+{
+  position: relative;
+  padding-left: 35px;
+
+  &::before,
+  &::after{
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    filter:alpha(opacity=50);
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+  }
+  
+  &::before{
+    content: '';
+    width: 15px;
+    height: 15px;
+    left: 0;
+    top: 0;
+    background-color: rgba(212,151,152,0.58);
+    border: 1px solid rgba(212,151,152,0.70);
+  }
+  &::after{
+    content: '';
+    width: 25px;
+    height: 25px;
+    left: 5px;
+    top: 5px;
+    background-color : rgba(216,207,108,0.50);
+    border: 1px solid  rgba(216,207,108,0.82);
+  }
+ 
+}
+
+
+.widget_title{
+	border-bottom: 1px dotted #CCCCCC;
+	font-weight: 700;
+	font-size: 0.85em;
+	color: #666666;
+}

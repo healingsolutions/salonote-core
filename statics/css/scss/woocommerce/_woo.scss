@@ -1,0 +1,41 @@
+/* CSS Document */
+
+.woocommerce{
+  
+  .col-1,
+  .col-2{
+    max-width: 100%;
+  }
+
+  div.product .woocommerce-tabs{
+    ul.wc-tabs{
+      li{
+        padding: 0;
+        a{
+          padding: 0.5em 1em;
+          display: block;
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+    .panel{
+      padding-top: 150px;
+      margin-top: -150px;
+    }
+
+
+  } 
+  
+  div.product p.price,
+  div.product span.price{
+      font-size: 1.1em;
+    }
+  
+  .form-row{
+    > div{
+      min-width: 50%;
+    }
+  }
+
+}

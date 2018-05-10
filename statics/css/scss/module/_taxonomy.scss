@@ -1,0 +1,78 @@
+/* CSS Document */
+
+.term-list-block{
+	width: 100%;
+	clear: both;
+	margin: 25px auto;
+	ul{
+		list-style: none;
+		padding: 0;
+		margin: 0 auto;
+		li{
+			display: inline-block;
+			padding: 0;
+			margin: 0 10px;
+		}
+		
+		&::before{
+			content: 'category';
+			display: inline-block;
+			text-align: left;
+			margin-right: 10px;
+			font-size: 0.6em;
+			@include opacity(70);
+		}
+	}
+}
+
+.grid-type-group{
+	.list-taxonomy-block{
+		z-index: 50;
+		position: absolute;
+		left: 20px;
+		top: 20px;
+
+		span{
+			//display: inline-block;
+			a{
+				padding: 1px 3px !important
+			}
+		}
+	}
+}
+
+.timeline-type-group,
+.list-type-group{
+	.list-taxonomy-block{
+		display: flex;
+
+		span{
+			//display: inline-block;
+			a{
+				width: auto;
+				padding: 1px 3px !important;
+				margin: 0 5px;
+			}
+		}
+	}
+}
+
+.entry-taxonomy-block{
+	display: block;
+	clear: both;
+	margin: 0;
+	text-align: right;
+	
+	span{
+		margin-right: 7px;
+	}
+	
+	&::after{
+			content: '/category';
+			display: inline-block;
+			text-align: center;
+			font-size: 0.6em;
+			margin-left: 10px;
+			@include opacity(70);
+		}
+}

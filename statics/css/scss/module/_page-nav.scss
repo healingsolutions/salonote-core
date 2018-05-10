@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.nextprev_paging-unit{
+	z-index: 10;
+	clear: both;
+	@include clearfix;
+	
+	> div{
+		position: relative;
+		cursor:  pointer;
+	}
+	a{
+
+	}
+}

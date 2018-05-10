@@ -1,0 +1,214 @@
+/* CSS Document */
+
+
+
+.cover-image{
+	background-size: cover;
+	background-position: center center;
+	//margin-bottom: 25px;
+	padding: 50px;
+	@include clearfix;
+	
+	&.bkg-fixed{
+		background-attachment: fixed;
+		background-size: 100% auto;
+	}
+	&.bkg-right{
+		background-position: right center;
+	}
+	&.bkg-left{
+		background-position: left center;
+	}
+}
+
+
+.text-cover-block{
+	display: table;
+	height: 100%;
+	margin-bottom: 25px;
+	&.text-center{
+		//width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	.text-cover-inner{
+		display: table-cell;
+		height: 100%;
+		//vertical-align: middle;
+		//vertical-align: top;
+	}
+}
+
+
+
+
+
+.block-unit
+{
+	vertical-align: top;
+}
+
+.block-group{
+	position: relative;
+	vertical-align: top;
+	padding: 10px;
+}
+
+.horizon-block{
+	position: relative;
+	//opacity: 0;
+	clear: both;
+	@include clearfix;
+
+	margin: 30px -15px;
+	padding: 35px 15px;
+	
+	background-size: cover;
+	background-position: center center;
+
+	&.active{
+		opacity: 100;
+	}
+	+ hr{
+		height: 0;
+		margin: 0;
+	}
+}
+
+
+
+
+@media screen and (min-width: 768px) {
+	
+
+	.bdr-block{
+		margin: 10px;
+		padding: 10px 35px;
+		border: 4px solid #FFFFFF;
+		background-color: rgba(255,255,255,0.80);
+		box-shadow: 0 0 7px #CCCCCC;
+		color: initial;
+		//display: inline-block;
+	}
+	
+	.vertical-middle > div{
+		display: -webkit-flex;
+		display: flex;
+		vertical-align: middle;
+		-webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+		align-items: center; /* 縦方向中央揃え */
+		-webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+		justify-content: center; /* 横方向中央揃え */
+	}
+	
+	
+	.block-group-wrap{
+		width: 100%;
+		//display: block;
+		display: flex;
+		
+		> div{
+			display: inline-block;
+			
+			
+			.block-item-inner{
+				vertical-align: top;
+			}
+			
+			&.vertical-middle .block-item-inner{
+				
+				display: -webkit-flex;
+				display: flex;
+				vertical-align: middle;
+				-webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+				align-items: center; /* 縦方向中央揃え */
+				-webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+				justify-content: center; /* 横方向中央揃え */
+			}
+		}
+		
+		
+	}
+	.block-unit,
+	.block-group{
+		display: inline-block;
+	}
+	
+
+	
+	
+	.block-vertical-rl{
+		position: absolute;
+		max-height: 85vh;
+		overflow-wrap: break-word;
+		word-wrap: break-word;
+		//left: 0;
+		//right: 0;
+
+		font-family: 'Yu Mincho', YuMincho, 'Hiragino Mincho ProN', 'Hiragino Mincho Pro', 'HGP明朝B', serif;
+		-webkit-font-feature-settings: 'pkna';
+						font-feature-settings: 'pkna';
+		line-height: 1.9;
+		letter-spacing: 0.15em;
+		-webkit-writing-mode: vertical-rl;
+				-ms-writing-mode: tb-rl;
+						writing-mode: vertical-rl;
+
+		//text-indent: 1em;
+		margin-left: 30px;
+		padding: 25px 10px;
+		font-size: 1.1em;
+	}
+
+	.horizon-block,
+	.block-vertical-rl-wrap{
+		position: relative;
+		.block-vertical-rl{
+			position: relative;
+			margin: 10px auto !important;
+		}
+	}
+	
+	.text-cover-block{
+		.text-cover-inner{
+			vertical-align: middle;
+		}
+	}
+
+	.block-vertical-rl-wrap{
+		height: 100%;
+	}
+
+	#body-wrap{
+		.block-vertical-rl{
+			span.inline-span{
+				display: inline-block;
+				position: relative;
+				transform: rotate(-90deg);
+				//left: -0.5em;
+			}
+		}
+		
+	}
+	
+}
+
+
+
+@media screen and (max-width: 768px) {
+	.cover-image{
+		height: auto !important;
+		padding: 40px 5px;
+		background-position: center center;
+		background-repeat: no-repeat;
+	}
+}
+
+
+#body-wrap{
+	hr.block-horizon{
+		display: none;
+		margin-top: -25px;
+	}
+}
