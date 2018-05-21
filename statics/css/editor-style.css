@@ -826,6 +826,10 @@ ul.list-bordered {
     content: "\f345";
     margin-left: 10px; }
 
+body#tinymce {
+  font-size: 16px;
+  font-size: 1.6rem; }
+
 .title_bdr {
   border-radius: 3px;
   padding: 6px;
@@ -1166,26 +1170,32 @@ span.line_marker {
 
 /* CSS Document */
 h1, .h1 {
+  font-weight: 800;
   line-height: 1.5;
   letter-spacing: -0.03em; }
 
 h2, .h2 {
+  font-weight: 800;
   line-height: 1.5;
   letter-spacing: -0.03em; }
 
 h3, .h3 {
+  font-weight: 800;
   line-height: 1.5;
   letter-spacing: -0.03em; }
 
 h4, .h4 {
+  font-weight: 800;
   line-height: 1.5;
   letter-spacing: -0.03em; }
 
 h5, .h5 {
+  font-weight: 800;
   line-height: 1.5;
   letter-spacing: -0.03em; }
 
 h6, .h6 {
+  font-weight: 800;
   line-height: 1.5;
   letter-spacing: -0.03em; }
 
@@ -1277,6 +1287,12 @@ h6, .h6 {
 
 .vertical-middle {
   vertical-align: middle; }
+
+.block-center {
+  text-align: center; }
+  .block-center > * {
+    margin-left: auto;
+    margin-right: auto; }
 
 .btn-item {
   top: 0;

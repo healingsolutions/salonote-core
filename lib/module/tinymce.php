@@ -281,6 +281,12 @@ function essence_tinymce($initArray) {
             'classes' => 'text-center'
           ),
 					array(
+            'title' => 'block-center',
+						'wrapper' => 'true',
+            'block' => 'div',
+            'classes' => 'block-center'
+          ),
+					array(
             'title' => 'bkg-right',
             'selector' => 'div,img',
             'classes' => 'bkg-right'
@@ -451,8 +457,9 @@ function essence_tinymce($initArray) {
   $initArray[ 'extended_valid_elements' ] = 'dt';
   $initArray[ 'extended_valid_elements' ] = 'dd';
 	
-	$initArray[ 'fontsize_formats' ] = '0.6em 0.7em 0.8em 0.9em 1em 1.1em 1.15em 1.2em 1.3em 1.4em 1.5em 1.6em 1.7em 1.8em 1.9em 2em 2.5em 3em 4em';
-
+	//$initArray[ 'fontsize_formats' ] = '0.6em 0.7em 0.8em 0.9em 1em 1.1em 1.15em 1.2em 1.3em 1.4em 1.5em 1.6em 1.7em 1.8em 1.9em 2em 2.5em 3em 4em';
+	//$initArray[ 'fontsize_formats' ] = "85% 100% 116%; 138.5% 153.9% 167% 182% 197%";
+	$initArray[ 'fontsize_formats' ] = "60% 70% 80% 90% 100% 110% 120% 130% 140% 150% 160% 170% 180% 190% 200% 250% 300% 400%";
   
   // add editor class
   $initArray[ 'body_class' ] = 'main-content-unit';

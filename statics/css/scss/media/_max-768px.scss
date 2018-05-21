@@ -15,6 +15,12 @@
       font-size: #{(12-($i))*0.1}em;
     }
   }
+	
+	p[style*="font-size"],
+  span[style*="font-size"]
+  {
+    //font-size: initial !important;
+  }
   
 
 	
@@ -275,7 +281,9 @@
     }
   }//ul.footer-sitemap
 	
-
+	body .entry_block_content p{
+		text-align: left !important;
+	}
   
   
   .float-none + .unit_text__block{
@@ -295,11 +303,7 @@
     max-width: 50%;
   }
   
-  p[style*="font-size"],
-  span[style*="font-size"]
-  {
-    font-size: initial !important;
-  }
+  
   
   
   

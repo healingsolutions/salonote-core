@@ -22,7 +22,7 @@ if( is_singular() ){
 	echo '<meta name="author" content="'.get_the_author_meta( 'display_name' ).'" />'.PHP_EOL;
 }// is_singular 
 if( !empty($theme_opt['base']['keywords']) ){ 
-	echo '<meta name="keywords" content="'.esc_url($theme_opt['base']['keywords']).'" />'.PHP_EOL;
+	echo '<meta name="keywords" content="'.esc_html($theme_opt['base']['keywords']).'" />'.PHP_EOL;
 }// is_singular 
 ?>
 <link rel="alternate" media="handheld" href="<?php echo $canonical_url;?>" />
