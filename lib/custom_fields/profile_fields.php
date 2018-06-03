@@ -28,10 +28,13 @@ add_action( 'personal_options_update', 'save_essence_user_profile_fields' );
 add_action( 'edit_user_profile_update', 'save_essence_user_profile_fields' );
 
 function save_essence_user_profile_fields( $user_id ) {
-    if ( !current_user_can( 'edit_user', $user_id ) ) { 
+    if ( !current_user_can( 'edit_user', $user_id )) { 
         return false; 
     }
-    update_user_meta( $user_id, 'display_shortcode', $_POST['display_shortcode'] );
+    if ( !empty($_POST['display_shortcode']) ){
+      update_user_meta( $user_id, 'display_shortcode', $_POST['display_shortcode'] );
+    }
+    
 }
 
 ?>

@@ -13,6 +13,7 @@ $row_class = 'row';
 
 $main_unit   = array('main-content-unit');
 $main_unit[] = container_class();
+$_main_width = !empty($theme_opt['base']['side_width']) ? (12 - $theme_opt['base']['side_width']) : 9 ;
 
 $main_content   = array(
   'main-content-block'
@@ -30,7 +31,7 @@ if(
 ){
   $main_unit[]    = 'has_sidebar';
   $main_content[] = 'col-xs-12';
-  $main_content[] = 'col-sm-9';
+  $main_content[] = 'col-sm-'.$_main_width;
 }else{
 	$row_class .= '-block';
 }

@@ -16,7 +16,7 @@ $main_unit[] = container_class();
 
 $main_content[] = 'main-content-block';
 
-
+$_main_width = !empty($theme_opt['base']['side_width']) ? (12 - $theme_opt['base']['side_width']) : 9 ;
 
 // =============================
 // if has sidebar
@@ -34,7 +34,7 @@ if(
     ){
     $main_unit[]    = 'has_sidebar';
     $main_content[] = 'col-xs-12';
-    $main_content[] = 'col-sm-9';
+    $main_content[] = 'col-sm-'.$_main_width;
   }
 	if(
       !empty($page_info['full_size'] )

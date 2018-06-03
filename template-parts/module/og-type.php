@@ -19,7 +19,7 @@ echo '<meta name="og:url" property="og:url" content="'. $canonical_url.'" />'.PH
 echo '<meta name="og:description" property="og:description" content="'; echo get_bloginfo('description',true); echo '" />'.PHP_EOL;
 echo '<meta name="twitter:description" content="'; echo get_bloginfo('description',true); echo '">'.PHP_EOL;
 
-if ( is_single() && has_post_thumbnail()){
+if ( is_singular() && has_post_thumbnail()){
   //get thumbnail id
   $image_id = get_post_thumbnail_id();
   $image_url = wp_get_attachment_image_src($image_id, true);

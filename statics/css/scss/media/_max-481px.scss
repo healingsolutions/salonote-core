@@ -54,4 +54,11 @@
 		display: block;
 		width: 100%;
 	}
+	
+	.pagination {
+		flex-wrap: wrap;
+		a{
+			width: auto;
+		}
+	}
 }

@@ -3,7 +3,7 @@
 //bootstrap
 
 
-@import "scss/wordpress";
+
 
 @import "bootstrap/functions";
 @import "bootstrap/variables";
@@ -25,6 +25,7 @@
 @import "scss/module/button";
 @import "scss/module/movie";
 
+@import "scss/wordpress";
 
 body{
   font-family: 'Helvetica Neue', Helvetica, Arial, 'Hiragino Sans', "ヒラギノ角ゴシック", 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ Pro W3', Roboto, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', sans-serif;

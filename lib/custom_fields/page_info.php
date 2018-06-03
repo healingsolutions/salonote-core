@@ -6,7 +6,7 @@ Version: 0.1
 Author URI:http://www.healing-solutions.jp
 */
 
-add_action('admin_menu', 'add_page_info');
+add_action('add_meta_boxes', 'add_page_info');
 add_action('save_post', 'save_page_info');
  
 function add_page_info(){

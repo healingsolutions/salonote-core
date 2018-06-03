@@ -137,3 +137,28 @@ blockquote{
   //text-shadow: 1px 1px 1px #FFFFFF;
   padding: 10px;
 }
+
+
+.widget_media_image{
+	a{
+		display: block;
+	}
+	img{
+		max-width: 100%;
+		height: auto;
+	}
+}
+
+
+.side-block-item.widget_media_image{
+	img{
+		min-width: 100%;
+		@include transform(scale(1));
+    @include _transition_(transform , 0.3);
+	}
+	
+	a:hover img{
+			@include transform(scale(1.02));
+			@include _transition_(transform , 0.3);
+		}
+}

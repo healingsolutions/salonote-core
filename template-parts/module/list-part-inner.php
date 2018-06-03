@@ -8,7 +8,8 @@ global $post_type_name;
 // thumbnail =======================================
 if(
   !empty( $post_type_set ) &&
-  in_array('display_thumbnail',$post_type_set)
+  in_array('display_thumbnail',$post_type_set) && 
+	!is_page_template('template/attachment-list.php')
 	){
 		
 		

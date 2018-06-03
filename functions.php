@@ -240,6 +240,7 @@ function include_library() {
 	
   require_once (get_template_directory(). '/lib/custom_fields/page_info.php' );
 	require_once (get_template_directory(). '/lib/custom_fields/profile_fields.php' );
+	require_once (get_template_directory(). '/lib/custom_fields/gallery_post_type.php' );
 
 
 }
@@ -268,6 +269,16 @@ if(is_user_logged_in()){
 	$user_setting = [];
 	$user_setting['display_shortcode'] = !empty(get_the_author_meta( 'display_shortcode', $current_user->ID)) ? true : false ;
 }
+
+
+if( $_SERVER["REQUEST_URI"] == '/sitemap.html' ){
+	$location = get_home_url().'/sitemap.xml';
+	wp_safe_redirect( $location, 301 );
+	exit;
+}
+
+
+
 
 
 //read files hook directory

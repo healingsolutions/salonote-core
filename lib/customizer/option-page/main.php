@@ -56,6 +56,16 @@ $field_arr = array(
               'left'  => __('left','salonote-essence'),
       )
   ),
+	'side_width' => array(
+      'label' => __('Side Menu Width','salonote-essence'),
+      'type'  => 'select',
+      'selecter' => array(
+							'4' => 'col-sm-4',
+              '3' => 'col-sm-3',
+              '2' => 'col-sm-2',
+							'1' => 'col-sm-1',
+      )
+  ),
   'container' => array(
       'label' =>  __('Use Container','salonote-essence'),
       'type'  => 'checkbox',

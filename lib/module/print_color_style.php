@@ -136,6 +136,4 @@ if( !empty( $theme_opt['base'] ) && in_array('sp_none_float_img',$theme_opt['bas
 }
 
 
-
-
 ?>

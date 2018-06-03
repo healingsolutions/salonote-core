@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: salonote-essence\n"
-"POT-Creation-Date: 2018-05-10 21:02+0900\n"
-"PO-Revision-Date: 2018-05-10 21:02+0900\n"
+"POT-Creation-Date: 2018-05-25 07:29+0900\n"
+"PO-Revision-Date: 2018-05-25 07:29+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -146,7 +146,7 @@ msgid "You can use shortcode [GoogleAD]"
 msgstr "Google Adwordsの広告コード [GoogleAD]のショートコードで挿入されます"
 
 #: lib/customizer/option-page/extention.php:42
-#: lib/customizer/option-page/main.php:118
+#: lib/customizer/option-page/main.php:128
 #: lib/customizer/option-page/post-type.php:233
 #: lib/customizer/theme-options.php:10
 msgid "Theme Setting"
@@ -221,67 +221,71 @@ msgid "left"
 msgstr "左"
 
 #: lib/customizer/option-page/main.php:60
+msgid "Side Menu Width"
+msgstr "サイドメニューの幅"
+
+#: lib/customizer/option-page/main.php:70
 msgid "Use Container"
 msgstr "Containerを使う"
 
-#: lib/customizer/option-page/main.php:64
+#: lib/customizer/option-page/main.php:74
 msgid "Show BreadCrumb"
 msgstr "パンくずリストを表示"
 
-#: lib/customizer/option-page/main.php:68
+#: lib/customizer/option-page/main.php:78
 msgid "Hide Horizon"
 msgstr "罫線を表示しない"
 
-#: lib/customizer/option-page/main.php:72
+#: lib/customizer/option-page/main.php:82
 msgid "Fit Sidebar"
 msgstr "サイドバーを追従させる"
 
-#: lib/customizer/option-page/main.php:76
+#: lib/customizer/option-page/main.php:86
 msgid "break title (,)"
 msgstr "タイトルをカンマで改行する"
 
-#: lib/customizer/option-page/main.php:80
+#: lib/customizer/option-page/main.php:90
 msgid "no float sp device"
 msgstr "スマホでは画像を左右に寄せない"
 
-#: lib/customizer/option-page/main.php:82
+#: lib/customizer/option-page/main.php:92
 msgid "If float image on SmartPhone, sometime break text trouble"
 msgstr ""
 "スマホで画像を左右に寄せると、文章部分が狭くなって見づらくなる恐れがあるの"
 "で、回避します"
 
-#: lib/customizer/option-page/main.php:85
+#: lib/customizer/option-page/main.php:95
 msgid "Child StyleSheet"
 msgstr "子テーマスタイルの読み込み"
 
-#: lib/customizer/option-page/main.php:86
+#: lib/customizer/option-page/main.php:96
 msgid "use child theme stylesheet"
 msgstr "ページの表示速度を少し落として、子テーマの要素を読み込みます"
 
-#: lib/customizer/option-page/main.php:90
+#: lib/customizer/option-page/main.php:100
 msgid "Parts PostType"
 msgstr "パーツ機能を利用"
 
-#: lib/customizer/option-page/main.php:96
+#: lib/customizer/option-page/main.php:106
 msgid "Headline Font"
 msgstr "見出しフォント"
 
-#: lib/customizer/option-page/main.php:99
-#: lib/customizer/option-page/main.php:110
+#: lib/customizer/option-page/main.php:109
+#: lib/customizer/option-page/main.php:120
 msgid "mincho"
 msgstr "明朝"
 
-#: lib/customizer/option-page/main.php:100
-#: lib/customizer/option-page/main.php:109
+#: lib/customizer/option-page/main.php:110
+#: lib/customizer/option-page/main.php:119
 msgid "gothic"
 msgstr "ゴシック"
 
-#: lib/customizer/option-page/main.php:101
 #: lib/customizer/option-page/main.php:111
+#: lib/customizer/option-page/main.php:121
 msgid "maru-gothic"
 msgstr "丸ゴシック"
 
-#: lib/customizer/option-page/main.php:106
+#: lib/customizer/option-page/main.php:116
 msgid "Body Font"
 msgstr "本文フォント"
 
@@ -904,55 +908,55 @@ msgstr "固定カバー画像"
 msgid "text on cover image"
 msgstr "カバー画像のテキスト"
 
-#: lib/module/tinymce.php:295
+#: lib/module/tinymce.php:301
 msgid "block image"
 msgstr "画像をブロック化"
 
-#: lib/module/tinymce.php:301
+#: lib/module/tinymce.php:307
 msgid "block side by side"
 msgstr "横並びブロック"
 
-#: lib/module/tinymce.php:308
+#: lib/module/tinymce.php:314
 msgid "block wrap"
 msgstr "divで囲う"
 
-#: lib/module/tinymce.php:315
+#: lib/module/tinymce.php:321
 msgid "horizon style"
 msgstr "水平線区切り"
 
-#: lib/module/tinymce.php:321
+#: lib/module/tinymce.php:327
 msgid "vertical-rl"
 msgstr "縦文字"
 
-#: lib/module/tinymce.php:327
+#: lib/module/tinymce.php:333
 msgid "code"
 msgstr "コード"
 
-#: lib/module/tinymce.php:333
+#: lib/module/tinymce.php:339
 msgid "border block"
 msgstr "ボーダー ブロック"
 
-#: lib/module/tinymce.php:348
+#: lib/module/tinymce.php:354
 msgid "button"
 msgstr "ボタン"
 
-#: lib/module/tinymce.php:351
+#: lib/module/tinymce.php:357
 msgid "square button"
 msgstr "四角ボタン"
 
-#: lib/module/tinymce.php:357
+#: lib/module/tinymce.php:363
 msgid "rounded button"
 msgstr "角丸ボタン"
 
-#: lib/module/tinymce.php:363
+#: lib/module/tinymce.php:369
 msgid "circled button"
 msgstr "円形ボタン"
 
-#: lib/module/tinymce.php:375
+#: lib/module/tinymce.php:381
 msgid "width"
 msgstr "幅"
 
-#: lib/module/tinymce.php:427
+#: lib/module/tinymce.php:433
 msgid "marker"
 msgstr "マーカー"
 
