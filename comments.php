@@ -8,6 +8,8 @@
 if ( post_password_required() ) {
 	return;
 }
+
+if( comments_open() ) {
 ?>
 
 <div id="comments" class="comments-area">
@@ -70,3 +72,7 @@ if ( post_password_required() ) {
 	<?php comment_form(); ?>
 
 </div><!-- #comments -->
+
+<?php
+};
+?>

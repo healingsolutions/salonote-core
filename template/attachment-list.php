@@ -11,10 +11,14 @@ global $main_unit;
 global $user_setting;
 
 $page_info = get_post_meta($post->ID,'page_info',true);
-$gallery_post_type_value = !empty(get_post_meta($post->ID,'gallery_post_type',true)) ? get_post_meta($post->ID,'gallery_post_type',true) : 'post' ;
+$post_type_name = !empty(get_post_meta($post->ID,'gallery_post_type',true)) ? get_post_meta($post->ID,'gallery_post_type',true) : 'post' ;
+
+$post_type_set  = !empty($theme_opt['post_type'][$post_type_name]) ? $theme_opt['post_type'][$post_type_name] : null ;
 
 // =============================
 // initialize
+$row_class = 'row';
+
 $main_unit   = array('main-content-unit');
 $main_unit[] = container_class();
 
@@ -37,8 +41,8 @@ if(
 			empty($page_info['full_size'] )
     ){
     $main_unit[]    = 'has_sidebar';
-    $main_content[] = 'col-xs-12';
-    $main_content[] = 'col-sm-'.$_main_width;
+    $main_content[] = 'col-12';
+    $main_content[] = 'col-lg-'.$_main_width;
   }
 	if(
       !empty($page_info['full_size'] )
@@ -68,7 +72,7 @@ echo '<div class="'.$row_class.'">';
 
 	$paged = (int) get_query_var('paged');
 	$args = array(
-			'post_type' => $gallery_post_type_value,
+			'post_type' => $post_type_name,
 			'post_status' => 'publish',
 			'posts_per_page' => 10,
 			'paged' => $paged
@@ -109,7 +113,6 @@ if($query->have_posts()){
 			'post_parent' => $post_id
 		);
 
-		$grid_col = isset( $grid_col ) ? $grid_col : $post_type_set['grid_col'] ;
 		$attr = array(
 			'class' => 'img-responsive colorbox'
 		);
@@ -140,6 +143,9 @@ if($query->have_posts()){
 				echo '</a></figure>';
 			}
 			echo '</div>';
+			
+			echo '</section>';
+			echo '</div>';
 		}
 		//end 投稿から画像リストを取得  
 
@@ -165,6 +171,8 @@ if($query->have_posts()){
 echo '</div>';
 echo '</div>';
 echo '</div>';
+echo '</div>';
+
 
 get_footer();
 

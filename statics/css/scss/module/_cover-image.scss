@@ -62,7 +62,7 @@
 	@include clearfix;
 
 	margin: 30px -15px;
-	padding: 35px 15px;
+	padding: 75px 15px;
 	
 	background-size: cover;
 	background-position: center center;
@@ -104,9 +104,11 @@
 	
 	
 	.block-group-wrap{
-		width: 100%;
+		width: calc(100% + 28px);
 		//display: block;
 		display: flex;
+		margin-left: -14px;
+		margin-right: -14px;
 		
 		> div{
 			display: inline-block;
@@ -150,7 +152,7 @@
 		-webkit-font-feature-settings: 'pkna';
 						font-feature-settings: 'pkna';
 		line-height: 1.9;
-		letter-spacing: 0.15em;
+		//letter-spacing: 0.15em;
 		-webkit-writing-mode: vertical-rl;
 				-ms-writing-mode: tb-rl;
 						writing-mode: vertical-rl;

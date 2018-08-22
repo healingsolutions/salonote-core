@@ -150,6 +150,19 @@ $field_arr = array(
     'type' => 'checkbox',
   ),
 	
+	'display_post_date' => array(
+    'label' => __('post_date','salonote-essence'),
+    'type' => 'checkbox',
+  ),
+  'display_entry_sub_title' => array(
+    'label' => __('Page SubTitle','salonote-essence'),
+    'type' => 'checkbox',
+  ),
+  'display_entry_excerpt' => array(
+    'label' => __('Page Excerpt','salonote-essence'),
+    'type' => 'checkbox',
+  ),
+	
 	'display_next_post' => array(
     'label' => __('Prev/Next','salonote-essence'),
     'type' => 'checkbox',
@@ -176,21 +189,10 @@ $field_arr = array(
 	
 	
 	
-  'display_post_date' => array(
-    'label' => __('post_date','salonote-essence'),
-    'type' => 'checkbox',
-  ),
-  'display_entry_sub_title' => array(
-    'label' => __('Page SubTitle','salonote-essence'),
-    'type' => 'checkbox',
-  ),
-  'display_entry_excerpt' => array(
-    'label' => __('Page Excerpt','salonote-essence'),
-    'type' => 'checkbox',
-  ),
+  
 
 	'full_pages' => array(
-    'label' => __('HIde Page Sidebar','salonote-essence'),
+    'label' => __('Hide Sidebar','salonote-essence'),
     'type' => 'checkbox',
   ),
   

@@ -1,5 +1,7 @@
 <?php
 
+
+
 //set thumbnail
 add_theme_support('post-thumbnails');
 set_post_thumbnail_size('750,180,true'); 
@@ -24,7 +26,7 @@ function customize_admin_add_column($column_name, $post_id) {
 
 
 function customize_admin_css_list() {
-    echo '<style TYPE="text/css">.column-thumbnail{width:120px;}</style>';
+    echo '<style type="text/css">.column-thumbnail{width:120px;}</style>';
 }
 add_filter( 'manage_posts_columns', 'customize_admin_manage_posts_columns' );
 add_action( 'manage_posts_custom_column', 'customize_admin_add_column', 10, 2 );
@@ -55,12 +57,25 @@ add_filter('manage_pages_columns', 'customize_admin_manage_pages_columns');
 add_action('manage_pages_custom_column', 'customize_pages_add_column');
 
 
-
+//editor class
 function set_image_tag_class($class){
 	return $class . ' img-responsive wow fadeIn';
 }
 add_filter('get_image_tag_class','set_image_tag_class',10);
 
+//lazy load
+
+function customize_img_attribute( $content ) {
+  $re_content = str_replace('alt=""', 'alt="image-'.wp_title('',false).'"', $content);
+	
+	//lazy load
+	global $theme_opt;
+	if( !empty($theme_opt['extention']) && in_array('use_lazy_load',$theme_opt['extention']) ){
+		return str_replace('class="', 'class="lazy ', $re_content);
+	};
+  return $re_content;
+}
+add_filter('the_content','customize_img_attribute');
 
 
 
@@ -71,8 +86,9 @@ add_filter('get_image_tag_class','set_image_tag_class',10);
 
 add_image_size('thumbnail_M', 350, 350,true);
 add_image_size('thumbnail_L', 600, 600, true);
-add_image_size('side_banner', 350, 600, false);
-add_image_size('small_thumb', 250, 600, false);
+add_image_size('medium_banner', 468, 0, false);
+add_image_size('side_banner', 350, 0, false);
+//add_image_size('small_thumb', 250, 0, false);
 
 global $essence_custom_image_sizes;
 $essence_custom_image_sizes = array(
@@ -93,6 +109,13 @@ $essence_custom_image_sizes = array(
 		'medium_large' => array(
 				'name'       => __('medium_large','salonote-essence'),
 				'width'      => 768,
+				'height'     => 0,
+				'crop'       => false,
+				'selectable' => true
+		),
+		'medium_banner' => array(
+				'name'       => __('medium_banner','salonote-essence'),
+				'width'      => 468,
 				'height'     => 0,
 				'crop'       => false,
 				'selectable' => true

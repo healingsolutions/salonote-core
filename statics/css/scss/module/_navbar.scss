@@ -151,7 +151,7 @@
 			margin-right: 50px;
       height: 50px;
       line-height: 50px;
-			
+			font-size: 1.25em;
 			
       img{
         max-height: 36px;
@@ -296,7 +296,8 @@
 
 
 @media screen and (min-width: 768px) {
-  .sp-navbar-unit{
+  .sp-navbar-unit,
+	.sp_display_nav-container{
     display: none !important;
   }  
 }
@@ -308,4 +309,46 @@
   #header_nav.navbar-block{
     display: none;
   }
+	
+	footer.has_sp_display_nav{
+		padding-bottom: 70px;
+	}
+	
+	.sp_display_nav-container{
+		position: fixed;
+		height: 50px;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		box-shadow: 0px 0px 4px #CCCCCC;
+
+		
+		ul{
+			@include clearfix;
+			display: flex;
+			flex-wrap: nowrap;
+			padding-left: 0;
+			margin: 0;
+			height: 50px;
+			
+			li{
+				padding: 7px;
+				width: 100%;
+				text-align: center;
+				position: relative;
+				a{
+					display: block;
+					text-align: center;
+					font-size: 0.6rem;
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					padding-top: 35px;
+					padding-bottom: 15px;
+				}
+			}
+		}
+	}
 }

@@ -51,3 +51,41 @@ i.dashicons-dashicons-money::before {
 		}
 	}
 }
+
+
+
+//======================================
+// page bkg editor
+
+#page_bkg_img_wrap img{
+		width: 100%;
+		height: auto;
+	}
+
+a.page_bkg_upload_images_remove {
+	position:absolute;
+	top:-8px;
+	right:-8px;
+	height:32px;
+	width:32px;
+	text-align:center;
+	vertical-align:middle;
+	background:#ccc;
+	border-radius:50%;
+}
+a.page_bkg_upload_images_remove:before {
+	content:'×';
+	display:inline-block;
+	text-decoration:none;
+	width:1em;
+	margin-right:.2em;
+	text-align:center;
+	font-size:20px;
+	line-height:20px;
+	padding:6px;
+	color:#fff;
+	font-weight:bold;
+}
+a.page_bkg_upload_images_remove:hover {
+	background:#aaa;
+}

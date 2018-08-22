@@ -6,7 +6,7 @@ global $color_set;
 $color_set = '';
 
 foreach($color_customize_array as $key => $value):
-    if( !empty(get_theme_mod($key)) ){
+    if( !empty(get_theme_mod($key,$value['default'])) ){
       
       $color_set .= $value['target'].'{ '.$value['element'].':'.get_theme_mod($key,$value['default']) .'}'.PHP_EOL;
       
@@ -55,17 +55,32 @@ foreach($color_customize_array as $key => $value):
 			if( $key == 'line_marker'){
 				$color_set .= 'span.line_marker{ background: linear-gradient(transparent 60%, '.get_theme_mod($key,$value['default']).' 60%);}';
 			}
+			
+			//headline_bkg
+			if( $key == 'headline_bkg'){
+				$color_set .= '.headline_bkg, .curled_headline{
+					box-shadow: 0px 0px 0px 5px '.get_theme_mod($key,$value['default']).';
+				}';
+			}
+			
+			//line_marker
+			if( $key == 'list_icon_color' && !empty(get_theme_mod($key,$value['default']))){
+				$color_set .= 'ol.list-flow:before{ border-left-color: '.get_theme_mod($key,$value['default']).'; }';
+				$color_set .= 'ol.list-flow:after{ background-color: '.get_theme_mod($key,$value['default']).'; }';
+			}
+			
+			
 
       
     }
   endforeach;
 
 
-
 $font_set = [];
 $font_set['mincho']      = __('"HiraMinProN-W3","MS PMincho", serif !important;','salonote-essence');
 $font_set['gothic'] 		 = __('"Yu Gothic", YuGothic, "Hiragino Kaku Gothic Pro", Meiryo, Osaka, "MS PGothic", sans-serif;','salonote-essence');
 $font_set['maru-gothic'] = __('"Rounded Mplus 1c", "Hiragino Kaku Gothic Pro", Meiryo, Osaka, "MS PGothic", sans-serif;','salonote-essence');
+$font_set['meiryo'] = '"メイリオ", Meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif';
 
 //body font
 //$color_set .= 'body{ font-family: '. __('YakuHanJP Meiryo, sans-serif;','salonote-essence') .'}';
@@ -122,18 +137,18 @@ if( !empty( $theme_opt['base'] ) && in_array('hrLine',$theme_opt['base']) ){
 //sp_none_float_img
 if( !empty( $theme_opt['base'] ) && in_array('sp_none_float_img',$theme_opt['base']) ){
 		$color_set .= '
-		@media screen and (max-width: 768px) {
-			body img.alignleft,
-			body img.alignright {
-				display: block;
-				float: none;
-				clear: both;
-				margin-left: auto;
-				margin-right: auto;
-			}
-		}
-		';
+@media screen and (max-width: 420px) {
+	body img.alignleft,
+	body img.alignright {
+		display: block;
+		float: none;
+		clear: both;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 100%;
+	}
 }
-
+';
+}
 
 ?>

@@ -24,12 +24,6 @@
 
 // =====================================
 
-body.admin-bar{
-  margin-top:  32px;
-  z-index:  100;
-
-}
-
 
 //image
 img.alignleft{
@@ -130,8 +124,8 @@ blockquote{
 
 
 
-
-.pre_code-block{
+code.pre_code-block,
+pre.pre_code-block{
   background-color: #383838;
 	color: #FFFFFF;
   //text-shadow: 1px 1px 1px #FFFFFF;

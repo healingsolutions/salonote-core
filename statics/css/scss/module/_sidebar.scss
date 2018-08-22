@@ -37,6 +37,13 @@
 					border-right-width: 4px;
 				}
 			}
+			
+			time.list_block_date{
+				display: block;
+				text-align: right;
+				font-size: 70%;
+			}
+			
 			a{
 				padding: 0.4em;
 				display: block;
@@ -62,6 +69,7 @@
 }
 
 .sidebar_inner{
+	padding-top: 25px;
 	padding-bottom: 100px;
-	@include _transition_(top,0.8);
+	//@include _transition_(top,0.8);
 }

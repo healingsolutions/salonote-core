@@ -2,6 +2,7 @@
 
 .movie-block{
 	position: relative;
+	display: block;
 	
 	&::after{
 		position: absolute;
@@ -11,7 +12,7 @@
 		display: block;
 		left: 0;
 		right: 0;
-		top: -0.5em;
+		top: 25%;
 		font-size: 5em;
 		color: #FFFFFF;
 	}

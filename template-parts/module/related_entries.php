@@ -41,7 +41,7 @@ $args = array(
 );
 
 
-query_posts( $args );
+$query = query_posts( $args );
 
 
 $post_type_label = get_post_type_object($post_type_name)->label;

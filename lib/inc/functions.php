@@ -63,7 +63,7 @@ function getHeadTitle($title) {
     global $post;
       $metaExcerpt = $post->post_excerpt;
       if ($metaExcerpt) {
-          $title = $post->post_excerpt;
+					$title = $post->post_excerpt." | ".get_the_title()." ".$_sub_title;;
 
       //post_type
        }else if (get_post_type()) {
@@ -323,3 +323,55 @@ function futuretopublish(){
 }
 
 
+//===============================================
+//custom search form
+function essence_search_form( $form ) {
+	
+	$args = array(
+		'public'   => true,
+		'_builtin' => false
+	);
+	$post_types = get_post_types( $args, 'names' );
+
+
+	//array_unshift($post_types, "page");
+	array_unshift($post_types, "post");
+	
+	
+	$form = '
+	<div class="search-block bdr-block">
+	<form role="search" method="get" id="searchform" class="searchform" action="' . home_url( '/' ) . '" >
+	
+	<div class="form-group">
+		<input class="form-control" type="text" value="' . get_search_query() . '" name="s" id="s" placeholder="検索ワード" />
+	</div>
+	';
+	
+	$form .= '
+	<div class="form-group">
+	<label class="inline-block" for="post_type">' . __( 'Search post type:' ,'salonote-essence') . '</label>
+	<select class="inline-block form-control" name="search_post_type">';
+	foreach($post_types as $post_type){
+      $obj = get_post_type_object($post_type);
+      $form .= '<option value="'.$post_type.'"';
+			if( !empty($_GET['search_post_type']) && $_GET['search_post_type'] === $post_type ){
+				$form .= ' selected';
+			}
+			$form .= '>'.$obj->label.'</option>';
+	}
+	$form .= '
+	</select>
+	</div>';
+	
+	$form .= '
+	
+	<div class="text-center">
+		<input type="submit" id="searchsubmit" class="text-center btn btn-primary" value="'. esc_attr__( 'Search','salonote-essence') .'" />
+	</div>
+	</form>
+	</div>';
+
+	return $form;
+}
+
+add_filter( 'get_search_form', 'essence_search_form' );

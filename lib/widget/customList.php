@@ -19,6 +19,12 @@ class Essence_CustomList_Widget extends WP_Widget{
       //$main_content[] = 'main-content-block';
       $main_content[] = 'list-unit';
       $main_content[] = $instance['list_type'] . '-type-group';
+			
+			if( !empty($post_type_set['grid_cols']) ) {
+				$main_content[] = 'grid_cols-'.$post_type_set['grid_cols'];
+			}else{
+				$main_content[] = 'grid_cols-4';
+			}
       
       
       $args = array(

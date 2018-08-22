@@ -22,9 +22,8 @@ function child_list_func($post,$_child_class = null){
   global $post_type_set;
 	global $_current_page;
 
-	$page_sub_info = get_post_meta($post->ID,'page_info');
-	if( in_array( 'exclude_list',$page_sub_info ))
-		return;
+	$page_sub_info = get_post_meta($post->ID,'page_info',true);
+	if( !empty($page_sub_info['exclude_list'])) return;
 
     
   ?>
@@ -131,8 +130,9 @@ if( is_singular() && $has_archive == true){
 				//display parent posts
 				if( $parent_query -> have_posts()): while( $parent_query -> have_posts()) : $parent_query -> the_post();
 	
-					$page_sub_info = get_post_meta($post->ID,'page_info');
-						if( !in_array( 'exclude_list',$page_sub_info )){
+	
+					$page_sub_info = get_post_meta($post->ID,'page_info',true);
+						if( !empty($page_sub_info['exclude_list'])) continue;//exclude_list
 					?>
 					<li><a class="link_color" href="<?php the_permalink(); ?>"><?php the_title(); ?>
 
@@ -148,7 +148,7 @@ if( is_singular() && $has_archive == true){
 
 					</a></li>
         <?php 
-						};//exclude_list
+				
 				endwhile;endif;?>
         
         <?php

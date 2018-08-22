@@ -35,13 +35,14 @@ $archive_query = array_merge( $wp_query->query, $args );
 query_posts( $archive_query );
 
 
-
+echo '<div class="main-content-wrap">';
 echo '<div class="'.$main_block_class.' main-content-unit';
 	if( !empty($posttype_content_class) ){ echo ' '.$posttype_content_class; };
 echo '">';
 
 get_template_part('template-parts/common/archive-unit');
 
+echo '</div>';
 echo '</div>';
 
 

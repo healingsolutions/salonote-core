@@ -22,7 +22,7 @@ $color_customize_array = array(
 
 
   'navbar_bkg' => array(
-    'target'   => '.navbar-block, .sp-navbar-unit , ul.sub-menu, .pagination > *, .list-icon li::before, .list-taxonomy-block span a, .label-block',
+    'target'   => '.navbar-block, .sp-navbar-unit , ul.sub-menu, .pagination > *, .list-icon li::before, .list-taxonomy-block span a, .label-block, .sp_display_nav-container',
     'element'  => 'background-color',
     'default'  => '#333333',
     'label_jp' => __('nav background-color','salonote-essence'),
@@ -31,7 +31,7 @@ $color_customize_array = array(
 
 
   'navbar_color' => array(
-    'target'   => '.navbar-block, .navbar-block a, .sp-navbar-unit, .sp-navbar-unit a, .open-nav-button::before, .pagination > *, .list-icon li::before, .list-taxonomy-block span a, .label-block',
+    'target'   => '.header_logo-block a, .navbar-block, .navbar-block a, .sp-navbar-unit, .sp-navbar-unit a, .open-nav-button::before, .pagination > *, .list-icon li::before, .list-taxonomy-block span a, .label-block, sp_display_nav-container, .sp_display_nav-container a, .sp_display_nav-container li:before',
     'element'  => 'color',
     'default'  => '#FFFFFF',
     'label_jp' => __('nav font-color','salonote-essence'),
@@ -82,6 +82,15 @@ $color_customize_array = array(
     'label_jp' => __('footer font-color','salonote-essence'),
     'section'  => 'colors',
   ),
+	
+	
+	'headline_bkg' => array(
+    'target'   => '.headline_bkg',
+    'element'  => 'background-color',
+    'default'  => null,
+    'label_jp' => __('headline background-color','salonote-essence'),
+    'section'  => 'colors',
+  ),
 
 
   'bdr_color' => array(
@@ -97,6 +106,14 @@ $color_customize_array = array(
     'element'  => 'border-bottom-color',
     'default'  => null,
     'label_jp' => __('list border-color','salonote-essence'),
+    'section'  => 'colors',
+  ),
+	
+	'list_icon_color' => array(
+    'target'   => 'ul.list-icon li::before, ol.list-numbering>li:before, ol.list-flow>li:before',
+    'element'  => 'background-color',
+    'default'  => null,
+    'label_jp' => __('list icon color','salonote-essence'),
     'section'  => 'colors',
   ),
 	
@@ -128,9 +145,9 @@ $color_customize_array = array(
 
 
   'content' => array(
-    'target'   => '.main-content-unit',
+    'target'   => '.main-content-wrap',
     'element'  => 'background-color',
-    'default'  => null,
+    'default'  => '#FFFFFF',
     'label_jp' => __('content background-color','salonote-essence'),
     'section'  => 'colors',
   ),
@@ -164,7 +181,7 @@ $color_customize_array = array(
 
 
   'btn_bkg' => array(
-    'target'   => '.btn-primary, .btn-item',
+    'target'   => '.btn-primary, .btn-color, .btn-item',
     'element'  => 'background-color',
     'default'  => null,
     'label_jp' => __('button background-color','salonote-essence'),
@@ -172,7 +189,7 @@ $color_customize_array = array(
   ),
 	
 	'btn_color' => array(
-    'target'   => '.btn-primary, .btn-item, .btn-item a, .btn-item a:hover',
+    'target'   => '.btn-primary, .btn-color, .btn-item, .btn-item a, .btn-item a:hover',
     'element'  => 'color',
     'default'  => null,
     'label_jp' => __('button font-color','salonote-essence'),
@@ -202,11 +219,10 @@ add_action('wp_print_styles','print_style_head', 10,2);
 function print_style_head(){
   global $color_customize_array;
   global $color_set;
-  
-  echo '<style>';
+
   get_template_part('lib/module/print_color_style');
-  echo $color_set;
-  echo '</style>';
+	$color_set = preg_replace('/\n|\r|\r\n|\s(?=\s)/', '', $color_set );
+	echo '<style>'.$color_set.'</style>';
 }
 
 ?>

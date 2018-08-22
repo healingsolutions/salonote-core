@@ -71,6 +71,7 @@ if(
 	$_the_title = get_the_title();
 	if( in_array('break_title',$theme_opt['base'])){
 		$_the_title = preg_replace('/(\,|'.__(',','salonote-essence').')/', '$1<br />', $_the_title);
+		$_the_title = preg_replace('/(~|〜)/', '<br /><span class="small">$1', $_the_title).'</span>';
 	}
   echo '<h2 class="list_block_title">'.$_the_title.'</h2>';
 }
@@ -78,9 +79,9 @@ if(
 if(
   !empty( $post_type_set ) &&
   in_array('display_grid_sub_title',$post_type_set) &&
-  !empty(get_post_meta('sub_title'))
+  !empty(get_post_meta($post->ID, 'subTitle'))
 ){
-  echo '<h3 class="list_block_sub_title">'.get_post_meta('sub_title').'</h3>';
+  echo '<h3 class="list_block_sub_title">'.esc_html(get_post_meta($post->ID, 'subTitle', true)).'</h3>';
 }
 
 if(
@@ -120,6 +121,14 @@ if(
 	&& get_post_gallery()
 ){
 	echo '<div class="label-block has_gallery">'.__('gallery','salonote-essence').'</div>';
+}
+
+if(
+  !empty( $post_type_set ) &&
+	in_array('list_show_body',$post_type_set)
+	&& get_the_content()
+){
+	echo '<div class="content-block">'.strip_tags(get_the_content(),'<img><p>').'</div>';
 }
 
 

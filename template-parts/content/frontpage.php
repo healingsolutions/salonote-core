@@ -30,8 +30,8 @@ if(
   !in_array('full_archive',$post_type_set)
 ){
   $main_unit[]    = 'has_sidebar';
-  $main_content[] = 'col-xs-12';
-  $main_content[] = 'col-sm-'.$_main_width;
+  $main_content[] = 'col-12';
+  $main_content[] = 'col-lg-'.$_main_width;
 }else{
 	$row_class .= '-block';
 }
@@ -86,7 +86,7 @@ if( is_tax() ){
 $query = new WP_Query( $args );
 
 // =====================================================
-
+echo '<div class="main-content-wrap">';
 echo '<div class="'.implode(' ',$main_unit).'">';
 echo '<div class="'.$row_class.'">';
 
@@ -166,7 +166,7 @@ echo '<div class="'.$row_class.'">';
 
 echo '</div>';
 echo '</div>';
-
+echo '</div>';
 // =====================================================
 
 

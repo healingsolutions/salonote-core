@@ -48,6 +48,22 @@ $field_arr = array(
       'label'       => __('Address','salonote-essence'),
       'type'        => 'text'
   ),
+	'biz_time' => array(
+      'label'       => __('Business Time','salonote-essence'),
+      'type'        => 'textarea'
+  ),
+	'biz_holiday' => array(
+      'label'       => __('Business Holiday','salonote-essence'),
+      'type'        => 'textarea'
+  ),
+	'biz_parking' => array(
+      'label'       => __('Business Parking','salonote-essence'),
+      'type'        => 'textarea'
+  ),
+	'biz_message' => array(
+      'label'       => __('Business Message','salonote-essence'),
+      'type'        => 'textarea'
+  ),
   'sideMenu' => array(
       'label' => __('Side Menu Postion','salonote-essence'),
       'type'  => 'select',
@@ -70,6 +86,14 @@ $field_arr = array(
       'label' =>  __('Use Container','salonote-essence'),
       'type'  => 'checkbox',
   ),
+	
+	
+	'header_h1_txt' => array(
+      'label' =>  __('Show header Headline 1 text','salonote-essence'),
+      'type'  => 'checkbox',
+			'description' =>  __('Show Headline 1 text in header logo space.But when too long description words, sometime break layout.','salonote-essence'),
+  ),
+	
   'BreadCrumb' => array(
       'label' =>  __('Show BreadCrumb','salonote-essence'),
       'type'  => 'checkbox',
@@ -106,8 +130,9 @@ $field_arr = array(
       'label' =>  __('Headline Font','salonote-essence'),
       'type'  => 'select',
       'selecter' => array(
-              'mincho' =>  __('mincho','salonote-essence'),
-              'gothic'  =>  __('gothic','salonote-essence'),
+							'gothic'  =>  __('gothic','salonote-essence'),
+			        'mincho' 	=>  __('mincho','salonote-essence'),
+							'meiryo'  =>  __('Meiryo','salonote-essence'),
               'maru-gothic'  =>  __('maru-gothic','salonote-essence'),
       )
   ),
@@ -117,7 +142,8 @@ $field_arr = array(
       'type'  => 'select',
       'selecter' => array(
 							'gothic'  =>  __('gothic','salonote-essence'),
-              'mincho' =>  __('mincho','salonote-essence'),
+							'mincho' 	=>  __('mincho','salonote-essence'),
+							'meiryo'  =>  __('Meiryo','salonote-essence'),
               'maru-gothic'  =>  __('maru-gothic','salonote-essence'),
       )
   ),

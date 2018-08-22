@@ -6,6 +6,8 @@
  */
 
 
+
+
 if ( !function_exists( 'essence_tinymce' ) ):
 function essence_tinymce($initArray) {
   
@@ -19,30 +21,83 @@ function essence_tinymce($initArray) {
       'items' => array(
         array(
             'title' => __('border bottom','salonote-essence'),
-            'block' => 'h2',
+            'selector' => 'h1, h2, h3, h4, h5, h6, p',
             'classes' => 'title_bdr_btm'
         ),
             array(
             'title' => __('border top and bottom','salonote-essence'),
-            'block' => 'h2',
+            'selector' => 'h1, h2, h3, h4, h5, h6, p',
             'classes' => 'title_bdr_tbtm'
         ),
         array(
             'title' => 'heading',
-            'block' => 'h2',
+            'selector' => 'h1, h2, h3, h4, h5, h6, p',
             'classes' => 'heading'
         ),
         array(
             'title' => __('headline large','salonote-essence'),
-            'block' => 'h2',
+            'selector' => 'h1, h2, h3, h4, h5, h6, p',
             'classes' => 'heading_md'
         ),
         array(
             'title' => __('headline border bottom','salonote-essence'),
-            'block' => 'h2',
+            'selector' => 'h1, h2, h3, h4, h5, h6, p',
             'classes' => 'headline_bdr-left'
         ),
 
+				
+				
+				//----------------------------
+				array(
+            'title' => __('dash headline','salonote-essence'),
+            'selector' => 'h1, h2, h3, h4, h5, h6, p',
+            'classes' => 'dash_btm_headline'
+        ),
+				
+				array(
+            'title' => __('double headline','salonote-essence'),
+            'selector' => 'h1, h2, h3, h4, h5, h6, p',
+            'classes' => 'double_btm_headline'
+        ),
+				
+				array(
+            'title' => __('double headline','salonote-essence'),
+            'selector' => 'h1, h2, h3, h4, h5, h6, p',
+            'classes' => 'double_btm_headline'
+        ),
+				
+				array(
+            'title' => __('round headline','salonote-essence'),
+            'selector' => 'h1, h2, h3, h4, h5, h6, p',
+            'classes' => 'round_headline'
+        ),
+				
+				array(
+            'title' => __('stitch headline','salonote-essence'),
+						'selector' => 'h1, h2, h3, h4, h5, h6, p',
+            'classes' => 'stitch_headline headline_bkg'
+        ),
+				
+				array(
+            'title' => __('curled headline','salonote-essence'),
+            'selector' => 'h1, h2, h3, h4, h5, h6, p',
+            'classes' => 'curled_headline headline_bkg'
+        ),
+				
+				array(
+            'title' => __('ribbon headline','salonote-essence'),
+            'selector' => 'h1, h2, h3, h4, h5, h6, p',
+            'classes' => 'ribbon_headline headline_bkg'
+        ),
+				
+				array(
+            'title' => __('side border headline','salonote-essence'),
+            'selector' => 'h1, h2, h3, h4, h5, h6, p',
+            'classes' => 'side_bdr_headline'
+        ),
+				
+				//------------
+				
 				array(
           'title' => __('headline style 01','salonote-essence'),
           'inline' => 'span',
@@ -69,6 +124,7 @@ function essence_tinymce($initArray) {
             'inline' => 'span',
             'classes' => 'inline_title'
         ),
+				
       ),
 
     ),
@@ -133,6 +189,11 @@ function essence_tinymce($initArray) {
             'selector' => 'table',
             'classes' => 'table table-first-horizon'
         ),
+				array(
+            'title' => __('table sp_block','salonote-essence'),
+            'selector' => 'table',
+            'classes' => 'table table-sp-block'
+        ),
       ),
     ), //table
 		
@@ -168,20 +229,12 @@ function essence_tinymce($initArray) {
             'selector' => 'iframe, div ,img',
             'classes' => 'float-right'
         ),
-				array(
-            'title' => 'clearfix',
-            'selector' => 'iframe, div ,img',
-            'classes' => 'clearfix'
-        ),
-				array(
-						'title' => 'span',
-						'inline' => 'span',
-						'classes' => 'inline-span'
-				),
+				
 				array(
 						'title' => 'div',
 						'block' => 'div',
 				),
+				
 				array(
 						'title' => __('vertical middle','salonote-essence'),
 						'block' => 'div',
@@ -208,9 +261,35 @@ function essence_tinymce($initArray) {
       'title' => __('list','salonote-essence'),
       'items' => array(
         array(
-            'title' => __('list style','salonote-essence'),
+            'title' => __('list icon style','salonote-essence'),
             'selector' => 'ul,ol',
             'classes' => 'list-icon'
+        ),
+				
+				array(
+            'title' => __('list checkbox','salonote-essence'),
+            'selector' => 'ul,ol',
+            'classes' => 'list-checkbox'
+        ),
+				array(
+            'title' => __('list inline','salonote-essence'),
+            'selector' => 'ul,ol',
+            'classes' => 'list-inline'
+        ),
+				array(
+            'title' => __('list block','salonote-essence'),
+            'selector' => 'ul,ol',
+            'classes' => 'list-block'
+        ),
+				array(
+            'title' => __('list numbering','salonote-essence'),
+            'selector' => 'ol',
+            'classes' => 'list-numbering'
+        ),
+				array(
+            'title' => __('list flow','salonote-essence'),
+            'selector' => 'ol',
+            'classes' => 'list-flow'
         ),
       ),
     ),// list
@@ -263,39 +342,7 @@ function essence_tinymce($initArray) {
             'classes' => 'text-cover-block'
           ),
 				
-					array(
-            'title' => 'container',
-						'wrapper' => 'true',
-            'block' => 'div',
-            'classes' => 'container'
-          ),
-					array(
-            'title' => 'super_container',
-						'wrapper' => 'true',
-            'block' => 'div',
-            'classes' => 'super_container'
-          ),
-					array(
-            'title' => 'text-center',
-            'selector' => 'div',
-            'classes' => 'text-center'
-          ),
-					array(
-            'title' => 'block-center',
-						'wrapper' => 'true',
-            'block' => 'div',
-            'classes' => 'block-center'
-          ),
-					array(
-            'title' => 'bkg-right',
-            'selector' => 'div,img',
-            'classes' => 'bkg-right'
-          ),
-					array(
-            'title' => 'bkg-left',
-            'selector' => 'div,img',
-            'classes' => 'bkg-left'
-          ),
+					
 				
 					array(
             'title' => __('block image','salonote-essence'),
@@ -316,13 +363,7 @@ function essence_tinymce($initArray) {
 						'block' => 'div',
             'classes' => 'block-wrap'
           ),
-				
-					array(
-            'title' => __('horizon style','salonote-essence'),
-						'selector' => 'hr',
-            'classes' => 'block-horizon'
-          ),
-				
+
 					array(
             'title'	  => __('vertical-rl','salonote-essence'),
 						'wrapper' => 'true',
@@ -331,7 +372,7 @@ function essence_tinymce($initArray) {
           ),
 					array(
 							'title' => __('code','salonote-essence'),
-							'block' => 'pre',
+							'block' => 'code',
 							'wrapper' => 'true',
 							'classes' => 'pre_code-block'
 					),
@@ -340,6 +381,13 @@ function essence_tinymce($initArray) {
 							'block' => 'div',
 							'wrapper' => 'true',
 							'classes' => 'bdr-block'
+					),
+				
+					array(
+							'title' => __('overflow-block','salonote-essence'),
+							'block' => 'div',
+							'wrapper' => 'true',
+							'classes' => 'overflow-block'
 					),
 
           
@@ -371,6 +419,34 @@ function essence_tinymce($initArray) {
             'block' => 'div',
             'classes' => 'btn-item btn-circled'
         ),
+      ),
+    ), // buttons
+		
+		
+		
+		//=======================================
+    // horizon
+    array(
+      'title' => __('horizon','salonote-essence'),
+      'items' => array(
+				array(
+            'title' => __('horizon style','salonote-essence'),
+						'selector' => 'hr',
+            'classes' => 'block-horizon'
+          ),
+				
+        array(
+            'title' => __('short horizon','salonote-essence'),
+            'selector' => 'hr',
+            'classes' => 'short-horizon'
+        ),
+				
+				array(
+            'title' => __('hide horizon','salonote-essence'),
+            'selector' => 'hr',
+            'classes' => 'hidden'
+        ),
+				
       ),
     ), // buttons
 		
@@ -427,6 +503,63 @@ function essence_tinymce($initArray) {
         ),
       ),
     ), // width
+		
+		
+		//=======================================
+    // width
+    array(
+      'title' => __('class','salonote-essence'),
+      'items' => array(
+        array(
+            'title' => 'clearfix',
+            'selector' => 'iframe, div ,img',
+            'classes' => 'clearfix'
+        ),
+				array(
+						'title' => 'span',
+						'inline' => 'span',
+						'classes' => 'inline-span'
+				),
+				array(
+						'title' => 'inline-block',
+						'classes' => 'inline-block'
+				),
+				array(
+					'title' => 'container',
+					'wrapper' => 'true',
+					'block' => 'div',
+					'classes' => 'container'
+				),
+				array(
+					'title' => 'super_container',
+					'wrapper' => 'true',
+					'block' => 'div',
+					'classes' => 'super_container'
+				),
+				array(
+					'title' => 'text-center',
+					'selector' => 'div',
+					'classes' => 'text-center'
+				),
+				array(
+					'title' => 'block-center',
+					'wrapper' => 'true',
+					'block' => 'div',
+					'classes' => 'block-center'
+				),
+				array(
+					'title' => 'bkg-right',
+					'selector' => 'div,img',
+					'classes' => 'bkg-right'
+				),
+				array(
+					'title' => 'bkg-left',
+					'selector' => 'div,img',
+					'classes' => 'bkg-left'
+				),
+				
+      ),
+    ), // width
     
     
     array(
@@ -466,7 +599,10 @@ function essence_tinymce($initArray) {
   $initArray[ 'end_container_on_empty_block' ] = true;
   $initArray['disabled_editors'] = false;
 	
-	
+	/*------------
+	 editor-style.cssのキャッシュクリア
+	------------*/
+	$initArray['cache_suffix'] = 'v='.time();
 
 
   return $initArray;

@@ -21,7 +21,7 @@
 .separate-block{
 	> div{
 		padding: 15px;
-		display: table-cell;
+		display: inline-block;
 		vertical-align: top;
 	}
 }
@@ -30,7 +30,6 @@
 	margin-left: -30px;
 	margin-right: -30px;
 	padding: 15px 30px;
-	
 	box-shadow: 0 0 10px #CCCCCC;
 }
 
@@ -47,4 +46,30 @@
 		margin-right: auto;
 	}
 	
+}
+
+
+
+hr.short-horizon{
+	width: 12%;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
+
+.hidden{
+	display: none !important;
+}
+
+
+.overflow-block{
+	height: 150px;
+	margin-bottom: 1.5em;
+	background-color: #ffffff;
+	border: 1px #c0c0c0 solid;
+	color: #000000;
+	overflow: auto;
+	font-size: 80%;
+	padding: 1.5em;
 }

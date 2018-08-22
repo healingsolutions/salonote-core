@@ -10,7 +10,7 @@ $canonical_url = (empty($_SERVER["HTTPS"]) ? "http://" : "https://").$_SERVER['H
 <meta name="description" content="<?php echo get_bloginfo('description',false); ?>" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0<?php
 if ( function_exists('wp_is_mobile') && wp_is_mobile() ) {
- echo ' ,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no'; }
+ echo ' ,minimum-scale=1.0,maximum-scale=2.0'; }
 ?>" />
 <meta name="format-detection" content="telephone=no">
 <?php
@@ -29,30 +29,8 @@ if( !empty($theme_opt['base']['keywords']) ){
 <link rel="alternate" type="application/rss+xml" title="RSS" href="<?php bloginfo('rss2_url'); ?>" />
 <?php
 get_template_part("/template-parts/module/og-type");
-get_template_part("/template-parts/lib/favicon");
-
-
-if( !empty($theme_opt['base']['google_analytics']) && !current_user_can( 'administrator' )){
-//display google analytics only bisiter
-$_gtag = $theme_opt['base']['google_analytics'];
-echo <<< EOM
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={$_gtag}"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-
-gtag('config', '{$_gtag}');
-</script>
-EOM;
-}// google analytics 
-
-
-
-
+get_template_part("/template-parts/module/parts/favicon");
 wp_head();
-
 ?>
 
 <?php

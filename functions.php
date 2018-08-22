@@ -41,6 +41,7 @@ function essence_admin_style(){
 
 // admin editor css
 add_editor_style( get_template_directory_uri(). "/statics/css/editor-style.css");
+//add_editor_style( get_template_directory_uri(). "/statics/css/theme-style.php");
 add_editor_style( get_template_directory_uri(). "/lib/customizer/theme-colors.css");
 
 
@@ -67,9 +68,11 @@ function essence_head_enqueue() {
   //wp_enqueue_style('normalize', '//cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css', array(), '1.0');
   //wp_enqueue_style('yakuhanjp', '//cdn.jsdelivr.net/npm/yakuhanjp@2.0.0/dist/css/yakuhanjp.min.css', array(), '2.0.0');
 	
-	wp_enqueue_style('essence', get_template_directory_uri().'/style-min.css', array(), '1.0');
-	wp_enqueue_script('essence', get_template_directory_uri().'/statics/js/main-min.js', array(), '1.0.0' ,true);
+	wp_enqueue_style('essence', get_template_directory_uri().'/style-min.css', array(), '1.1.2');
+	wp_enqueue_script('essence', get_template_directory_uri().'/statics/js/main-min.js', array(), '1.0.2' ,true);
   
+	
+	
   if( !empty($theme_opt['extention']) && in_array('use_colorbox',$theme_opt['extention']) ){
     wp_enqueue_script('colorbox', '//cdnjs.cloudflare.com/ajax/libs/jquery.colorbox/1.6.4/jquery.colorbox-min.js', array(),'1.6.4' ,true);
     //wp_enqueue_style('colorbox', get_template_directory_uri().'/statics/js/colorbox/colorbox.css');
@@ -81,6 +84,15 @@ function essence_head_enqueue() {
     wp_enqueue_style ('slick-theme', get_template_directory_uri().'/statics/js/slick/slick-theme.css', array(), '1.0');
   }
 	
+	if( !wp_is_mobile() ){
+		if( !empty($theme_opt['extention']) && in_array('use_lazy_load',$theme_opt['extention']) ){
+			wp_enqueue_script ('lazyload', '//cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js', array(), '1.9.1',true);
+		}
+		if( !empty($theme_opt['extention']) && in_array('use_content_fade',$theme_opt['extention']) ){
+			wp_enqueue_script ('fadethis', get_template_directory_uri().'/statics/js/fadethis/jquery.fadethis.min.js', array(), '1.0',true);
+		}
+	}
+	
 	//wp_enqueue_style('dashicons',true);
 
 
@@ -88,12 +100,15 @@ function essence_head_enqueue() {
 add_action( 'wp_enqueue_scripts', 'essence_head_enqueue' ,1);
 
 
+
 //async javascript
 function addasync_colorbox_enqueue_script( $tag, $handle ) {
     if (
 			'colorbox' !== $handle &&
 			'essence' !== $handle &&
-			'ScrollToPlugin' !== $handle
+			'ScrollToPlugin' !== $handle &&
+			'lazyload' !== $handle &&
+			'fadethis' !== $handle
 		)
 		{
         return $tag;
@@ -146,7 +161,7 @@ add_theme_support( 'automatic-feed-links' );
 $args = array(
 	'width'         => 1600,
 	'height'        => 640,
-	'default-image' => get_template_directory_uri() . '/statics/images/header.jpg',
+	//'default-image' => get_template_directory_uri() . '/statics/images/header.jpg',
 );
 add_theme_support( 'custom-header', $args );
 
@@ -205,8 +220,10 @@ add_post_type_support( 'page', 'excerpt' );
 /*	register_nav_menus
 /*-------------------------------------------*/
 register_nav_menus( array( 'Header' => __('Header','salonote-essence'), ) );
+register_nav_menus( array( 'HeaderBottom' => __('Header Bottom','salonote-essence'), ) );
 register_nav_menus( array( 'FooterNavi' => __('Footer Top','salonote-essence'), ) );
 register_nav_menus( array( 'FooterSiteMap' => __('Footer SiteMap','salonote-essence'), ) );
+register_nav_menus( array( 'sp_display_nav' => __('SmartPhone Display Navi','salonote-essence'), ) );
 
 require_once( get_template_directory(). '/lib/inc/color.php' );
   
@@ -241,7 +258,9 @@ function include_library() {
   require_once (get_template_directory(). '/lib/custom_fields/page_info.php' );
 	require_once (get_template_directory(). '/lib/custom_fields/profile_fields.php' );
 	require_once (get_template_directory(). '/lib/custom_fields/gallery_post_type.php' );
-
+	require_once (get_template_directory(). '/lib/custom_fields/subtitle.php' );
+  require_once (get_template_directory(). '/lib/custom_fields/landing_page_info.php' );
+	require_once (get_template_directory(). '/lib/custom_fields/page_bkg.php' );
 
 }
 add_action('init', 'include_library', 10);
@@ -253,11 +272,13 @@ require_once( get_template_directory(). '/lib/widget/onePage.php' );
 require_once( get_template_directory(). '/lib/widget/customList.php' );
 require_once( get_template_directory(). '/lib/widget/sns_buttons.php' );
 
-//require_once( get_template_directory(). '/lib/widget/blogRss.php' );
+require_once( get_template_directory(). '/lib/widget/blogRss.php' );
 //require_once( get_template_directory(). '/lib/widget/extra-archive-link.php' );
 //require_once( get_template_directory(). '/lib/widget/WriteBlock.php' );
 //require_once (get_template_directory(). '/lib/widget/event_info.php' );
 
+//Salonote helper
+require_once( get_template_directory(). '/lib/salonote-helpter/salonote_helpter.php' );
 
 
 
@@ -278,6 +299,11 @@ if( $_SERVER["REQUEST_URI"] == '/sitemap.html' ){
 }
 
 
+//RSS cache lifetime
+add_filter( 'wp_feed_cache_transient_lifetime' , 'filter_handler' );
+function filter_handler( $seconds ) {
+  return 60*30;
+}
 
 
 
@@ -433,3 +459,65 @@ function get_template_hook(){
   
 }
 
+
+/*-------------------------------------------*/
+/* add class for recent_posts
+/*-------------------------------------------*/
+class salonote_WP_Widget_Recent_Posts extends WP_Widget_Recent_Posts{
+ 
+    function widget($args, $instance) {
+        $cache = wp_cache_get('widget_recent_posts', 'widget');
+ 
+        if ( !is_array($cache) )
+            $cache = array();
+ 
+        if ( ! isset( $args['widget_id'] ) )
+            $args['widget_id'] = $this->id;
+ 
+        if ( isset( $cache[ $args['widget_id'] ] ) ) {
+            echo $cache[ $args['widget_id'] ];
+            return;
+        }
+ 
+        ob_start();
+        extract($args);
+ 
+        $title = apply_filters('widget_title', empty($instance['title']) ? __('Recent Posts','salonote-essence') : $instance['title'], $instance, $this->id_base);
+        if ( empty( $instance['number'] ) || ! $number = absint( $instance['number'] ) )
+            $number = 10;
+			
+				$show_date = isset( $instance['show_date'] ) ? $instance['show_date'] : false;
+ 
+        $r = new WP_Query( apply_filters( 'widget_posts_args', array( 'posts_per_page' => $number, 'no_found_rows' => true, 'post_status' => 'publish', 'ignore_sticky_posts' => true ) ) );
+        if ($r->have_posts()) :
+?>
+        <?php echo $before_widget; ?>
+        <?php if ( $title ) echo $before_title . $title . $after_title; ?>
+				<div class="side_list">    
+				<ul class="list-bordered">
+        <?php  while ($r->have_posts()) : $r->the_post(); ?>
+        <li class="parent-list-item"><a href="<?php the_permalink() ?>" title="<?php echo esc_attr(strip_tags(get_the_title()) ? strip_tags(get_the_title()) : get_the_ID()); ?>"><?php if ( get_the_title() ) the_title(); else the_ID(); ?>
+					
+						<?php if ( $show_date ) : ?>
+							<time class="list_block_date"><?php echo get_the_date(); ?></time>
+            <?php endif; ?>
+					</a></li>
+        <?php endwhile; ?>
+        </ul>
+				</div>
+        <?php echo $after_widget; ?>
+<?php
+        // Reset the global $the_post as this query will have stomped on it
+        wp_reset_postdata();
+ 
+        endif;
+ 
+        $cache[$args['widget_id']] = ob_get_flush();
+        wp_cache_set('widget_recent_posts', $cache, 'widget');
+    }
+}
+
+function wp_my_widget_register() {
+    register_widget('salonote_WP_Widget_Recent_Posts');
+}
+add_action('widgets_init', 'wp_my_widget_register');

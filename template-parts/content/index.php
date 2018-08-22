@@ -6,16 +6,23 @@ global $post_type_name;
 global $post_type_tmpl;
 global $user_setting;
 
-if( is_tax() ){
-	$taxonomy = get_query_var('taxonomy');
-	$post_type_name = get_taxonomy($taxonomy)->object_type[0];
+if( is_tax() || is_category() ){
+	
+	if( is_tax()){
+		$taxonomy = get_query_var('taxonomy');
+		$post_type_name = get_taxonomy($taxonomy)->object_type[0];
+	}
+	if( is_category()){
+		$post_type_name = 'post';
+	}
+	
 	$post_type_set  = !empty($theme_opt['post_type'][$post_type_name]) ? $theme_opt['post_type'][$post_type_name] : null ;
 }
 
 // =============================
 // initialize
 
-$row_class = 'row';
+$row_class = 'main-content-row';
 
 $main_unit   = array('main-content-unit');
 $main_unit[] = container_class();
@@ -23,7 +30,8 @@ $main_unit[] = container_class();
 $_main_width = !empty($theme_opt['base']['side_width']) ? (12 - $theme_opt['base']['side_width']) : 9 ;
 
 $main_content   = array(
-  'main-content-block'
+  'main-content-block',
+	'mt-5 mb-5'
 );
 $list_class = array(
 	'list-unit'
@@ -37,8 +45,8 @@ if(
   !in_array('full_archive',$post_type_set)
 ){
   $main_unit[]    = 'has_sidebar';
-  $main_content[] = 'col-xs-12';
-  $main_content[] = 'col-sm-'.$_main_width;
+  $main_content[] = 'col-12';
+  $main_content[] = 'col-lg-'.$_main_width;
 }else{
 	$row_class .= '-block';
 }
@@ -95,18 +103,25 @@ $query = new WP_Query( $args );
 
 
 // =====================================================
-
+echo '<div class="main-content-wrap">';
 echo '<div class="'.implode(' ',$main_unit).'">';
 echo '<div class="'.$row_class.'">';
 
   // main =======================
   echo '<div class="'.implode(' ',$main_content).'">';
 
+		
+
+		if( !empty( $post_type_set ) && in_array('display_archive_title',$post_type_set) ){
+				$obj = get_post_type_object($post_type_name);				
+				echo '<h1 class="entry_block_title">'.$obj->labels->singular_name.'</h1>';
+				echo '<h2 class="entry_block_sub_title">'.$obj->name.'</h2>';
+			}
+
 		/*-------------------------------------------*/
 		/*	taxonomy_list
 		/*-------------------------------------------*/
 		get_template_part('template-parts/module/taxonomy_list');
-
 
 		echo '<div class="'.implode(' ',$list_class).'">';
 
@@ -122,10 +137,14 @@ echo '<div class="'.$row_class.'">';
 				//dynamic_sidebar( $post_type_name . 'widgets');
 			endif;
 
+			
+
+
 
 			if( $paged > 1 ){
 				echo '<div class="paged_title_block">' .$paged. __('page / all','salonote-essence').($query->max_num_pages / $args['posts_per_page'] * 10 ). __('pages','salonote-essence').'</div>';
 			}
+
 
 
 			
@@ -140,6 +159,10 @@ echo '<div class="'.$row_class.'">';
 
       
       
+
+
+	echo '</div>';
+
 	//post_type widget
   if( $post_type_tmpl !== 'front_page' && (!function_exists('dynamic_sidebar') || !dynamic_sidebar($post_type_tmpl . '_after_widgets'))): 
     //dynamic_sidebar( $post_type_name . 'widgets');
@@ -165,7 +188,7 @@ echo '<div class="'.$row_class.'">';
 				}
 				//^pagenation
 
-  echo '</div>';
+  
 	echo '</div>';
 
 
@@ -177,7 +200,7 @@ echo '<div class="'.$row_class.'">';
 
 echo '</div>';
 echo '</div>';
-
+echo '</div>';
 // =====================================================
 
 

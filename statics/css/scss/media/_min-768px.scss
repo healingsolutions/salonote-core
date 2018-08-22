@@ -8,8 +8,13 @@
 	body{
 		font-size: 16px;
 		font-size: 1.6rem;
+		
+		&.admin-bar{
+				margin-top:  32px;
+				z-index:  100;
+			}
 	}
-	
+
   .onlySP{
     display: none;
   }
@@ -19,6 +24,31 @@
   
 	.navbar-brand{
 		padding:  3px 25px 3px 15px;
+	}
+	.main-content-row{
+		margin-left: -15px;
+		margin-right: -15px;
+	}
+	
+	
+	
+	.header_top_widgets{
+		width: 75%;
+		margin-left: 25%;
+		
+		.textwidget{
+			float: right;
+			padding-right: 25px;
+		}
+		
+		.biz_info-address .br-block{
+			display: inline-block;
+			margin-left: 15px;
+		}
+		
+		.biz_info-phone a{
+			font-size: 2em;
+		}
 	}
   
   
@@ -147,12 +177,17 @@
   img.alignright,
 	img.alignleft
 	{
-		max-width: 60vw;
+		//max-width: 60vw;
 	}
 	
 	
 	.container{
 		max-width: 85vw;
+	}
+	
+	
+	.btn-item{
+		font-size: 1.2em;
 	}
 	
 	.fader{

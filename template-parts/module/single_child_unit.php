@@ -8,7 +8,7 @@ global $post_type_name;
 
 
 $main_content   = array(
-  'main-content-block',
+  //'main-content-block',
   'list-unit',
 );
 
@@ -27,14 +27,6 @@ if($event_date){
 }
 
 
-// =============================
-// set list type
-$main_content[] = !empty($post_type_set['list_type']) ? $post_type_set['list_type'].'-type-group' : 'list-type-group' ;
-
-if( !empty($post_type_set['list_type']) && $post_type_set['list_type'] == 'grid' && !empty($post_type_set['grid_cols']) ) {
-  $main_content[] = $post_type_set['grid_cols'] ? 'grid_cols-'.$post_type_set['grid_cols'] : 4 ;
-}
-
 
 $child_args = array(
 		'post_type' 			=> $post_type_name,
@@ -47,6 +39,22 @@ $child_args = array(
 		//'post__not_in' => array($post_id)
 );
 $query = new WP_Query( $child_args );
+
+
+// =============================
+// set list type
+$main_content[] = !empty($post_type_set['list_type']) ? $post_type_set['list_type'].'-type-group' : 'list-type-group' ;
+
+$_grid_cols = $post_type_set['grid_cols'] ? $post_type_set['grid_cols'] : 4 ;
+if( $query->found_posts < $_grid_cols ){
+	$_grid_cols = $query->found_posts;
+}
+
+if( !empty($post_type_set['list_type']) && $post_type_set['list_type'] == 'grid' && !empty($post_type_set['grid_cols']) ) {
+  $main_content[] = 'grid_cols-' . $_grid_cols;
+}
+
+
 
 if($query->have_posts()){
 	echo '<div class="'.implode(' ',$main_content).'">';

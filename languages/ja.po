@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: salonote-essence\n"
-"POT-Creation-Date: 2018-05-25 07:29+0900\n"
-"PO-Revision-Date: 2018-05-25 07:29+0900\n"
+"POT-Creation-Date: 2018-08-22 15:22+0900\n"
+"PO-Revision-Date: 2018-08-22 15:22+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.1.1\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
@@ -21,44 +21,76 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: comments.php:21
+#: comments.php:23
 #, php-format
 msgctxt "comments title"
 msgid "One thought on &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
 msgstr[0] "%1$s  &ldquo; %2$s&rdquo;の意見"
 
-#: comments.php:30 comments.php:51
+#: comments.php:32 comments.php:53
 msgid "Comment navigation"
 msgstr "コメント　ナビゲーション"
 
-#: comments.php:33 comments.php:54
+#: comments.php:35 comments.php:56
 msgid "Older Comments"
 msgstr "以前のコメント"
 
-#: comments.php:34 comments.php:55
+#: comments.php:36 comments.php:57
 msgid "Newer Comments"
 msgstr "新しいコメント"
 
-#: comments.php:67
+#: comments.php:69
 msgid "Comments are closed."
 msgstr "コメントは受け付けていません。"
 
-#: footer.php:112
+#: footer.php:121
 msgid "(c)"
 msgstr "©"
 
-#: functions.php:207
+#: functions.php:213
 msgid "Header"
 msgstr "ヘッダー"
 
-#: functions.php:208
+#: functions.php:214
+msgid "Header Bottom"
+msgstr "ヘッダーの下"
+
+#: functions.php:215
 msgid "Footer Top"
 msgstr "フッター上"
 
-#: functions.php:209
+#: functions.php:216
 msgid "Footer SiteMap"
 msgstr "フッターサイトマップ"
+
+#: functions.php:217
+msgid "SmartPhone Display Navi"
+msgstr "スマートフォン下部ナビ"
+
+#: functions.php:476
+msgid "Recent Posts"
+msgstr "最近の投稿"
+
+#: lib/custom_fields/gallery_post_type.php:23
+msgid "Gallery Post Type"
+msgstr "ギャラリー"
+
+#: lib/custom_fields/landing_page_info.php:23
+msgid "Landing Page Info Fields"
+msgstr "ランディングページ情報"
+
+#: lib/custom_fields/landing_page_info.php:39
+msgid "None Header"
+msgstr "ヘッダー非表示"
+
+#: lib/custom_fields/landing_page_info.php:40
+msgid "None Footer"
+msgstr "フッター非表示"
+
+#: lib/custom_fields/landing_page_info.php:41
+msgid "User Container"
+msgstr "Containerを使う"
 
 #: lib/custom_fields/page_info.php:13 lib/custom_fields/page_info.php:14
 msgid "Page Information"
@@ -70,6 +102,7 @@ msgstr "全画面表示"
 
 #: lib/custom_fields/page_info.php:25
 #: lib/customizer/option-page/post-type.php:136
+#: lib/customizer/option-page/post-type.php:195
 msgid "Hide Sidebar"
 msgstr "メインのみ"
 
@@ -114,40 +147,44 @@ msgid "Use Content FadeIn"
 msgstr "要素をフェードインさせる"
 
 #: lib/customizer/option-page/extention.php:13
+msgid "Use Lazy Load plugin"
+msgstr "画像の遅延読み込み"
+
+#: lib/customizer/option-page/extention.php:18
 msgid "Use Colorbox"
 msgstr "Color-boxを利用"
 
-#: lib/customizer/option-page/extention.php:15
+#: lib/customizer/option-page/extention.php:20
 msgid "Popup image when Click"
 msgstr "画像リンクをクリックするとポップアップ表示にします"
 
-#: lib/customizer/option-page/extention.php:19
+#: lib/customizer/option-page/extention.php:24
 msgid "Use Gallery Background"
 msgstr "ギャラリーで自動背景を利用"
 
-#: lib/customizer/option-page/extention.php:23
+#: lib/customizer/option-page/extention.php:28
 msgid "Use Slick Plugin"
 msgstr "Slickのスライドショーを利用"
 
-#: lib/customizer/option-page/extention.php:28
+#: lib/customizer/option-page/extention.php:33
 msgid "Facebook appID"
 msgstr "Facebook_appID"
 
-#: lib/customizer/option-page/extention.php:30
+#: lib/customizer/option-page/extention.php:35
 msgid "Need show Facebook Plugin"
 msgstr "Facebookページを読み込むのに必要です"
 
-#: lib/customizer/option-page/extention.php:33
+#: lib/customizer/option-page/extention.php:38
 msgid "Google Adwords Code"
 msgstr "Google Adwordsコード"
 
-#: lib/customizer/option-page/extention.php:35
+#: lib/customizer/option-page/extention.php:40
 msgid "You can use shortcode [GoogleAD]"
 msgstr "Google Adwordsの広告コード [GoogleAD]のショートコードで挿入されます"
 
-#: lib/customizer/option-page/extention.php:42
-#: lib/customizer/option-page/main.php:128
-#: lib/customizer/option-page/post-type.php:233
+#: lib/customizer/option-page/extention.php:47
+#: lib/customizer/option-page/main.php:154
+#: lib/customizer/option-page/post-type.php:235
 #: lib/customizer/theme-options.php:10
 msgid "Theme Setting"
 msgstr "テーマ設定"
@@ -209,83 +246,116 @@ msgid "Address"
 msgstr "住所"
 
 #: lib/customizer/option-page/main.php:52
+msgid "Business Time"
+msgstr "営業時間"
+
+#: lib/customizer/option-page/main.php:56
+msgid "Business Holiday"
+msgstr "定休日"
+
+#: lib/customizer/option-page/main.php:60
+msgid "Business Parking"
+msgstr "駐車場"
+
+#: lib/customizer/option-page/main.php:64
+msgid "Business Message"
+msgstr "メッセージ"
+
+#: lib/customizer/option-page/main.php:68
 msgid "Side Menu Postion"
 msgstr "サイドメニューの位置"
 
-#: lib/customizer/option-page/main.php:55
+#: lib/customizer/option-page/main.php:71
 msgid "right"
 msgstr "右"
 
-#: lib/customizer/option-page/main.php:56
+#: lib/customizer/option-page/main.php:72
 msgid "left"
 msgstr "左"
 
-#: lib/customizer/option-page/main.php:60
+#: lib/customizer/option-page/main.php:76
 msgid "Side Menu Width"
 msgstr "サイドメニューの幅"
 
-#: lib/customizer/option-page/main.php:70
+#: lib/customizer/option-page/main.php:86
 msgid "Use Container"
 msgstr "Containerを使う"
 
-#: lib/customizer/option-page/main.php:74
+#: lib/customizer/option-page/main.php:92
+msgid "Show header Headline 1 text"
+msgstr "タイトル下概要"
+
+#: lib/customizer/option-page/main.php:94
+msgid ""
+"Show Headline 1 text in header logo space.But when too long description "
+"words, sometime break layout."
+msgstr ""
+"タイトルロゴの下に概要を表示します。概要が長い場合は、レイアウトが崩れる場合"
+"がありますのでご注意ください。"
+
+#: lib/customizer/option-page/main.php:98
 msgid "Show BreadCrumb"
 msgstr "パンくずリストを表示"
 
-#: lib/customizer/option-page/main.php:78
+#: lib/customizer/option-page/main.php:102
 msgid "Hide Horizon"
 msgstr "罫線を表示しない"
 
-#: lib/customizer/option-page/main.php:82
+#: lib/customizer/option-page/main.php:106
 msgid "Fit Sidebar"
 msgstr "サイドバーを追従させる"
 
-#: lib/customizer/option-page/main.php:86
+#: lib/customizer/option-page/main.php:110
 msgid "break title (,)"
 msgstr "タイトルをカンマで改行する"
 
-#: lib/customizer/option-page/main.php:90
+#: lib/customizer/option-page/main.php:114
 msgid "no float sp device"
 msgstr "スマホでは画像を左右に寄せない"
 
-#: lib/customizer/option-page/main.php:92
+#: lib/customizer/option-page/main.php:116
 msgid "If float image on SmartPhone, sometime break text trouble"
 msgstr ""
 "スマホで画像を左右に寄せると、文章部分が狭くなって見づらくなる恐れがあるの"
 "で、回避します"
 
-#: lib/customizer/option-page/main.php:95
+#: lib/customizer/option-page/main.php:119
 msgid "Child StyleSheet"
 msgstr "子テーマスタイルの読み込み"
 
-#: lib/customizer/option-page/main.php:96
+#: lib/customizer/option-page/main.php:120
 msgid "use child theme stylesheet"
 msgstr "ページの表示速度を少し落として、子テーマの要素を読み込みます"
 
-#: lib/customizer/option-page/main.php:100
+#: lib/customizer/option-page/main.php:124
 msgid "Parts PostType"
 msgstr "パーツ機能を利用"
 
-#: lib/customizer/option-page/main.php:106
+#: lib/customizer/option-page/main.php:130
 msgid "Headline Font"
 msgstr "見出しフォント"
 
-#: lib/customizer/option-page/main.php:109
-#: lib/customizer/option-page/main.php:120
-msgid "mincho"
-msgstr "明朝"
-
-#: lib/customizer/option-page/main.php:110
-#: lib/customizer/option-page/main.php:119
+#: lib/customizer/option-page/main.php:133
+#: lib/customizer/option-page/main.php:144
 msgid "gothic"
 msgstr "ゴシック"
 
-#: lib/customizer/option-page/main.php:111
-#: lib/customizer/option-page/main.php:121
+#: lib/customizer/option-page/main.php:134
+#: lib/customizer/option-page/main.php:145
+msgid "mincho"
+msgstr "明朝"
+
+#: lib/customizer/option-page/main.php:135
+#: lib/customizer/option-page/main.php:146
+msgid "Meiryo"
+msgstr "メイリオ"
+
+#: lib/customizer/option-page/main.php:136
+#: lib/customizer/option-page/main.php:147
 msgid "maru-gothic"
 msgstr "丸ゴシック"
 
-#: lib/customizer/option-page/main.php:116
+#: lib/customizer/option-page/main.php:141
 msgid "Body Font"
 msgstr "本文フォント"
 
@@ -313,16 +383,16 @@ msgstr "px　(980px以上の場合)"
 msgid "List Type"
 msgstr "リスト表示タイプ"
 
-#: lib/customizer/option-page/post-type.php:51 lib/module/tinymce.php:208
-#: lib/widget/customList.php:80
+#: lib/customizer/option-page/post-type.php:51 lib/module/tinymce.php:261
+#: lib/widget/customList.php:86
 msgid "list"
 msgstr "リスト"
 
-#: lib/customizer/option-page/post-type.php:52 lib/widget/customList.php:81
+#: lib/customizer/option-page/post-type.php:52 lib/widget/customList.php:87
 msgid "grid"
 msgstr "グリッド"
 
-#: lib/customizer/option-page/post-type.php:53 lib/widget/customList.php:82
+#: lib/customizer/option-page/post-type.php:53 lib/widget/customList.php:88
 msgid "timeline"
 msgstr "タイムライン"
 
@@ -423,91 +493,87 @@ msgid "Page Title"
 msgstr "ページタイトル"
 
 #: lib/customizer/option-page/post-type.php:154
-msgid "Prev/Next"
-msgstr "前後の投稿"
-
-#: lib/customizer/option-page/post-type.php:158
-msgid "Other Posts"
-msgstr "その他の投稿"
-
-#: lib/customizer/option-page/post-type.php:163
-msgid "Show ChildPosts in Sidebar"
-msgstr "サイドに子ページリスト"
-
-#: lib/customizer/option-page/post-type.php:167
-msgid "Show ChildPosts in bottom"
-msgstr "ページ下部に子ページリスト"
-
-#: lib/customizer/option-page/post-type.php:171
-msgid "Show Index Navigation"
-msgstr "ページ内リンク"
-
-#: lib/customizer/option-page/post-type.php:173
-msgid "Only if contain \"headline_nav\""
-msgstr "headline_navが含まれた要素を抽出します"
-
-#: lib/customizer/option-page/post-type.php:180
 msgid "post_date"
 msgstr "投稿日"
 
-#: lib/customizer/option-page/post-type.php:184
+#: lib/customizer/option-page/post-type.php:158
 msgid "Page SubTitle"
 msgstr "ページサブタイトル"
 
-#: lib/customizer/option-page/post-type.php:188
+#: lib/customizer/option-page/post-type.php:162
 msgid "Page Excerpt"
 msgstr "ページ内概要"
 
-#: lib/customizer/option-page/post-type.php:193
-msgid "HIde Page Sidebar"
-msgstr "シングルページのサイドを非表示"
+#: lib/customizer/option-page/post-type.php:167
+msgid "Prev/Next"
+msgstr "前後の投稿"
 
-#: lib/customizer/option-page/post-type.php:198
+#: lib/customizer/option-page/post-type.php:171
+msgid "Other Posts"
+msgstr "その他の投稿"
+
+#: lib/customizer/option-page/post-type.php:176
+msgid "Show ChildPosts in Sidebar"
+msgstr "サイドに子ページリスト"
+
+#: lib/customizer/option-page/post-type.php:180
+msgid "Show ChildPosts in bottom"
+msgstr "ページ下部に子ページリスト"
+
+#: lib/customizer/option-page/post-type.php:184
+msgid "Show Index Navigation"
+msgstr "ページ内リンク"
+
+#: lib/customizer/option-page/post-type.php:186
+msgid "Only if contain \"headline_nav\""
+msgstr "headline_navが含まれた要素を抽出します"
+
+#: lib/customizer/option-page/post-type.php:200
 msgid "None page container"
 msgstr "シングルページのcontainerを不使用"
 
-#: lib/customizer/option-page/post-type.php:204
+#: lib/customizer/option-page/post-type.php:206
 msgid "Show Thumbnail"
 msgstr "サムネイルを表示"
 
-#: lib/customizer/option-page/post-type.php:208
+#: lib/customizer/option-page/post-type.php:210
 msgid "Sizes"
 msgstr "サイズ"
 
-#: lib/customizer/option-page/post-type.php:213
+#: lib/customizer/option-page/post-type.php:215
 msgid "Movie Thumbnail"
 msgstr "動画サムネイル"
 
-#: lib/customizer/option-page/post-type.php:217
+#: lib/customizer/option-page/post-type.php:219
 msgid "Use First Image for Thumbnail"
 msgstr "最初の画像をサムネイルに使用"
 
-#: lib/customizer/option-page/post-type.php:221
+#: lib/customizer/option-page/post-type.php:223
 msgid "Show Thumbnail in post content"
 msgstr "投稿にもサムネイルを表示"
 
-#: lib/customizer/option-page/post-type.php:225
+#: lib/customizer/option-page/post-type.php:227
 msgid "Hide Gallery Caption"
 msgstr "ギャラリーのキャプションを非表示"
 
-#: lib/customizer/option-page/post-type.php:382
+#: lib/customizer/option-page/post-type.php:384
 msgid "Common Setting"
 msgstr "共通の設定"
 
-#: lib/customizer/option-page/post-type.php:383
+#: lib/customizer/option-page/post-type.php:385
 msgid "Archice Setting"
 msgstr "リストの表示設定"
 
-#: lib/customizer/option-page/post-type.php:384
+#: lib/customizer/option-page/post-type.php:386
 msgid "Singular Setting"
 msgstr "シングルページの表示設定"
 
-#: lib/customizer/option-page/post-type.php:385
+#: lib/customizer/option-page/post-type.php:387
 msgid "Thumbnail Setting"
 msgstr "サムネイル設定"
 
-#: lib/customizer/option-page/post-type.php:411
-#: lib/customizer/option-page/post-type.php:427 lib/widget/widgets.php:105
+#: lib/customizer/option-page/post-type.php:413
+#: lib/customizer/option-page/post-type.php:429 lib/widget/widgets.php:116
 msgid "front-page"
 msgstr "フロントページ"
 
@@ -608,54 +674,62 @@ msgid "footer font-color"
 msgstr "フッターの文字色"
 
 #: lib/inc/color.php:91
+msgid "headline background-color"
+msgstr "見出しの背景色"
+
+#: lib/inc/color.php:100
 msgid "border-color"
 msgstr "ボーダー色"
 
-#: lib/inc/color.php:99
+#: lib/inc/color.php:108
 msgid "list border-color"
 msgstr "リストボーダー色"
 
-#: lib/inc/color.php:107
+#: lib/inc/color.php:116
+msgid "list icon color"
+msgstr "リスト　アイコン色"
+
+#: lib/inc/color.php:124
 msgid "horizon color"
 msgstr "水平線の色"
 
-#: lib/inc/color.php:116
+#: lib/inc/color.php:133
 msgid "band-block background-color"
 msgstr "帯背景色"
 
-#: lib/inc/color.php:125
+#: lib/inc/color.php:142
 msgid "marker background-color"
 msgstr "マーカー"
 
-#: lib/inc/color.php:134
+#: lib/inc/color.php:151
 msgid "content background-color"
 msgstr "コンテンツの背景色"
 
-#: lib/inc/color.php:143
+#: lib/inc/color.php:160
 msgid "mainblock background-color"
 msgstr "メインブロックの背景色"
 
-#: lib/inc/color.php:152
+#: lib/inc/color.php:169
 msgid "sidebar background-color"
 msgstr "サイドバーの背景色"
 
-#: lib/inc/color.php:161
+#: lib/inc/color.php:178
 msgid "grid background-color"
 msgstr "グリッドの背景色"
 
-#: lib/inc/color.php:170
+#: lib/inc/color.php:187
 msgid "button background-color"
 msgstr "ボタンの背景色"
 
-#: lib/inc/color.php:178
+#: lib/inc/color.php:195
 msgid "button font-color"
 msgstr "ボタンの文字色"
 
-#: lib/inc/color.php:186
+#: lib/inc/color.php:203
 msgid "horizon_block background-color"
 msgstr "区切りブロック背景色"
 
-#: lib/inc/color.php:194
+#: lib/inc/color.php:211
 msgid "horizon_block font-color"
 msgstr "区切りブロックの文字色"
 
@@ -712,40 +786,50 @@ msgstr "ページ"
 msgid "posts"
 msgstr "投稿"
 
+#: lib/inc/functions.php:352
+msgid "Search post type:"
+msgstr "検索する場所"
+
+#: lib/inc/functions.php:369
+msgid "Search"
+msgstr "検索"
+
 #: lib/module/images.php:10 lib/module/images.php:39
 msgid "Thumbnail"
 msgstr "サムネイル"
 
-#: lib/module/images.php:80
+#: lib/module/images.php:86
 msgid "thumbnail_L"
 msgstr "サムネイル大"
 
-#: lib/module/images.php:87
+#: lib/module/images.php:93
 msgid "thumbnail_M"
 msgstr "サムネイル中"
 
-#: lib/module/images.php:94
-#, fuzzy
-#| msgid "headline large"
+#: lib/module/images.php:100
 msgid "medium_large"
-msgstr "headline 大"
+msgstr "Medium Large"
 
-#: lib/module/print_color_style.php:66
+#: lib/module/images.php:107
+msgid "medium_banner"
+msgstr "Medium Banner"
+
+#: lib/module/print_color_style.php:80
 msgid "\"HiraMinProN-W3\",\"MS PMincho\", serif !important;"
 msgstr ""
 "\"ヒラギノ明朝 ProN W3\", “HiraMinProN-W3”, “HG明朝E”, “ＭＳ Ｐ明朝”, “MS "
 "PMincho”, “MS 明朝”, serif !important;"
 
-#: lib/module/print_color_style.php:67
+#: lib/module/print_color_style.php:81
 msgid ""
 "\"Yu Gothic\", YuGothic, \"Hiragino Kaku Gothic Pro\", Meiryo, Osaka, \"MS "
 "PGothic\", sans-serif;"
 msgstr ""
-"“游ゴシック体, ‘Yu Gothic’, YuGothic, ‘ヒラギノ角ゴシック Pro’, ‘Hiragino "
+"“游ゴシック体”, ‘Yu Gothic’, YuGothic, ‘ヒラギノ角ゴシック Pro’, ‘Hiragino "
 "Kaku Gothic Pro’, メイリオ, Meiryo, Osaka, ‘ＭＳ Ｐゴシック’, ‘MS PGothic’, "
 "sans-serif;"
 
-#: lib/module/print_color_style.php:68
+#: lib/module/print_color_style.php:82
 msgid ""
 "\"Rounded Mplus 1c\", \"Hiragino Kaku Gothic Pro\", Meiryo, Osaka, \"MS "
 "PGothic\", sans-serif;"
@@ -753,212 +837,323 @@ msgstr ""
 "“Rounded Mplus 1c”, “ヒラギノ角ゴ Pro W3”, “Hiragino Kaku Gothic Pro”, “メイ"
 "リオ”, Meiryo, Osaka, “ＭＳ Ｐゴシック”, “MS PGothic”, sans-serif;"
 
-#: lib/module/tinymce.php:18 lib/widget/WriteBlock.php:67
+#: lib/module/tinymce.php:20 lib/widget/WriteBlock.php:67
 #: lib/widget/extra-archive-link.php:37 lib/widget/taxonomy.php:68
 msgid "headline"
 msgstr "見出し"
 
-#: lib/module/tinymce.php:21
+#: lib/module/tinymce.php:23
 msgid "border bottom"
 msgstr "下にボーダー"
 
-#: lib/module/tinymce.php:26
+#: lib/module/tinymce.php:28
 msgid "border top and bottom"
 msgstr "上下にボーダー"
 
-#: lib/module/tinymce.php:36
+#: lib/module/tinymce.php:38
 msgid "headline large"
 msgstr "headline 大"
 
-#: lib/module/tinymce.php:41
+#: lib/module/tinymce.php:43
 msgid "headline border bottom"
 msgstr "見出し下線"
 
-#: lib/module/tinymce.php:47
+#: lib/module/tinymce.php:52
+msgid "dash headline"
+msgstr "点線見出し"
+
+#: lib/module/tinymce.php:58 lib/module/tinymce.php:64
+msgid "double headline"
+msgstr "二重線見出し"
+
+#: lib/module/tinymce.php:70
+msgid "round headline"
+msgstr "角丸見出し"
+
+#: lib/module/tinymce.php:76
+msgid "stitch headline"
+msgstr "ステッチ風"
+
+#: lib/module/tinymce.php:82
+msgid "curled headline"
+msgstr "めくり有り"
+
+#: lib/module/tinymce.php:88
+msgid "ribbon headline"
+msgstr "リボン風"
+
+#: lib/module/tinymce.php:94
+msgid "side border headline"
+msgstr "横線に線があるスタイル"
+
+#: lib/module/tinymce.php:102
 msgid "headline style 01"
 msgstr "見出しスタイル01"
 
-#: lib/module/tinymce.php:52
+#: lib/module/tinymce.php:107
 msgid "headline style 02"
 msgstr "見出しスタイル02"
 
-#: lib/module/tinymce.php:58
+#: lib/module/tinymce.php:113
 msgid "unit headline H3"
 msgstr "ユニット見出し　H3"
 
-#: lib/module/tinymce.php:63
+#: lib/module/tinymce.php:118
 msgid "inline headline H2"
 msgstr "インライン見出し　H2"
 
-#: lib/module/tinymce.php:68
+#: lib/module/tinymce.php:123
 msgid "inline headline"
 msgstr "インライン見出し"
 
-#: lib/module/tinymce.php:78
+#: lib/module/tinymce.php:134
 msgid "blocks"
 msgstr "ブロック要素"
 
-#: lib/module/tinymce.php:82
+#: lib/module/tinymce.php:138
 msgid "memo"
 msgstr "メモ"
 
-#: lib/module/tinymce.php:88
+#: lib/module/tinymce.php:144
 msgid "tips"
 msgstr "tips"
 
-#: lib/module/tinymce.php:94
+#: lib/module/tinymce.php:150
 msgid "attention"
 msgstr "注意"
 
-#: lib/module/tinymce.php:100
+#: lib/module/tinymce.php:156
 msgid "news"
 msgstr "news"
 
-#: lib/module/tinymce.php:106
+#: lib/module/tinymce.php:162
 msgid "band block"
 msgstr "帯背景"
 
-#: lib/module/tinymce.php:118
+#: lib/module/tinymce.php:174
 msgid "table"
 msgstr "テーブル"
 
-#: lib/module/tinymce.php:121
+#: lib/module/tinymce.php:177
 msgid "normal table"
 msgstr "通常のテーブル"
 
-#: lib/module/tinymce.php:127
+#: lib/module/tinymce.php:183
 msgid "table striped"
 msgstr "ストライプテーブル"
 
-#: lib/module/tinymce.php:132
+#: lib/module/tinymce.php:188
 msgid "table horizon"
 msgstr "水平区切りテーブル"
 
-#: lib/module/tinymce.php:143
+#: lib/module/tinymce.php:193
+msgid "table sp_block"
+msgstr "テーブル　スマートフォン区切り"
+
+#: lib/module/tinymce.php:204
 msgid "object"
 msgstr "要素"
 
-#: lib/module/tinymce.php:146
+#: lib/module/tinymce.php:207
 msgid "text align left"
 msgstr "テキスト左寄せ"
 
-#: lib/module/tinymce.php:151
+#: lib/module/tinymce.php:212
 msgid "text align right"
 msgstr "テキスト右寄せ"
 
-#: lib/module/tinymce.php:156
+#: lib/module/tinymce.php:217
 msgid "text align center"
 msgstr "テキスト中央寄せ"
 
-#: lib/module/tinymce.php:162
+#: lib/module/tinymce.php:223
 msgid "float left"
 msgstr "左フロート"
 
-#: lib/module/tinymce.php:167
+#: lib/module/tinymce.php:228
 msgid "float right"
 msgstr "右フロート"
 
-#: lib/module/tinymce.php:186
+#: lib/module/tinymce.php:239
 msgid "vertical middle"
 msgstr "垂直方向中央揃え"
 
-#: lib/module/tinymce.php:191
+#: lib/module/tinymce.php:244
 msgid "not break words"
 msgstr "テキストを折り返さない"
 
-#: lib/module/tinymce.php:196
+#: lib/module/tinymce.php:249
 msgid "text color white"
 msgstr "白テキスト"
 
-#: lib/module/tinymce.php:211
-#, fuzzy
-#| msgid "list type"
-msgid "list style"
-msgstr "リストの種類"
+#: lib/module/tinymce.php:264
+msgid "list icon style"
+msgstr "アイコン付き"
 
-#: lib/module/tinymce.php:221
+#: lib/module/tinymce.php:270
+msgid "list checkbox"
+msgstr "チェックボックス付き"
+
+#: lib/module/tinymce.php:275
+msgid "list inline"
+msgstr "横並びリスト"
+
+#: lib/module/tinymce.php:280
+msgid "list block"
+msgstr "区切りリスト"
+
+#: lib/module/tinymce.php:285
+msgid "list numbering"
+msgstr "数字付きリスト"
+
+#: lib/module/tinymce.php:290
+msgid "list flow"
+msgstr "流れリスト"
+
+#: lib/module/tinymce.php:300
 msgid "image"
 msgstr "画像"
 
-#: lib/module/tinymce.php:224
+#: lib/module/tinymce.php:303
 msgid "image circled"
 msgstr "円形画像"
 
-#: lib/module/tinymce.php:229
+#: lib/module/tinymce.php:308
 msgid "image rounded"
 msgstr "角丸画像"
 
-#: lib/module/tinymce.php:234
+#: lib/module/tinymce.php:313
 msgid "image shadow"
 msgstr "影付き画像"
 
-#: lib/module/tinymce.php:245
+#: lib/module/tinymce.php:324
 msgid "extend style"
 msgstr "拡張スタイル"
 
-#: lib/module/tinymce.php:248
+#: lib/module/tinymce.php:327
 msgid "normal cover image"
 msgstr "通常のカバー画像"
 
-#: lib/module/tinymce.php:254
+#: lib/module/tinymce.php:333
 msgid "fixed cover image"
 msgstr "固定カバー画像"
 
-#: lib/module/tinymce.php:260
+#: lib/module/tinymce.php:339
 msgid "text on cover image"
 msgstr "カバー画像のテキスト"
 
-#: lib/module/tinymce.php:301
+#: lib/module/tinymce.php:348
 msgid "block image"
 msgstr "画像をブロック化"
 
-#: lib/module/tinymce.php:307
+#: lib/module/tinymce.php:354
 msgid "block side by side"
 msgstr "横並びブロック"
 
-#: lib/module/tinymce.php:314
+#: lib/module/tinymce.php:361
 msgid "block wrap"
 msgstr "divで囲う"
 
-#: lib/module/tinymce.php:321
-msgid "horizon style"
-msgstr "水平線区切り"
-
-#: lib/module/tinymce.php:327
+#: lib/module/tinymce.php:368
 msgid "vertical-rl"
 msgstr "縦文字"
 
-#: lib/module/tinymce.php:333
+#: lib/module/tinymce.php:374
 msgid "code"
 msgstr "コード"
 
-#: lib/module/tinymce.php:339
+#: lib/module/tinymce.php:380
 msgid "border block"
 msgstr "ボーダー ブロック"
 
-#: lib/module/tinymce.php:354
+#: lib/module/tinymce.php:387
+msgid "overflow-block"
+msgstr "スクロール付きブロック"
+
+#: lib/module/tinymce.php:402
 msgid "button"
 msgstr "ボタン"
 
-#: lib/module/tinymce.php:357
+#: lib/module/tinymce.php:405
 msgid "square button"
 msgstr "四角ボタン"
 
-#: lib/module/tinymce.php:363
+#: lib/module/tinymce.php:411
 msgid "rounded button"
 msgstr "角丸ボタン"
 
-#: lib/module/tinymce.php:369
+#: lib/module/tinymce.php:417
 msgid "circled button"
 msgstr "円形ボタン"
 
-#: lib/module/tinymce.php:381
+#: lib/module/tinymce.php:430
+msgid "horizon"
+msgstr "水平線"
+
+#: lib/module/tinymce.php:433
+msgid "horizon style"
+msgstr "通常の水平線スタイル"
+
+#: lib/module/tinymce.php:439
+msgid "short horizon"
+msgstr "短い水平線スタイル"
+
+#: lib/module/tinymce.php:445
+msgid "hide horizon"
+msgstr "罫線を隠す"
+
+#: lib/module/tinymce.php:457
 msgid "width"
 msgstr "幅"
 
-#: lib/module/tinymce.php:433
+#: lib/module/tinymce.php:511
+msgid "class"
+msgstr "class"
+
+#: lib/module/tinymce.php:566
 msgid "marker"
 msgstr "マーカー"
+
+#: lib/salonote-helpter/lib/post_type/parts.php:7
+#: lib/salonote-helpter/lib/post_type/parts.php:8
+msgid "parts"
+msgstr "パーツ"
+
+#: lib/salonote-helpter/lib/post_type/parts.php:9
+msgid "add parts"
+msgstr "パーツを追加"
+
+#: lib/salonote-helpter/lib/post_type/parts.php:10
+msgid "add new parts"
+msgstr "新しいパーツを追加"
+
+#: lib/salonote-helpter/lib/post_type/parts.php:11
+msgid "edit parts"
+msgstr "パーツを編集"
+
+#: lib/salonote-helpter/lib/post_type/parts.php:12
+msgid "new parts"
+msgstr "新しいパーツ"
+
+#: lib/salonote-helpter/lib/post_type/parts.php:13
+msgid "show parts"
+msgstr "パーツを表示"
+
+#: lib/salonote-helpter/lib/post_type/parts.php:14
+msgid "search parts"
+msgstr "パーツを検索"
+
+#: lib/salonote-helpter/lib/post_type/parts.php:15
+msgid "no parts"
+msgstr "パーツがありません"
+
+#: lib/salonote-helpter/lib/post_type/parts.php:16
+msgid "no parts in trash"
+msgstr "ゴミ箱にパーツがありません"
+
+#: lib/salonote-helpter/lib/post_type/parts.php:43
+msgid "shortcode"
+msgstr "ショートコード"
 
 #: lib/widget/WriteBlock.php:7
 msgid "writer block"
@@ -1003,19 +1198,19 @@ msgstr "カスタム リスト"
 msgid "display custom list"
 msgstr "カスタムリストを表示"
 
-#: lib/widget/customList.php:68
+#: lib/widget/customList.php:74
 msgid "title"
 msgstr "タイトル"
 
-#: lib/widget/customList.php:72
+#: lib/widget/customList.php:78
 msgid "post type"
 msgstr "投稿タイプ"
 
-#: lib/widget/customList.php:77
+#: lib/widget/customList.php:83
 msgid "list type"
 msgstr "リストの種類"
 
-#: lib/widget/customList.php:86
+#: lib/widget/customList.php:92
 msgid "display number"
 msgstr "表示件数"
 
@@ -1035,8 +1230,9 @@ msgstr "固定ページコンテンツ"
 msgid "display page content"
 msgstr "固定ページを表示"
 
-#: lib/widget/onePage.php:56 template-parts/content/frontpage.php:111
-#: template-parts/content/index.php:125
+#: lib/widget/onePage.php:56 template-parts/content/frontpage.php:112
+#: template-parts/content/index.php:145 template-parts/content/search.php:133
+#: template/attachment-list.php:98
 msgid "pages"
 msgstr "ページ"
 
@@ -1056,113 +1252,110 @@ msgstr "カスタムカテゴリ"
 msgid "category list"
 msgstr "カテゴリ"
 
-#: lib/widget/widgets.php:15 lib/widget/widgets.php:17
+#: lib/widget/widgets.php:14
+msgid "top of page"
+msgstr "ページ最上部"
+
+#: lib/widget/widgets.php:16
+msgid "display widghet in top of page"
+msgstr "ページの最上部に表示"
+
+#: lib/widget/widgets.php:26 lib/widget/widgets.php:28
 msgid "inner content"
 msgstr "コンテンツ内部"
 
-#: lib/widget/widgets.php:27
+#: lib/widget/widgets.php:38
 msgid "bottom content"
 msgstr "コンテンツ下部"
 
-#: lib/widget/widgets.php:29
+#: lib/widget/widgets.php:40
 msgid "display widget in bottom of content"
 msgstr "コンテンツ下部に表示"
 
-#: lib/widget/widgets.php:40
+#: lib/widget/widgets.php:51
 msgid "footer"
 msgstr "フッター"
 
-#: lib/widget/widgets.php:42
+#: lib/widget/widgets.php:53
 msgid "display widghet in footer"
 msgstr "フッターに表示"
 
-#: lib/widget/widgets.php:52
+#: lib/widget/widgets.php:63
 msgid "side widget"
 msgstr "サイド"
 
-#: lib/widget/widgets.php:54
+#: lib/widget/widgets.php:65
 msgid "display widghet in sidebar"
 msgstr "サイドバーに表示"
 
-#: lib/widget/widgets.php:63
+#: lib/widget/widgets.php:74
 msgid "bottom of navigation"
 msgstr "ナビゲーションの前"
 
-#: lib/widget/widgets.php:65
+#: lib/widget/widgets.php:76
 msgid "display widghet in bottom of navigation"
 msgstr "ナビゲーションの下"
 
-#: lib/widget/widgets.php:76
+#: lib/widget/widgets.php:87
 msgid "bottom of smartphone navigation"
 msgstr "スマートフォンナビゲーションの下に表示"
 
-#: lib/widget/widgets.php:78
+#: lib/widget/widgets.php:89
 msgid "display widghet in bottom of smartphone navigation"
 msgstr "スマートフォンナビゲーションの下に表示"
 
-#: lib/widget/widgets.php:111
+#: lib/widget/widgets.php:122
 msgid "Common upper part"
 msgstr "共通上部"
 
-#: lib/widget/widgets.php:113
+#: lib/widget/widgets.php:124
 #, php-format
 msgid "display widget on %s common upper part"
 msgstr "%s 共通上部"
 
-#: lib/widget/widgets.php:121
+#: lib/widget/widgets.php:132
 msgid "Common bottom part"
 msgstr "共通下部"
 
-#: lib/widget/widgets.php:123
+#: lib/widget/widgets.php:134
 #, php-format
 msgid "display widget on %s common bottom part"
 msgstr "%s 共通下部"
 
-#: lib/widget/widgets.php:132
+#: lib/widget/widgets.php:143
 msgid "Common side part"
 msgstr "共通サイド"
 
-#: lib/widget/widgets.php:134
+#: lib/widget/widgets.php:145
 #, php-format
 msgid "display widget on %s common side part"
 msgstr "%s 共通サイド"
 
-#: lib/widget/widgets.php:143
+#: lib/widget/widgets.php:154
 msgid "on content bottom"
 msgstr "コンテンツ下部"
 
-#: lib/widget/widgets.php:145
+#: lib/widget/widgets.php:156
 #, php-format
 msgid "display widget on %s page content bottom"
 msgstr "%s 個別ページの下部"
 
-#: lib/widget/widgets.php:192
-msgid "Recent Posts"
-msgstr "最近の投稿"
-
-#: template-parts/content/404.php:20 template-parts/content/search.php:76
+#: template-parts/content/404.php:21
 msgid "no posts"
 msgstr "投稿無し"
 
-#: template-parts/content/frontpage.php:111
-#: template-parts/content/index.php:125
+#: template-parts/content/frontpage.php:112
+#: template-parts/content/index.php:145 template-parts/content/search.php:133
+#: template/attachment-list.php:98
 msgid "page / all"
 msgstr "ページ目／ 全"
 
-#: template-parts/content/search.php:40
-msgid "seach result"
-msgstr "検索結果"
-
-#: template-parts/content/search.php:40
-msgid "cases"
-msgstr "件"
-
-#: template-parts/module/list-part-inner.php:72
-#: template-parts/module/single-content.php:20
+#: template-parts/module/list-part-inner.php:73
+#: template-parts/module/single-content.php:21
 msgid ","
 msgstr "、"
 
-#: template-parts/module/list-part-inner.php:121
+#: template-parts/module/list-part-inner.php:123
 msgid "gallery"
 msgstr "ギャラリー"
 
@@ -1188,6 +1381,15 @@ msgstr "Healing Solutions"
 #, fuzzy
 msgid "https://www.healing-solutions.jp/profile/mizuno/"
 msgstr "https://www.healing-solutions.jp/profile/mizuno/"
+
+#~ msgid "HIde Page Sidebar"
+#~ msgstr "シングルページのサイドを非表示"
+
+#~ msgid "seach result"
+#~ msgstr "検索結果"
+
+#~ msgid "cases"
+#~ msgstr "件"
 
 #~ msgid "PostType Setting"
 #~ msgstr "投稿タイプ設定"

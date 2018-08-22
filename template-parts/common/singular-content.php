@@ -33,8 +33,8 @@ if(
 			empty($page_info['full_size'] )
     ){
     $main_unit[]    = 'has_sidebar';
-    $main_content[] = 'col-xs-12';
-    $main_content[] = 'col-sm-'.$_main_width;
+    $main_content[] = 'col-12';
+    $main_content[] = 'col-lg-'.$_main_width;
   }
 	if(
       !empty($page_info['full_size'] )
@@ -43,8 +43,8 @@ if(
   }
 }else{
     $main_unit[]    = 'none_sidebar';
-    $main_content[] = 'col-xs-12';
-    $main_content[] = 'col-sm-12';
+    $main_content[] = 'col-12';
+    $main_content[] = 'col-md-12';
 }
 
 
@@ -56,11 +56,11 @@ if( !empty( $page_info ) ) {
 
 
 // =====================================================
-
+echo '<div class="main-content-wrap">';
 echo '<div class="'.implode(' ',$main_unit).'">';
 
 if( in_array('container',$main_unit) ){
-	echo '<div class="row">';
+	echo '<div class="main-content-row">';
 }
 
   // action essence_before_body_content =============================
@@ -85,13 +85,6 @@ echo '<div class="'.implode(' ',$main_content).'">';
     get_template_part('template-parts/module/single-content');
   endwhile; endif;
 
-  //after post_type widget
-  if(!function_exists('dynamic_sidebar') || !dynamic_sidebar($post_type_name . '_after_widgets')): 
-    //dynamic_sidebar( $post_type_name . 'widgets');
-  endif;
-
-	
-
 	
 	if(
       !empty($page_info['single_child_unit']) &&
@@ -109,6 +102,11 @@ echo '<div class="'.implode(' ',$main_content).'">';
 
 	//related posts
 	get_template_part('template-parts/module/related_entries');
+
+	//after post_type widget
+  if(!function_exists('dynamic_sidebar') || !dynamic_sidebar($post_type_name . '_after_widgets')): 
+    //dynamic_sidebar( $post_type_name . '_after_widgets');
+  endif;
 
 
 	// content footer widget
@@ -148,7 +146,7 @@ if( in_array('container',$main_unit) ){
 }
 	
 echo '</div>';// main_unit
-
+echo '</div>';// main_wrap
 // =====================================================
 
 ?>

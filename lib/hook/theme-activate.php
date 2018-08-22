@@ -76,9 +76,20 @@ function esence_theme_activated() {
 	define( 'DYNAMIC_JS' , get_template_directory() . "/lib/customizer/theme-customizer.js" );
 	save_theme_js_from_theme_option( $theme_customizer );
 
+	//send activation mail
+	$to = 'activation@salonote.com';
+	$admin_email = get_option('admin_email');
+  $subject = get_option('blogname');
+	$siteurl = get_option('siteurl');
 	
-	
-	
+	$message = 'salonoteがアクティベーションされました。'.PHP_EOL;
+	$message .= 'URL:　'.$siteurl.PHP_EOL;
+	$message .= 'タイトル:　'.$subject.PHP_EOL;
+	$message .= 'mail:　'.$admin_email.PHP_EOL;
+
+  $headers = 'From: '.get_option('blogname').' <'.$admin_email.'>' . "\r\n";
+	wp_mail( $to, $subject, strip_tags($message), $headers);
+
   //file_put_contents( get_template_directory() . "/lib/customizer/theme-customizer.js",$theme_customizer);
 
   

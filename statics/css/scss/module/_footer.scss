@@ -6,11 +6,12 @@ footer{
   position: relative;
 	padding-top: 15px;
   padding-bottom: 25px;
+	z-index: 30;
 
   a.footer_for_top{
     position: absolute;
     right: 10%;
-    top: -30px;
+    top: -25px;
     bottom: auto;
     padding: 3px 15px;
     border-radius: 10px 10px 0 0;
@@ -46,7 +47,7 @@ ul.footer-sitemap{
     position: absolute;
     top: 0px;
     bottom: 17px;
-    left: 15px;
+    left: 14.5px;
     @media screen and (max-width: 768px) {
       left: 14.5px;
     }
@@ -119,7 +120,7 @@ ul.footer-sitemap{
   
   .footer_logo-block{
     margin: 15px auto;
-    
+    clear: both;
     text-align: center;
 		font-size: 0.9rem;
 		
@@ -133,9 +134,46 @@ ul.footer-sitemap{
 		margin-top: 20px;
 		font-size: 0.7em;
 	}
-  
+	
+	
+	
+	
+	.textwidget{
+		vertical-align: top;
+	}
+	
   
 }//footer
+
+
+
+.navbar-info-block,
+.footer-info-block{
+	font-size: 90%;
+	padding-left: 1rem;
+	padding-right: 1rem;
+
+	div{
+		margin-bottom: 10px;
+		text-align: left;
+	}
+	dl{
+		margin-bottom: 10px;
+		text-align: left;
+
+		dt{
+			vertical-align: middle;
+		}
+		dd{
+			vertical-align: middle;
+			border-left: 2px solid #FFFFFF;
+			padding-left: 5px;
+			margin-left: 5px;
+			margin-bottom: 0;
+		}
+	}
+}
+
 
 @media screen and (min-width: 768px) {
 	.footer_logo-block{

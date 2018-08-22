@@ -17,9 +17,9 @@ if(
 	}
 
 	elseif( is_tax() ){
-		echo '<div class="term-list-block">';
+		echo '<h1 class="term-list-block text-center">';
 		single_term_title();
-		echo '</div>';
+		echo '<span class="small">について</span></h1>';
 	}
 	
 	elseif( is_archive() ){

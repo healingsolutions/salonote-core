@@ -1,5 +1,11 @@
 /* CSS Document */
 
+.main-content-wrap{
+	z-index: 1;
+	position: relative;
+}
+
+
 .main-content-unit{
   @include clearfix;
   

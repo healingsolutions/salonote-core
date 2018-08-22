@@ -93,20 +93,20 @@
       display: block;
       padding: 5px;
       overflow: hidden;
-      
-      img{
-        max-width: 100%;
-        height: auto;
-        border: none !important;
-        @include box-shadow(0px 0px 4px #CCCCCC);
-        @include transform(scale(1));
-        @include _transition_(transform , 0.3);
-        
-        &:hover{
-          @include transform(scale(1.02));
-          @include _transition_(transform , 0.3);
-        }
-      }
     }
+		img{
+			max-width: 100%;
+			height: auto;
+			border: none !important;
+			padding: 5px;
+			@include box-shadow(0px 0px 4px #CCCCCC);
+			@include transform(scale(1));
+			@include _transition_(transform , 0.3);
+
+			&:hover{
+				@include transform(scale(1.02));
+				@include _transition_(transform , 0.3);
+			}
+		}
   }
 }//gallery

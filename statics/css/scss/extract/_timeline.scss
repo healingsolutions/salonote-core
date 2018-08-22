@@ -9,8 +9,8 @@
 	&::after{
 		content: '';
 		position: absolute;
-		top: -20px;
-		bottom: -20px;
+		top: 0px;
+		bottom: 20px;
 		width: 3px;
 	}
 	
@@ -23,7 +23,7 @@
     border-style: solid;
 		border-radius: 4px;
 		display: inline-block;
-		width: 100%;
+		width: 98%;
     
 		
 		&::before{
@@ -84,6 +84,7 @@
 
 		
 		&::after{
+				//top: 65px;
 				left: 5px;
 			}
 		.list_item_block{

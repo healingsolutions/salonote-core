@@ -1,31 +1,44 @@
 /* CSS Document */
 
-header{
-  
-  .header_logo-block{
-    float: left;
-    max-height: 45px;
-    //min-width: 15%;
-    //max-width: 180px;
-    margin: 0;
-		padding-left: 10px;
-    padding-bottom: 5px;
-    position: absolute;
-    bottom: 0;
-		font-size: 1.4em;
-		
-		a{
-			display: block;
-			max-height: 40px;
-		}
+.header_logo-block{
+	z-index: 30;
+	float: left;
+	max-height: 65px;
+	//min-width: 15%;
+	//max-width: 180px;
+	margin: 0;
+	padding-left: 15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	position: absolute;
+	//bottom: 0;
+	font-size: 1.4em;
+	
 
-    
-    img{
-      width: auto;
-      height: 40px;
-    }
-  }
- 
+	a{
+		display: block;
+		//max-height: 40px;
+		line-height: 1.2;
+	}
+
+
+	img{
+		width: auto;
+		max-height: 60px;
+		min-width: 150px;
+	}
+	
+	h1.header-description{
+		display: block;
+		font-size: 0.6rem !important;
+		font-weight: normal;
+	}
+}
+
+header{
+  position: relative;
+	z-index: 10;
+	clear: both;
 }
 
 

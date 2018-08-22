@@ -1,8 +1,18 @@
 /* CSS Document */
 
+.entry_block_sub_title{
+		margin-top: -5px;
+		font-size: 0.6em;
+		filter:alpha(opacity=50);
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+	}
 
 //共通項
 .list-unit{
+	
+	
+	
   .list_item_block{
 		position: relative;
 		
@@ -69,6 +79,7 @@
     figure.list_block_figure{
       display: inline-block;
       width: 30%;
+			padding-right: 15px;
       
       img{
         float: left;
@@ -149,12 +160,15 @@
 			position: relative;
       display: block;
       width: 100%;
+			text-align: center;
       
       img{
-        float: left;
+        //float: left;
         //padding: 5px;
         max-width: 100%;
         height: auto;
+				margin-left: auto;
+				margin-right: auto;
       }
 			
 			
@@ -177,7 +191,7 @@
 				
 				p{
 					z-index: 20;
-					font-size: 1.3em;
+					//font-size: 1.3em;
 				}
 				
 				&::after{
@@ -230,7 +244,7 @@
 			font-size: 0.8em;
 		}
     .list_block_sub_title{
-
+			font-size: 0.8em;
     }
     .list_block_excerpt{
 
@@ -304,6 +318,158 @@ ul.list-icon{
   }
 }
 
+ol.list-checkbox,
+ul.list-checkbox{
+  margin-left: auto;
+	margin-right: auto;
+	padding-left: 0;
+  margin-bottom: 25px;
+	
+  li{
+    list-style: none;
+    padding-bottom: 10px;
+    //padding-left: 30px;
+
+    &::before{
+      content: "\f147";
+			display: inline-block;
+			font-family: "dashicons";
+			margin-right: 10px;
+			margin-top: -5px;
+			border: 1px solid #CCCCCC;
+			border-radius: 2px;
+			line-height: 0.5em;
+			width: 20px;
+			height: 20px;
+			font-size: 2.3em;
+			vertical-align: middle;
+			text-indent: -0.2em;
+    }
+  }
+}
+
+ol.list-inline,
+ul.list-inline{
+	//text-align: center;
+	> li{
+		display: inline-block;
+	}
+}
+
+
+
+
+ol.list-block,
+ul.list-block{
+	clear: both;
+	
+	//@include clearfix;
+	> li{
+		//display: block;
+		clear: both;
+		@include clearfix;
+	}
+}
+
+ol.list-block{
+	padding-left: 20px;
+}
+ul.list-block{
+	padding-left: 0;
+	list-style: none;
+}
+
+
+ol.list-numbering{
+	/* olがはき出す数字を消す */
+	list-style: none;
+	/* 数字のカウントをリセットする */
+	counter-reset: number;
+	padding-left: 20px;
+	
+	> li{
+		position: relative;
+		padding-left: 1.5em;
+		padding-bottom: 1.5em;
+		&:before {
+			counter-increment: number;
+			content: counter(number);
+			display: inline-block;
+			width: 2em;
+			height: 2em;
+			line-height: 2em;
+			text-align: center;
+			border-radius: 50%;
+			color: #fff;
+			margin-right: .3em;
+			position: absolute;
+			//top: -5px;
+			left: -20px;
+		}
+	}
+}
+
+ol.list-flow{
+	/* olがはき出す数字を消す */
+	list-style: none;
+	/* 数字のカウントをリセットする */
+	counter-reset: number;
+	position: relative;
+	
+	> li{
+		//display: block;
+		clear: both;
+		@include clearfix;
+	}
+	
+	&:before{
+		content: '';
+		border-left-width: 2px;
+		border-left-style: solid;
+		top: 0;
+		left: 0.95em;
+		bottom: 0;
+		position: absolute;
+	}
+	&:after{
+		bottom: -1em;
+		left: 0.5em;
+		content: '';
+		height: 1em;
+		width: 1em;
+		border-radius: 50%;
+		position: absolute;
+	}
+	
+	> li{
+		position: relative;
+		padding-left: 1.5em;
+		padding-bottom: 2em;
+		&:before {
+			counter-increment: number;
+			content: counter(number);
+			display: inline-block;
+			width: 2em;
+			height: 2em;
+			line-height: 2em;
+			text-align: center;
+			border-radius: 50%;
+			color: #fff;
+			margin-right: .3em;
+			position: absolute;
+			//top: -5px;
+			left: -20px;
+		}
+	}
+}
+
+ol.list-inline.list-numbering{
+	> li{
+		&:before {
+			left: 0px;
+		}
+	}
+}
 
 ul.list-bordered{
   padding-left: 0;
@@ -322,5 +488,8 @@ ul.list-bordered{
 .label-block.has_gallery{
 	border-radius: 4px;
 	display: inline-block;
-	padding: 0 5px;
+	padding: 6px 10px;
+	font-size: 0.6em;
+	text-align: center;
 }
+

@@ -3,8 +3,8 @@ global $theme_opt;
 global $post_type_set;
 global $page_info;
 global $user_setting;
-
-$hide_footer = false;
+global $hide_footer;
+$hide_footer = isset($hide_footer) ? $hide_footer : false;
 
 if( is_singular() ){
 	$page_info = get_post_meta($post->ID,'page_info',true);
@@ -33,13 +33,13 @@ if(
 
 //display Google Map
 if($theme_opt['base']['google_map'] && !$hide_footer ){
-  echo '<div class="mod-footer_map onlyPC" style="margin-bottom: -55px;">';
+  echo '<div class="mod-footer_map onlyPC" style="margin-bottom: -15px; position:relative; z-index:20;background-color:white;">';
   echo do_shortcode('[GoogleMap width="100%" height="250"]');
   echo '</div>';
 };
 ?>
 
-<footer class="footer">
+<footer class="footer<?php if (has_nav_menu('sp_display_nav') && wp_is_mobile() ) echo ' has_sp_display_nav' ?>">
   <a class="footer_for_top footer_bkg smoothscroll" href="#header">TOP</a>
   
   <?php
@@ -92,17 +92,26 @@ if($theme_opt['base']['google_map'] && !$hide_footer ){
 			//footer
 		endif;
 
-		if( !empty(get_theme_mod( 'footer_logo_url' )) )
+		
+		if( !empty($theme_opt['base']['tel_number']) || !empty($theme_opt['base']['zip_code']) || !empty($theme_opt['base']['contact_address']) ){
+			echo '<div class="footer-info-block col-12">';
+				get_template_part('template-parts/module/parts/biz_info');
+			echo '</div>';
+		}
+		
+		
+		if( !empty(get_theme_mod( 'footer_logo_url' )) ){
 			$footer_logo = '<img class="img-responsive" src="'.esc_url( get_theme_mod( 'footer_logo_url' ) ).'" alt="'.get_bloginfo('name').'-footer-logo" title="'.get_bloginfo('name').'">';
-
-		else
+		}else{
 			$footer_logo = get_bloginfo('name');
-
+		}
 		echo '<h1 class="footer_logo-block"><a href="'.home_url().'">';
 			echo $footer_logo;
 		echo '</a></h1>';
+		
   
   }//^ if display footer
+				
   
   
   echo '</div>'; //container
@@ -131,8 +140,20 @@ if($theme_opt['base']['google_map'] && !$hide_footer ){
 </div><!-- /body-wrap -->
 
 
+
+<?php
+    if (has_nav_menu('sp_display_nav') && wp_is_mobile() ) {
+        wp_nav_menu(array(
+          'theme_location'    => 'sp_display_nav',
+          'depth'             => 0,
+          'container'         => 'div',
+					'container_class' => 'sp_display_nav-container',
+        ));
+    }
+    ?>
+
 <noscript id="deferred-styles">
-	<link rel="stylesheet" id="dashicons-css" href="<?php home_url();?>/wp-includes/css/dashicons.min.css?ver=4.9.5" type="text/css" media="all" />
+	<link rel="stylesheet" id="dashicons-css" href="<?php echo home_url();?>/wp-includes/css/dashicons.min.css?ver=4.9.5" type="text/css" media="all" />
 	<link rel="stylesheet" id="colorbox-css" href="<?php echo get_template_directory_uri();?>/statics/js/colorbox/colorbox.css?ver=4.9.5" type="text/css" media="all" />
 </noscript>
 <script>

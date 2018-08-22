@@ -5,7 +5,7 @@ $userObj = get_queried_object();
 $before_title = esc_html($userObj->display_name);
 $user_ID = $userObj->ID;
 
-
+echo '<div class="main-content-wrap">';
 echo '<div class="'.$main_block_class.' main-content-unit">';
 
   $avatar_args = array(
@@ -52,6 +52,6 @@ echo '<div class="'.$main_block_class.' main-content-unit">';
   get_template_part('template-parts/common/archive-unit');
 
 echo '</div>';
-
+echo '</div>';
 
 ?>

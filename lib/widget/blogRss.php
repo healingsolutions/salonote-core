@@ -54,7 +54,7 @@ class MY_WP_Widget_RSS extends WP_Widget_RSS {
 		$url = esc_url(strip_tags($url));
 		$icon = includes_url('images/rss.png');
 		if ( $title )
-			$title = "<a class='rsswidget' href='$url'><img style='border:0' width='14' height='14' src='$icon' alt='RSS' /></a> <a class='rsswidget' href='$link'>$title</a>";
+			$title = "<a class='rsswidget' href='$url' target='_blank'><img style='border:0' width='14' height='14' src='$icon' alt='RSS' /></a> <a class='rsswidget' href='$link'>$title</a>";
 
 		echo $args['before_widget'];
 		if ( $title ) {
@@ -176,9 +176,9 @@ function my_wp_widget_rss_output( $rss, $args = array() ) {
             if ( $link == '' ) {
                 echo "<li class='bdr-btm-1-dotted'>$title{$date}{$summary}{$author}</li>";
             } elseif ( $show_summary ) {
-                echo "<li class='bdr-btm-1-dotted'><a class='rsswidget' href='$link'>$title{$date}{$summary}{$author}</a></li>";
+                echo "<li class='bdr-btm-1-dotted'><a class='rsswidget' href='$link' target='_blank'>$title{$date}{$summary}{$author}</a></li>";
             } else {
-                echo "<li class='bdr-btm-1-dotted'><a class='rsswidget' href='$link'>$title{$date}{$author}</a></li>";
+                echo "<li class='bdr-btm-1-dotted'><a class='rsswidget' href='$link' target='_blank'>$title{$date}{$author}</a></li>";
             }
         endif;
 	}

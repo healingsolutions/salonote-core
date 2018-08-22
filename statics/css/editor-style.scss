@@ -27,6 +27,8 @@
 
 @import "scss/wordpress";
 
+
+
 body{
   font-family: 'Helvetica Neue', Helvetica, Arial, 'Hiragino Sans', "ヒラギノ角ゴシック", 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ Pro W3', Roboto, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', sans-serif;
 }
@@ -121,7 +123,7 @@ body#tinymce{
 	
 	
 
-	> div{
+	 div{
 		position: relative;
 		border: 4px solid #CCCCCC;
 		border-radius: 5px;
@@ -134,7 +136,7 @@ body#tinymce{
 		}
 	}
 
-	> div::before{
+	 div::before{
 		content: 'div';
 		position: absolute;
 		top: -15px;
@@ -148,9 +150,9 @@ body#tinymce{
 	}
 
 
-	> section[class*="l-box_style"],
-	> div[class*="l-box_style"],
-	> div[class*="point_block"]{
+	 section[class*="l-box_style"],
+	 div[class*="l-box_style"],
+	 div[class*="point_block"]{
 		position: relative;
 		border: 4px solid #CCCCCC;
 		border-radius: 5px;
@@ -158,16 +160,16 @@ body#tinymce{
 		margin: 15px auto;
 	}
 
-	> div[data-mce-bogus="all"]{
+	 div[data-mce-bogus="all"]{
 		border: none;
 		padding: auto;
 		margin: auto;
 	}
-	> div[data-mce-bogus="all"]::before{
+	 div[data-mce-bogus="all"]::before{
 		content: none;
 	}
 	
-	> div.separate-block
+	 div.separate-block
 	{
 		&::befor{
 			content: '分割ブロック';
@@ -181,8 +183,8 @@ body#tinymce{
 		}
 	}
 	
-	 > section[class*="l-box_style"]:before,
-	 > div[class*="point_block"]:before,
+	  section[class*="l-box_style"]:before,
+	  div[class*="point_block"]:before,
 	 div[class*="l-box_style"]:before
 	{
 		content: '飾り枠 -- 実際の表示はstyle.cssに記載 --';
@@ -268,8 +270,71 @@ body#tinymce{
 	hr.block-horizon.has_bkg{
 		height: 30px;
 	}
+	hr.hidden{
+		display: block !important;
+		filter:alpha(opacity=50);
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+		background-color: #BEBEBE;
+	}
 	
-}//body#tinymce{
+
+	ul.list-block{
+		> li{
+			border-bottom: 1px dotted #CCCCCC;
+		}
+	}
+
+
+	ol.list-numbering,
+	ol.list-flow{
+		> li{
+			&:before {
+				background-color: #656565;
+			}
+		}
+	}
+
+	ol.list-flow{
+		&:before {
+			border-left-color: #656565;
+		}
+		&:after {
+			background-color: #656565;
+		}
+	}
+	 div.shop_menu_tag{
+		display: block;
+		position: relative;
+		cursor: pointer;
+		background-image: linear-gradient(
+			-45deg,
+			#f5eeed 25%,
+			#f4e2de 25%,
+			#f4e2de 50%,
+			#f5eeed 50%,
+			#f5eeed 75%,
+			#f4e2de 75%,
+			#f4e2de
+		);
+		background-size: 30px 30px;
+		-webkit-user-select: none;
+			 -moz-user-select: none;
+				-ms-user-select: none;
+						user-select: none;
+
+		&:before{
+			content: 'ショップメニュー';
+			background-color: #A57E7F;
+			color: white;
+			position: absolute;
+			left: 5px;
+			top: -1em;
+			font-size: 70%;
+		}
+	}
+	
+}//body#tinymce
 
 
 // gallery =============================================
@@ -314,8 +379,6 @@ body#tinymce{
 .gallery-columns-9 .gallery-item {
 	width: 11.111%;
 }
-
-
 
 
 

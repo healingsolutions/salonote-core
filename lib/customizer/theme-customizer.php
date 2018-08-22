@@ -206,7 +206,7 @@ function essence_customizer_live_preview()
 {
 	wp_enqueue_script( 
 		  'essence-themecustomizer',			//Give the script an ID
-		  get_template_directory_uri().'/lib/customizer/theme-customizer.js',//Point to file
+		  get_template_directory_uri().'/lib/customizer/theme-customizer.js?v='.time(),//Point to file
 		  array( 'jquery','customize-preview' ),	//Define dependencies
 		  '',						//Define a version (optional) 
 		  true						//Put script in footer?
@@ -232,5 +232,5 @@ function action_customize_save( $instance ) {
 	save_theme_css_from_theme_option( $color_set );
   //file_put_contents( get_template_directory() . "/lib/customizer/theme-colors.css",$color_set);
 }; 
-add_action( 'customize_save', 'action_customize_save', 10, 1 ); 
+add_action( 'customize_save_after', 'action_customize_save', 10, 1 ); 
 ?>

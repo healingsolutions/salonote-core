@@ -86,25 +86,27 @@
 
 // is_active =================================
 body.use_content_fade{
-	.entry_block_content > div.block-group-wrap{
+	.entry_block_content > div.block-group-wrap,
+	.landing-page-item{
 		position: relative;
 		top: 50px;
 		@include opacity(0);
-		-webkit-transition: all 1s ease;
-					-moz-transition: all 1s ease;
-					-ms-transition: all 1s ease;
-					-o-transition: all 1s ease;
-					transition: all 1s ease;
+		-webkit-transition: top 0.7s ease , opacity 0.6s ease;
+					-moz-transition: top 0.7s ease , opacity 0.6s ease;
+					-ms-transition: top 0.7s ease , opacity 0.6s ease;
+					-o-transition: top 0.7s ease , opacity 0.6s ease;
+					transition: top 0.7s ease , opacity 0.6s ease;
 	}
 
-	.entry_block_content > div.block-group-wrap.is_active{
+	.entry_block_content > div.block-group-wrap.is_active,
+	.landing-page-item.is_active{
 		position: relative;
 		top: 0px;
 		@include opacity(100);
-		-webkit-transition: all 1s ease;
-					-moz-transition: all 1s ease;
-					-ms-transition: all 1s ease;
-					-o-transition: all 1s ease;
-					transition: all 1s ease;
+		-webkit-transition: top 0.7s ease , opacity 0.6s ease;
+					-moz-transition: top 0.7s ease , opacity 0.6s ease;
+					-ms-transition: top 0.7s ease , opacity 0.6s ease;
+					-o-transition: top 0.7s ease , opacity 0.6s ease;
+					transition: top 0.7s ease , opacity 0.6s ease;
 	}
 }

@@ -1,6 +1,21 @@
 /* CSS Document */
 @charset "UTF-8";
+
+@media screen and (min-width: 1600px) {
+	html{
+		font-size: 72.5%;
+	}
+}
+
+@media screen and (min-width: 1280px) {
+	html{
+		font-size: 67.5%;
+	}
+	
+}
+
 @media screen and (min-width: 1000px) {
+	
 	
 	body{
 		//font-size: 18px;
@@ -11,4 +26,24 @@
 		vertical-align: middle;
 	}
 
+}
+
+
+@media screen and (min-width: 1200px) {
+
+	.header_logo-block{
+		a{
+			span{
+				font-size: 1.6rem !important;
+			}
+		}
+	}
+
+}
+
+
+@media screen and (max-width: 1280px) {
+	.header_logo-block h1.header-description{
+		display: none;
+	}
 }

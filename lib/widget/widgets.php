@@ -8,6 +8,17 @@ add_filter('widget_text', 'do_shortcode' );
 /*	widgets
 /*-------------------------------------------*/
     if (function_exists('register_sidebar')) {
+			
+		//ページ最上部
+    register_sidebar(array(
+        'name' => __('top of page','salonote-essence'),
+        'id' => 'header_top_widgets',
+        'description' => __('display widghet in top of page','salonote-essence'),
+        'before_widget' => '<div class="header_top_widgets">',
+        'after_widget' => '</div>',
+        //'before_title' => '<div class="widget-title bdr-btm-1">',
+        //'after_title' => '</div>'
+    ));
 
      
      //コンテンツ内ウィジェット定義
@@ -37,25 +48,25 @@ add_filter('widget_text', 'do_shortcode' );
       
     //コンテンツフッターウィジェット定義
     register_sidebar(array(
-         'name' => __('footer','salonote-essence'),
-         'id' => 'footer',
-         'description' => __('display widghet in footer','salonote-essence'),
-         'before_widget' => '<div class="widget-footer">',
-        'after_widget' => '</div>',
-        'before_title' => '<div class="widget-title bdr-btm-1">',
-        'after_title' => '</div>'
+			'name' => __('footer','salonote-essence'),
+			'id' => 'footer',
+			'description' => __('display widghet in footer','salonote-essence'),
+			'before_widget' => null,
+			'after_widget' => null,
+			'before_title' => '<div class="widget-title bdr-btm-1">',
+			'after_title' => '</div>'
      ));
     
 
     //サイドウィジェット定義
     register_sidebar(array(
-        'name' => __('side widget','salonote-essence'),
-        'id' => 'common_sidebar',
-        'description' => __('display widghet in sidebar','salonote-essence'),
-        'before_widget' => '<div id="%1$s" class="side-block-item %2$s">',
-        'after_widget' => '</div>',
-        'before_title' => '<div class="widget-title bdr-btm-1">',
-        'after_title' => '</div>'
+			'name' => __('side widget','salonote-essence'),
+			'id' => 'common_sidebar',
+			'description' => __('display widghet in sidebar','salonote-essence'),
+			'before_widget' => '<div id="%1$s" class="side-block-item %2$s">',
+			'after_widget' => '</div>',
+			'before_title' => '<div class="widget-title bdr-btm-1">',
+			'after_title' => '</div>'
     ));
       
     //ナビ直下
@@ -110,8 +121,8 @@ add_filter('widget_text', 'do_shortcode' );
                     register_sidebar(array(
                         'name' => $post_type_label. __('Common upper part','salonote-essence'),
                         'id' => $post_type_name. '_before_widgets',
-                        'description' => sprintf(__('display widget on %s common upper part','salonote-essence'),$post_type_label),
-                        'before_widget' => '<div class="posttype-bottom">',
+                        'description' => sprintf(__('display widget on %s common upper part','salonote-essence'),$post_type_label). $post_type_name. '_before_widgets',
+                        'before_widget' => '<div class="'. $post_type_name. '_before_widgets">',
                         'after_widget' => '</div>',
                         'before_title' => '<div class="widget-title bdr-btm-1">',
                         'after_title' => '</div>'
@@ -120,8 +131,8 @@ add_filter('widget_text', 'do_shortcode' );
                     register_sidebar(array(
                         'name' => $post_type_label. __('Common bottom part','salonote-essence'),
                         'id' => $post_type_name. '_after_widgets',
-                        'description' =>  sprintf(__('display widget on %s common bottom part','salonote-essence'),$post_type_label),
-                        'before_widget' => '<div class="posttype-bottom">',
+                        'description' =>  sprintf(__('display widget on %s common bottom part','salonote-essence'),$post_type_label). $post_type_name. '_after_widgets',
+                        'before_widget' => '<div class="'.$post_type_name. '_after_widgets mb-3">',
                         'after_widget' => '</div>',
                         'before_title' => '<div class="widget-title bdr-btm-1">',
                         'after_title' => '</div>'
@@ -131,7 +142,7 @@ add_filter('widget_text', 'do_shortcode' );
                     register_sidebar(array(
                         'name' => $post_type_label. __('Common side part','salonote-essence'),
                         'id' => $post_type_name. '_side',
-                        'description' =>  sprintf(__('display widget on %s common side part','salonote-essence'),$post_type_label),
+                        'description' =>  sprintf(__('display widget on %s common side part','salonote-essence'),$post_type_label). $post_type_name. '_side',
                         'before_widget' => '<div class="posttype-side mgb-50">',
                         'after_widget' => '</div>',
                         'before_title' => '<div class="widget-title bdr-btm-1">',
@@ -142,7 +153,7 @@ add_filter('widget_text', 'do_shortcode' );
                     register_sidebar(array(
                         'name' => $post_type_label. __('on content bottom','salonote-essence'),
                         'id' => $post_type_name. '_after_content',
-                        'description' =>  $post_type_label. sprintf(__('display widget on %s page content bottom','salonote-essence'),$post_type_label),
+                        'description' =>  $post_type_label. sprintf(__('display widget on %s page content bottom','salonote-essence'),$post_type_label) . $post_type_name. '_after_content',
                         'before_widget' => '<div class="posttype-content">',
                         'after_widget' => '</div>',
                         'before_title' => '<div class="widget-title bdr-btm-1">',
@@ -166,51 +177,3 @@ function remove_widget_title( $widget_title ) {
      
 
 
-
-/*-------------------------------------------*/
-/* add class for recent_posts
-/*-------------------------------------------*/
-class My_WP_Widget_Recent_Posts extends WP_Widget_Recent_Posts{
- 
-    function widget($args, $instance) {
-        $cache = wp_cache_get('widget_recent_posts', 'widget');
- 
-        if ( !is_array($cache) )
-            $cache = array();
- 
-        if ( ! isset( $args['widget_id'] ) )
-            $args['widget_id'] = $this->id;
- 
-        if ( isset( $cache[ $args['widget_id'] ] ) ) {
-            echo $cache[ $args['widget_id'] ];
-            return;
-        }
- 
-        ob_start();
-        extract($args);
- 
-        $title = apply_filters('widget_title', empty($instance['title']) ? __('Recent Posts','salonote-essence') : $instance['title'], $instance, $this->id_base);
-        if ( empty( $instance['number'] ) || ! $number = absint( $instance['number'] ) )
-            $number = 10;
- 
-        $r = new WP_Query( apply_filters( 'widget_posts_args', array( 'posts_per_page' => $number, 'no_found_rows' => true, 'post_status' => 'publish', 'ignore_sticky_posts' => true ) ) );
-        if ($r->have_posts()) :
-?>
-        <?php echo $before_widget; ?>
-        <?php if ( $title ) echo $before_title . $title . $after_title; ?>
-        <ul class="mod_list_bdr">
-        <?php  while ($r->have_posts()) : $r->the_post(); ?>
-        <li><a href="<?php the_permalink() ?>" title="<?php echo esc_attr(strip_tags(get_the_title()) ? strip_tags(get_the_title()) : get_the_ID()); ?>"><?php if ( get_the_title() ) the_title(); else the_ID(); ?></a></li>
-        <?php endwhile; ?>
-        </ul>
-        <?php echo $after_widget; ?>
-<?php
-        // Reset the global $the_post as this query will have stomped on it
-        wp_reset_postdata();
- 
-        endif;
- 
-        $cache[$args['widget_id']] = ob_get_flush();
-        wp_cache_set('widget_recent_posts', $cache, 'widget');
-    }
-}

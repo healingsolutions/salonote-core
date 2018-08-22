@@ -1,0 +1,32 @@
+
+.table{
+	font-size: 76%;
+}
+
+@media screen and (max-width: 768px) {
+	.table.table-sp-block{
+		font-size: 100%;
+		th,
+		td{
+			display: block;
+			height: auto !important;
+			width: 100% !important;
+		}
+		td{
+			text-indent: 0.3em;
+		}
+		td:first-child{
+			text-indent: 0;
+			font-weight: bold;
+			padding-bottom: 0;
+		}
+		
+		&.table-striped{
+			th,
+			td{
+				border: none;
+			}
+		}
+
+	}        
+}

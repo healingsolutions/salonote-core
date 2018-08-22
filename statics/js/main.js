@@ -8,6 +8,13 @@ jQuery(function($){
 		$('body.use_content_fade').animate({ scrollTop: 0 }, '1');
 	}
 	
+	if($('body.use_lazy_load').length && ( $(window).width() > 768 ) ){
+		$('body.use_lazy_load .entry_block_content img').each(function() {
+			$(this).attr('src','//dummyimage.com/1x1/ffffff/cccccc.gif');
+		});
+		$('body.use_lazy_load .entry_block_content img.lazy').lazyload();
+	}
+	
 	// 水平線でブロックを区切り、グルーピング　=======================================================
 	if($('hr.block-horizon').length && ( $(window).width() > 768 ) ){
 
@@ -19,11 +26,48 @@ jQuery(function($){
 
 					$(this).delay(10).queue(function(bg_url) {
 						var bg_url = $(this).css('background-image');
+						$_data_repeat = $(this).attr('data-repeat');
+						var data_repeat = $_data_repeat ? $_data_repeat : "";
+						$_data_size = $(this).attr('data-size');
+						var data_size = $_data_size ? $_data_size : "";
+						
+						
 						bg_url = /^url\((['"]?)(.*)\1\)$/.exec(bg_url);
 						bg_url = bg_url ? bg_url[2] : ""; // If matched, retrieve url, otherwise ""
+						
+						if( bg_url.length || data_repeat.length || data_size.length ){
+							var hr_props = {
+									"background-image" : 'url('+bg_url+')',
+									"background-repeat" : data_repeat,
+									"background-size" : data_size
+							}
+							$(this).next('.horizon-block').css(hr_props).dequeue();
+						}
+						
+						
+						
+						/*
 						if(bg_url.length){
+							$(this).next('.horizon-block').css('background-image', 'url('+bg_url+')');
+						}
+						if(data_repeat.length){
+							$(this).next('.horizon-block').css('background-repeat', data_repeat);
+						}
+						if(data_size.length){
+							$(this).next('.horizon-block').css('background-size', data_size);
+						}
+						if(bg_url.length && (repeat.length == 0) ){
 							$(this).next('.horizon-block').css('background-image', 'url('+bg_url+')').dequeue();
 						}
+						if(bg_url.length && repeat.length){
+							$(this).next('.horizon-block').css({
+								background-repeat: $repeat,
+								background-image: 'url('+bg_url+')',
+							}).dequeue();
+						}
+						*/
+						
+						console.log(data_repeat);
 					});
 
 				}
@@ -34,28 +78,32 @@ jQuery(function($){
 	
 	// ブロックをグルーピング　=======================================================
 		if($('.block-group').length && ( $(window).width() > 768 ) ){
-			setTimeout(function(){
 				var index = 0;
 
 				$('.block-group').each(function(){
+					
+					if( $(this).parent('.block-group-wrap').children('.vertical-middle').length ){
 
+						
+						var inner_height = 0;
+						var inner_height = $(this).parent('.block-group-wrap').height();
+						//console.log('height-'+index+':'+inner_height);
 
-					var height = $(this).parent('.block-group-wrap').height();
-					//console.log('height-'+index+':'+height);
-
-					$(this).children('.block-item-inner').each(function(){
-						if(
-							$(this).find('.block-vertical-rl').length == 0 &&
-							$(this).find('.sns-block').length == 0
-						){
-							 $(this).css('min-height',height+'px');
-						 }
-					});
+						$(this).children('.block-item-inner').each(function(){
+							if(
+								$(this).find('.block-vertical-rl').length == 0 &&
+								$(this).find('.sns-block').length == 0
+							){
+								 $(this).css('min-height',(inner_height-50)+'px');
+							 }
+						});
+						
+					};
+					
 				});
-			}, 10);
 		}
 	
-	
+
 	
 	// 拡張スタイル　=======================================================
 	if($('.img-cover-block').length && ( $(window).width() > 768 ) ){
@@ -82,7 +130,7 @@ jQuery(function($){
 				if($(this).parent('.cover-image').next('.text-cover-block').length ){
 
 					var content_height = $(this).parent('.cover-image').next('.text-cover-block').height();
-					//console.log( (content_height+200) +':'+cover_height);
+					console.log( (content_height+200) +':'+cover_height);
 					if( (content_height + 200) > cover_height )
 						$(this).parent('.cover-image').css('height','auto'); 
 
@@ -97,64 +145,84 @@ jQuery(function($){
 		}, 10);
 
 	};
+	
+	
+	// 拡張スタイル　=======================================================
+	if($('.has_sidebar').length && ( $(window).width() > 768 ) ){
+
+				//該当のセレクタなどを代入
+
+				var mainArea = $(".main-content-unit"); //メインコンテンツ
+				var sideWrap = $("#sidebar"); //サイドバーの外枠
+				var sideArea = $("#sidebar .sidebar_inner"); //サイドバー
+
+				/*設定ここまで*/
+
+				var wd = $(window); //ウィンドウ自体
+
+				//メインとサイドの高さを比べる
+
+				var mainH = mainArea.height();
+				var sideH = sideWrap.height();
+				var sideW = sideWrap.width();
+				
+				sideArea.css({"width": sideW+"px"});
+
+				if(sideH < mainH) { //メインの方が高ければ色々処理する
+
+							//サイドバーの外枠をメインと同じ高さにしてrelaltiveに（#sideをポジションで上や下に固定するため）
+							sideWrap.css({"height": mainH,"position": "relative"});
+
+							//サイドバーがウィンドウよりいくらはみ出してるか
+							var sideOver = wd.height()-sideArea.height();
+
+							//固定を開始する位置 = サイドバーの座標＋はみ出す距離
+							var starPoint = sideArea.offset().top + (-sideOver);
+
+							//固定を解除する位置 = メインコンテンツの終点
+							var breakPoint = sideArea.offset().top + mainH;
+
+							wd.scroll(function() { //スクロール中の処理
+
+										if(wd.height() < sideArea.height()){ //サイドメニューが画面より大きい場合
+													if(starPoint < wd.scrollTop() && wd.scrollTop() + wd.height() < breakPoint){ //固定範囲内
+																sideArea.css({"position": "fixed", "bottom": "20px"});
+
+													}else if(wd.scrollTop() + wd.height() >= breakPoint){ //固定解除位置を超えた時
+																sideArea.css({"position": "absolute", "bottom": "0"});
+
+													} else { //その他、上に戻った時
+																sideArea.css("position", "static");
+
+													}
+
+										}else{ //サイドメニューが画面より小さい場合
+
+													var sideBtm = wd.scrollTop() + sideArea.height(); //サイドメニューの終点
+
+													if(mainArea.offset().top < wd.scrollTop() && sideBtm < breakPoint){ //固定範囲内
+																sideArea.css({"position": "fixed", "top": "20px"});
+
+													}else if(sideBtm >= breakPoint){ //固定解除位置を超えた時
+
+																//サイドバー固定場所（bottom指定すると不具合が出るのでtopからの固定位置を算出する）
+																var fixedSide = mainH - sideH;
+
+																sideArea.css({"position": "absolute", "top": fixedSide});
+
+													} else {
+																sideArea.css("position", "static");
+													}
+										}
+
+
+							});
+
+				} 
+};
 
 	// resize events =================================================
 	function essence_resize_script(){
-
-		// サイドバー追従　=======================================================
-		if($('.sidebar_inner').length && ( $(window).width() > 768 ) ){
-			$(function(){
-
-				var fix = $('.sidebar_inner');	//固定したいコンテンツ
-				side = $('#sidebar');					 //サイドバーのID
-				main = $('.main-content-unit'); //固定する要素を収める範囲
-				
-				content_h = $('.entry_block_content').height();
-				
-				console.log( fix.height() );
-				console.log( content_h );
-				
-				if(fix.height() > content_h) return;
-
-				var s_width = side.width();
-
-				if (side != null) {
-
-				 var sideTop = side.offset().top;
-				 fixTop = fix.offset().top,
-				 mainTop = main.offset().top,
-
-
-				 w = $(window);
-
-				 var adjust = function(){
-					 fixTop = fix.css('position') === 'static' ? sideTop + fix.position().top : fixTop;
-					 var fixHeight = fix.outerHeight(true),
-					 mainHeight = main.outerHeight(),
-					 winTop = w.scrollTop() + 40;
-
-					 if(winTop + fixHeight > mainTop + mainHeight){
-						fix.removeClass('position-fixed');
-					}else if(winTop >= fixTop){
-						var p_props = {
-								width: s_width+'px',
-								top  : "40px",
-						}
-						fix.addClass('position-fixed').css(p_props);
-					}else{
-						fix.removeClass('position-fixed');
-					 }
-				 }
-
-				 w.on('scroll', adjust);
-				};
-
-		 });
-		};
-
-
-
-		
 
 
 		// イメージをブロック化　=======================================================
@@ -184,16 +252,16 @@ jQuery(function($){
 		if($('.separate-block').length && ( $(window).width() > 768 ) ){
 
 
-				var block_width = 0; // 揃える高さ最大値の初期化
+				var block_height = 0; // 揃える高さ最大値の初期化
 				$('.separate-block').each(function() {
-					var block_set = $(this).children('div:eq(0)').width();
+					var block_set = $(this).children('div:eq(0)').height();
 
 					var hThis = $(this).innerHeight(); // カラムの高さ取得
-					if ( block_set > block_width ) { block_width = block_set; }    // 最大値を判定・更新
+					if ( block_set > block_height ) { block_height = block_set; }    // 最大値を判定・更新
 				});
 
 				$('.separate-block').each(function() {
-					$(this).children('div:eq(0)').css('width', block_width+'px'); // それに合わせる
+					$(this).children('div:eq(0)').css('height', block_height+'px'); // それに合わせる
 				});
 		}
 		
@@ -208,12 +276,25 @@ jQuery(function($){
 		setTimeout(function(){
 			//$('#body-wrap').removeClass('fader');
 			
-			var sct = $(window).scrollTop()
-			$('.entry_block_content').children('div.block-group-wrap').each(function() {
-				//console.log($(this).offset().top+sct);
-				if($(this).offset().top+sct < 800) {
-						$(this).addClass('is_active');
-				}
+			var h = window.innerHeight ? window.innerHeight: $(window).height();
+			
+			$("body.use_content_fade .entry_block_content").children("div.block-group-wrap").first().addClass('is_active');
+			$('body.use_content_fade .landing-page-block').children('div.landing-page-item').first().addClass('is_active');
+			
+			$(window).on('scroll', function(event){
+				
+				var sct = $(window).scrollTop() ? $(window).scrollTop()+(h-100) : 0 ;
+				
+				$("body.use_content_fade .entry_block_content").children("div.block-group-wrap").each(function() {
+					if( $(this).offset().top - sct <= 0) {
+							$(this).addClass('is_active');
+					}
+				});
+				$('body.use_content_fade .landing-page-block').children('div.landing-page-item').each(function() {
+					if( $(this).offset().top - sct <= 0) {
+							$(this).addClass('is_active');
+					}
+				});
 			});
 		},50);
 		
@@ -304,7 +385,7 @@ jQuery(function($){
 
 			$(this).on({
 				'mouseenter': function() {
-					$(this).children('ul.sub-menu').css("max-height",(size*100)+"%");
+					$(this).children('ul.sub-menu').css("max-height",(size*150)+"%");
 				},
 				'mouseleave': function() {
 					$(this).children('ul.sub-menu').css("max-height","0");
@@ -399,6 +480,23 @@ jQuery(function($){
 			opacity: 0.7,
 			rel:'group'
 		});
+		
+		$('body.use_colorbox .entry_block_content a[href$=jpg]').colorbox({
+			maxWidth:"90%",
+			maxHeight:"90%",
+			opacity: 0.7,
+		});
+		$('body.use_colorbox .entry_block_content a[href$=png]').colorbox({
+			maxWidth:"90%",
+			maxHeight:"90%",
+			opacity: 0.7,
+		});
+		$('body.use_colorbox .entry_block_content a[href$=gif]').colorbox({
+			maxWidth:"90%",
+			maxHeight:"90%",
+			opacity: 0.7,
+		});
+		
 
 
 		if($(window).width() > 768 ){

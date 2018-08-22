@@ -8,6 +8,11 @@ $field_arr = array(
       'label' => __('Use Content FadeIn','salonote-essence'),
       'type' => 'checkbox',
   ),
+	
+	'use_lazy_load' => array(
+      'label' => __('Use Lazy Load plugin','salonote-essence'),
+      'type' => 'checkbox',
+  ),
   
   'use_colorbox' => array(
       'label' => __('Use Colorbox','salonote-essence'),
