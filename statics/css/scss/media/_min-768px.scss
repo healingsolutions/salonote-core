@@ -53,7 +53,7 @@
   
   
   // header ========================================
-	header{
+	header.site-header-block{
     
     .menu-gnav-container{
       float: right;
@@ -111,7 +111,10 @@
     margin-right: 10%;
   }
 
-  
+  .container{
+		max-width: 85vw;
+	}
+	
   .super_container{
 		margin-left: auto;
 		margin-right: auto;
@@ -169,7 +172,7 @@
 	}
 	
 	.entry_block_title{
-		font-size: 2em;
+		font-size: 1.8em;
 	}
 	
 	
@@ -181,9 +184,7 @@
 	}
 	
 	
-	.container{
-		max-width: 85vw;
-	}
+	
 	
 	
 	.btn-item{
@@ -206,7 +207,8 @@
 		}
 	}
 
-	.list_block_title{
+	.timeline-type-group .list_block_title,
+	.list-type-group .list_block_title{
 		font-size: 1.7em;
 	}
 	

@@ -69,6 +69,16 @@ EOM;
 	</style>';
 
 	}
+	
+	
+	
+if( !empty($theme_opt['extention']['head_tag_admin']) && !current_user_can( 'administrator' )){
+	echo $theme_opt['extention']['head_tag_admin'];
+}
+	
+if( !empty($theme_opt['extention']['head_tag_uesr']) ){
+	echo $theme_opt['extention']['head_tag_uesr'];
+}
 ?>
 </head>
 <body <?php body_class(); ?>>

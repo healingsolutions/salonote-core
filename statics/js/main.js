@@ -9,11 +9,12 @@ jQuery(function($){
 	}
 	
 	if($('body.use_lazy_load').length && ( $(window).width() > 768 ) ){
-		$('body.use_lazy_load .entry_block_content img').each(function() {
+		$('body.use_lazy_load .entry_block_content img[class*="wp-image-"]').each(function() {
 			$(this).attr('src','//dummyimage.com/1x1/ffffff/cccccc.gif');
 		});
 		$('body.use_lazy_load .entry_block_content img.lazy').lazyload();
 	}
+	
 	
 	// 水平線でブロックを区切り、グルーピング　=======================================================
 	if($('hr.block-horizon').length && ( $(window).width() > 768 ) ){

@@ -3,6 +3,8 @@
 global $post_type_name;
 global $user_setting;
 global $theme_opt;
+global $post_type_set;
+global $page_info;
 
 $_site_name_txt		=	get_bloginfo('name');
 $_site_name_count	=	mb_strlen($_site_name_txt);
@@ -12,7 +14,11 @@ if( $_font_width > 1.5 ){
 }
 
 if( !wp_is_mobile() ){
-	echo '<div class="header_logo-block onlyPC"><a href="'.home_url().'">';
+	echo '<div class="header_logo-block onlyPC';
+	if( !empty( $theme_opt['base']['description'] ) && in_array('header_h1_txt',$theme_opt['base'] )){
+		echo ' has_excerpt';
+	}
+	echo '"><a href="'.home_url().'">';
   if( !empty(get_theme_mod( 'header_logo_url' )) ){
     echo '<img src="'.esc_url( get_theme_mod( 'header_logo_url' ) ).'" alt="'.$_site_name_txt.'" title="'.$_site_name_txt.'">';
 	}else{
@@ -20,22 +26,19 @@ if( !wp_is_mobile() ){
 	}
 	
 	if( !empty( $theme_opt['base']['description'] ) && in_array('header_h1_txt',$theme_opt['base'] )){
-		echo '<h1 class="header-description">'.get_bloginfo('description',false).'</h1>';
+		echo '<p class="site-description">'.$theme_opt['base']['description'].'</p>';
 	}
-		
-	
+
   echo '</a></div>';
 }
-
-
-		
+	
 //header_top_widgets widget
 if(!function_exists('dynamic_sidebar') || !dynamic_sidebar('header_top_widgets')):
 	//header_top_widgets
 endif;
 
 ?>
-<header id="header">
+<header id="header" class="site-header-block">
   <?php
     // action essence_before_header =============================
     if ( current_user_can( 'administrator' ) && $user_setting['display_shortcode'] ) { echo '<span class="do_action">do_action: [essence_before_header]</span>';}
@@ -71,8 +74,17 @@ endif;
   ?>
 </header>
 
-
-
 <?php
+if(	is_singular() && has_excerpt()){
+	if(
+		!empty( $post_type_set ) &&
+		in_array('show_description',$post_type_set) &&
+		empty($page_info['hide_header_description'] )
+	){
+		echo '<section><h1 class="header-description">'.get_bloginfo('description',false).'</h1></section>';
+	}
+};
+
+
 get_template_part('template-parts/module/pc-navbar-bottom');
 ?>

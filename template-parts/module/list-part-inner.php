@@ -33,7 +33,11 @@ if(
 			!empty( get_the_post_thumbnail_url($post->ID) )
 		){
 			$thumb_size = !empty( $post_type_set['thumbnail_size'] ) ? $post_type_set['thumbnail_size'] : 'thumbnail' ;
-			$_thumbnail_url = get_the_post_thumbnail($post->ID,$thumb_size);
+			$thumb_attr = array(
+				'alt'   => trim( strip_tags( get_the_title() )),
+				'title' => trim( strip_tags( get_the_title() )),
+			);
+			$_thumbnail_url = get_the_post_thumbnail($post->ID,$thumb_size,$thumb_attr);
 		}// has_thumbnail
 	
 	
@@ -73,7 +77,7 @@ if(
 		$_the_title = preg_replace('/(\,|'.__(',','salonote-essence').')/', '$1<br />', $_the_title);
 		$_the_title = preg_replace('/(~|〜)/', '<br /><span class="small">$1', $_the_title).'</span>';
 	}
-  echo '<h2 class="list_block_title">'.$_the_title.'</h2>';
+  echo '<p class="list_block_title">'.$_the_title.'</p>';
 }
 
 if(
@@ -81,7 +85,7 @@ if(
   in_array('display_grid_sub_title',$post_type_set) &&
   !empty(get_post_meta($post->ID, 'subTitle'))
 ){
-  echo '<h3 class="list_block_sub_title">'.esc_html(get_post_meta($post->ID, 'subTitle', true)).'</h3>';
+  echo '<p class="list_block_sub_title">'.esc_html(get_post_meta($post->ID, 'subTitle', true)).'</p>';
 }
 
 if(

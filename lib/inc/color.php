@@ -58,7 +58,7 @@ $color_customize_array = array(
 
 
   'header_bkg' => array(
-    'target'   => 'header, .header_bkg',
+    'target'   => 'header.site-header-block, .header_bkg',
     'element'  => 'background-color',
     'default'  => null,
     'label_jp' => __('header background-color','salonote-essence'),
@@ -67,7 +67,7 @@ $color_customize_array = array(
 
 
   'footer_bkg' => array(
-    'target'   => 'footer , .footer_bkg',
+    'target'   => 'footer.site-footer-block , .footer_bkg',
     'element'  => 'background-color',
     'default'  => null,
     'label_jp' => __('footer background-color','salonote-essence'),
@@ -76,7 +76,7 @@ $color_customize_array = array(
 
 
   'footer_color' => array(
-    'target'   => 'footer, footer a, footer li::before',
+    'target'   => 'footer.site-footer-block, footer.site-footer-block a, footer.site-footer-block li::before',
     'element'  => 'color',
     'default'  => null,
     'label_jp' => __('footer font-color','salonote-essence'),

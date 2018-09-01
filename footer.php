@@ -39,7 +39,7 @@ if($theme_opt['base']['google_map'] && !$hide_footer ){
 };
 ?>
 
-<footer class="footer<?php if (has_nav_menu('sp_display_nav') && wp_is_mobile() ) echo ' has_sp_display_nav' ?>">
+<footer class="site-footer-block footer<?php if (has_nav_menu('sp_display_nav') && wp_is_mobile() ) echo ' has_sp_display_nav' ?>">
   <a class="footer_for_top footer_bkg smoothscroll" href="#header">TOP</a>
   
   <?php
@@ -105,9 +105,9 @@ if($theme_opt['base']['google_map'] && !$hide_footer ){
 		}else{
 			$footer_logo = get_bloginfo('name');
 		}
-		echo '<h1 class="footer_logo-block"><a href="'.home_url().'">';
+		echo '<p class="footer_logo-block"><a href="'.home_url().'">';
 			echo $footer_logo;
-		echo '</a></h1>';
+		echo '</a></p>';
 		
   
   }//^ if display footer

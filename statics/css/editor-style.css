@@ -499,7 +499,7 @@ hr {
       vertical-align: middle;
       width: 100%;
       text-align: center; }
-    .grid-type-group .list_item_block h2.list_block_title {
+    .grid-type-group .list_item_block .list_block_title {
       font-size: 1em; }
     .grid-type-group .list_item_block time.list_block_date {
       float: none;
@@ -1719,6 +1719,28 @@ body#tinymce div::before {
   top: -15px;
   left: 0px;
   background: #7A7A7A;
+  border-radius: 5px 5px 0 0;
+  padding: 2px 10px;
+  font-size: 10px;
+  line-height: 10px;
+  color: #FFFFFF; }
+
+body#tinymce section {
+  position: relative;
+  border: 4px solid #F0EECE;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 15px auto; }
+  body#tinymce section span {
+    border: 2px solid #EEEEEE;
+    padding: 2px; }
+
+body#tinymce section::before {
+  content: 'section';
+  position: absolute;
+  top: -15px;
+  left: 0px;
+  background: #848663;
   border-radius: 5px 5px 0 0;
   padding: 2px 10px;
   font-size: 10px;

@@ -12,7 +12,7 @@ foreach($color_customize_array as $key => $value):
       
 			//footer_color
       if( $key == 'footer_color' ){
-        $color_set .= 'footer.footer ul.footer-sitemap > li > ul:before { border-left: 1px solid '.get_theme_mod($key,$value['default']).'}';
+        $color_set .= 'footer.site-footer-block ul.footer-sitemap > li > ul:before { border-left: 1px solid '.get_theme_mod($key,$value['default']).'}';
       }
       
 			//bdr_color

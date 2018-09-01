@@ -39,6 +39,14 @@ $field_arr = array(
       'type' => 'textarea',
       'description' => __('You can use shortcode [GoogleAD]','salonote-essence'),
   ),
+	'head_tag_admin' => array(
+      'label' => __('Insert Head Tag only administrater','salonote-essence'),
+      'type' => 'textarea',
+  ),
+	'head_tag_user' => array(
+      'label' => __('Insert Head Tag global','salonote-essence'),
+      'type' => 'textarea',
+  ),
   
 );
 ?>

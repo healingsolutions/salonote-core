@@ -1,11 +1,11 @@
 @charset "UTF-8";
 
-footer{
+footer.site-footer-block{
   @include clearfix;
   clear: both;
   position: relative;
 	padding-top: 15px;
-  padding-bottom: 25px;
+  padding-bottom: 55px;
 	z-index: 30;
 
   a.footer_for_top{

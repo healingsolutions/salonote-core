@@ -69,7 +69,7 @@ if( in_array('container',$main_unit) ){
   // ^action =============================
 
 
-echo '<div class="'.implode(' ',$main_content).'">';
+echo '<main class="'.implode(' ',$main_content).'">';
 
   // action essence_before_single_content =============================
   if ( current_user_can( 'administrator' ) && $user_setting['display_shortcode'] ) { echo '<span class="do_action">do_action: [essence_before_single_content]</span>';}
@@ -81,11 +81,13 @@ echo '<div class="'.implode(' ',$main_content).'">';
     //dynamic_sidebar( $post_type_name . 'widgets');
   endif;
 
+	echo !empty(get_the_content() ) ? '<article>' : '';
   if(have_posts()): while(have_posts()): the_post();
     get_template_part('template-parts/module/single-content');
   endwhile; endif;
-
 	
+
+	echo !empty(get_the_content() ) ? '<footer>' : '<div>';
 	if(
       !empty($page_info['single_child_unit']) &&
 		  $page_info['single_child_unit']
@@ -93,7 +95,6 @@ echo '<div class="'.implode(' ',$main_content).'">';
 			//display child pages
 			get_template_part('template-parts/module/single_child_unit');
   }
-
 
   // action essence_after_single_content =============================
   if ( current_user_can( 'administrator' ) && $user_setting['display_shortcode'] ) { echo '<span class="do_action">do_action: [essence_after_single_content]</span>';}
@@ -114,8 +115,10 @@ echo '<div class="'.implode(' ',$main_content).'">';
     //dynamic_sidebar('content_footer');
   endif;
 
+	echo !empty(get_the_content() ) ? '</footer>' : '</div>';
+	echo !empty(get_the_content() ) ? '</article>' : '';
   
-echo '</div>';//main_content
+echo '</main>';//main_content
 
   // =====================
   // sidebar

@@ -30,12 +30,12 @@ function essence_tinymce($initArray) {
             'classes' => 'title_bdr_tbtm'
         ),
         array(
-            'title' => 'heading',
+            'title' => __('left border headline','salonote-essence'),
             'selector' => 'h1, h2, h3, h4, h5, h6, p',
             'classes' => 'heading'
         ),
         array(
-            'title' => __('headline large','salonote-essence'),
+            'title' => __('left border headline large','salonote-essence'),
             'selector' => 'h1, h2, h3, h4, h5, h6, p',
             'classes' => 'heading_md'
         ),
@@ -234,6 +234,13 @@ function essence_tinymce($initArray) {
 						'title' => 'div',
 						'block' => 'div',
 				),
+				
+				array(
+						'title' => 'section',
+						'block' => 'section',
+						'wrapper' => 'true',
+				),
+				
 				
 				array(
 						'title' => __('vertical middle','salonote-essence'),

@@ -6,9 +6,9 @@ global $page_info;
 
 $post_id = get_the_ID();
 
-
+if( get_the_content() ){
 echo '<div class="entry_block_content">';
-
+echo '<header>';
 
 // title =======================================
 if(
@@ -61,10 +61,12 @@ if(
 ){
   echo '<div class="entry_block_excerpt">'.get_the_excerpt().'</div>';
 }
+echo '</header>';
+
 
 the_content();
 
-
+}// if has content
 
 // content footer widget
 if(!function_exists('dynamic_sidebar') || !dynamic_sidebar('content_inner')): 
@@ -78,5 +80,5 @@ if(!function_exists('dynamic_sidebar') || !dynamic_sidebar($post_type_name . '_a
 	dynamic_sidebar( $post_type_name . '_after_content');
 endif;
 
-echo '</div>';
+if( get_the_content() ) echo '</div>';
 ?>

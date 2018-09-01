@@ -115,9 +115,6 @@ echo '<div class="'.$row_class.'">';
 
   // main =======================
   echo '<div class="'.implode(' ',$main_content).'">';
-
-
-
 	echo '<div class="landing-page-block">';
 	
 
@@ -146,6 +143,7 @@ echo '<div class="'.$row_class.'">';
 			edit_post_link( get_the_title() . 'を編集', '<div class="entry_block_content"><div class="btn btn-primary randing_page_edit">', '</div></div>');
 		echo '</div>';
 		echo '</div>';
+
   endwhile; endif;
 
 	if($query->have_posts()){
@@ -177,7 +175,7 @@ echo '<div class="'.$row_class.'">';
 	} //endif;
 
 
-	echo '</div>';
+echo '</div>';
 echo '</div>';
 echo '</div>';
 echo '</div>';

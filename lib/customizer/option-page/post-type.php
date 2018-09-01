@@ -185,11 +185,6 @@ $field_arr = array(
     'type' => 'checkbox',
     'description' => __('Only if contain "headline_nav"','salonote-essence'),
   ),
-  
-	
-	
-	
-  
 
 	'full_pages' => array(
     'label' => __('Hide Sidebar','salonote-essence'),
@@ -198,6 +193,11 @@ $field_arr = array(
   
   'none_page_container' => array(
     'label' => __('None page container','salonote-essence'),
+    'type' => 'checkbox',
+  ),
+	
+	'show_description' => array(
+    'label' => __('show header description','salonote-essence'),
     'type' => 'checkbox',
   ),
   

@@ -14,7 +14,7 @@ global $page_info;
   }
 
 
-	echo '<div id="sidebar" class="'. implode(' ',$sidebar_class) .'">';
+	echo '<aside id="sidebar" class="'. implode(' ',$sidebar_class) .'">';
 		echo '<div class="sidebar_inner">';
 			echo '<div class="sidebar_inner__content">';
 
@@ -63,4 +63,4 @@ global $page_info;
 	
 			echo '</div>';
 		echo '</div>';
-	echo '</div>';
+	echo '</aside>';
