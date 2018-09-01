@@ -22,11 +22,13 @@ $field_arr = array(
       'description' => __('GoogleAnalytics Tracking ID','salonote-essence'),
       'type'        => 'text'
   ),
+	/*
   'schema_json' => array(
       'label'       => __('Schema','salonote-essence'),
       'description' => __('Schema JSON-LD','salonote-essence'),
       'type'        => 'checkbox'
   ),
+	*/
   'google_map' => array(
       'label'       => 'GoogleMap',
       'description' => __('You can use shortcode [GoogleMap]','salonote-essence'),
