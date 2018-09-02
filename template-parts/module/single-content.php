@@ -66,7 +66,7 @@ if(
 if(
   !empty( $post_type_set ) &&
   in_array('post_thumbnail',$post_type_set )&&
-  has_post_thumbnail() && 
+  has_post_thumbnail()
 ){
   echo '<div class="entry_post_thumbnail">';
 	$thumb_size = !empty( $post_type_set['thumbnail_size'] ) ? $post_type_set['thumbnail_size'] : 'thumbnail' ;
