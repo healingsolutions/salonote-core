@@ -22,12 +22,7 @@ global $page_info;
 					echo do_shortcode( $page_info['sidebar'] );
 				}
 
-				//post_type sidebar
-				if( isset($post_type_name) ){
-						if(!function_exists('dynamic_sidebar') || !dynamic_sidebar($post_type_name . '_side')): 
-								//$post_type_name . '_side'
-						endif;
-				}
+				
 
 
         // action essence_before_single_content =============================
@@ -38,13 +33,20 @@ global $page_info;
 
 				//has-parent-list
         get_template_part('template-parts/module/has-parent-list');
+
+
 	
 				//taxonomy
 				if( is_tax() ){
           get_template_part('template-parts/module/has-taxonomy-list');
 				}
 				
-
+				//post_type sidebar
+				if( isset($post_type_name) ){
+						if(!function_exists('dynamic_sidebar') || !dynamic_sidebar($post_type_name . '_side')): 
+								//$post_type_name . '_side'
+						endif;
+				}
 				
 
 				if(!function_exists('dynamic_sidebar') || !dynamic_sidebar('common_sidebar')): 

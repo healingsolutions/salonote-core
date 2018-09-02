@@ -229,10 +229,12 @@ $field_arr = array(
     ),
   
 );
+
 ?>
 
 <div class="wrap">
 <h1><?php _e('Theme Setting','salonote-essence'); ?></h1>
+<div id="post-type-setting" class="all-setting-btn btn">おすすめ一括設定</div>
 <style>
   .essence-post_type-tab{
     display: block;
@@ -280,6 +282,15 @@ $field_arr = array(
     display: inline-block;
 		margin: 0;
   }
+	
+	.all-setting-btn{
+		display: inline-block;
+		padding: 3px 10px;
+		border-radius: 4px;
+		background-color: #40B4C6;
+		color: white;
+		margin-bottom: 20px;
+	}
   
 
 </style>
@@ -391,6 +402,44 @@ $field_arr = array(
       echo "$('.essence_post_type_".$post_type."__essence_checkbox').shiftcheckbox();".PHP_EOL;
     }
     ?>
+		
+		
+		$('#post-type-setting').on('click', function() {
+			$('#front_page-form input:checkbox[name="essence_post_type[front_page][]"]').val([
+				'full_pages',
+			]);
+
+			$('#post-form select[name="essence_post_type[post][list_type]"]').val('timeline');
+			$('#post-form [name="essence_post_type[post][posts_per_page]"]').val('10');
+			$('#post-form [name="essence_post_type[post][grid_cols]"]').val('4');
+			$('#post-form select[name="essence_post_type[post][posts_order]"]').val('DESC');
+			$('#post-form select[name="essence_post_type[post][thumbnail_size]"]').val('thumbnail_M');
+
+			$('input:checkbox[name="essence_post_type[post][]"]').val([
+				'display_archive_title',
+				'display_grid_title',
+				'display_grid_sub_title',
+				'display_list_term',
+				'display_grid_thumb_caption',
+				'display_post_gallery',
+				'display_entry_title',
+				'display_post_date',
+				'display_entry_sub_title',
+				'display_entry_excerpt',
+				'display_next_post',
+				'display_other_post',
+				'display_thumbnail',
+			]);
+
+			$('#page-form [name="essence_post_type[page][grid_cols]"]').val('4');
+			$('#post-form select[name="essence_post_type[post][thumbnail_size]"]').val('thumbnail_M');
+			$('#page-form input:checkbox[name="essence_post_type[page][]"]').val([
+				'full_pages',
+				'display_entry_title',
+				'display_child_unit',
+				'display_thumbnail',
+			]);
+		});
     
   });
   
@@ -428,8 +477,8 @@ $field_arr = array(
   }else{
     echo '<h2>'.__('front-page','salonote-essence').'</h2>';
   }
-    
-    
+		
+
     $field_key_set = '';
     $field_key_set = $field_key.'['.$post_type.']';
     $_options_value = !empty(get_option($field_key)) ? get_option($field_key) : '' ;

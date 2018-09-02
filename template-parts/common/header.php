@@ -26,7 +26,7 @@ if( !wp_is_mobile() ){
 	}
 	
 	if( !empty( $theme_opt['base']['description'] ) && in_array('header_h1_txt',$theme_opt['base'] )){
-		echo '<p class="site-description">'.$theme_opt['base']['description'].'</p>';
+		echo '<h1 class="site-description">'.$theme_opt['base']['description'].'</h1>';
 	}
 
   echo '</a></div>';

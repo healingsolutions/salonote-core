@@ -79,7 +79,7 @@ function print_parts_func($atts) {
       //$_one_page_content = apply_filters('the_contrent', $post->post_content);
       //echo do_shortcode(edit_content_hook($_one_page_content));
 			
-			echo edit_content_hook(do_shortcode(apply_filters('the_contrent', $post->post_content)));
+			echo edit_content_hook(wpautop((do_shortcode(apply_filters('the_contrent', $post->post_content)))));
 
       do_action( 'essence_onepage_content' );
       do_action( 'essence_onepage_content_only_' . $id ); //１つだけに絞る場合

@@ -8,12 +8,6 @@ jQuery(function($){
 		$('body.use_content_fade').animate({ scrollTop: 0 }, '1');
 	}
 	
-	if($('body.use_lazy_load').length && ( $(window).width() > 768 ) ){
-		$('body.use_lazy_load .entry_block_content img[class*="wp-image-"]').each(function() {
-			$(this).attr('src','//dummyimage.com/1x1/ffffff/cccccc.gif');
-		});
-		$('body.use_lazy_load .entry_block_content img.lazy').lazyload();
-	}
 	
 	
 	// 水平線でブロックを区切り、グルーピング　=======================================================
@@ -469,6 +463,15 @@ jQuery(function($){
       $('body,html').animate({scrollTop:position}, speed, 'swing');
       return false;
    });
+	
+	
+	//lazy image
+	if($('body.use_lazy_load').length && ( $(window).width() > 768 ) ){
+		$('body.use_lazy_load .entry_block_content img[class*="wp-image-"]').each(function() {
+			$(this).attr('src','//dummyimage.com/1x1/ffffff/cccccc.gif');
+		});
+		$('body.use_lazy_load .entry_block_content img.lazy').lazyload();
+	}
 	
 	
 	

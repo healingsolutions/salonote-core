@@ -61,6 +61,23 @@ if(
 ){
   echo '<div class="entry_block_excerpt">'.get_the_excerpt().'</div>';
 }
+	
+// date =======================================
+if(
+  !empty( $post_type_set ) &&
+  in_array('post_thumbnail',$post_type_set )&&
+  has_post_thumbnail() && 
+){
+  echo '<div class="entry_post_thumbnail">';
+	$thumb_size = !empty( $post_type_set['thumbnail_size'] ) ? $post_type_set['thumbnail_size'] : 'thumbnail' ;
+	$thumb_attr = array(
+		'alt'   => trim( strip_tags( get_the_title() )),
+		'title' => trim( strip_tags( get_the_title() )),
+	);
+	$_thumbnail_url = get_the_post_thumbnail($post_id,'large',$thumb_attr);
+	
+	echo '</div>';
+}
 echo '</header>';
 
 
