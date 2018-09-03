@@ -77,5 +77,7 @@ a.page_bkg_upload_images_remove:hover {
   font-size: 90%; }
   .wp-list-table .column_badge.good {
     background-color: #66AD6A; }
+  .wp-list-table .column_badge.fine {
+    background-color: #498DB0; }
   .wp-list-table .column_badge.bad {
     background-color: #9C4042; }

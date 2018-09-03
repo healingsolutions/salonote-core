@@ -81,7 +81,7 @@ function edit_content_hook($content){
 
 $theme_opt['post_type'] = get_option('essence_post_type');
 
-if( !empty( $theme_opt['post_type'] )){
+if( !empty( $theme_opt['post_type'] ) && is_admin() ){
 	foreach( $theme_opt['post_type'] as $post_type => $value ){
 		if( !empty( $value ) && in_array('check_words_count',$value ) ){
 		add_filter('manage_edit-'.$post_type.'_columns', 'salonote_check_words_columns');
@@ -107,10 +107,12 @@ function salonote_add_words_count_column($column_name) {
 		$post_id = isset( $post_id) ? $post_id : null;
 
 		$title		= get_the_title($post_id);
-		$content	= get_the_content($post_id);
+		$content	= strip_shortcodes(wp_strip_all_tags(get_post_field( 'post_content', $post_id )));
+		
 
 		$_title_word	 = mb_strlen(strip_tags($title));
-		$_content_word = mb_strlen(strip_tags($content));
+		$_content_word = mb_strlen(preg_replace('/\n(\s|\n)*\n/u',"",$content));
+
 
 		$post_type_name = get_post_type($post_id);
 
@@ -121,6 +123,8 @@ function salonote_add_words_count_column($column_name) {
 		$words_column	.= '<div>本　文　：<span style="font-size:1.6em;">' .$_content_word.'</span> 文字';
 		if( $_content_word > 2000 ){
 			$words_column	.= '<span class="column_badge good">Good</span>';
+		}elseif( $_content_word > 1000 ){
+			$words_column	.= '<span class="column_badge fine">OK</span>';
 		}elseif( $_content_word < 500 ){
 			$words_column	.= '<span class="column_badge bad">Short</span>';
 		}

@@ -32,7 +32,7 @@ $theme_mods             = get_theme_mods();
 
 add_action( 'admin_enqueue_scripts', 'essence_admin_style' );
 function essence_admin_style(){
-	wp_enqueue_style('essence_admin_style',get_template_directory_uri().'/statics/css/admin-style.css',array(),'1.0.0');
+	wp_enqueue_style('essence_admin_style',get_template_directory_uri().'/statics/css/admin-style.css',array(),'1.0.1');
   
   //wp_enqueue_style ('bootstrap','https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
   //wp_enqueue_script('bootstrap','//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array(),'3.3.7', true);
