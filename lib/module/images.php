@@ -209,3 +209,32 @@ function essence_mime_to_ext($mime_to_ext) {
     return $mime_to_ext;
 }
 add_filter('getimagesize_mimes_to_exts', 'essence_mime_to_ext');
+
+
+
+
+function set_attach_check(){
+	$attach_check = [];
+	return;
+}
+add_action( 'export_wp', 'set_attach_check' );
+
+
+function add_attachement_url( $post ){
+	global $post;
+	global $attach_check;
+
+	if( !has_post_thumbnail($post->ID) || !empty($attach_check[$post->ID]) ) return;
+	
+	$attach_check[$post->ID] = true;
+	$thumb_url = get_the_post_thumbnail_url( $post->ID, 'full' );
+	?>
+		<wp:postmeta>
+			<wp:meta_key><![CDATA[_thumbnail_url]]></wp:meta_key>
+			<wp:meta_value><![CDATA[<?php echo $thumb_url; ?>]]></wp:meta_value>
+		</wp:postmeta>
+	<?php
+	
+	return;
+}
+add_action('wxr_export_skip_postmeta','add_attachement_url');

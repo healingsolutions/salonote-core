@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: salonote-essence\n"
-"POT-Creation-Date: 2018-08-24 23:47+0900\n"
-"PO-Revision-Date: 2018-08-24 23:47+0900\n"
+"POT-Creation-Date: 2018-09-04 03:32+0900\n"
+"PO-Revision-Date: 2018-09-04 03:32+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -101,8 +101,8 @@ msgid "Full Size"
 msgstr "全画面表示"
 
 #: lib/custom_fields/page_info.php:25
-#: lib/customizer/option-page/post-type.php:136
-#: lib/customizer/option-page/post-type.php:190
+#: lib/customizer/option-page/post-type.php:141
+#: lib/customizer/option-page/post-type.php:195
 msgid "Hide Sidebar"
 msgstr "メインのみ"
 
@@ -186,9 +186,17 @@ msgstr "Google Adwordsコード"
 msgid "You can use shortcode [GoogleAD]"
 msgstr "Google Adwordsの広告コード [GoogleAD]のショートコードで挿入されます"
 
+#: lib/customizer/option-page/extention.php:43
+msgid "Insert Head Tag exclude administrater"
+msgstr "管理者以外に挿入されるheadタグ"
+
 #: lib/customizer/option-page/extention.php:47
-#: lib/customizer/option-page/main.php:154
-#: lib/customizer/option-page/post-type.php:235
+msgid "Insert Head Tag global"
+msgstr "公開するheadタグ"
+
+#: lib/customizer/option-page/extention.php:55
+#: lib/customizer/option-page/main.php:156
+#: lib/customizer/option-page/post-type.php:241
 #: lib/customizer/theme-options.php:10
 msgid "Theme Setting"
 msgstr "テーマ設定"
@@ -221,75 +229,67 @@ msgstr "キーワードを半角カンマ区切り（,）で入力してくだ�
 msgid "GoogleAnalytics Tracking ID"
 msgstr "Google Analyctics トラッキング ID"
 
-#: lib/customizer/option-page/main.php:26
-msgid "Schema"
-msgstr "構造化マークアップ"
-
-#: lib/customizer/option-page/main.php:27
-msgid "Schema JSON-LD"
-msgstr "構造化マークアップ「JSON-LD」を挿入"
-
-#: lib/customizer/option-page/main.php:32
+#: lib/customizer/option-page/main.php:34
 msgid "You can use shortcode [GoogleMap]"
 msgstr "iframeのURL部分のみを記述して下さい　ショートコード：[GoogleMap]"
 
-#: lib/customizer/option-page/main.php:36
+#: lib/customizer/option-page/main.php:38
 msgid "Phone Number"
 msgstr "電話番号"
 
-#: lib/customizer/option-page/main.php:40
+#: lib/customizer/option-page/main.php:42
 msgid "FAX Number"
 msgstr "ＦＡＸ番号"
 
-#: lib/customizer/option-page/main.php:44
+#: lib/customizer/option-page/main.php:46
 msgid "ZipCode"
 msgstr "郵便番号"
 
-#: lib/customizer/option-page/main.php:48
+#: lib/customizer/option-page/main.php:50
 msgid "Address"
 msgstr "住所"
 
-#: lib/customizer/option-page/main.php:52
+#: lib/customizer/option-page/main.php:54
 msgid "Business Time"
 msgstr "営業時間"
 
-#: lib/customizer/option-page/main.php:56
+#: lib/customizer/option-page/main.php:58
 msgid "Business Holiday"
 msgstr "定休日"
 
-#: lib/customizer/option-page/main.php:60
+#: lib/customizer/option-page/main.php:62
 msgid "Business Parking"
 msgstr "駐車場"
 
-#: lib/customizer/option-page/main.php:64
+#: lib/customizer/option-page/main.php:66
 msgid "Business Message"
 msgstr "メッセージ"
 
-#: lib/customizer/option-page/main.php:68
+#: lib/customizer/option-page/main.php:70
 msgid "Side Menu Postion"
 msgstr "サイドメニューの位置"
 
-#: lib/customizer/option-page/main.php:71
+#: lib/customizer/option-page/main.php:73
 msgid "right"
 msgstr "右"
 
-#: lib/customizer/option-page/main.php:72
+#: lib/customizer/option-page/main.php:74
 msgid "left"
 msgstr "左"
 
-#: lib/customizer/option-page/main.php:76
+#: lib/customizer/option-page/main.php:78
 msgid "Side Menu Width"
 msgstr "サイドメニューの幅"
 
-#: lib/customizer/option-page/main.php:86
+#: lib/customizer/option-page/main.php:88
 msgid "Use Container"
 msgstr "Containerを使う"
 
-#: lib/customizer/option-page/main.php:92
+#: lib/customizer/option-page/main.php:94
 msgid "Show header Headline 1 text"
 msgstr "タイトル下概要"
 
-#: lib/customizer/option-page/main.php:94
+#: lib/customizer/option-page/main.php:96
 msgid ""
 "Show Headline 1 text in header logo space.But when too long description "
 "words, sometime break layout."
@@ -297,69 +297,69 @@ msgstr ""
 "タイトルロゴの下に概要を表示します。概要が長い場合は、レイアウトが崩れる場合"
 "がありますのでご注意ください。"
 
-#: lib/customizer/option-page/main.php:98
+#: lib/customizer/option-page/main.php:100
 msgid "Show BreadCrumb"
 msgstr "パンくずリストを表示"
 
-#: lib/customizer/option-page/main.php:102
+#: lib/customizer/option-page/main.php:104
 msgid "Hide Horizon"
 msgstr "罫線を表示しない"
 
-#: lib/customizer/option-page/main.php:106
+#: lib/customizer/option-page/main.php:108
 msgid "Fit Sidebar"
 msgstr "サイドバーを追従させる"
 
-#: lib/customizer/option-page/main.php:110
+#: lib/customizer/option-page/main.php:112
 msgid "break title (,)"
 msgstr "タイトルをカンマで改行する"
 
-#: lib/customizer/option-page/main.php:114
+#: lib/customizer/option-page/main.php:116
 msgid "no float sp device"
 msgstr "スマホでは画像を左右に寄せない"
 
-#: lib/customizer/option-page/main.php:116
+#: lib/customizer/option-page/main.php:118
 msgid "If float image on SmartPhone, sometime break text trouble"
 msgstr ""
 "スマホで画像を左右に寄せると、文章部分が狭くなって見づらくなる恐れがあるの"
 "で、回避します"
 
-#: lib/customizer/option-page/main.php:119
+#: lib/customizer/option-page/main.php:121
 msgid "Child StyleSheet"
 msgstr "子テーマスタイルの読み込み"
 
-#: lib/customizer/option-page/main.php:120
+#: lib/customizer/option-page/main.php:122
 msgid "use child theme stylesheet"
 msgstr "ページの表示速度を少し落として、子テーマの要素を読み込みます"
 
-#: lib/customizer/option-page/main.php:124
+#: lib/customizer/option-page/main.php:126
 msgid "Parts PostType"
 msgstr "パーツ機能を利用"
 
-#: lib/customizer/option-page/main.php:130
+#: lib/customizer/option-page/main.php:132
 msgid "Headline Font"
 msgstr "見出しフォント"
 
-#: lib/customizer/option-page/main.php:133
-#: lib/customizer/option-page/main.php:144
+#: lib/customizer/option-page/main.php:135
+#: lib/customizer/option-page/main.php:146
 msgid "gothic"
 msgstr "ゴシック"
 
-#: lib/customizer/option-page/main.php:134
-#: lib/customizer/option-page/main.php:145
+#: lib/customizer/option-page/main.php:136
+#: lib/customizer/option-page/main.php:147
 msgid "mincho"
 msgstr "明朝"
 
-#: lib/customizer/option-page/main.php:135
-#: lib/customizer/option-page/main.php:146
+#: lib/customizer/option-page/main.php:137
+#: lib/customizer/option-page/main.php:148
 msgid "Meiryo"
 msgstr "メイリオ"
 
-#: lib/customizer/option-page/main.php:136
-#: lib/customizer/option-page/main.php:147
+#: lib/customizer/option-page/main.php:138
+#: lib/customizer/option-page/main.php:149
 msgid "maru-gothic"
 msgstr "丸ゴシック"
 
-#: lib/customizer/option-page/main.php:141
+#: lib/customizer/option-page/main.php:143
 msgid "Body Font"
 msgstr "本文フォント"
 
@@ -383,205 +383,209 @@ msgstr "コンテンツの最大幅"
 msgid "px (only device width larger 980px)"
 msgstr "px　(980px以上の場合)"
 
-#: lib/customizer/option-page/post-type.php:48
+#: lib/customizer/option-page/post-type.php:47
+msgid "Check Words count"
+msgstr "文字数をチェック"
+
+#: lib/customizer/option-page/post-type.php:53
 msgid "List Type"
 msgstr "リスト表示タイプ"
 
-#: lib/customizer/option-page/post-type.php:51 lib/module/tinymce.php:268
+#: lib/customizer/option-page/post-type.php:56 lib/module/tinymce.php:268
 #: lib/widget/customList.php:86
 msgid "list"
 msgstr "リスト"
 
-#: lib/customizer/option-page/post-type.php:52 lib/widget/customList.php:87
+#: lib/customizer/option-page/post-type.php:57 lib/widget/customList.php:87
 msgid "grid"
 msgstr "グリッド"
 
-#: lib/customizer/option-page/post-type.php:53 lib/widget/customList.php:88
+#: lib/customizer/option-page/post-type.php:58 lib/widget/customList.php:88
 msgid "timeline"
 msgstr "タイムライン"
 
-#: lib/customizer/option-page/post-type.php:57
+#: lib/customizer/option-page/post-type.php:62
 msgid "posts_per_page"
 msgstr "表示する件数"
 
-#: lib/customizer/option-page/post-type.php:63
+#: lib/customizer/option-page/post-type.php:68
 msgid "Number of items to display in one column"
 msgstr "１列で表示する件数"
 
-#: lib/customizer/option-page/post-type.php:68
+#: lib/customizer/option-page/post-type.php:73
 msgid "posts_order"
 msgstr "表示する順番"
 
-#: lib/customizer/option-page/post-type.php:71
+#: lib/customizer/option-page/post-type.php:76
 msgid "DESC"
 msgstr "新しいもの順（降順）"
 
-#: lib/customizer/option-page/post-type.php:72
+#: lib/customizer/option-page/post-type.php:77
 msgid "ASC"
 msgstr "古いもの順（昇順）"
 
-#: lib/customizer/option-page/post-type.php:73
+#: lib/customizer/option-page/post-type.php:78
 msgid "menu_order"
 msgstr "ページ順序(並べ替えた順)"
 
-#: lib/customizer/option-page/post-type.php:74
+#: lib/customizer/option-page/post-type.php:79
 msgid "random"
 msgstr "ランダム"
 
-#: lib/customizer/option-page/post-type.php:78
+#: lib/customizer/option-page/post-type.php:83
 msgid "excerpt"
 msgstr "概要の表示方法"
 
-#: lib/customizer/option-page/post-type.php:81
+#: lib/customizer/option-page/post-type.php:86
 msgid "has excerpt"
 msgstr "内容がある場合"
 
-#: lib/customizer/option-page/post-type.php:82
+#: lib/customizer/option-page/post-type.php:87
 msgid "trim"
 msgstr "本文から抜粋"
 
-#: lib/customizer/option-page/post-type.php:86
+#: lib/customizer/option-page/post-type.php:91
 msgid "show content"
 msgstr "コンテンツを表示"
 
-#: lib/customizer/option-page/post-type.php:91
+#: lib/customizer/option-page/post-type.php:96
 msgid "LINK"
 msgstr "リンク"
 
-#: lib/customizer/option-page/post-type.php:94
+#: lib/customizer/option-page/post-type.php:99
 msgid "normal"
 msgstr "通常"
 
-#: lib/customizer/option-page/post-type.php:95
+#: lib/customizer/option-page/post-type.php:100
 msgid "no_link"
 msgstr "リンクを貼らない"
 
-#: lib/customizer/option-page/post-type.php:96
+#: lib/customizer/option-page/post-type.php:101
 msgid "another_link"
 msgstr "外部リンク"
 
-#: lib/customizer/option-page/post-type.php:105
+#: lib/customizer/option-page/post-type.php:110
 msgid "Archive Page Title"
 msgstr "リストページタイトル"
 
-#: lib/customizer/option-page/post-type.php:109
+#: lib/customizer/option-page/post-type.php:114
 msgid "List Post Title"
 msgstr "リストタイトル"
 
-#: lib/customizer/option-page/post-type.php:113
+#: lib/customizer/option-page/post-type.php:118
 msgid "List Post SubTitle"
 msgstr "リストサブタイトル"
 
-#: lib/customizer/option-page/post-type.php:117
+#: lib/customizer/option-page/post-type.php:122
 msgid "Category"
 msgstr "カテゴリ"
 
-#: lib/customizer/option-page/post-type.php:123
+#: lib/customizer/option-page/post-type.php:128
 msgid "Caption"
 msgstr "リストサムネイルキャプション"
 
-#: lib/customizer/option-page/post-type.php:127
+#: lib/customizer/option-page/post-type.php:132
 msgid "Writer"
 msgstr "執筆者"
 
-#: lib/customizer/option-page/post-type.php:131
+#: lib/customizer/option-page/post-type.php:136
 msgid "Gallery Label"
 msgstr "ギャラリーのラベル"
 
-#: lib/customizer/option-page/post-type.php:140
+#: lib/customizer/option-page/post-type.php:145
 msgid "None Container"
 msgstr "リストページのcontainerを不使用"
 
-#: lib/customizer/option-page/post-type.php:149
+#: lib/customizer/option-page/post-type.php:154
 msgid "Page Title"
 msgstr "ページタイトル"
 
-#: lib/customizer/option-page/post-type.php:154
+#: lib/customizer/option-page/post-type.php:159
 msgid "post_date"
 msgstr "投稿日"
 
-#: lib/customizer/option-page/post-type.php:158
+#: lib/customizer/option-page/post-type.php:163
 msgid "Page SubTitle"
 msgstr "ページサブタイトル"
 
-#: lib/customizer/option-page/post-type.php:162
+#: lib/customizer/option-page/post-type.php:167
 msgid "Page Excerpt"
 msgstr "ページ内概要"
 
-#: lib/customizer/option-page/post-type.php:167
+#: lib/customizer/option-page/post-type.php:172
 msgid "Prev/Next"
 msgstr "前後の投稿"
 
-#: lib/customizer/option-page/post-type.php:171
+#: lib/customizer/option-page/post-type.php:176
 msgid "Other Posts"
 msgstr "その他の投稿"
 
-#: lib/customizer/option-page/post-type.php:176
+#: lib/customizer/option-page/post-type.php:181
 msgid "Show ChildPosts in Sidebar"
 msgstr "サイドに子ページリスト"
 
-#: lib/customizer/option-page/post-type.php:180
+#: lib/customizer/option-page/post-type.php:185
 msgid "Show ChildPosts in bottom"
 msgstr "ページ下部に子ページリスト"
 
-#: lib/customizer/option-page/post-type.php:184
+#: lib/customizer/option-page/post-type.php:189
 msgid "Show Index Navigation"
 msgstr "ページ内リンク"
 
-#: lib/customizer/option-page/post-type.php:186
+#: lib/customizer/option-page/post-type.php:191
 msgid "Only if contain \"headline_nav\""
 msgstr "headline_navが含まれた要素を抽出します"
 
-#: lib/customizer/option-page/post-type.php:195
+#: lib/customizer/option-page/post-type.php:200
 msgid "None page container"
 msgstr "シングルページのcontainerを不使用"
 
-#: lib/customizer/option-page/post-type.php:200
+#: lib/customizer/option-page/post-type.php:205
 msgid "show header description"
 msgstr "ヘッダーの概要を表示"
 
-#: lib/customizer/option-page/post-type.php:206
+#: lib/customizer/option-page/post-type.php:211
 msgid "Show Thumbnail"
 msgstr "サムネイルを表示"
 
-#: lib/customizer/option-page/post-type.php:210
+#: lib/customizer/option-page/post-type.php:215
 msgid "Sizes"
 msgstr "サイズ"
 
-#: lib/customizer/option-page/post-type.php:215
+#: lib/customizer/option-page/post-type.php:220
 msgid "Movie Thumbnail"
 msgstr "動画サムネイル"
 
-#: lib/customizer/option-page/post-type.php:219
+#: lib/customizer/option-page/post-type.php:224
 msgid "Use First Image for Thumbnail"
 msgstr "最初の画像をサムネイルに使用"
 
-#: lib/customizer/option-page/post-type.php:223
+#: lib/customizer/option-page/post-type.php:228
 msgid "Show Thumbnail in post content"
 msgstr "投稿にもサムネイルを表示"
 
-#: lib/customizer/option-page/post-type.php:227
+#: lib/customizer/option-page/post-type.php:232
 msgid "Hide Gallery Caption"
 msgstr "ギャラリーのキャプションを非表示"
 
-#: lib/customizer/option-page/post-type.php:384
+#: lib/customizer/option-page/post-type.php:400
 msgid "Common Setting"
 msgstr "共通の設定"
 
-#: lib/customizer/option-page/post-type.php:385
+#: lib/customizer/option-page/post-type.php:401
 msgid "Archice Setting"
 msgstr "リストの表示設定"
 
-#: lib/customizer/option-page/post-type.php:386
+#: lib/customizer/option-page/post-type.php:402
 msgid "Singular Setting"
 msgstr "シングルページの表示設定"
 
-#: lib/customizer/option-page/post-type.php:387
+#: lib/customizer/option-page/post-type.php:403
 msgid "Thumbnail Setting"
 msgstr "サムネイル設定"
 
-#: lib/customizer/option-page/post-type.php:413
-#: lib/customizer/option-page/post-type.php:429 lib/widget/widgets.php:116
+#: lib/customizer/option-page/post-type.php:467
+#: lib/customizer/option-page/post-type.php:483 lib/widget/widgets.php:116
 msgid "front-page"
 msgstr "フロントページ"
 
@@ -1126,6 +1130,10 @@ msgstr "class"
 msgid "marker"
 msgstr "マーカー"
 
+#: lib/salonote-helpter/inc/functions.php:94
+msgid "Words count"
+msgstr "文字数"
+
 #: lib/salonote-helpter/lib/post_type/parts.php:7
 #: lib/salonote-helpter/lib/post_type/parts.php:8
 msgid "parts"
@@ -1393,6 +1401,12 @@ msgstr "Healing Solutions"
 #, fuzzy
 msgid "https://www.healing-solutions.jp/profile/mizuno/"
 msgstr "https://www.healing-solutions.jp/profile/mizuno/"
+
+#~ msgid "Schema"
+#~ msgstr "構造化マークアップ"
+
+#~ msgid "Schema JSON-LD"
+#~ msgstr "構造化マークアップ「JSON-LD」を挿入"
 
 #~ msgid "headline large"
 #~ msgstr "左線見出し　大"

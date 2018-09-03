@@ -89,3 +89,26 @@ a.page_bkg_upload_images_remove:before {
 a.page_bkg_upload_images_remove:hover {
 	background:#aaa;
 }
+
+
+.wp-list-table{
+	
+	#words_count{
+		width: 280px;
+	}
+
+	.column_badge{
+		color: white;
+		padding: 3px 7px;
+		margin-left: 10px;
+		border-radius: 4px;
+		font-size: 90%;
+
+		&.good{
+			background-color: #66AD6A;
+		}
+		&.bad{
+			background-color: #9C4042;
+		}
+	}
+}

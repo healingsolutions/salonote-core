@@ -32,7 +32,7 @@ $theme_mods             = get_theme_mods();
 
 add_action( 'admin_enqueue_scripts', 'essence_admin_style' );
 function essence_admin_style(){
-	wp_enqueue_style('essence_admin_style',get_template_directory_uri().'/statics/css/admin-style.css');
+	wp_enqueue_style('essence_admin_style',get_template_directory_uri().'/statics/css/admin-style.css',array(),'1.0.0');
   
   //wp_enqueue_style ('bootstrap','https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
   //wp_enqueue_script('bootstrap','//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array(),'3.3.7', true);
@@ -68,7 +68,7 @@ function essence_head_enqueue() {
   //wp_enqueue_style('normalize', '//cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css', array(), '1.0');
   //wp_enqueue_style('yakuhanjp', '//cdn.jsdelivr.net/npm/yakuhanjp@2.0.0/dist/css/yakuhanjp.min.css', array(), '2.0.0');
 	
-	wp_enqueue_style('essence', get_template_directory_uri().'/style-min.css', array(), '1.0.0.6');
+	wp_enqueue_style('essence', get_template_directory_uri().'/style-min.css', array(), '1.0.0.7');
 	wp_enqueue_script('essence', get_template_directory_uri().'/statics/js/main-min.js', array(), '1.0.0.2' ,true);
   
 	

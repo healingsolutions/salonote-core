@@ -78,4 +78,59 @@ function edit_content_hook($content){
 	return do_shortcode($content); //only sp
 }
 
+
+$theme_opt['post_type'] = get_option('essence_post_type');
+
+if( !empty( $theme_opt['post_type'] )){
+	foreach( $theme_opt['post_type'] as $post_type => $value ){
+		if( !empty( $value ) && in_array('check_words_count',$value ) ){
+		add_filter('manage_edit-'.$post_type.'_columns', 'salonote_check_words_columns');
+		add_action('manage_'.$post_type.'_posts_custom_column', 'salonote_add_words_count_column');
+		}
+	}
+}
+
+function salonote_check_words_columns($columns) {
+		$columns['words_count'] = __('Words count','salonote-essence');
+		return $columns;
+}
+
+function salonote_add_words_count_column($column_name) {
+
+	global $theme_opt;
+	global $post_type;
+
+	$words_column = '';
+	if ( 'words_count' == $column_name) {
+
+		
+		$post_id = isset( $post_id) ? $post_id : null;
+
+		$title		= get_the_title($post_id);
+		$content	= get_the_content($post_id);
+
+		$_title_word	 = mb_strlen(strip_tags($title));
+		$_content_word = mb_strlen(strip_tags($content));
+
+		$post_type_name = get_post_type($post_id);
+
+		$words_column	.= '<div>タイトル：<span style="font-size:1.6em;">' .$_title_word.'</span> 文字';
+		$words_column	.= ($_title_word > 32) ? '<span class="column_badge bad">Long</span>' : '' ;
+		$words_column	.= '</div>';
+		
+		$words_column	.= '<div>本　文　：<span style="font-size:1.6em;">' .$_content_word.'</span> 文字';
+		if( $_content_word > 2000 ){
+			$words_column	.= '<span class="column_badge good">Good</span>';
+		}elseif( $_content_word < 500 ){
+			$words_column	.= '<span class="column_badge bad">Short</span>';
+		}
+		$words_column	.='</div>';
+
+	}
+	if ( isset($words_column) ) {
+		echo $words_column;
+	}
+}
+
+
 ?>

@@ -42,6 +42,11 @@ $field_arr = array(
     'type' => 'number',
 		'description' => __('px (only device width larger 980px)','salonote-essence'),
   ),
+	
+	'check_words_count' => array(
+    'label' => __('Check Words count','salonote-essence'),
+    'type' => 'checkbox',
+  ),
   
 	
   'list_type' => array(
