@@ -17,7 +17,7 @@ if( $exclude_list !== 1){
 ?>
 
 
-<div id="list-item-<?php echo $post->ID;?>" class="list_item_block<?php
+<section id="list-item-<?php echo $post->ID;?>" class="list_item_block<?php
                                                    if( !empty($theme_mods['list_bdr_color']) )
                                                      echo ' has_list_bdr';
                                                    if(
@@ -61,7 +61,7 @@ if( $exclude_list !== 1){
 		echo '</div>';
 	}
 ?>
-</div>
+</section>
 
 
 <?php

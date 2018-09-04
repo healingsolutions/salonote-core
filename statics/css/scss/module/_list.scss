@@ -1,16 +1,17 @@
 /* CSS Document */
 
-.entry_block_sub_title{
+
+
+//共通項
+.list-unit{
+	
+	.entry_block_sub_title{
 		margin-top: -5px;
 		font-size: 0.6em;
 		filter:alpha(opacity=50);
     -moz-opacity: 0.5;
     opacity: 0.5;
 	}
-
-//共通項
-.list-unit{
-	
 	
 	
   .list_item_block{
@@ -108,7 +109,8 @@
     .list_block_title{
     }
     .list_block_sub_title{
-
+			font-size: 0.9em;
+			font-weight: normal;
     }
     time.list_block_date{
       float: right;
@@ -116,6 +118,12 @@
     .list_block_excerpt{
 
     }
+		.list_block_writer{
+			position: absolute;
+			right:0;
+			top: 0;
+			z-index: 10;
+		}
 
   }//list_item_block
   
@@ -245,6 +253,7 @@
 		}
     .list_block_sub_title{
 			font-size: 0.8em;
+			font-weight: normal;
     }
     .list_block_excerpt{
 

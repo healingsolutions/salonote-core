@@ -31,7 +31,7 @@ $color_customize_array = array(
 
 
   'navbar_color' => array(
-    'target'   => '.header_logo-block a, .navbar-block, .navbar-block a, .sp-navbar-unit, .sp-navbar-unit a, .open-nav-button::before, .pagination > *, .list-icon li::before, .list-taxonomy-block span a, .label-block, sp_display_nav-container, .sp_display_nav-container a, .sp_display_nav-container li:before',
+    'target'   => '.header_logo-block a, .navbar-block, .navbar-block a, .sp-navbar-unit, .sp-navbar-unit a, .open-nav-button::before, .pagination > *, .list-icon li::before, .list-taxonomy-block span a, .label-block, .label-block a, sp_display_nav-container, .sp_display_nav-container a, .sp_display_nav-container li:before',
     'element'  => 'color',
     'default'  => '#FFFFFF',
     'label_jp' => __('nav font-color','salonote-essence'),

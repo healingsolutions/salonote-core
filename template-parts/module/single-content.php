@@ -37,7 +37,6 @@ if(
 	
 }
 
-
 // sub_title =======================================
 if(
   !empty( $post_type_set ) &&
@@ -51,6 +50,27 @@ if(
   
 }
 
+// writer =======================================
+if(
+  !empty( $post_type_set ) &&
+	in_array('display_post_writer',$post_type_set)
+){
+	$auther_ID = get_the_author_meta('ID');
+	$auther_url 	= get_author_posts_url( $auther_ID);
+	$auther_image = get_avatar( $auther_ID, 35, false, get_the_title() .'の執筆者-' .get_the_author_meta('display_name') );
+	if( isset($auther_image) ){
+			echo '
+			<div class="entry_block_writer text-right small">
+			<a href="'. $auther_url .'">
+				<div class="inline-block text-left mr-3" style="line-height:1.2; vertical-align:middle; ">writer：<br>'.get_the_author_meta('display_name').'</div>
+				<div class="inline-block" style="vertical-align:middle;">'.
+				$auther_image.'
+				</div>
+			</a>
+			</div>';
+	}
+}
+	
 
 /*-------------------------------------------*/
 /*	taxonomy_list

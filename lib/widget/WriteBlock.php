@@ -24,14 +24,13 @@ class My_Write_Block_Widget extends WP_Widget{
           $user_company = get_the_author_meta( 'user_company' );
           
           echo $args['before_widget'];
-          
-
-          
-            if( isset( $writer_field ) ){
-                echo '<div class="widget-title bdr-btm-1">'.$writer_field . '</div>';
+ 
+           echo ' <div class="widget_author_block label-block">';
+					
+					if( isset( $writer_field ) ){
+                echo '<div class="widget-title text-center mb-5">'.$writer_field . '</div>';
             }
-           
-           echo ' <div>';
+					
             if ( isset( $auther_url ) ){ echo '<a href="' . $auther_url . '">'; }
                 
                 if( isset( $auther_image ) ){
@@ -44,7 +43,7 @@ class My_Write_Block_Widget extends WP_Widget{
                 };
                 
                 if ( isset( $auther_description ) ){
-                    echo  '<div class="small">' . nl2br($auther_description) . '</div>';
+                    echo  '<div class="small mt-3">' . nl2br($auther_description) . '</div>';
                     }
                     
             if ( isset( $auther_url ) ){ echo '</a>'; }

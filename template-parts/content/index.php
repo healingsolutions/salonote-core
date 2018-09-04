@@ -108,14 +108,14 @@ echo '<div class="'.implode(' ',$main_unit).'">';
 echo '<div class="'.$row_class.'">';
 
   // main =======================
-  echo '<div class="'.implode(' ',$main_content).'">';
+  echo '<article class="'.implode(' ',$main_content).'">';
 
 		
 
 		if( !empty( $post_type_set ) && in_array('display_archive_title',$post_type_set) ){
 				$obj = get_post_type_object($post_type_name);				
-				echo '<h1 class="entry_block_title">'.$obj->labels->singular_name.'</h1>';
-				echo '<h2 class="entry_block_sub_title">'.$obj->name.'</h2>';
+				echo '<p class="entry_block_title">'.$obj->labels->singular_name.'</p>';
+				echo '<p class="entry_block_sub_title">'.$obj->name.'</p>';
 			}
 
 		/*-------------------------------------------*/
@@ -189,7 +189,7 @@ echo '<div class="'.$row_class.'">';
 				//^pagenation
 
   
-	echo '</div>';
+	echo '</article>';
 
 
 

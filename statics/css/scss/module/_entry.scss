@@ -5,7 +5,12 @@
 	font-weight: 800;
 }
 .entry_block_sub_title{
-}
+		margin-top: -5px;
+		font-size: 0.9em;
+		filter:alpha(opacity=80);
+    -moz-opacity: 0.8;
+    opacity: 0.8;
+	}
 time.entry_block_date{
 
   font-size: 0.7em;

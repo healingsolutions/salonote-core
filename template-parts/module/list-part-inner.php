@@ -77,7 +77,7 @@ if(
 		$_the_title = preg_replace('/(\,|'.__(',','salonote-essence').')/', '$1<br />', $_the_title);
 		$_the_title = preg_replace('/(~|〜)/', '<br /><span class="small">$1', $_the_title).'</span>';
 	}
-  echo '<p class="list_block_title">'.$_the_title.'</p>';
+  echo '<h1 class="list_block_title">'.$_the_title.'</h1>';
 }
 
 if(
@@ -85,7 +85,7 @@ if(
   in_array('display_grid_sub_title',$post_type_set) &&
   !empty(get_post_meta($post->ID, 'subTitle'))
 ){
-  echo '<p class="list_block_sub_title">'.esc_html(get_post_meta($post->ID, 'subTitle', true)).'</p>';
+  echo '<h2 class="list_block_sub_title">'.esc_html(get_post_meta($post->ID, 'subTitle', true)).'</h2>';
 }
 
 if(
@@ -133,6 +133,23 @@ if(
 	&& get_the_content()
 ){
 	echo '<div class="content-block">'.strip_tags(get_the_content(),'<img><p>').'</div>';
+}
+
+
+if(
+  !empty( $post_type_set ) &&
+	in_array('display_post_writer',$post_type_set)
+){
+	$auther_ID = get_the_author_meta('ID');
+	if( get_avatar($auther_ID, 80, true) ){
+			$auther_image = get_avatar( $auther_ID, 80, false, get_the_title() .'の執筆者-' .get_the_author_meta('display_name') );
+			$auther_url 	= get_author_posts_url( $auther_ID);
+	}
+	if( isset($auther_image) ){
+			echo '<div class="list_block_writer post-avatar">
+			<a href="'. $auther_url .'">' .$auther_image. '</a>
+			</div>';
+	}
 }
 
 

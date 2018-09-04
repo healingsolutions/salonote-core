@@ -275,7 +275,7 @@ require_once( get_template_directory(). '/lib/widget/sns_buttons.php' );
 
 require_once( get_template_directory(). '/lib/widget/blogRss.php' );
 //require_once( get_template_directory(). '/lib/widget/extra-archive-link.php' );
-//require_once( get_template_directory(). '/lib/widget/WriteBlock.php' );
+require_once( get_template_directory(). '/lib/widget/WriteBlock.php' );
 //require_once (get_template_directory(). '/lib/widget/event_info.php' );
 
 //Salonote helper
