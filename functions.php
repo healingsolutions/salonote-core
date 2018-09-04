@@ -259,6 +259,7 @@ function include_library() {
 	require_once (get_template_directory(). '/lib/custom_fields/profile_fields.php' );
 	require_once (get_template_directory(). '/lib/custom_fields/gallery_post_type.php' );
 	require_once (get_template_directory(). '/lib/custom_fields/subtitle.php' );
+	require_once (get_template_directory(). '/lib/custom_fields/keywords.php' );
   require_once (get_template_directory(). '/lib/custom_fields/landing_page_info.php' );
 	require_once (get_template_directory(). '/lib/custom_fields/page_bkg.php' );
 

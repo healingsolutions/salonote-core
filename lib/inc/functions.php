@@ -82,13 +82,11 @@ function getHeadTitle($title) {
   global $page, $paged;
   //paged
   if( $paged >= 2 || $page >= 2 ){
-      $title =  max( $paged, $page ) . __(' page','salonote-essence') . $title;
+      $title =  max( $paged, $page ) . __(' page','salonote-essence').' - ' . $title;
   }
 
   return strip_tags($title);
 }
-
-
 
 
 
@@ -161,7 +159,7 @@ function essence_option_description($description) {
   global $page, $paged;
   //paged
   if( $paged >= 2 || $page >= 2 ){
-      $description =  max( $paged, $page ) . __('page','salonote-essence') . $description;
+      $description =  max( $paged, $page ) . __('page','salonote-essence').' - ' . $description;
   }
 
   return strip_tags($description);

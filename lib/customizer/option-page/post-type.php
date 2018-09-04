@@ -47,7 +47,7 @@ $field_arr = array(
     'label' => __('Check Words count','salonote-essence'),
     'type' => 'checkbox',
   ),
-  
+
 	
   'list_type' => array(
     'label' => __('List Type','salonote-essence'),

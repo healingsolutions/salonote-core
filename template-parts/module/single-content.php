@@ -4,6 +4,9 @@ global $post_type_name;
 global $post_type_set;
 global $page_info;
 
+global $page;
+global $paged;
+
 $post_id = get_the_ID();
 
 if( get_the_content() ){
@@ -21,7 +24,17 @@ if(
 		$_the_title = preg_replace('/(\,|'.__(',','salonote-essence').')/', '$1<br />', $_the_title);
 		$_the_title = preg_replace('/(~|〜)/', '<br /><span class="small">$1', $_the_title).'</span>';
 	}
-  echo '<h1 class="entry_block_title">'.$_the_title.'</h1>';
+  echo '<h1 class="entry_block_title">'.$_the_title;
+	
+	//paged
+  if( $paged >= 2 || $page >= 2 ){
+		echo '<span class="entry_block_sub_title ml-3">'.max( $paged, $page ) . __(' page','salonote-essence').'目</span>';
+  }
+	
+	echo '</h1>';
+	
+	
+	
 }
 
 
@@ -87,7 +100,7 @@ if(
 echo '</header>';
 
 
-the_content();
+the_content('more...',true);
 
 }// if has content
 
@@ -95,7 +108,19 @@ the_content();
 if(!function_exists('dynamic_sidebar') || !dynamic_sidebar('content_inner')): 
 	//dynamic_sidebar('content_inner');
 endif;
-wp_link_pages();
+
+$num = array(
+    'before' => '<div class="pagination paging_arrows">',
+    'after' => '</div>',
+    'link_before' => '<span>',
+    'link_after' => '</span>',
+    'next_or_number' => 'number',
+    'separator' => '',
+    'pagelink' => '%',
+    'echo' => 1
+);
+wp_link_pages($num);
+
 comments_template();
 
 // post_type widget

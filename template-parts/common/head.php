@@ -20,9 +20,12 @@ echo '<!--[if IE]>
 <![endif]-->'.PHP_EOL;
 if( is_singular() ){ 
 	echo '<meta name="author" content="'.get_the_author_meta( 'display_name' ).'" />'.PHP_EOL;
+	
+	$keywords = get_post_meta($post->ID, 'keywords', true);
+	
 }// is_singular 
-if( !empty($theme_opt['base']['keywords']) ){ 
-	echo '<meta name="keywords" content="'.esc_html($theme_opt['base']['keywords']).'" />'.PHP_EOL;
+if( !empty($theme_opt['base']['keywords']) || $keywords ){ 
+	echo '<meta name="keywords" content="'.  (!empty($keywords) ? esc_attr($keywords).',' : '' ) .esc_html($theme_opt['base']['keywords']).'" />'.PHP_EOL;
 }// is_singular 
 ?>
 <link rel="alternate" media="handheld" href="<?php echo $canonical_url;?>" />

@@ -99,6 +99,7 @@ function salonote_add_words_count_column($column_name) {
 
 	global $theme_opt;
 	global $post_type;
+	global $post;
 
 	$words_column = '';
 	if ( 'words_count' == $column_name) {
@@ -129,6 +130,49 @@ function salonote_add_words_count_column($column_name) {
 			$words_column	.= '<span class="column_badge bad">Short</span>';
 		}
 		$words_column	.='</div>';
+		
+		$keywords = get_post_meta($post->ID, 'keywords', true);
+		$keywords_arr = explode( ',', $keywords );
+
+		
+		
+		if( $_content_word > 0 && !empty($keywords) ){
+			
+			$words_column	.= '<p class="heading bold"><b>キーワード出現回数</b></p>';
+			
+			
+
+			$words_column	.= '<ul style="marign:0;">';
+			foreach( $keywords_arr as $word ){
+
+				$_word_count = substr_count( $content, $word );
+
+				$words_column	.= '<li>'.$word.' : '.$_word_count.'回';
+
+				//echo $word*$_word_count.'<br>';
+				//echo $_content_word.'<br>';
+
+				if( $_word_count > 0 ){
+					$_word_per = (mb_strlen($word)*$_word_count / $_content_word * 100);
+					$words_column	.= ' <span>('.floor( $_word_per * pow( 10 , 1 ) ) / pow( 10 ,1 ).'%)</span>' ;
+					
+					if( $_word_per < 4.3 ){
+						$words_column	.= '<span class="column_badge bad">少ない</span>';
+					}elseif( $_word_per > 5.7 ){
+						$words_column	.= '<span class="column_badge bad">多い</span>';
+					}else{
+						$words_column	.= '<span class="column_badge good">適正</span>';
+					}
+					
+				}
+
+				$words_column	.= '</li>';
+
+			}
+			$words_column	.= '</ul>';
+		}
+
+		
 
 	}
 	if ( isset($words_column) ) {
