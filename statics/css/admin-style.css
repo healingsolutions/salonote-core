@@ -81,3 +81,17 @@ a.page_bkg_upload_images_remove:hover {
     background-color: #498DB0; }
   .wp-list-table .column_badge.bad {
     background-color: #9C4042; }
+
+.headline-count-block h2.headline-count {
+  font-weight: normal;
+  color: #878787;
+  margin-top: 0; }
+  .headline-count-block h2.headline-count span {
+    margin-left: 20px;
+    color: #B23C3E;
+    font-size: 160%;
+    font-weight: bold; }
+
+.headline-count-block ul {
+  padding: 5px 5px 5px 15px;
+  background-color: white; }

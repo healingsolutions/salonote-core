@@ -2,7 +2,7 @@
 /*
 Plugin Name: Page keywords Custom Field
 Plugin URI: http://www.healing-solutions.jp
-Description: ページにサブタイトルフィールドを追加
+Description: ページにキーワードフィールドを追加
 Author: Healin Solutions
 Version: 0.1
 Author URI:http://www.healing-solutions.jp

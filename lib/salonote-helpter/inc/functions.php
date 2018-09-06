@@ -79,19 +79,29 @@ function edit_content_hook($content){
 }
 
 
+
+//seo columns
 $theme_opt['post_type'] = get_option('essence_post_type');
 
 if( !empty( $theme_opt['post_type'] ) && is_admin() ){
 	foreach( $theme_opt['post_type'] as $post_type => $value ){
 		if( !empty( $value ) && in_array('check_words_count',$value ) ){
+			
 		add_filter('manage_edit-'.$post_type.'_columns', 'salonote_check_words_columns');
+		add_filter('manage_edit-'.$post_type.'_columns', 'salonote_check_headline_columns');
+			
 		add_action('manage_'.$post_type.'_posts_custom_column', 'salonote_add_words_count_column');
+		add_action('manage_'.$post_type.'_posts_custom_column', 'salonote_add_headline_count_column');
 		}
 	}
 }
 
 function salonote_check_words_columns($columns) {
 		$columns['words_count'] = __('Words count','salonote-essence');
+		return $columns;
+}
+function salonote_check_headline_columns($columns) {
+		$columns['headline_count'] = __('Headline count','salonote-essence');
 		return $columns;
 }
 
@@ -109,7 +119,6 @@ function salonote_add_words_count_column($column_name) {
 
 		$title		= get_the_title($post_id);
 		$content	= strip_shortcodes(wp_strip_all_tags(get_post_field( 'post_content', $post_id )));
-		
 
 		$_title_word	 = mb_strlen(strip_tags($title));
 		$_content_word = mb_strlen(preg_replace('/\n(\s|\n)*\n/u',"",$content));
@@ -177,6 +186,79 @@ function salonote_add_words_count_column($column_name) {
 	}
 	if ( isset($words_column) ) {
 		echo $words_column;
+	}
+}
+
+
+
+function substr_count_array($haystack, $needle) {
+    $count = 0;
+    $haystack = strtolower($haystack);
+    foreach ($needle as $substring) {
+			if( empty($haystack) || empty($substring) ) continue;
+      $count += substr_count($haystack, strtolower($substring));
+    }
+    return $count;
+}
+
+
+function salonote_add_headline_count_column($column_name) {
+		global $theme_opt;
+	global $post_type;
+	global $post;
+
+	$headline_count = '';
+	if ( 'headline_count' == $column_name) {
+		
+		$post_id = isset( $post_id) ? $post_id : null;
+
+		$pattern= '/\<h(\d{1}).+?\>(.+?)\<\/h\d{1}>/';
+		preg_match_all($pattern, get_post_field( 'post_content', $post_id ) , $match);
+		
+		
+		if( empty($match) ) return;
+		
+		$keywords = get_post_meta($post->ID, 'keywords', true);
+		$keywords_arr = explode( ',', $keywords );
+		
+		
+		echo '<div class="headline-count-block">';
+		
+		
+		$headlines = [];
+		foreach( $match[1] as $key => $headline ){
+			$headlines[$headline][] = $match[2][$key];
+		}
+		
+		foreach( $headlines as $key => $value ){
+			if( count( $value ) === 0 ) continue;
+			echo '<h2 class="headline-count">見出し' .$key.' <span>'. count( $value ) .'</span>回</h2>';
+			
+			echo '<ul>';
+			foreach( $value as $headline_txt ){
+				
+				
+				$_word_count = 0;
+				$_word_count = substr_count_array( $headline_txt, $keywords_arr );
+				
+				echo '<li>'.$headline_txt;
+				if( $_word_count ){
+					echo '<span class="column_badge good">Good</span>';
+				}
+				
+				echo '</li>';
+			}
+			echo '</ul>';
+		}
+		
+		echo '</div>';
+
+		
+	}
+	
+	
+	if ( isset($headline_count) ) {
+		echo $headline_count;
 	}
 }
 

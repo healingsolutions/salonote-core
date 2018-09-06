@@ -102,13 +102,20 @@ echo '<div class="'.$row_class.'">';
 					' .$auther_image.
 					'<p class="mt-2">'.esc_html($userObj->display_name).'</p>
 					</div>';
-				
 			}
+
+			//profile block
+			if(get_the_author_meta( 'user_url', $userObj->ID )){
+				echo '<div class="author_block_user_url text-center"><p><a href="'.get_the_author_meta( 'user_url', $userObj->ID ).'" target="_blank">'. esc_attr(get_the_author_meta( 'user_url', $userObj->ID )). '</a></p></div>';
+			}
+
 
 			//profile block
 			if(get_the_author_meta( 'description', $userObj->ID )){
 				echo '<div class="author_block_description"><p>'. nl2br(esc_attr(get_the_author_meta( 'description',$userObj->ID ))). '</p></div>';
 			}
+
+			
 
 
 		

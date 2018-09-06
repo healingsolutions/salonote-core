@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: salonote-essence\n"
-"POT-Creation-Date: 2018-09-04 03:32+0900\n"
-"PO-Revision-Date: 2018-09-04 03:32+0900\n"
+"POT-Creation-Date: 2018-09-07 02:14+0900\n"
+"PO-Revision-Date: 2018-09-07 02:14+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -68,7 +68,7 @@ msgstr "フッターサイトマップ"
 msgid "SmartPhone Display Navi"
 msgstr "スマートフォン下部ナビ"
 
-#: functions.php:485
+#: functions.php:486
 msgid "Recent Posts"
 msgstr "最近の投稿"
 
@@ -773,36 +773,36 @@ msgstr "金"
 msgid "Saturday"
 msgstr "土"
 
-#: lib/inc/functions.php:46 lib/inc/functions.php:126
+#: lib/inc/functions.php:46 lib/inc/functions.php:124
 msgid "year posts"
 msgstr "年の記事"
 
-#: lib/inc/functions.php:48 lib/inc/functions.php:128
+#: lib/inc/functions.php:48 lib/inc/functions.php:126
 msgid "year"
 msgstr "年"
 
-#: lib/inc/functions.php:48 lib/inc/functions.php:55 lib/inc/functions.php:128
-#: lib/inc/functions.php:135
+#: lib/inc/functions.php:48 lib/inc/functions.php:55 lib/inc/functions.php:126
+#: lib/inc/functions.php:133
 msgid " posts"
 msgstr " 投稿"
 
-#: lib/inc/functions.php:85
+#: lib/inc/functions.php:85 template-parts/module/single-content.php:31
 msgid " page"
 msgstr " ページ"
 
-#: lib/inc/functions.php:164
+#: lib/inc/functions.php:162
 msgid "page"
 msgstr "ページ"
 
-#: lib/inc/functions.php:258 template-parts/module/related_entries.php:48
+#: lib/inc/functions.php:256 template-parts/module/related_entries.php:48
 msgid "posts"
 msgstr "投稿"
 
-#: lib/inc/functions.php:352
+#: lib/inc/functions.php:350
 msgid "Search post type:"
 msgstr "検索する場所"
 
-#: lib/inc/functions.php:369
+#: lib/inc/functions.php:367
 msgid "Search"
 msgstr "検索"
 
@@ -849,7 +849,7 @@ msgstr ""
 "“Rounded Mplus 1c”, “ヒラギノ角ゴ Pro W3”, “Hiragino Kaku Gothic Pro”, “メイ"
 "リオ”, Meiryo, Osaka, “ＭＳ Ｐゴシック”, “MS PGothic”, sans-serif;"
 
-#: lib/module/tinymce.php:20 lib/widget/WriteBlock.php:67
+#: lib/module/tinymce.php:20 lib/widget/WriteBlock.php:66
 #: lib/widget/extra-archive-link.php:37 lib/widget/taxonomy.php:68
 msgid "headline"
 msgstr "見出し"
@@ -1130,9 +1130,13 @@ msgstr "class"
 msgid "marker"
 msgstr "マーカー"
 
-#: lib/salonote-helpter/inc/functions.php:94
+#: lib/salonote-helpter/inc/functions.php:100
 msgid "Words count"
 msgstr "文字数"
+
+#: lib/salonote-helpter/inc/functions.php:104
+msgid "Headline count"
+msgstr "見出し回数"
 
 #: lib/salonote-helpter/lib/post_type/parts.php:7
 #: lib/salonote-helpter/lib/post_type/parts.php:8
@@ -1250,7 +1254,8 @@ msgstr "固定ページコンテンツ"
 msgid "display page content"
 msgstr "固定ページを表示"
 
-#: lib/widget/onePage.php:56 template-parts/content/frontpage.php:112
+#: lib/widget/onePage.php:56 template-parts/content/author.php:157
+#: template-parts/content/frontpage.php:112
 #: template-parts/content/index.php:145 template-parts/content/search.php:133
 #: template/attachment-list.php:98
 msgid "pages"
@@ -1364,6 +1369,7 @@ msgstr "%s 個別ページの下部"
 msgid "no posts"
 msgstr "投稿無し"
 
+#: template-parts/content/author.php:157
 #: template-parts/content/frontpage.php:112
 #: template-parts/content/index.php:145 template-parts/content/search.php:133
 #: template/attachment-list.php:98
@@ -1371,7 +1377,7 @@ msgid "page / all"
 msgstr "ページ目／ 全"
 
 #: template-parts/module/list-part-inner.php:77
-#: template-parts/module/single-content.php:21
+#: template-parts/module/single-content.php:24
 msgid ","
 msgstr "、"
 
