@@ -146,7 +146,7 @@ function salonote_add_words_count_column($column_name) {
 		
 		
 		if( $_content_word > 0 && !empty($keywords) ){
-			
+			$words_column .= '<div class="post_keywords">'.get_post_meta($post->ID, 'keywords', true).'</div>';
 			$words_column	.= '<p class="heading bold"><b>キーワード出現回数</b></p>';
 			
 			
@@ -241,7 +241,7 @@ function salonote_add_headline_count_column($column_name) {
 				$_word_count = 0;
 				$_word_count = substr_count_array( $headline_txt, $keywords_arr );
 				
-				echo '<li>'.$headline_txt;
+				echo '<li>'. strip_tags($headline_txt);
 				if( $_word_count ){
 					echo '<span class="column_badge good">Good</span>';
 				}
@@ -263,4 +263,47 @@ function salonote_add_headline_count_column($column_name) {
 }
 
 
+
+function display_my_quickmenu( $column_name, $post_type ) {
+	global $post;
+	static $print_nonce = TRUE;
+    if ( $print_nonce ) {
+        $print_nonce = FALSE;
+        wp_nonce_field( 'quick_edit_action', $post_type . '_edit_nonce' );
+    }
+    ?>
+<fieldset class="inline-edit-col-right inline-custom-meta">
+<div class="inline-edit-col column-<?php echo $column_name ?>">
+            <label class="inline-edit-group"></p>
+              <?php
+			
+                switch ( $column_name ) {
+                    case 'headline_count':
+                        ?><span class="title">キーワード</span><input type="text" name="keywords" value="<?php echo $keywords;?>" /><?php
+                        break;
+                }
+                ?>
+           </label>
+        </div>
+</fieldset>
+<?php
+}
+add_action( 'quick_edit_custom_box', 'display_my_quickmenu', 10, 2 );
+
+
+
+function save_salonote_keywords_meta( $post_id ) {
+    $slug = get_post_type( $post_id );
+    if ( !current_user_can( 'edit_post', $post_id ) ) {
+        return;
+    }
+    $_POST += array("{$slug}_edit_nonce" => '');
+    if ( !wp_verify_nonce( $_POST["{$slug}_edit_nonce"], 'quick_edit_action' ) ) {
+        return;
+    }
+    if ( isset( $_REQUEST['keywords'] ) ) {
+        update_post_meta( $post_id, 'keywords', $_REQUEST['keywords'] );
+    }
+}
+add_action( 'save_post', 'save_salonote_keywords_meta' );
 ?>

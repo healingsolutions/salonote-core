@@ -135,25 +135,6 @@ if(
 	echo '<div class="content-block">'.strip_tags(get_the_content(),'<img><p>').'</div>';
 }
 
-
-if(
-  !empty( $post_type_set ) &&
-	in_array('display_post_writer',$post_type_set)
-){
-	$auther_ID = get_the_author_meta('ID');
-	if( get_avatar($auther_ID, 80, true) ){
-			$auther_image = get_avatar( $auther_ID, 80, false, get_the_title() .'の執筆者-' .get_the_author_meta('display_name') );
-			$auther_url 	= get_author_posts_url( $auther_ID);
-	}
-	if( isset($auther_image) ){
-			echo '<div class="list_block_writer post-avatar">
-			<a href="'. $auther_url .'">' .$auther_image. '</a>
-			</div>';
-	}
-}
-
-
-
 echo '</div>';
 
 

@@ -1,0 +1,1 @@
+!function($){var t=inlineEditPost.edit;inlineEditPost.edit=function(i){t.apply(this,arguments);var e=0;if("object"==typeof i&&(e=parseInt(this.getId(i))),e>0){var n=$("#edit-"+e),o=$("#post-"+e),s=$(".post_keywords",o).html();$(':input[name="keywords"]',n).val(s)}}}(jQuery);

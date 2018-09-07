@@ -59,11 +59,16 @@
     margin-right: -5px;
     padding-bottom: 10px;
     margin-bottom: 10px;
-    
-    &.has_list_bdr{
+		
+		
+		&.has_list_bdr{
       border-bottom-style: solid;
       border-bottom-width: 1px;
       border-bottom-color: none;
+    }
+    
+    &.has_post_writer{
+      padding-right: 5em;
     }
     
     a{
@@ -81,9 +86,10 @@
       display: inline-block;
       width: 30%;
 			padding-right: 15px;
+			text-align: center;
       
       img{
-        float: left;
+        //float: left;
         padding: 5px;
         max-width: 100%;
         height: auto;
@@ -118,14 +124,21 @@
     .list_block_excerpt{
 
     }
-		.list_block_writer{
+		
+
+  }//list_item_block
+	
+	
+	.list_block_writer{
 			position: absolute;
 			right:0;
 			top: 0;
 			z-index: 10;
+		
+		img{
+			border-radius:50%;
 		}
-
-  }//list_item_block
+		}
   
 
 }//list-unit

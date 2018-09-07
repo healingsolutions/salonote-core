@@ -18,15 +18,39 @@ if( $exclude_list !== 1){
 
 
 <section id="list-item-<?php echo $post->ID;?>" class="list_item_block<?php
-                                                   if( !empty($theme_mods['list_bdr_color']) )
-                                                     echo ' has_list_bdr';
-                                                   if(
-                                                     !has_post_thumbnail($post->ID) ||
-                                                     empty( get_the_post_thumbnail_url($post->ID) )
-                                                    )
-                                                    echo ' none_post_thumbnail';
-                                                   ?>">
+if( !empty($theme_mods['list_bdr_color']) ){
+	echo ' has_list_bdr';
+}
+if(
+	!has_post_thumbnail($post->ID) ||
+	empty( get_the_post_thumbnail_url($post->ID) )
+){
+	echo ' none_post_thumbnail';
+}
+if(
+	!empty( $post_type_set ) &&
+	in_array('display_post_writer',$post_type_set)
+){
+	echo ' has_post_writer';
+}
+?>">
 <?php
+												 
+	if(
+		!empty( $post_type_set ) &&
+		in_array('display_post_writer',$post_type_set)
+	){
+		$auther_ID = get_the_author_meta('ID');
+		if( get_avatar($auther_ID, 80, true) ){
+				$auther_image = get_avatar( $auther_ID, 80, false, get_the_title() .'の執筆者-' .get_the_author_meta('display_name') );
+				$auther_url 	= get_author_posts_url( $auther_ID);
+		}
+		if( isset($auther_image) ){
+				echo '<div class="list_block_writer post-avatar">
+				<a href="'. $auther_url .'">' .$auther_image. '</a>
+				</div>';
+		}
+	}
 
   // link =======================================
   $_link_check = !empty( $post_type_set['list_none_href'] ) ? true : false ;
@@ -45,7 +69,7 @@ if( $exclude_list !== 1){
     echo '</a>';
 	}
 												 
-												 
+	
 	
 	
 	

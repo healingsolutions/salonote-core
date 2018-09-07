@@ -68,7 +68,7 @@ function essence_head_enqueue() {
   //wp_enqueue_style('normalize', '//cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css', array(), '1.0');
   //wp_enqueue_style('yakuhanjp', '//cdn.jsdelivr.net/npm/yakuhanjp@2.0.0/dist/css/yakuhanjp.min.css', array(), '2.0.0');
 	
-	wp_enqueue_style('essence', get_template_directory_uri().'/style-min.css', array(), '1.0.0.7');
+	wp_enqueue_style('essence', get_template_directory_uri().'/style-min.css', array(), '1.0.0.8');
 	wp_enqueue_script('essence', get_template_directory_uri().'/statics/js/main-min.js', array(), '1.0.0.2' ,true);
   
 	
@@ -98,6 +98,14 @@ function essence_head_enqueue() {
 
 }
 add_action( 'wp_enqueue_scripts', 'essence_head_enqueue' ,1);
+
+
+
+//jQueryの読み込み
+function salonote_admin_scripts() {
+		echo '<script type="text/javascript" src="', get_template_directory_uri() .'/statics/js/admin.js', '"></script>';
+}
+add_action('admin_footer-edit.php', 'salonote_admin_scripts');
 
 
 

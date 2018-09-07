@@ -59,5 +59,4 @@ function save_keywords($post_id){
 	}
 }
 
-
 ?>
