@@ -34,9 +34,10 @@ if( !empty($og_image) ){
   echo '<meta name="twitter:image:src" content="'.$og_image.'">'.PHP_EOL;
 }
 
+echo '<meta name="twitter:card" content="summary_large_image">';
 /*
 <!-- twitter -->
-<meta name="twitter:card" content="summary_large_image">
+
 <meta name="twitter:creator" content="@">
 <meta name="twitter:site" content="@" />
 */

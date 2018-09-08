@@ -99,6 +99,7 @@ if(
 if(
   !empty( $post_type_set ) &&
   in_array('post_thumbnail',$post_type_set )&&
+	$page === 1 &&
   has_post_thumbnail()
 ){
   echo '<div class="entry_post_thumbnail">';
@@ -128,6 +129,9 @@ the_content('more...',true);
 if(!function_exists('dynamic_sidebar') || !dynamic_sidebar('content_inner')): 
 	//dynamic_sidebar('content_inner');
 endif;
+
+
+get_paged_nav_title($post);
 
 $num = array(
     'before' => '<div class="pagination paging_arrows">',

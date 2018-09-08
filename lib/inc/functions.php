@@ -321,6 +321,46 @@ function futuretopublish(){
 }
 
 
+
+
+//===============================================
+//get_next_page title
+function get_paged_nav_title( $post =null ){
+	
+	if( empty($post) ) return;
+	
+	global $page;
+	
+	$max_page = mb_substr_count($post->post_content, '<!--nextpage-->') + 1;
+	$pattern= '/\<h\d{1}(.+?)?\>(.+?)\<\/h\d{1}>/';
+	
+	if( $max_page >= $page && $page !== 1 ){
+		//echo 'prev' . ($page - 1);
+		
+		$prev_num = $page - 2;
+		$prev_arr = explode("<!--nextpage-->",$post->post_content);
+		preg_match( $pattern, $prev_arr[$prev_num], $match);
+		$prev_title = $match ? $match[2] : get_the_title() ;
+		
+		echo '<div class="prev_title float-left"><a href="'.get_the_permalink(). ($page-1) .'">&lt;&lt; ' .($page-1) .'.'. $prev_title .'</a></div>';
+	}
+	
+	
+	if( $max_page > $page && $max_page !== $page ){
+		//echo 'next' . ($page + 1);
+		
+		$prev_num = $page;
+		$prev_arr = explode("<!--nextpage-->",$post->post_content);
+		preg_match( $pattern, $prev_arr[$prev_num], $match);
+		$naxt_title = $match ? $match[2] : '' ;
+		
+		echo '<div class="next_title float-right"><a href="'.get_the_permalink(). ($page+1) .'">' .($page+1) .'.'. $naxt_title .' &gt;&gt;</a></div>';
+	}
+	
+	return;
+}
+
+
 //===============================================
 //custom search form
 function essence_search_form( $form ) {
