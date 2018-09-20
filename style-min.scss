@@ -50,12 +50,11 @@ Tags: one-column, two-columns, right-sidebar, left-sidebar, custom-header, custo
 //@import "statics/css/bootstrap/modal";
 //@import "statics/css/bootstrap/tooltip";
 //@import "statics/css/bootstrap/popover";
-//@import "statics/css/bootstrap/carousel";
+@import "statics/css/bootstrap/carousel";
 @import "statics/css/bootstrap/utilities";
 @import "statics/css/bootstrap/print";
 
 // base
-
 @import "statics/css/scss/base";
 
 
@@ -86,6 +85,7 @@ Tags: one-column, two-columns, right-sidebar, left-sidebar, custom-header, custo
 @import "statics/css/scss/module/taxonomy";
 @import "statics/css/scss/module/form";
 @import "statics/css/scss/module/landing";
+@import "statics/css/scss/module/widgets";
 
 //wordpress
 @import "statics/css/scss/wordpress";
@@ -95,6 +95,8 @@ Tags: one-column, two-columns, right-sidebar, left-sidebar, custom-header, custo
 
 //extract
 @import "statics/css/scss/extract/timeline";
+@import "statics/css/scss/extract/staff";
+@import "statics/css/scss/extract/style";
 
 //SP
 

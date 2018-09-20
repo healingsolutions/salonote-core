@@ -12,7 +12,7 @@ foreach($color_customize_array as $key => $value):
       
 			//footer_color
       if( $key == 'footer_color' ){
-        $color_set .= 'footer.site-footer-block ul.footer-sitemap > li > ul:before { border-left: 1px solid '.get_theme_mod($key,$value['default']).'}';
+        $color_set .= 'footer.site-footer-block ul.footer-sitemap > li > ul.sub-menu:before { border-left: 1px solid '.get_theme_mod($key,$value['default']).'}';
       }
       
 			//bdr_color
@@ -77,20 +77,46 @@ foreach($color_customize_array as $key => $value):
 
 
 $font_set = [];
-$font_set['mincho']      = __('"HiraMinProN-W3","MS PMincho", serif !important;','salonote-essence');
-$font_set['gothic'] 		 = __('"Yu Gothic", YuGothic, "Hiragino Kaku Gothic Pro", Meiryo, Osaka, "MS PGothic", sans-serif;','salonote-essence');
-$font_set['maru-gothic'] = __('"Rounded Mplus 1c", "Hiragino Kaku Gothic Pro", Meiryo, Osaka, "MS PGothic", sans-serif;','salonote-essence');
-$font_set['meiryo'] = '"メイリオ", Meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif';
+$font_set['mincho']      	= '"Times New Roman", "游明朝", "Yu Mincho", "游明朝体", "YuMincho", "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "HiraMinProN-W3", "HGS明朝E", "ＭＳ Ｐ明朝", "MS PMincho", serif;';
+$font_set['gothic'] 		 	= '"Segoe UI", Verdana, 游ゴシック, "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;';
+$font_set['maru-gothic'] 	= '"Rounded Mplus 1c", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;';
+$font_set['meiryo'] 			= '"メイリオ", Meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;';
 
 //body font
 //$color_set .= 'body{ font-family: '. __('YakuHanJP Meiryo, sans-serif;','salonote-essence') .'}';
 
 
+//logo_font
+if( !empty($theme_opt['base']['logo_font']) ){	
+	$color_set .= '
+	.header_logo-block span,
+	.navbar-logo-block
+	{ font-family: '.$font_set[$theme_opt['base']['logo_font']].'}';
+}
+
+//nav_font
+if( !empty($theme_opt['base']['nav_font']) ){	
+	$color_set .= '
+	.nav_font,
+	.navbar-block span.main_nav
+	{ font-family: '.$font_set[$theme_opt['base']['nav_font']].'}';
+}
 
 //headline_font
 if( !empty($theme_opt['base']['headline_font']) ){	
 	$color_set .= '
-	h1,.h1,h2,.h2,h3,.h3,h4,.h4,h5,.h5,h6,.h6
+	.main-content-wrap .h1,
+	.main-content-wrap h1,
+	.main-content-wrap .h2,
+	.main-content-wrap h2,
+	.main-content-wrap .h3,
+	.main-content-wrap h3,
+	.main-content-wrap .h4,
+	.main-content-wrap h4,
+	.main-content-wrap .h5,
+	.main-content-wrap h5,
+	.main-content-wrap .h6,
+	.main-content-wrap h6
 	{ font-family: '.$font_set[$theme_opt['base']['headline_font']].'}';
 }
 
@@ -100,7 +126,12 @@ if( !empty($theme_opt['base']['body_font']) ){
 	$font_set = preg_replace('/(’|”|‘|“)/', '"', $font_set[$theme_opt['base']['body_font']]);
 	
 	$color_set .= '
-	#body-wrap{ font-family: '.$font_set.'}';
+	#body-wrap,
+	.body_font,
+	.main-content-wrap .body_font,
+	.header_logo-block h1.site-description,
+	.navbar-block a span.sub_nav
+	{ font-family: '.$font_set.'}';
 }
 
 

@@ -55,7 +55,7 @@ if(
 
 // =============================
 // list_type
-$list_class[] = !empty($post_type_set['list_type']) ? $post_type_set['list_type'].'-type-group' : 'list-type-group' ;
+$list_type = $list_class[] = !empty($post_type_set['list_type']) ? $post_type_set['list_type'].'-type-group' : 'list-type-group' ;
 
 if( !empty($post_type_set['list_type']) && $post_type_set['list_type'] == 'grid'){
 	if(!empty($post_type_set['grid_cols']) ) {
@@ -110,18 +110,33 @@ echo '<div class="'.$row_class.'">';
   // main =======================
   echo '<article class="'.implode(' ',$main_content).'">';
 
-		
+		echo '<div class="archive-page-title-block">';
 
-		if( !empty( $post_type_set ) && in_array('display_archive_title',$post_type_set) ){
-				$obj = get_post_type_object($post_type_name);				
-				echo '<p class="entry_block_title">'.$obj->labels->singular_name.'</p>';
-				echo '<p class="entry_block_sub_title">'.$obj->name.'</p>';
+			if( !empty( $post_type_set ) && in_array('display_archive_title',$post_type_set) ){
+				$obj = get_post_type_object($post_type_name);
+				echo '<div class="entry-block-title-wrap label-block '. $list_type .'-title">';
+					echo '<p class="entry_block_title nav_font">'.$obj->name.'</p>';
+					echo '<p class="entry_block_sub_title body_font">'.$obj->labels->singular_name.'</p>';
+				echo '</div>';
 			}
 
-		/*-------------------------------------------*/
-		/*	taxonomy_list
-		/*-------------------------------------------*/
-		get_template_part('template-parts/module/taxonomy_list');
+			// ========================
+			// taxonomy
+			if (is_tax()) {
+				echo '<div class="entry_block_taxonomy_label">';
+				echo '<h1 class="taxonomy_lable">'.single_term_title('',false).'</h1>';
+				echo term_description();
+				echo '</div>';
+			} elseif( is_archive() ){
+				
+				echo '<div class="entry_block_taxonomy_label">';
+				get_template_part('template-parts/module/taxonomy_list');
+				echo '</div>';
+			}
+
+		echo '</div>';
+
+		
 
 		echo '<div class="'.implode(' ',$list_class).'">';
 

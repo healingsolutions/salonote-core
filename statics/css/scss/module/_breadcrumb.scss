@@ -1,10 +1,15 @@
 body{
   .breadcrumb{
+		position: relative;
     background-color: initial;
 		font-size: 0.6em;
+		z-index: 2;
     
     a{
       @include _transition_(opacity,0.2);
+			position: relative;
+			top: 1px;
+			
       &:hover{
         @include _transition_(opacity,0.2);
         text-decoration: none;
@@ -13,6 +18,13 @@ body{
         opacity: 0.5;
       }
     }
+		
+		.dashicons-admin-home{
+			font-size: 15px;
+			position: relative;
+			top: -2px;
+		}
+		
   }
 
   .breadcrumb-item +.breadcrumb-item::before{

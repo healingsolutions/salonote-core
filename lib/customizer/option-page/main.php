@@ -126,6 +126,51 @@ $field_arr = array(
       'label' =>  __('Parts PostType','salonote-essence'),
       'type'  => 'checkbox',
   ),
+	'enable_staff' => array(
+      'label' =>  __('Staff PostType','salonote-essence'),
+      'type'  => 'checkbox',
+  ),
+	'enable_style' => array(
+      'label' =>  __('Style PostType','salonote-essence'),
+      'type'  => 'checkbox',
+  ),
+	'enable_shop_menu' => array(
+      'label' =>  __('ShopMenu PostType','salonote-essence'),
+      'type'  => 'checkbox',
+  ),
+
+	
+	'header_type' => array(
+      'label' =>  __('Header Type','salonote-essence'),
+      'type'  => 'select',
+      'selecter' => array(
+							'normal'  =>  __('normal','salonote-essence'),
+			        'right_nav' 	=>  __('right nav','salonote-essence'),
+							'center'  =>  __('center','salonote-essence'),
+      )
+  ),
+	
+	'logo_font' => array(
+      'label' =>  __('Logo Font','salonote-essence'),
+      'type'  => 'select',
+      'selecter' => array(
+							'gothic'  =>  __('gothic','salonote-essence'),
+			        'mincho' 	=>  __('mincho','salonote-essence'),
+							'meiryo'  =>  __('Meiryo','salonote-essence'),
+              'maru-gothic'  =>  __('maru-gothic','salonote-essence'),
+      )
+  ),
+	
+	'nav_font' => array(
+      'label' =>  __('Navi Font','salonote-essence'),
+      'type'  => 'select',
+      'selecter' => array(
+							'gothic'  =>  __('gothic','salonote-essence'),
+			        'mincho' 	=>  __('mincho','salonote-essence'),
+							'meiryo'  =>  __('Meiryo','salonote-essence'),
+              'maru-gothic'  =>  __('maru-gothic','salonote-essence'),
+      )
+  ),
   
   
   'headline_font' => array(

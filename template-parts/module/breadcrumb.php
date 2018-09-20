@@ -25,12 +25,12 @@ if( !is_home() && !is_front_page() ){
   
   if( $frontpage_id ){
     $bread_arr[] = array(
-      'label' => get_the_title($frontpage_id),
+      'label' => '<span class="dashicons dashicons-admin-home"></span>',
       'url'   => get_the_permalink($frontpage_id),
     );
   }else{
     $bread_arr[] = array(
-      'label' => 'HOME',
+      'label' => '<span class="dashicons dashicons-admin-home"></span>',
       'url'   => get_home_url(),
     );
   }

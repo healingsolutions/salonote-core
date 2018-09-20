@@ -8,10 +8,10 @@
 	display: inline-block;
 	text-align: center;
 	margin:10px auto;
-	padding: 30px 60px;
+	padding: 10px 60px;
 	opacity: 1;
 	cursor: pointer;
-	@include _transition_(all,0.5)
+	@include _transition_(all,0.5);
 	> p{
 		margin: 0;
 	}
@@ -36,7 +36,7 @@
 		filter:alpha(opacity=80);
     -moz-opacity: 0.8;
     opacity: 0.8;
-		@include _transition_(all,0.5)
+		@include _transition_(all,0.5);
 	}
 }
 

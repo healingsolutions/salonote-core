@@ -218,6 +218,7 @@ function essence_class_names( $classes ) {
 function container_class(){
   global $theme_opt;
   global $post_type_set;
+	global $page_info;
   
   if( !empty( $theme_opt['base'] ) && in_array('container',$theme_opt['base'] ) ){
 
@@ -229,7 +230,8 @@ function container_class(){
 
     if(
       !empty( $post_type_set ) &&
-      !in_array($container_check,$post_type_set)
+      !in_array($container_check,$post_type_set) &&
+			empty($page_info['full_size'] )
     ){
       $container_class    = 'container';
     }else{
@@ -332,7 +334,9 @@ function get_paged_nav_title( $post =null ){
 	global $page;
 	
 	$max_page = mb_substr_count($post->post_content, '<!--nextpage-->') + 1;
-	$pattern= '/\<h\d{1}(.+?)?\>(.+?)\<\/h\d{1}>/';
+	$pattern= '/\<h\d{1}(.+?)?\>(.+?)\<\/h\d{1}>/s';
+	
+	
 	
 	if( $max_page >= $page && $page !== 1 ){
 		//echo 'prev' . ($page - 1);
@@ -341,8 +345,9 @@ function get_paged_nav_title( $post =null ){
 		$prev_arr = explode("<!--nextpage-->",$post->post_content);
 		preg_match( $pattern, $prev_arr[$prev_num], $match);
 		$prev_title = $match ? $match[2] : get_the_title() ;
+		$prev_title = strip_tags($prev_title,'<br>');
 		
-		echo '<div class="prev_title float-left"><a href="'.get_the_permalink(). ($page-1) .'">&lt;&lt; ' .($page-1) .'.'. $prev_title .'</a></div>';
+		echo '<div class="prev_title float-left"><a href="'.get_the_permalink(). ($page-1) .'">&lt;&lt; ' .($page-1) .'.'. nl2br(esc_attr($prev_title)) .'</a></div>';
 	}
 	
 	
@@ -352,9 +357,10 @@ function get_paged_nav_title( $post =null ){
 		$prev_num = $page;
 		$prev_arr = explode("<!--nextpage-->",$post->post_content);
 		preg_match( $pattern, $prev_arr[$prev_num], $match);
+		
 		$naxt_title = $match ? $match[2] : '' ;
 		
-		echo '<div class="next_title float-right"><a href="'.get_the_permalink(). ($page+1) .'">' .($page+1) .'.'. $naxt_title .' &gt;&gt;</a></div>';
+		echo '<div class="next_title float-right"><a href="'.get_the_permalink(). ($page+1) .'">' .($page+1) .'.'. nl2br(esc_attr($naxt_title)) .' &gt;&gt;</a></div>';
 	}
 	
 	return;
@@ -413,3 +419,36 @@ function essence_search_form( $form ) {
 }
 
 add_filter( 'get_search_form', 'essence_search_form' );
+
+
+
+/**
+ * ユーザー一覧の名前を表示名に変更します。(列の内部名)
+ */
+function display_name_users_column( $columns ) {
+	$new_columns = array();
+	foreach ( $columns as $k => $v ) {
+		if ( 'name' == $k ) $new_columns['display_name'] = $v;
+		else $new_columns[$k] = $v;
+	}
+	return $new_columns;
+}
+add_filter( 'manage_users_columns', 'display_name_users_column' );
+/**
+ * ユーザー一覧の名前を表示名に変更します。(値)
+ */
+function display_name_users_custom_column( $output, $column_name, $user_id ) {
+	if ( 'display_name' == $column_name ) {
+		$user = get_userdata($user_id);
+		return $user->display_name;
+	}
+}
+add_filter( 'manage_users_custom_column', 'display_name_users_custom_column', 10, 3 );
+/**
+ * ユーザー一覧の名前のソートを元のものと同じにします。
+ */
+function display_name_users_sortable_column( $columns ) {
+	$columns['display_name'] = 'name';
+	return $columns;
+}
+add_filter( 'manage_users_sortable_columns', 'display_name_users_sortable_column' );

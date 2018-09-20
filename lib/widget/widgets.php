@@ -61,7 +61,7 @@ add_filter('widget_text', 'do_shortcode' );
     //サイドウィジェット定義
     register_sidebar(array(
 			'name' => __('side widget','salonote-essence'),
-			'id' => 'common_sidebar',
+			'id' => 'sidebar',
 			'description' => __('display widghet in sidebar','salonote-essence'),
 			'before_widget' => '<div id="%1$s" class="side-block-item %2$s">',
 			'after_widget' => '</div>',

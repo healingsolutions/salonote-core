@@ -75,6 +75,21 @@ hr.short-horizon{
 }
 
 
+.circled_block{
+	border: 2px solid #CCCCCC;
+	border-radius: 50%;
+	display: inline-block;
+	margin: auto;
+	padding: 15px;
+	
+	.circled_block_inner{
+	display: flex; /* 子要素をflexboxで揃える */
+    flex-direction: column; /* 子要素をflexboxにより縦方向に揃える */
+    justify-content: center; /* 子要素をflexboxにより中央に配置する */
+    align-items: center;  /* 子要素をflexboxにより中央に配置する */
+	}
+}
+
 
 .author_block_description{
 	position: relative;

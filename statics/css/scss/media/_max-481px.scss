@@ -56,9 +56,15 @@
 	}
 	
 	.pagination {
-		flex-wrap: wrap;
-		a{
-			width: auto;
+		flex-wrap: nowrap;
+		a,
+		> span{
+			//width: auto;
 		}
+	}
+
+	.xs-no_padding[class*=" col-"]{
+		padding-left: 0;
+		padding-right: 0;
 	}
 }

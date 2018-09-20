@@ -14,6 +14,9 @@ $page_info = get_post_meta($post->ID,'page_info',true);
 $post_type_name = !empty(get_post_meta($post->ID,'gallery_post_type',true)) ? get_post_meta($post->ID,'gallery_post_type',true) : 'post' ;
 
 $post_type_set  = !empty($theme_opt['post_type'][$post_type_name]) ? $theme_opt['post_type'][$post_type_name] : null ;
+$entry_list_class = 'list';
+
+$post_type_set['list_show_excerpt'] = 'hide';
 
 // =============================
 // initialize
@@ -26,34 +29,10 @@ $main_content[] = 'main-content-block';
 
 $_main_width = !empty($theme_opt['base']['side_width']) ? (12 - $theme_opt['base']['side_width']) : 9 ;
 
-// =============================
-// if has sidebar
-if(
-	(
-		!empty( $post_type_set ) &&
-		!in_array('full_pages',$post_type_set)
-	)||
-	!empty($page_info['has_sidebar'] )
-){
-	
-  if(
-      empty($page_info['none_sidebar']) &&
-			empty($page_info['full_size'] )
-    ){
-    $main_unit[]    = 'has_sidebar';
-    $main_content[] = 'col-12';
-    $main_content[] = 'col-lg-'.$_main_width;
-  }
-	if(
-      !empty($page_info['full_size'] )
-    ){
-		$main_unit = array_diff($main_unit, array('container'));
-  }
-}else{
-    $main_unit[]    = 'none_sidebar';
-    $main_content[] = 'col-xs-12';
-    $main_content[] = 'col-sm-12';
-}
+
+$main_unit[]    = 'none_sidebar';
+$main_content[] = 'col-12';
+$main_content[] = 'col-sm-12';
 
 
 if( !empty( $page_info ) ) {
@@ -65,7 +44,7 @@ if( !empty( $page_info ) ) {
 get_header();
 
 echo '<div class="'.implode(' ',$main_unit).'">';
-echo '<div class="'.$row_class.'">';
+echo '<div class="main-content-wrap '.$row_class.'">';
 
   // main =======================
   echo '<div class="'.implode(' ',$main_content).'">';
@@ -138,11 +117,13 @@ if($query->have_posts()){
 				?>
 				<?php
 				$image_src = wp_get_attachment_image_src( $attachment->ID , 'large' );
-				echo '<figure class="gallery-item col-xs-4 col-sm-4 col-md-3 col-lg-2"><a class="colorbox" href="'. $image_src[0] . '">';
+				echo '<figure class="gallery-item xs-no_padding col-4 col-md-3 col-lg-2"><a class="colorbox" href="'. $image_src[0] . '">';
 				echo wp_get_attachment_image( $attachment->ID, 'thumbnail_M', false, $attr );
 				echo '</a></figure>';
 			}
 			echo '</div>';
+			
+			echo '<hr class="short-horizon">';
 			
 			echo '</section>';
 			echo '</div>';

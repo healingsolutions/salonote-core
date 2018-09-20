@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+// Core variables and mixins
+@import "scss/variables";
+@import "scss/mixins";
+@import "scss/forms";
+
+
+@import "scss/mixins/clearfix";
+@import "scss/mixins/breakpoints";
+@import "scss/mixins/grid-framework";
+@import "scss/mixins/grid";
+
+@import "scss/custom";
+@import "scss/tables";
+@import "scss/grid";
+@import "scss/es-content";
+
+
+
+
+form .sfPrototypeMan{
+  
+ 
+  
+  div * {
+    display: inline-block;
+  }
+  div textarea {
+    vertical-align: top;
+  }
+  
+  .field_type-select,
+  .field_type-checkbox,
+  .field_type-radio{
+    display: inline-block !important;
+  }
+  
+  .doraggable-fields{
+    padding: 5px 0;
+    cursor: move;
+    position: relative;
+    
+    padding: 5px;
+    border: 1px solid #B4C2CB;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    
+    &::before{
+      display: inline-block;
+      position: relative;
+      top: 10px;
+      line-height: 1;
+      font-size: 2em;
+      font-family: dashicons;
+      content: "\f333";
+      color: #CCCCCC;
+      
+    }
+    
+    > div{
+			padding: 0 30px;
+      //width: 80% !important;
+    }
+    
+    a.rmElement{
+      position: absolute;
+      right: 10px;
+    }
+  }
+  
+  
+  .mailessence_remove_btn{
+    &::before{
+      position: relative;
+      top: 10px;
+      font-size: 2em;
+      font-family: dashicons;
+      content: "\f335";
+    }
+  }
+
+
+  
+ 
+}//form
+
+
+a.addPrototype{
+  clear: both;
+  display: block;
+  margin-top: 20px;
+  text-decoration: none;
+  .mailessence_add_btn{
+    
+    &::before{
+      font-family: dashicons;
+      content: "\f502";
+      font-size: 2em;
+      text-decoration: none;
+    }
+  }
+}
+
+
+#essence-mailform-contact-table{
+  font-size: 1.4em;
+  th{
+    text-align: left;
+    width: 20%;
+  }
+}
+
+dl.mailform-essence-list{
+		padding-bottom: 20px;
+		margin-bottom: 20px;
+		border-bottom:  1px solid #CCCCCC;
+	dt{
+		font-weight: bold;
+		color: #969696;
+	}
+	dd{
+		margin-left: 0;
+		max-height: 100px;
+		overflow: auto;
+	}
+		
+	&:nth-child(even){
+		background-color: #EFF0F3;
+	}
+		
+	span.mailform-essence-differ{
+		background-color: #617489;
+		color: white;
+		padding: 3px 7px;
+		margin-left: 15px;
+		border-radius: 4px;
+	}
+}

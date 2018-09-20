@@ -56,6 +56,7 @@ if( !empty( $theme_opt['base'] ) && in_array('childStyles',$theme_opt['base'])  
 ----------------------------------------------------------*/
 function essence_head_enqueue() {
   global $theme_opt;
+	global $post_type;
 
   
   //jQuery
@@ -67,9 +68,13 @@ function essence_head_enqueue() {
   //in head
   //wp_enqueue_style('normalize', '//cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css', array(), '1.0');
   //wp_enqueue_style('yakuhanjp', '//cdn.jsdelivr.net/npm/yakuhanjp@2.0.0/dist/css/yakuhanjp.min.css', array(), '2.0.0');
-	
-	wp_enqueue_style('essence', get_template_directory_uri().'/style-min.css', array(), '1.0.0.8');
-	wp_enqueue_script('essence', get_template_directory_uri().'/statics/js/main-min.js', array(), '1.0.0.2' ,true);
+	if(is_user_logged_in()){
+		$_salonote_ver = time();
+	}else{
+		$_salonote_ver = '1.0.0.16';
+	}
+	wp_enqueue_style('essence', get_template_directory_uri().'/style-min.css', array(), $_salonote_ver);
+	wp_enqueue_script('essence', get_template_directory_uri().'/statics/js/main-min.js', array(), '1.0.0.16' ,true);
   
 	
 	
@@ -77,13 +82,7 @@ function essence_head_enqueue() {
     wp_enqueue_script('colorbox', '//cdnjs.cloudflare.com/ajax/libs/jquery.colorbox/1.6.4/jquery.colorbox-min.js', array(),'1.6.4' ,true);
     //wp_enqueue_style('colorbox', get_template_directory_uri().'/statics/js/colorbox/colorbox.css');
   }
-  
-  if( !empty($theme_opt['extention']) && in_array('use_slick',$theme_opt['extention']) ){
-    wp_enqueue_script('slick', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js', array(), '1.6.0' ,true);
-    wp_enqueue_style ('slick', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css', array(), '1.6.0');
-    wp_enqueue_style ('slick-theme', get_template_directory_uri().'/statics/js/slick/slick-theme.css', array(), '1.0');
-  }
-	
+ 
 	if( !wp_is_mobile() ){
 		if( !empty($theme_opt['extention']) && in_array('use_lazy_load',$theme_opt['extention']) ){
 			wp_enqueue_script ('lazyload', '//cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js', array(), '1.9.1',true);
@@ -91,6 +90,10 @@ function essence_head_enqueue() {
 		if( !empty($theme_opt['extention']) && in_array('use_content_fade',$theme_opt['extention']) ){
 			wp_enqueue_script ('fadethis', get_template_directory_uri().'/statics/js/fadethis/jquery.fadethis.min.js', array(), '1.0',true);
 		}
+	}
+	
+	if( $post_type === 'style' ){
+	wp_enqueue_script('inview', '//cdnjs.cloudflare.com/ajax/libs/jquery.inview/1.0.0/jquery.inview.min.js', array(), '1.0.0' ,true);
 	}
 	
 	//wp_enqueue_style('dashicons',true);
@@ -249,6 +252,7 @@ require( get_template_directory(). '/lib/customizer/theme-options.php' );
 /*	nav walker 
 /*-------------------------------------------*/
 require( get_template_directory(). '/lib/walker/gnav_essence_walker.php' );
+require( get_template_directory(). '/lib/walker/gnav_essence_walker-super-view.php' );
 
 /*-------------------------------------------*/
 /*	widgets
@@ -270,6 +274,7 @@ function include_library() {
 	require_once (get_template_directory(). '/lib/custom_fields/keywords.php' );
   require_once (get_template_directory(). '/lib/custom_fields/landing_page_info.php' );
 	require_once (get_template_directory(). '/lib/custom_fields/page_bkg.php' );
+	require_once (get_template_directory(). '/lib/custom_fields/sweet-custom-menu/sweet-custom-menu.php' );
 
 }
 add_action('init', 'include_library', 10);
@@ -287,8 +292,12 @@ require_once( get_template_directory(). '/lib/widget/WriteBlock.php' );
 //require_once (get_template_directory(). '/lib/widget/event_info.php' );
 
 //Salonote helper
-require_once( get_template_directory(). '/lib/salonote-helpter/salonote_helpter.php' );
+require_once( get_template_directory(). '/lib/salonote-helper/salonote_helper.php' );
 
+//plugins
+require_once( get_template_directory(). '/lib/salonote-helper/plugins/slider-essence/slider_essence.php' );
+require_once( get_template_directory(). '/lib/salonote-helper/plugins/search-engine-essence/search-engine-essence.php' );
+require_once( get_template_directory(). '/lib/salonote-helper/plugins/mailform-essence/mailform-essence.php' );
 
 
 // ====================

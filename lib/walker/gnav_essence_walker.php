@@ -217,10 +217,16 @@ class nav_essence_walker extends Walker_Nav_Menu {
          * @param stdClass $args  An object of wp_nav_menu() arguments.
          * @param int      $depth Depth of menu item. Used for padding.
          */
-        $title = apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth );
+				if( $depth === 0 ){
+					$title = '<span class="main_nav">'.apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth ).'</span>';
+				}else{
+					$title = apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth );
+				}
+			
+				
         $sub_title = '';
         if( $depth === 0 )
-          $sub_title = !empty($atts['title']) ? '<span>'.$atts['title'].'</span>' : '' ;
+          $sub_title = !empty($atts['title']) ? '<span class="sub_nav">'.$atts['title'].'</span>' : '' ;
  
         $item_output = $args->before;
         $item_output .= '<a'. $attributes .'>';

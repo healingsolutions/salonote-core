@@ -360,6 +360,42 @@ body#tinymce{
 		}
 	}
 	
+	
+	dl{
+		dt{
+			font-size: 1.1em;
+			border-left: 5px solid #CCCCCC;
+			padding-left: 1em;
+			margin-bottom: 1em;
+		}
+		dd{
+			margin-left: 0;
+			margin-bottom: 2em;
+			border-left: 3px solid #CCCCCC;
+			padding-left: 1.5em;
+		}
+	}
+	
+	dl.question-dl{
+		dt{
+			border-left: none;
+			padding-left: 3em;
+			&::before{
+				background-color: #868686;
+			}
+		}
+		dd{
+			border-left: none;
+			padding-left: 3em;
+		}
+	}
+	
+	dl.toggle-dl{
+		dd{
+			display: block;
+		}
+	}
+	
 }//body#tinymce
 
 

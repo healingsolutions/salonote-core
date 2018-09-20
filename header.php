@@ -106,5 +106,4 @@ if( !empty($theme_opt['extention']['head_tag_uesr']) ){
 		get_template_part('template-parts/common/header');
 		get_template_part('template-parts/module/breadcrumb');
 	}
-  
 ?>

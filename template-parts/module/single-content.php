@@ -9,7 +9,7 @@ global $paged;
 
 $post_id = get_the_ID();
 
-if( get_the_content() ){
+if( get_the_content() || has_post_thumbnail() ){
 echo '<div class="entry_block_content">';
 echo '<header>';
 
@@ -20,8 +20,8 @@ if(
   empty( $page_info['disable_title'] )
 ){
 	$_the_title = get_the_title();
-	if( in_array('break_title',$theme_opt['base'])){
-		$_the_title = preg_replace('/(\,|'.__(',','salonote-essence').')/', '$1<br />', $_the_title);
+	if( !empty($theme_opt['base']) && in_array('break_title',$theme_opt['base'])){
+		$_the_title = preg_replace('/(\,|】|'.__(',','salonote-essence').')/', '$1<br />', $_the_title);
 		$_the_title = preg_replace('/(~|〜)/', '<br /><span class="small">$1', $_the_title).'</span>';
 	}
   echo '<h1 class="entry_block_title">'.$_the_title;
@@ -62,7 +62,7 @@ if(
 			echo '
 			<div class="entry_block_writer text-right small">
 			<a href="'. $auther_url .'">
-				<div class="inline-block text-left mr-3" style="line-height:1.2; vertical-align:middle; ">writer：<br>'.get_the_author_meta('display_name').'</div>
+				<div class="inline-block text-left mr-3" style="line-height:1.2; vertical-align:middle; ">'.get_the_author_meta('display_name').'</div>
 				<div class="inline-block" style="vertical-align:middle;">'.
 				$auther_image.'
 				</div>
@@ -95,6 +95,8 @@ if(
   echo '<div class="entry_block_excerpt">'.get_the_excerpt().'</div>';
 }
 	
+	
+
 // thumbnail =======================================
 if(
   !empty( $post_type_set ) &&
@@ -102,6 +104,7 @@ if(
 	$page === 1 &&
   has_post_thumbnail()
 ){
+	
   echo '<div class="entry_post_thumbnail">';
 	$thumb_attr = array(
 		'class'	=> 'img-responsive mb-5',

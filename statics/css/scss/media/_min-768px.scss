@@ -1,10 +1,18 @@
 @charset "UTF-8";
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
 
 
 	html{
+		font-size: calc(16px + 0.2vw);
 		font-size: 62.5%;
 	}
+	
+	_:-ms-lang(x), selector {
+		html{
+			font-size: calc(16px + 0.2vw);
+		}
+	}
+	
 	body{
 		font-size: 16px;
 		font-size: 1.6rem;
@@ -30,7 +38,7 @@
 		margin-right: -15px;
 	}
 	
-	
+
 	
 	.header_top_widgets{
 		width: 75%;
@@ -188,7 +196,7 @@
 	
 	
 	.btn-item{
-		font-size: 1.2em;
+		//font-size: 1.2em;
 	}
 	
 	.fader{
@@ -209,7 +217,7 @@
 
 	.timeline-type-group .list_block_title,
 	.list-type-group .list_block_title{
-		font-size: 1.7em;
+		font-size: 1.25em;
 	}
 	
 }

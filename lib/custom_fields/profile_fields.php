@@ -36,5 +36,4 @@ function save_essence_user_profile_fields( $user_id ) {
     }
     
 }
-
 ?>

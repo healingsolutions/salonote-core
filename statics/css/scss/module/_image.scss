@@ -1,5 +1,10 @@
 /* CSS Document */
 
+.img-fit{
+	width: 100%;
+	height: auto;
+}
+
 .img-responsive{
   max-width: 100%;
   height: auto;
@@ -86,6 +91,10 @@
 .gallery{
   margin-top: 25px !important;
   margin-bottom: 25px !important;
+	
+	justify-content: center; /* 子要素をflexboxにより中央に配置する */
+	align-items: center;  /* 子要素をflexboxにより中央に配置する */
+	
   .gallery-item{
     margin: 0;
     margin-top: 0 !important;
@@ -110,3 +119,70 @@
 		}
   }
 }//gallery
+
+
+
+body.page-template-attachment-list{
+	
+	.article-block{
+		section{
+			margin-bottom: 5em;
+		}
+	}
+	
+	.list_block_title,
+	.list_block_date{
+		text-align: center;
+		display: block;
+	}
+
+}
+
+
+@media screen and (min-width: 769px) {
+	body.page-template-attachment-list{
+       .gallery-item img{
+					border-radius: 50%;
+					padding: 5px;
+					background-color: white;
+
+					-webkit-transition: border-radius 0.3s;
+							-moz-transition: border-radius 0.3s;
+							-ms-transition: border-radius 0.3s;
+							-o-transition: border-radius 0.3s;
+							transition: border-radius 0.3s;
+
+					&:hover{
+						border-radius: 1%;
+						//transform: scale(1.3);
+						-webkit-transition: border-radius 0.3s;
+							-moz-transition: border-radius 0.3s;
+							-ms-transition: border-radius 0.3s;
+							-o-transition: border-radius 0.3s;
+							transition: border-radius 0.3s;
+					}
+
+
+
+				}
+
+
+				.gallery-item{
+					transform: scale(1);
+					-webkit-transition: transform 0.3s;
+							-moz-transition: transform 0.3s;
+							-ms-transition: transform 0.3s;
+							-o-transition: transform 0.3s;
+							transition: transform 0.3s;
+
+					&:hover{
+						transform: scale(1.13);
+						-webkit-transition: transform 0.3s;
+								-moz-transition: transform 0.3s;
+								-ms-transition: transform 0.3s;
+								-o-transition: transform 0.3s;
+								transition: transform 0.3s;
+					}
+				} 
+	}
+}

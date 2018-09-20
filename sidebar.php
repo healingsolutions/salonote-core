@@ -49,7 +49,7 @@ global $page_info;
 				}
 				
 
-				if(!function_exists('dynamic_sidebar') || !dynamic_sidebar('common_sidebar')): 
+				if(!function_exists('dynamic_sidebar') || !dynamic_sidebar('sidebar')): 
 						//sidebar
 				endif;
 

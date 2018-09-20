@@ -1,5 +1,15 @@
 /* CSS Document */
 
+
+@mixin _transition_($att, $speed) {
+    -webkit-transition: $att #{$speed}s ease;
+    -moz-transition: $att #{$speed}s ease;
+    -o-transition: $att #{$speed}s ease;
+    transition: $att #{$speed}s ease;
+}
+
+
+
 /* icons =========================================== */
 
 i[class*='dashicons']::before{
@@ -134,6 +144,84 @@ a.page_bkg_upload_images_remove:hover {
 		background-color: white;
 		li{
 			
+		}
+	}
+}
+
+
+//==================================
+// image uploader
+.salonote_images_upload_images-unit{
+	display: flex;
+	flex-wrap: wrap;
+	
+	.salonote_images_img_wrap{
+		max-width: 20%;
+		position: relative;
+		cursor: move;
+		overflow: hidden;
+		padding: 5px;
+		box-sizing: border-box;
+
+		img{
+			width: 100%;
+			height: auto;
+			
+			background-color: white;
+			-moz-transform: scale(1);
+			-webkit-transform: scale(1);
+			-o-transform: scale(1);
+			-ms-transform: scale(1);
+			transform: scale(1);
+			-webkit-filter: grayscale(0);
+			-moz-filter: grayscale(0);
+			-ms-filter: grayscale(0);
+			-o-filter: grayscale(0);
+			filter: grayscale(0);
+			
+			
+
+			-webkit-transition: transform 0.3s, grayscale 0.3s;
+			transition: transform 0.3s, grayscale 0.3s;
+		}
+		
+		&:hover img{
+			-moz-transform: scale(1.02);
+			-webkit-transform: scale(1.02);
+			-o-transform: scale(1.02);
+			-ms-transform: scale(1.02);
+			transform: scale(1.02);
+			-webkit-filter: grayscale(60%);
+			-moz-filter: grayscale(60%);
+			-ms-filter: grayscale(60%);
+			-o-filter: grayscale(60%);
+			filter: grayscale(60%);
+
+			-webkit-transition: transform 0.3s, grayscale 0.3s;
+			transition: transform 0.3s, grayscale 0.3s;
+		}
+	}
+	
+	.salonote_images_upload_images_remove{
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 2.4em;
+		height: 2.4em;
+		line-height: 2.4em;
+		text-align: center;
+		text-decoration: none;
+		content: none;
+		background-color: white;
+		border-radius: 50%;
+		z-index: 10;
+		
+		&::after{
+			font-size: 2.4em;
+			content: "\f153";
+			font-family: "dashicons";
+			top: 1px;
+			position: relative;
 		}
 	}
 }

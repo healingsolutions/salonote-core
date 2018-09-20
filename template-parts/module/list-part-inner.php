@@ -74,7 +74,7 @@ if(
 ){
 	$_the_title = get_the_title();
 	if( in_array('break_title',$theme_opt['base'])){
-		$_the_title = preg_replace('/(\,|'.__(',','salonote-essence').')/', '$1<br />', $_the_title);
+		$_the_title = preg_replace('/(\,|】|'.__(',','salonote-essence').')/', '$1<br />', $_the_title);
 		$_the_title = preg_replace('/(~|〜)/', '<br /><span class="small">$1', $_the_title).'</span>';
 	}
   echo '<h1 class="list_block_title">'.$_the_title.'</h1>';
@@ -85,7 +85,7 @@ if(
   in_array('display_grid_sub_title',$post_type_set) &&
   !empty(get_post_meta($post->ID, 'subTitle'))
 ){
-  echo '<h2 class="list_block_sub_title">'.esc_html(get_post_meta($post->ID, 'subTitle', true)).'</h2>';
+  echo '<h2 class="list_block_sub_title body_font">'.esc_html(get_post_meta($post->ID, 'subTitle', true)).'</h2>';
 }
 
 if(

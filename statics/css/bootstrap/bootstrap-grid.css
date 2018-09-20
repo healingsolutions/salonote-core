@@ -24,7 +24,7 @@ html {
   @media (min-width: 576px) {
     .container {
       max-width: 540px; } }
-  @media (min-width: 768px) {
+  @media (min-width: 769px) {
     .container {
       max-width: 720px; } }
   @media (min-width: 992px) {
@@ -342,7 +342,7 @@ html {
 
   .offset-sm-11 {
     margin-left: 91.6666666667%; } }
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .col-md {
     flex-basis: 0;
     flex-grow: 1;
@@ -813,7 +813,7 @@ html {
 
   .d-sm-inline-flex {
     display: inline-flex !important; } }
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .d-md-none {
     display: none !important; }
 
@@ -1095,7 +1095,7 @@ html {
 
   .align-self-sm-stretch {
     align-self: stretch !important; } }
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .flex-md-row {
     flex-direction: row !important; }
 

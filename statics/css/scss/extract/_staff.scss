@@ -1,0 +1,29 @@
+
+
+.staff_page-block{
+	padding: 35px 15px 15px;
+	margin-bottom: 3em;
+	
+	.entry_post_thumbnail{
+
+		img{
+			background-color: white;
+			padding: 7px;
+			box-shadow: 1px 1px 7px #CCCCCC;
+		}
+	}
+	
+	.staff_profile_block{
+		
+		.staff_profile_values{
+			background-color: white;
+			line-height: 2;
+		}
+		
+	}
+	
+	.entry_block_excerpt{
+		background-color: white;
+	}
+	
+}//staff_page-block

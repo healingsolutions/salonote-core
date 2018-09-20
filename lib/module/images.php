@@ -88,6 +88,7 @@ add_image_size('thumbnail_M', 350, 350,true);
 add_image_size('thumbnail_L', 600, 600, true);
 add_image_size('medium_banner', 468, 0, false);
 add_image_size('side_banner', 350, 0, false);
+add_image_size('profile', 450, 800, true);
 //add_image_size('small_thumb', 250, 0, false);
 
 global $essence_custom_image_sizes;
@@ -118,6 +119,13 @@ $essence_custom_image_sizes = array(
 				'width'      => 468,
 				'height'     => 0,
 				'crop'       => false,
+				'selectable' => true
+		),
+		'profile' => array(
+				'name'       => __('profile','salonote-essence'),
+				'width'      => 450,
+				'height'     => 800,
+				'crop'       => true,
 				'selectable' => true
 		),
 );
@@ -212,15 +220,14 @@ add_filter('getimagesize_mimes_to_exts', 'essence_mime_to_ext');
 
 
 
-
+/*
 //get_avatar
 add_filter('get_avatar','add_gravatar_class');
-
 function add_gravatar_class($class) {
     $class = str_replace('class="avatar', 'class="avatar img-circled img-responsive', $class);
     return $class;
 }
-
+*/
 
 
 
@@ -249,3 +256,5 @@ function add_attachement_url( $post ){
 	return;
 }
 add_action('wxr_export_skip_postmeta','add_attachement_url');
+
+

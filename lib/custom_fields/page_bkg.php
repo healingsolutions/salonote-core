@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 add_action("admin_init", "essence_page_bkg_metaboxs_init");
 function essence_page_bkg_metaboxs_init(){
-    add_meta_box( 'page_bkg_upload', 'ページ背景', 'page_bkg_upload_postmeta', 'page', 'side','low' );
+    add_meta_box( 'page_bkg_upload', 'ページ画像', 'page_bkg_upload_postmeta', 'page', 'side','low' );
     add_action('save_post', 'save_page_bkg_upload_postmeta');
 }
   

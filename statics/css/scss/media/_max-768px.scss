@@ -2,11 +2,18 @@
 @media screen and (max-width: 768px) {
 
 
-	html { font-size: calc(14px + 0.25vw) }
+	html {
+		font-size: calc(14px + 0.25vw)
+	}
+	_:-ms-lang(x), selector {
+		html{
+			font-size: calc(14px + 0.2vw);
+		}
+	}
 
 	body{
 		overflow-x: hidden;
-    padding-top: 35px;
+    padding-top: 50px;
     position: relative;
 	}
 	
@@ -337,6 +344,10 @@
 	
 	footer.site-footer-block .footer_logo-block{
 		max-width: 60vw;
+	}
+	
+	footer.site-footer-block a.footer_for_top{
+		font-size: .7em;
 	}
 
   

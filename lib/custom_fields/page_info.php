@@ -10,8 +10,8 @@ add_action('add_meta_boxes', 'add_page_info');
 add_action('save_post', 'save_page_info');
  
 function add_page_info(){
-  add_meta_box('page_info', __('Page Information','salonote-essence'), 'insert_page_info', 'post', 'side', 'low');
-  add_meta_box('page_info', __('Page Information','salonote-essence'), 'insert_page_info', 'page', 'side', 'low');
+  add_meta_box('page_info', __('Page Information','salonote-essence'), 'insert_page_info', array('post','page','style'), 'side', 'low');
+
 }
  
 function insert_page_info(){

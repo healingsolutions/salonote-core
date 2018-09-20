@@ -77,6 +77,7 @@ if($args['order'] == 'menu_order'){
 $args['orderby'] = !empty($post_type_set['posts_order']) ? $post_type_set['posts_order'] : 'ASC';
 
 $args['paged'] = get_query_var( 'paged', 1 );
+
 $args['author'] = $userObj->ID;
 
 
@@ -185,20 +186,6 @@ echo '<div class="'.$row_class.'">';
       do_action( 'essence_after_body_content' );
       // ^action =============================
 
-				// pagenation
-				if (function_exists("essence_pagination")) {
-						essence_pagination($query->max_num_pages,$args['posts_per_page']);
-				}else{
-					//pagenation
-					$big = 9999999999;
-					$arg = array(
-							'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-							'current' => max( 1, get_query_var('paged') ),
-							'total'   => $query->max_num_pages
-					);
-					echo paginate_links($arg);
-				}
-				//^pagenation
 
   
 	echo '</article>';

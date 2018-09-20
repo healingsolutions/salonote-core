@@ -18,6 +18,9 @@ echo '<!--[if IE]>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <script src="//www.promisejs.org/polyfills/promise-6.1.0.min.js"></script>
 <![endif]-->'.PHP_EOL;
+
+
+$keywords = '';
 if( is_singular() ){ 
 	echo '<meta name="author" content="'.get_the_author_meta( 'display_name' ).'" />'.PHP_EOL;
 	

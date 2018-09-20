@@ -38,36 +38,50 @@ ul.footer-sitemap{
     .menu_bkg{
       background-color: initial;
     }
-  >li > ul{
+  >li  ul{
     position: relative;
   }
-  >li > ul:before{
+  > li ul.sub-menu:before{
     content: '';
-    border-left: 1px solid #FFFFFF;
+    //border-left: 1px solid #FFFFFF;
     position: absolute;
     top: 0px;
-    bottom: 17px;
+    bottom: 15px;
     left: 14.5px;
+		font-size: 12px;
+		
+		filter:alpha(opacity=30);
+		-moz-opacity: 0.3;
+		opacity: 0.3;
     @media screen and (max-width: 768px) {
       left: 14.5px;
     }
+
     
   }
   
   ul li{
     position: relative;
-    &::before{
-      font-family: "ＭＳ ゴシック", "MS Gothic", "Osaka－等幅", "Osaka-mono", "monospace";
-      font-weight: 700;
-      position: absolute;
-      content: '├';
-      left: -5.3px;
-      top: 5px;
-    }
-    &:last-child::before{
-      position: absolute;
-      content: '└';
-    }
+
+		&::after{
+			position: absolute;
+			left: 0px;
+			top: 1.5em;
+			width: 0.5em;
+			border-top: 1px solid;
+			content: '';
+			filter:alpha(opacity=30);
+			-moz-opacity: 0.3;
+			opacity: 0.3;
+		}
+		
+		li{
+			&::after{
+				left: -1em;
+				width: 1.6em;
+			}
+		}
+
   }
 	
 
@@ -113,6 +127,7 @@ ul.footer-sitemap{
               ul{
                 list-style: none;
                 padding-left: 10px;
+								margin-left: 2px;
               }
             }
         }
@@ -175,7 +190,7 @@ ul.footer-sitemap{
 }
 
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
 	.footer_logo-block{
 		max-width: 20%;
 	}

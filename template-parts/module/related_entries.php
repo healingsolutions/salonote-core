@@ -5,7 +5,10 @@ global $page_info;
 global $post_type_name;
 
 $_list_show_excerpt_tmp = $post_type_set['list_show_excerpt'];
-$post_type_set['list_show_excerpt'] = 'hide';
+
+$post_type_set['list_show_excerpt'] = !empty($post_type_set['related_list_show_excerpt']) ? $post_type_set['related_list_show_excerpt']  : 'hide' ;
+
+
 	
 if( empty( $post_type_set ) )return;
 	 

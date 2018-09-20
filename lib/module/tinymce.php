@@ -164,6 +164,12 @@ function essence_tinymce($initArray) {
 						'wrapper' => 'true',
             'classes' => 'band_bkg'
         ),
+				array(
+            'title' => __('circled block','salonote-essence'),
+            'block' => 'div',
+						'wrapper' => 'true',
+            'classes' => 'circled_block'
+        ),
         
       ),
 
@@ -297,6 +303,22 @@ function essence_tinymce($initArray) {
             'title' => __('list flow','salonote-essence'),
             'selector' => 'ol',
             'classes' => 'list-flow'
+        ),
+				array(
+            'title' => __('list root','salonote-essence'),
+            'selector' => 'ol',
+            'classes' => 'list-root'
+        ),
+				
+				array(
+            'title' => __('question description list','salonote-essence'),
+            'selector' => 'dl',
+            'classes' => 'question-dl'
+        ),
+				array(
+            'title' => __('toggle description list','salonote-essence'),
+            'selector' => 'dl',
+            'classes' => 'toggle-dl'
         ),
       ),
     ),// list
@@ -513,7 +535,7 @@ function essence_tinymce($initArray) {
 		
 		
 		//=======================================
-    // width
+    // class
     array(
       'title' => __('class','salonote-essence'),
       'items' => array(
@@ -564,6 +586,11 @@ function essence_tinymce($initArray) {
 					'selector' => 'div,img',
 					'classes' => 'bkg-left'
 				),
+				array(
+					'title' => 'absolute',
+					'selector' => 'div,img',
+					'classes' => 'absolute'
+				),
 				
       ),
     ), // width
@@ -589,7 +616,8 @@ function essence_tinymce($initArray) {
 	
 	$initArray[ 'toolbar1' ] = 'bold,italic,underline,strikethrough,removeformat,blockquote,bullist,numlist,alignleft,aligncenter,alignright,outdent,indent,forecolor,backcolor,link,unlink,fullscreen,hr,wp_page,wp_adv';
   $initArray[ 'toolbar2' ] = 'styleselect,formatselect,fontsizeselect,fontselect,table,wp_more,media,image';
-  $initArray[ 'toolbar3' ] = 'btn_add_col_block, btn_add_separate_block, btn_only_spbr,btn_add_youtube_block,btn_add_horizon_block,btn_add_editor_block';
+  $initArray[ 'toolbar3' ] = 'btn_add_sample_block, btn_add_col_block, btn_add_separate_block, btn_add_dldtdd_block, btn_only_spbr,btn_add_youtube_block,btn_add_horizon_block,btn_add_editor_block';
+	//$initArray[ 'toolbar3' ] = 'btn_add_sample_block, btn_only_spbr,btn_add_youtube_block,btn_add_horizon_block,btn_add_editor_block';
 	$initArray[ 'toolbar4' ] = '';
 
   $initArray[ 'extended_valid_elements' ] = "iframe[id|class|title|style|align|frameborder|height|longdesc|marginheight|marginwidth|name|scrolling|src|width]";
@@ -634,8 +662,11 @@ function my_tinymce_button() {
 function my_register_tinymce_button( $buttons ) {
 		array_push($buttons, "btn_add_col_block" );
 		array_push($buttons, "btn_add_separate_block" );
+		array_push($buttons, "btn_add_sample_block" );
 		array_push($buttons, "btn_only_spbr" );
     array_push($buttons, "btn_add_editor_block" );
+		array_push($buttons, "btn_add_dldtdd_block" );
+	
   return $buttons;
 }
 

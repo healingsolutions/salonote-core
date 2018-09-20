@@ -5,11 +5,21 @@
 	html{
 		font-size: 72.5%;
 	}
+	_:-ms-lang(x), selector {
+		html{
+			font-size: calc(16px + 0.2vw);
+		}
+	}
 }
 
 @media screen and (min-width: 1280px) {
 	html{
 		font-size: 67.5%;
+	}
+	_:-ms-lang(x), selector {
+		html{
+			font-size: calc(16px + 0.2vw);
+		}
 	}
 	
 }

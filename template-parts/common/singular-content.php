@@ -43,6 +43,7 @@ if(
   }
 }else{
     $main_unit[]    = 'none_sidebar';
+		
     $main_content[] = 'col-12';
     $main_content[] = 'col-md-12';
 }
@@ -83,7 +84,7 @@ echo '<main class="'.implode(' ',$main_content).'">';
 
 	echo !empty(get_the_content() ) ? '<article>' : '';
   if(have_posts()): while(have_posts()): the_post();
-    get_template_part('template-parts/module/single-content');
+    get_template_part('template-parts/module/single-content', $post_type_name);
   endwhile; endif;
 	
 

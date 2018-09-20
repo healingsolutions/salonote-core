@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 body{
+	-webkit-font-smoothing: antialiased;
 	a,a:hover{
 		text-decoration: none;
 		word-break: break-word;
@@ -85,4 +86,9 @@ hr{
 
 .position-fixed{
 	position: fixed;
+}
+
+
+.absolute{
+	position: absolute;
 }

@@ -87,6 +87,22 @@ $field_arr = array(
         'trim' =>  __('trim','salonote-essence'),
       )
   ),
+	'related_list_show_excerpt' => array(
+    'label' => __('related excerpt','salonote-essence'),
+    'type' => 'select',
+      'selecter' => array(
+        'body' =>  __('has excerpt','salonote-essence'),
+        'trim' =>  __('trim','salonote-essence'),
+      )
+  ),
+	'list_position_excerpt' => array(
+    'label' => __('list excerpt position','salonote-essence'),
+    'type' => 'select',
+      'selecter' => array(
+        'bottom' =>  __('bottom','salonote-essence'),
+        'side' =>  __('side','salonote-essence'),
+      )
+  ),
   'list_show_body' => array(
     'label' =>  __('show content','salonote-essence'),
     'type' => 'checkbox',
@@ -128,7 +144,7 @@ $field_arr = array(
     'label' => __('Caption','salonote-essence'),
     'type' => 'checkbox',
   ),
-  'display_post_writer' => array(
+  'display_list_writer' => array(
     'label' => __('Writer','salonote-essence'),
     'type' => 'checkbox',
   ),
@@ -189,6 +205,11 @@ $field_arr = array(
     'label' => __('Show Index Navigation','salonote-essence'),
     'type' => 'checkbox',
     'description' => __('Only if contain "headline_nav"','salonote-essence'),
+  ),
+	
+	'display_post_writer' => array(
+    'label' => __('Writer','salonote-essence'),
+    'type' => 'checkbox',
   ),
 
 	'full_pages' => array(

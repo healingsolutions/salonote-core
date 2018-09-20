@@ -1,12 +1,49 @@
 /* CSS Document */
 
+.archive-page-title-block{
+	display: table;
+	
+	.entry_block_taxonomy_label{
+		display: table-cell;
+		width: 100%;
+		vertical-align: middle;
+		padding-left: 15px;
+		
+		h1.taxonomy_lable{
+			font-size: 1em;
+			margin-bottom: .1em;
+		}
+		p{
+			font-size: .75em;
+		}
+	}
+}
+
+.entry-block-title-wrap{
+	display: inline-block;
+	padding: 1.6em 1.7em;
+	text-align: center;
+	
+	&.timeline-type-group-title{
+		margin-left: 1.5em;
+	}
+	
+	p{
+		margin: 0;
+	}
+}
     
 .entry_block_title{
-	font-weight: 800;
+	font-size: 0.9em;
+	
+	&::first-letter {
+		text-transform: capitalize;  /* 先頭文字だけ大文字化 */
+	}
+	
 }
 .entry_block_sub_title{
 		margin-top: -5px;
-		font-size: 0.9em;
+		font-size: 0.6em;
 		filter:alpha(opacity=80);
     -moz-opacity: 0.8;
     opacity: 0.8;
@@ -29,5 +66,5 @@ time.entry_block_date{
 }
 .entry_block_content{
   margin: 25px auto;
-	line-height: 2;
+	//line-height: 2;
 }

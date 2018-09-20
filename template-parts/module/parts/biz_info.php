@@ -35,7 +35,7 @@ echo '<div class="biz_info-block">';
 		echo '
 		<dl class="biz_info-holiday">
 			<dt class="inline-block">定休日</dt>
-			<dd class="inline-block">'.apply_filters( 'the_content', $theme_opt['base']['biz_holiday'] ).'</dd>
+			<dd class="inline-block">'.wpautop($theme_opt['base']['biz_holiday']).'</dd>
 		</dl>
 		';
 	}

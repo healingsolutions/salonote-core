@@ -14,6 +14,7 @@ $page_info = get_post_meta($post->ID,'page_info',true);
 $exclude_list = !empty( $page_info['exclude_list'] ) ? intval( $page_info['exclude_list']) : null ;
 if( $exclude_list !== 1){
 
+
 ?>
 
 
@@ -33,16 +34,21 @@ if(
 ){
 	echo ' has_post_writer';
 }
+if(
+	!empty($post_type_set['list_position_excerpt'])
+){
+	echo ' excertp_position-'.$post_type_set['list_position_excerpt'];
+}
 ?>">
 <?php
 												 
 	if(
 		!empty( $post_type_set ) &&
-		in_array('display_post_writer',$post_type_set)
+		in_array('display_list_writer',$post_type_set)
 	){
 		$auther_ID = get_the_author_meta('ID');
 		if( get_avatar($auther_ID, 80, true) ){
-				$auther_image = get_avatar( $auther_ID, 80, false, get_the_title() .'の執筆者-' .get_the_author_meta('display_name') );
+				$auther_image = get_avatar( $auther_ID, 48, false, get_the_title() .'の執筆者-' .get_the_author_meta('display_name') );
 				$auther_url 	= get_author_posts_url( $auther_ID);
 		}
 		if( isset($auther_image) ){

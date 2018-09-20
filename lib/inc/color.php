@@ -22,7 +22,7 @@ $color_customize_array = array(
 
 
   'navbar_bkg' => array(
-    'target'   => '.navbar-block, .sp-navbar-unit , ul.sub-menu, .pagination > *, .list-icon li::before, .list-taxonomy-block span a, .label-block, .sp_display_nav-container',
+    'target'   => '.navbar-block, .sp-navbar-unit ,header ul.sub-menu, .pagination > *, .list-icon li::before, .list-taxonomy-block span a, .label-block, .sp_display_nav-container',
     'element'  => 'background-color',
     'default'  => '#333333',
     'label_jp' => __('nav background-color','salonote-essence'),
@@ -110,7 +110,7 @@ $color_customize_array = array(
   ),
 	
 	'list_icon_color' => array(
-    'target'   => 'ul.list-icon li::before, ol.list-numbering>li:before, ol.list-flow>li:before',
+    'target'   => 'ul.list-icon li::before, ol.list-numbering>li:before, ol.list-flow>li:before, ol.list-root>li:before, dl.question-dl dt::before',
     'element'  => 'background-color',
     'default'  => null,
     'label_jp' => __('list icon color','salonote-essence'),
@@ -172,7 +172,7 @@ $color_customize_array = array(
 
 
   'grid' => array(
-    'target'   => '.grid-inner',
+    'target'   => '.grid-inner, .grid-type-group .list_item_block > a',
     'element'  => 'background-color',
     'default'  => null,
     'label_jp' => __('grid background-color','salonote-essence'),

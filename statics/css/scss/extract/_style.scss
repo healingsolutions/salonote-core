@@ -1,0 +1,76 @@
+/* CSS Document */
+body.single-style{
+
+	@media screen and (min-width: 769px) {
+		.style_gallery_wrap{
+			display: none;
+		}
+	}
+	@media screen and (max-width: 768px) {
+   
+		.style_gallery_wrap{
+			display: flex;
+			flex-wrap: wrap;
+			margin-bottom: 5em;
+
+			.style_gallery_item{
+				width: 25%;
+				img{
+					width: 100%;
+					height: auto;
+					padding: 5px;
+				}
+			}
+		}
+	}
+
+	.style_stylist-image{
+		text-align: center;
+		img{
+			border-radius: 50%;
+		}
+	}
+
+
+
+	.figure-text-inner p.figure-text-inner-excerpt {
+		position: relative;
+		display: inline-block;
+		margin: 1.5em 0;
+		padding: 7px 10px;
+		min-width: 120px;
+		max-width: 100%;
+		font-size: 16px;
+		background-color: #EBE1E1;
+		border-radius: 0.6em;
+
+		&::before{
+			content: "";
+			position: absolute;
+			top: 100%;
+			left: 50%;
+			margin-left: -15px;
+			border: 15px solid transparent;
+			border-top: 15px solid #EBE1E1;
+		}
+	}
+	
+	
+	.style_styleinfo-block{
+		dl{
+			dt{
+				display: inline-block;
+			}
+			dd{
+				display: inline-block;
+				clear: both;
+			}
+		}
+	}
+	
+	
+	#keyv-figure .figure-text{
+		height: auto;
+	}
+
+}
