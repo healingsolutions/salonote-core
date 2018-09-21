@@ -354,14 +354,14 @@ jQuery(function($){
 			var parent_width = $(this).width();
 			$("ul.sub-menu",this).css('min-width',parent_width+'px');
 
-			var size = $("ul.sub-menu",this).children('li').length;
+
 			//$(this).addClass( "sub-li-num-"+size );
 			
 			$(this).children('ul.sub-menu').css("max-height","0");
 
 			$(this).on({
 				'mouseenter': function() {
-					$(this).children('ul.sub-menu').css("max-height",(size*150)+"%");
+					$(this).children('ul.sub-menu').css("max-height","40vh");
 				},
 				'mouseleave': function() {
 					$(this).children('ul.sub-menu').css("max-height","0");
@@ -714,6 +714,12 @@ jQuery(function($) {
 			});
 			
 		}//if
+	
+	
+	//nav
+	$(document).ready(function(){
+		$('#header_nav.navbar-block ul.menu').css('overflow','visible');
+  });
 		
 		//})
 	});

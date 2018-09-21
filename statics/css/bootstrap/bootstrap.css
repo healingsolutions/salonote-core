@@ -440,7 +440,7 @@ pre {
   @media (min-width: 576px) {
     .container {
       max-width: 540px; } }
-  @media (min-width: 769px) {
+  @media (min-width: 768px) {
     .container {
       max-width: 720px; } }
   @media (min-width: 992px) {
@@ -758,7 +758,7 @@ pre {
 
   .offset-sm-11 {
     margin-left: 91.6666666667%; } }
-@media (min-width: 769px) {
+@media (min-width: 768px) {
   .col-md {
     flex-basis: 0;
     flex-grow: 1;
@@ -2810,7 +2810,7 @@ tbody.collapse.show {
   .navbar-expand-md > .container-fluid {
     padding-right: 0;
     padding-left: 0; } }
-@media (min-width: 769px) {
+@media (min-width: 768px) {
   .navbar-expand-md {
     flex-flow: row nowrap;
     justify-content: flex-start; }

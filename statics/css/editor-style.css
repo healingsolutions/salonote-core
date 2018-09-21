@@ -1434,10 +1434,11 @@ span.line_marker {
   .bdr-block {
     display: inline-block;
     margin: 10px auto;
-    padding: 10px 35px;
+    padding: 3em;
     border: 4px solid #FFFFFF;
     background-color: rgba(255, 255, 255, 0.8);
     box-shadow: 0 0 7px #CCCCCC;
+    text-shadow: none;
     color: initial; }
 
   .vertical-middle > div {

@@ -18,6 +18,11 @@
 		.staff_profile_values{
 			background-color: white;
 			line-height: 2;
+			
+				th{
+					word-break: keep-all;
+				}
+
 		}
 		
 	}

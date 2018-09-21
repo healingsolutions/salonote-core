@@ -29,7 +29,12 @@ function add_subTitle(){
 			$post_type_set  = !empty($theme_opt['post_type'][$post_type_name]) ? $theme_opt['post_type'][$post_type_name] : null ;
 
 			if( !empty($post_type_set) && in_array('display_entry_sub_title',$post_type_set) ){
+				
+				if( $post_type_name === 'staff' ){
+					add_meta_box('subTitle', '肩書き', 'insert_subTitle', $post_type_name, 'normal', 'high');
+				}else{
 					add_meta_box('subTitle', 'サブタイトル', 'insert_subTitle', $post_type_name, 'normal', 'high');
+				}
 			}
     }
 }

@@ -1,6 +1,8 @@
 <?php
+global $list_type;
 
-echo '<div class="shop_menu_block_id shop_menu_block list-view">';
+
+echo '<div class="shop_menu_block_id shop_menu_block '.$list_type.'-view">';
 foreach( $shop_menu_arr as $key => $item ){
 	
 	if( !empty($search) ){

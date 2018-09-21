@@ -94,9 +94,13 @@ echo '<div class="staff_profile_block col-12'. (has_post_thumbnail() ? ' col-md-
 $staff_profile_value = get_post_meta($post->ID,'staff_profile',true);
 if( $staff_profile_value ){
 	
-	$staff_profile_arr = array(
+  $staff_profile_arr = array(
+		'kana_name'			=> __('ふりがな','salonote-essence'),
+		'catch_copy'		=> __('キャッチコピー','salonote-essence'),
+		'nickname'			=> __('ニックネーム','salonote-essence'),
     'skill'					=> __('得意なスタイル','salonote-essence'),
     'birthday'			=> __('生年月日','salonote-essence'),
+		'birthplace'		=> __('出身地','salonote-essence'),
 		'blad'					=> __('血液型','salonote-essence'),
     'hobby'					=> __('趣味','salonote-essence'),
 		'dream'					=> __('夢','salonote-essence'),
@@ -105,11 +109,11 @@ if( $staff_profile_value ){
 		'favorit_words'	=> __('好きな言葉','salonote-essence'),
 		'reason'				=> __('美容師になったきっかけ','salonote-essence'),
     'workday'				=> __('出勤','salonote-essence'),
+		'comment'				=> __('一言コメント','salonote-essence'),
     'blog'					=> __('ブログ','salonote-essence'),
     'twitter'				=> __('Twitter','salonote-essence'),
 		'facebook'			=> __('Facebook','salonote-essence'),
 		'instagram'			=> __('Instagram','salonote-essence'),
-		
   );
 
 	echo '

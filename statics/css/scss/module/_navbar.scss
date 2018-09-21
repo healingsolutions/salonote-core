@@ -35,6 +35,7 @@
       padding: 0;
       display: table;
       min-height: 30px;
+			overflow: hidden;
 
       > li{
         list-style: none;
@@ -359,7 +360,9 @@
           content: "\f502";
           font-family: "dashicons";
           position: absolute;
-          right: 15px;
+          right: 0px;
+					padding: 0 1em;
+					display: block;
           top: 0;
         }
         
