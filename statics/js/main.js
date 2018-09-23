@@ -20,6 +20,11 @@ jQuery(document).ready(function($){
 	if($('body.use_content_fade').length ){
 		//$('body.use_content_fade').animate({ scrollTop: 0 }, '1');
 	}
+	
+	if($('#super-top-nav').length ){
+		$('.header_logo-block').insertBefore('.super-top-container');
+	}
+	
 
 	
 	
@@ -207,7 +212,7 @@ jQuery(document).ready(function($){
 
 
 	$( '.cover-image' ).each(function(){
-		var cvi_height = $(this).offsetTop();
+		var cvi_height = $(this).offset().top;
 		//console.log(cvi_height);
 	})
 
@@ -404,6 +409,21 @@ jQuery(document).ready(function($){
 	$('#header_nav.navbar-block ul.menu').css('overflow','visible');
 	
 	
+	//sp_nav	
+	var ua = navigator.userAgent;
+	if(/iPhone|iPad|iPod|Android/.test(ua)) {
+		//$( '.nav-item:has(ul)' ).doubleTapToGo();
+
+		if($('.tab-nav-unit ul.sub-menu').length ){
+			$('.tab-nav-unit li.menu-item-has-children').each(function(){
+				$(this).removeClass('menu-item-has-children');
+				$(this).find('.sub-menu').remove();
+			})
+		}
+		
+	}
+
+	
 
 });//async
 
@@ -417,7 +437,10 @@ jQuery(document).ready(function($){
 //load
 jQuery(window).on('load', function() {
 	
-	
+	if($('.tab-nav-unit > ul > li.current').length ){
+		var tab_current_left = $('.tab-nav-unit > ul > li.current').offset().left;
+		$(".tab-nav-unit").animate({scrollLeft: (tab_current_left + 10) }, 500, 'swing');
+	}
 	
 	//scroll event ===============================
 	var h = window.innerHeight ? window.innerHeight: $(window).height();
@@ -722,3 +745,53 @@ $(window).on('orientationchange', function(){
 });
 
 // ^ resize events =================================================
+
+
+
+
+
+/*
+	By Osvaldas Valutis, www.osvaldas.info
+	Available for use under the MIT License
+*/
+
+
+
+;(function( $, window, document, undefined )
+{
+	$.fn.doubleTapToGo = function( params )
+	{
+		if( !( 'ontouchstart' in window ) &&
+			!navigator.msMaxTouchPoints &&
+			!navigator.userAgent.toLowerCase().match( /windows phone os 7/i ) ) return false;
+
+		this.each( function()
+		{
+			var curItem = false;
+
+			$( this ).on( 'click', function( e )
+			{
+				var item = $( this );
+				if( item[ 0 ] != curItem[ 0 ] )
+				{
+					e.preventDefault();
+					curItem = item;
+				}
+			});
+
+			$( document ).on( 'click touchstart MSPointerDown', function( e )
+			{
+				var resetItem = true,
+					parents	  = $( e.target ).parents();
+
+				for( var i = 0; i < parents.length; i++ )
+					if( parents[ i ] == curItem[ 0 ] )
+						resetItem = false;
+
+				if( resetItem )
+					curItem = false;
+			});
+		});
+		return this;
+	};
+})( jQuery, window, document );

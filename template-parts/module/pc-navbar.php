@@ -10,12 +10,14 @@ if( $_font_width > 1.5 ){
 }
 
 $_super_view = ' nav-super_view';
+$_nav_class = has_nav_menu('Header') ? '-has_top_nav' : '' ;
+
 //$_super_view = '';
 
 echo '<nav id="header_nav" class="navbar-block">';
 
 
-if( !wp_is_mobile() ){
+
 	echo '<div class="header_logo-block onlyPC';
 	if( !empty( $theme_opt['base']['description'] ) && in_array('header_h1_txt',$theme_opt['base'] )){
 		echo ' has_excerpt';
@@ -38,7 +40,7 @@ if( !wp_is_mobile() ){
 	}
 
   echo '</a></div>';
-}
+
 
 
 
@@ -50,7 +52,7 @@ if( !empty($theme_opt['base']['header_type']) && $theme_opt['base']['header_type
   if (has_nav_menu('Header')) {
     wp_nav_menu( array(
       'theme_location' => 'Header',
-      'container_class' => 'menu-gnav-container'.$_super_view,
+      'container_class' => 'menu-gnav-container'.$_nav_class.$_super_view,
 			
       'fallback_cb' => 'nav_essence_walker_super_view::fallback',
       'walker' => new nav_essence_walker_super_view()

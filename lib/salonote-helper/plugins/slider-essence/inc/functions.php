@@ -232,7 +232,7 @@ function slider_essence(){
 		if ($value === reset($sliders)) {
 			echo '<div id="slider-essence';
 			if(strpos($thumb_src[0],'mp4') !== false){
-				echo '-none_slick';
+				//echo '-none_slick';
 			}
 			echo '" class="slider-wrap main-content-wrap">';
 			echo '<div class="slick-block-essence">';

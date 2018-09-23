@@ -331,6 +331,18 @@
 	footer.site-footer-block a.footer_for_top{
 		font-size: .7em;
 	}
+	
+	
+	.tab-nav-unit{
+		font-size: 80%;
+		overflow-x: scroll;
+		-webkit-overflow-scrolling: touch;
+		overflow-scrolling: touch;
+		
+		> ul{
+			right: 0;
+		}
+	}
 
   
 }//@media screen and (max-width: 768px)

@@ -67,9 +67,9 @@ function essence_head_enqueue() {
   //wp_enqueue_style('yakuhanjp', '//cdn.jsdelivr.net/npm/yakuhanjp@2.0.0/dist/css/yakuhanjp.min.css', array(), '2.0.0');
 	if(is_user_logged_in()){
 		//$_salonote_ver = time();
-		$_salonote_ver = '1.0.0.18';
+		$_salonote_ver = '1.0.0.20';
 	}else{
-		$_salonote_ver = '1.0.0.18';
+		$_salonote_ver = '1.0.0.20';
 	}
 	wp_enqueue_style('essence', get_template_directory_uri().'/style-min.css', array(), $_salonote_ver);
 	wp_enqueue_script('essence', get_template_directory_uri().'/statics/js/main-min.js', array(), $_salonote_ver ,true);
@@ -228,11 +228,12 @@ add_post_type_support( 'page', 'excerpt' );
 /*-------------------------------------------*/
 /*	register_nav_menus
 /*-------------------------------------------*/
-register_nav_menus( array( 'Header' => __('Header','salonote-essence'), ) );
-register_nav_menus( array( 'HeaderBottom' => __('Header Bottom','salonote-essence'), ) );
-register_nav_menus( array( 'FooterNavi' => __('Footer Top','salonote-essence'), ) );
-register_nav_menus( array( 'FooterSiteMap' => __('Footer SiteMap','salonote-essence'), ) );
-register_nav_menus( array( 'sp_display_nav' => __('SmartPhone Display Navi','salonote-essence'), ) );
+register_nav_menus( array( 'Top' 							=> __('Top','salonote-essence'), ) );
+register_nav_menus( array( 'Header'					 	=> __('Header','salonote-essence'), ) );
+register_nav_menus( array( 'HeaderBottom' 		=> __('Header Bottom','salonote-essence'), ) );
+register_nav_menus( array( 'FooterNavi' 			=> __('Footer Top','salonote-essence'), ) );
+register_nav_menus( array( 'FooterSiteMap' 		=> __('Footer SiteMap','salonote-essence'), ) );
+register_nav_menus( array( 'sp_display_nav' 	=> __('SmartPhone Display Navi','salonote-essence'), ) );
 
 require_once( get_template_directory(). '/lib/inc/color.php' );
   
@@ -250,6 +251,7 @@ require( get_template_directory(). '/lib/customizer/theme-options.php' );
 /*	nav walker 
 /*-------------------------------------------*/
 require( get_template_directory(). '/lib/walker/gnav_essence_walker.php' );
+require( get_template_directory(). '/lib/walker/gnav_essence_walker-super-top.php' );
 require( get_template_directory(). '/lib/walker/gnav_essence_walker-super-view.php' );
 
 /*-------------------------------------------*/

@@ -6,6 +6,7 @@ global $post_type_set;
 global $page_info;
 global $post_type_name;
 
+$this_post_id = $post->ID;
 
 if( is_child() ){
 	$parent_id = $post_id = get_top_parent_page_id($post->ID);
@@ -91,11 +92,23 @@ if($query->have_posts()){
 	echo '</ul>';
 	
 	
+	
+	
+	echo '</div>';
+	
+	
+	
 	//if has child
 	if( !empty($post_ancestors) && $post_ancestors[0] !== $parent_id ){
-		$brother_query = new WP_Query(array('post_parent' => $post_ancestors[0], 'post_type' => 'any'));
+		$child_id = $post_ancestors[0];
+	}elseif( has_children($post_id) && !empty($post_ancestors) ){
+		$child_id = $this_post_id;
+	}
+	
+	if( !empty($child_id)){
+		$brother_query = new WP_Query(array('post_parent' => $child_id, 'post_type' => 'any'));
 		if($brother_query->have_posts()){
-			echo '<ul class="tab-nav-child inner-tab-nav">';
+			echo '<div class="tab-nav-child"><ul class="inner-tab-nav menu">';
 			while($brother_query->have_posts()): $brother_query->the_post();
 			echo '<li class="nav-item label-block';
 			if( get_the_ID() === $post_id ) echo ' current' ;
@@ -103,11 +116,11 @@ if($query->have_posts()){
 						<a class="nav-link" href="'.get_the_permalink().'">'.get_the_title().'</a>
 						</li>';
 			endwhile;
-			echo '</ul>';
+			echo '</ul></div>';
 		}
 	}
 	
-	echo '</div>';
+	
 };
 
 

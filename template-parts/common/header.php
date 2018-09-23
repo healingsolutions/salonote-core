@@ -18,6 +18,10 @@ if(!function_exists('dynamic_sidebar') || !dynamic_sidebar('header_top_widgets')
 	//header_top_widgets
 endif;
 
+
+
+
+
 ?>
 <header id="header" class="site-header-block">
   <?php
@@ -25,6 +29,19 @@ endif;
     if ( current_user_can( 'administrator' ) && $user_setting['display_shortcode'] ) { echo '<span class="do_action">do_action: [essence_before_header]</span>';}
     do_action( 'essence_before_header' );
     // ^action =============================
+	
+	
+		if (has_nav_menu('Top')) {
+			echo '<div id="super-top-nav" class="super-top-block">';
+			wp_nav_menu( array(
+				'theme_location' => 'Top',
+				'container_class' => 'super-top-container',
+				'depth' => 0,
+				'fallback_cb' => 'nav_essence_walker_super_top::fallback',
+				'walker' => new nav_essence_walker_super_top()
+			));
+			echo '</div>';
+		}
   
   
     get_template_part('template-parts/module/pc-navbar');
