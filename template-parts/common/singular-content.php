@@ -82,6 +82,7 @@ echo '<main class="'.implode(' ',$main_content).'">';
     //dynamic_sidebar( $post_type_name . 'widgets');
   endif;
 
+
 	echo !empty(get_the_content() ) ? '<article>' : '';
   if(have_posts()): while(have_posts()): the_post();
     get_template_part('template-parts/module/single-content', $post_type_name);

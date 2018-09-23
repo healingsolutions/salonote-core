@@ -258,24 +258,6 @@
   }
 	
 	
-	
-#header_nav{
-	
-	-webkit-transition: top 0.3s;
-	-moz-transition: top 0.3s;
-	-o-transition: top 0.3s;
-	transition: top  0.3s;
-	
-	
-	&.scrolling{
-		top: -130px;
-		-webkit-transition: top 0.7s;
-		-moz-transition: top 0.7s;
-		-o-transition: top 0.7s;
-		transition: top  0.7s;
-	}
-}
-
 
 
 	ul.footer-sitemap > li{

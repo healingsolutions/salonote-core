@@ -127,7 +127,7 @@ $color_customize_array = array(
 
 
   'band_bkg' => array(
-    'target'   => '.band_bkg',
+    'target'   => '.band_bkg, .is_active-nav',
     'element'  => 'background-color',
     'default'  => null,
     'label_jp' => __('band-block background-color','salonote-essence'),

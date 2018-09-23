@@ -59,6 +59,7 @@ class SALONOTE_HELPER__Class {
 		if( !empty( $theme_opt['base'] ) && in_array('enable_staff',$theme_opt['base'] ) ){
 			require_once ( SALONOTE_HELPER__PLUGIN_PATH. '/lib/post_type/staff.php' );
 			require_once ( SALONOTE_HELPER__PLUGIN_PATH. '/lib/custom_fields/staff/staff_profile.php' );
+			require_once ( SALONOTE_HELPER__PLUGIN_PATH. '/lib/custom_fields/staff/shop_taxonomy.php' );
 		}
 		
 		// user style post_type =======================================

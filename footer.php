@@ -169,6 +169,6 @@ if($theme_opt['base']['google_map'] && !$hide_footer ){
 	if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
 	else window.addEventListener('load', loadDeferredStyles);
 </script>
-
+<div id="content-loader"><div class="loader"></div></div>
 </body>
 </html>

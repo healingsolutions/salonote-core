@@ -9,6 +9,11 @@ $hide_header = isset($hide_header) ? $hide_header : false;
 if( is_singular() ){
 	$page_info	= get_post_meta($post->ID,'page_info',true);
 	$page_bkg		= get_post_meta($post->ID,'page_bkg_upload_images', true );
+	
+	if( is_child() ){
+		$parent_id 		= get_top_parent_page_id($post->ID);
+		$parent_info 	= get_post_meta($parent_id, 'page_info',true);
+	}
 }
 
 ?><!DOCTYPE html>
@@ -105,5 +110,21 @@ if( !empty($theme_opt['extention']['head_tag_uesr']) ){
 	if( !$hide_header ){
 		get_template_part('template-parts/common/header');
 		get_template_part('template-parts/module/breadcrumb');
+		
+		
+		if(
+			is_singular() &&
+			
+      (!empty($page_info['child_tab_nav']) &&
+		  $page_info['child_tab_nav'])
+			||
+			(!empty($parent_info['child_tab_nav']) &&
+		  $parent_info['child_tab_nav'])
+    ){
+			//display child pages
+			get_template_part('template-parts/module/parts/child_tab_nav');
+		}
+		
+		
 	}
 ?>

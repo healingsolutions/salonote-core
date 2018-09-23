@@ -54,12 +54,13 @@ if ( isset($_POST['slider_essence_options'])) {
 wp_nonce_field('shoptions');
 $slider_essence_opt = get_option('slider_essence_options');
 	
-$opt['place'] = !empty($slider_essence_opt['place']) ? $slider_essence_opt['place'] : '' ;
-$opt['height'] = !empty($slider_essence_opt['height']) ? $slider_essence_opt['height'] : '' ;
-$opt['sp_height'] = !empty($slider_essence_opt['sp_height']) ? $slider_essence_opt['sp_height'] : '' ;
-$opt['speed'] = !empty($slider_essence_opt['speed']) ? $slider_essence_opt['speed'] : 8 ;
-$opt['size'] = !empty($slider_essence_opt['size']) ? $slider_essence_opt['size'] : 'full';
-$opt['zoom'] = !empty($slider_essence_opt['zoom']) ? $slider_essence_opt['zoom'] : 0;
+$opt['place']				= !empty($slider_essence_opt['place'])				? $slider_essence_opt['place'] : '' ;
+$opt['height']			= !empty($slider_essence_opt['height'])				? $slider_essence_opt['height'] : '' ;
+$opt['sp_height']		= !empty($slider_essence_opt['sp_height']) 		? $slider_essence_opt['sp_height'] : '' ;
+$opt['sp_right']		= !empty($slider_essence_opt['sp_right']) 		? $slider_essence_opt['sp_right'] : 0 ;
+$opt['speed']				= !empty($slider_essence_opt['speed']) 				? $slider_essence_opt['speed'] : 8 ;
+$opt['size']				= !empty($slider_essence_opt['size']) 				? $slider_essence_opt['size'] : 'full';
+$opt['zoom']				= !empty($slider_essence_opt['zoom']) 				? $slider_essence_opt['zoom'] : 0;
 ?>
   
 <table class="form-table">
@@ -82,6 +83,11 @@ $opt['zoom'] = !empty($slider_essence_opt['zoom']) ? $slider_essence_opt['zoom']
   <td>
     <input type="text" name="slider_essence_options[sp_height]" value="<?php echo $opt['sp_height'];?>">
   </td>
+	
+	<th scope="row"><label for="sp_right">スマホでの右側比率</label></th>
+  <td>
+    <input type="number" name="slider_essence_options[sp_right]" value="<?php echo $opt['sp_right'];?>">%
+  </td>
 </tr>
 	
 <tr valign="top">
@@ -102,12 +108,13 @@ $opt['zoom'] = !empty($slider_essence_opt['zoom']) ? $slider_essence_opt['zoom']
 </tr>
 	
 <tr valign="top">
-  <th scope="row"><label for="speed">ズーム</label></th>
+  <th scope="row"><label for="zoom">ズーム</label></th>
   <td>
     <input type="checkbox" name="slider_essence_options[zoom]" value="1"<?php echo ($opt['zoom']) ? ' checked' : '' ;?>>
 		<p class="hint">スライドした時にゆっくり画像をズームさせる</p>
   </td>
 </tr>
+
 
 
 </table>

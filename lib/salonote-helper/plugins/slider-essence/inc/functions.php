@@ -60,6 +60,7 @@ function slider_essence(){
 	$opt['place'] = !empty($slider_essence_opt['place']) ? $slider_essence_opt['place'] : '#header' ;
 	$opt['height'] = !empty($slider_essence_opt['height']) ? $slider_essence_opt['height'] : '60vh' ;
 	$opt['sp_height'] = !empty($slider_essence_opt['sp_height']) ? $slider_essence_opt['sp_height'] : '' ;
+	$opt['sp_right'] = !empty($slider_essence_opt['sp_right']) ? $slider_essence_opt['sp_right'] : 0 ;
 	$opt['speed'] = !empty($slider_essence_opt['speed']) ? $slider_essence_opt['speed'] : 8 ;
 	$opt['size'] = !empty($slider_essence_opt['size']) ? $slider_essence_opt['size'] : 'large';
 	$opt['zoom'] = !empty($slider_essence_opt['zoom']) ? $slider_essence_opt['zoom'] : false;
@@ -96,7 +97,7 @@ function slider_essence(){
 	echo '
 		@media screen and (max-width: 600px) {
 				#slider-essence .slick-block-essence .slick-item img{
-					left: '. (60 - $_sp_height) * 2.1 .'%;
+					left: '. ((60 - $_sp_height) * 2.1 - $opt['sp_right']) .'%;
 				}
 		}';
 	}
@@ -272,15 +273,15 @@ function slider_essence(){
 			echo '<div class="slick-text"><div class="slick-text-inner">'.apply_filters('the_content', do_shortcode($value['text']));
 			
 			if(!empty($value['textarea'])){
-				echo '<div class="slick-textarea bkg-white-text">'.apply_filters('the_content', do_shortcode($value['textarea'])).'</div>';
+				echo '<div class="slick-textarea">'.apply_filters('the_content', do_shortcode($value['textarea'])).'</div>';
 			}
 			
 			echo '</div></div>';
 		}else{
-			echo '<div class="slick-text"><div class="slick-text-inner"><h2 class="bkg-white-text">'.nl2br(esc_html($value['text'])).'</h2>';
+			echo '<div class="slick-text"><div class="slick-text-inner"><h2>'.nl2br(esc_html($value['text'])).'</h2>';
 			
 			if(!empty($value['textarea'])){
-				echo '<div class="slick-textarea bkg-white-text">'.apply_filters('the_content', do_shortcode($value['textarea'])).'</div>';
+				echo '<div class="slick-textarea">'.apply_filters('the_content', do_shortcode($value['textarea'])).'</div>';
 			}
 			
 			echo '</div></div>';

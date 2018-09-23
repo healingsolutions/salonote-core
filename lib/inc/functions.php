@@ -208,6 +208,7 @@ function essence_class_names( $classes ) {
 		$classes = array_merge($classes,$_body_class);
 	}
 	
+	$classes[] = 'no-scroll';
 	
   return $classes;
 }
@@ -364,6 +365,60 @@ function get_paged_nav_title( $post =null ){
 	}
 	
 	return;
+}
+
+
+
+
+//===============================================
+//is_child
+function is_child( $slug = "" ) {
+  if(is_singular()):
+    global $post;
+    if ( $post->post_parent ) {
+      $post_data = get_post($post->post_parent);
+      if($slug != "") {
+        if(is_array($slug)) {
+          for($i = 0 ; $i <= count($slug); $i++) {
+            if($slug[$i] == $post_data->post_name || $slug[$i] == $post_data->ID || $slug[$i] == $post_data->post_title) {
+              return true;
+            }
+          }
+        } elseif($slug == $post_data->post_name || $slug == $post_data->ID || $slug == $post_data->post_title) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        return true;
+      }
+    }else {
+      return false;
+    }
+  endif;
+}
+
+
+//===============================================
+//has_children
+function has_children($post_ID = null) {
+    if ($post_ID === null) {
+        global $post;
+        $post_ID = $post->ID;
+    }
+    $query = new WP_Query(array('post_parent' => $post_ID, 'post_type' => 'any'));
+
+    return $query->have_posts();
+}
+
+//===============================================
+//toplevel_page
+function get_top_parent_page_id($post_ID = null) {
+	
+	if( !$post_ID ) return;
+
+	$post_ancestors = array_reverse( get_post_ancestors($post_ID) );	
+	return $post_ancestors[0];
 }
 
 

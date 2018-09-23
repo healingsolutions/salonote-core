@@ -110,3 +110,21 @@ body.use_content_fade{
 					transition: top 0.7s ease , opacity 0.6s ease;
 	}
 }
+
+
+#content-loader{
+	position: fixed;
+	height: 100%;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-color: white;
+	z-index: 10000;
+	
+	display: flex; /* 子要素をflexboxで揃える */
+	flex-direction: column; /* 子要素をflexboxにより縦方向に揃える */
+	justify-content: center; /* 子要素をflexboxにより中央に配置する */
+	align-items: center;  /* 子要素をflexboxにより中央に配置する */
+
+}

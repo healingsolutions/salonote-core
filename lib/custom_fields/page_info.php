@@ -25,6 +25,7 @@ function insert_page_info(){
     'none_sidebar' 			=> __('Hide Sidebar','salonote-essence'),
 		'has_sidebar' 			=> __('Show Sidebar','salonote-essence'),
     'single_child_unit' => __('Show Children','salonote-essence'),
+		'child_tab_nav' 		=> __('Tab navigation','salonote-essence'),
     'exclude_list' 			=> __('Hide in list','salonote-essence'),
     'disable_title' 		=> __('HIde Title','salonote-essence'),
     'super_container' 	=> __('Small container','salonote-essence'),

@@ -18,21 +18,22 @@
 
 //headline下線
 .headline_bdr-left{
-    position: relative;
-    //font-size: 34px;
-    padding-bottom: 7px;
-    border-bottom: 4px solid #ccc;
+	position: relative;
+	//font-size: 34px;
+	padding-bottom: 7px;
+	border-bottom: 4px solid #ccc;
+	margin-bottom: 2em;
   
-    &::after {
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      z-index: 2;
-      content: '';
-      width: 20%;
-      height: 4px;
-      //background-color: #3498db;
-    }
+	&::after {
+		position: absolute;
+		bottom: -4px;
+		left: 0;
+		z-index: 2;
+		content: '';
+		width: 20%;
+		height: 4px;
+		//background-color: #3498db;
+	}
 }
 
 

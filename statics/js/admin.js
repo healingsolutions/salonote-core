@@ -23,6 +23,8 @@
 
 
 
+
+
 jQuery(document).ready( function($) {
     function media_upload(button_class) {
         var _custom_media = true,
@@ -50,3 +52,5 @@ jQuery(document).ready( function($) {
     }
     media_upload('.custom_media_button.button');
 });
+
+

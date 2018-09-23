@@ -17,7 +17,6 @@ global $hide_footer;
 $page_info = get_post_meta($post->ID,'page_info',true);
 $page_info['none_sidebar'] = true;
 
-
 $landing_page_info = get_post_meta($post->ID,'landing_page_info',true);
 
 
@@ -111,7 +110,6 @@ echo '<div class="'.$row_class.'">';
 
   // main =======================
   echo '<div class="'.implode(' ',$main_content).'">';
-	
 
 	$page_info['disable_title'] = true;
 
