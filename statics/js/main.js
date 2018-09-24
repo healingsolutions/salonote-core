@@ -23,9 +23,25 @@ jQuery(document).ready(function($){
 	
 	if($('#super-top-nav').length ){
 		$('.header_logo-block').insertBefore('.super-top-container');
+		
+		if( $(window).width() < 768 ){
+			$('.super-top-container').insertBefore('.sp-navbar-unit .navbar-block');
+		}
 	}
 	
+	if($('#replace-target').length ){
+		$('.replace-item img').each(function(){
 
+			$(this).on('click',function(){
+				var replace_item = $(this).attr('data-src');
+				$('#replace-target img').fadeOut('fast',function(){
+					($('figure#replace-target img').attr('src',replace_item)).fadeIn('fast');
+				});
+				return false;
+				
+			})
+		})
+	}
 	
 	
 	// current list ====================

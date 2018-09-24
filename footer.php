@@ -157,6 +157,23 @@ if($theme_opt['base']['google_map'] && !$hide_footer ){
 	<link rel="stylesheet" id="colorbox-css" href="<?php echo get_template_directory_uri();?>/statics/js/colorbox/colorbox.css?ver=4.9.5" type="text/css" media="all" />
 </noscript>
 <script>
+	jQuery(document).ready(function($){
+		if($('.carousel-type-group').length ){
+		// slick box ====================================================
+			$('.carousel-type-group').slick({
+				infinite: true,
+				dots: false,
+				arrows: false,
+				slidesToShow: 4,
+				autoplay: true,
+				autoplaySpeed: 0,
+				cssEase: 'linear',
+				speed: 8500,
+			});
+		}
+	});
+	
+	
 	var loadDeferredStyles = function() {
 		var addStylesNode = document.getElementById("deferred-styles");
 		var replacement = document.createElement("div");

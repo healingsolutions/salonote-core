@@ -111,3 +111,24 @@
 }
 
 
+
+
+.sidebar_inner__content{
+	.widget_title{
+		border-bottom: 1px dotted #CCCCCC;
+		font-weight: 700;
+		font-size: 0.85em;
+		//color: #666666;
+		margin-bottom: 15px;
+	}
+}
+
+.front_page-posttype-content{
+	.widget_title{
+		margin-top: 2em;
+		margin-bottom: 0.3em;
+		text-align: center;
+		font-size: 1.6em;
+		font-weight: normal;
+	}
+}

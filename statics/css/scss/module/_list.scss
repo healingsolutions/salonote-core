@@ -338,6 +338,77 @@
 
 
 
+.carousel-type-group{
+	
+	margin-left: -1.35em;
+	margin-right: -1.35em;
+	
+	section{
+		padding: 1em;
+		.list_block_excerpt{
+			font-size: .75em;
+		}
+		.list_block_title{
+			font-size: 1.2em;
+		}
+		
+		.list_block_figure{
+			position: relative;
+			&::after{
+				content: '';
+				display: block;
+				margin: -1px;
+				border: 1px solid white;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				z-index: 10;
+				@include _transition_( margin,0.3 );
+			}
+		}
+		
+		&:hover{
+			.list_block_figure{
+				&::after{
+					margin: 5px;
+					@include _transition_( margin,0.3 );
+				}
+			}
+		}
+	}//section
+	
+	
+	.slick-arrow{
+		z-index: 10;
+		top: 35%;
+		height: 3em;
+		width: 3em;
+		
+		&::before{
+			position: relative;
+			font-size: 50px;
+			font-family: 'dashicons';
+		}
+	}
+	
+	.slick-prev {
+		left: 25px;
+		&::before{
+			content: "\f341";
+		}
+	}
+	.slick-next {
+		right: 65px;
+		&::before{
+			content: "\f345";
+		}
+	}
+}
+
+
+
 .list-icon{
 	padding-left: 10px;
 	display: table-cell;

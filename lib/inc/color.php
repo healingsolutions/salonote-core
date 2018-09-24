@@ -64,6 +64,14 @@ $color_customize_array = array(
     'label_jp' => __('header background-color','salonote-essence'),
     'section'  => 'colors',
   ),
+	
+	'header_logo' => array(
+    'target'   => '.header_logo-block a, .header_logo-block',
+    'element'  => 'color',
+    'default'  => null,
+    'label_jp' => __('Header Logo color','salonote-essence'),
+    'section'  => 'colors',
+  ),
 
 
   'footer_bkg' => array(
@@ -71,6 +79,14 @@ $color_customize_array = array(
     'element'  => 'background-color',
     'default'  => null,
     'label_jp' => __('footer background-color','salonote-essence'),
+    'section'  => 'colors',
+  ),
+	
+	'footer_logo' => array(
+    'target'   => '.footer_logo-block a, .footer_logo-block',
+    'element'  => 'color',
+    'default'  => null,
+    'label_jp' => __('Footer Logo color','salonote-essence'),
     'section'  => 'colors',
   ),
 

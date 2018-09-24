@@ -557,6 +557,56 @@ hr {
     .grid-type-group .list_item_block .list-taxonomy-block span a {
       font-size: 0.7em; }
 
+.carousel-type-group {
+  margin-left: -1.35em;
+  margin-right: -1.35em; }
+  .carousel-type-group section {
+    padding: 1em; }
+    .carousel-type-group section .list_block_excerpt {
+      font-size: .75em; }
+    .carousel-type-group section .list_block_title {
+      font-size: 1.2em; }
+    .carousel-type-group section .list_block_figure {
+      position: relative; }
+      .carousel-type-group section .list_block_figure::after {
+        content: '';
+        display: block;
+        margin: -1px;
+        border: 1px solid white;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 10;
+        -webkit-transition: margin 0.3s ease;
+        -moz-transition: margin 0.3s ease;
+        -o-transition: margin 0.3s ease;
+        transition: margin 0.3s ease; }
+    .carousel-type-group section:hover .list_block_figure::after {
+      margin: 5px;
+      -webkit-transition: margin 0.3s ease;
+      -moz-transition: margin 0.3s ease;
+      -o-transition: margin 0.3s ease;
+      transition: margin 0.3s ease; }
+  .carousel-type-group .slick-arrow {
+    z-index: 10;
+    top: 35%;
+    height: 3em;
+    width: 3em; }
+    .carousel-type-group .slick-arrow::before {
+      position: relative;
+      font-size: 50px;
+      font-family: 'dashicons'; }
+  .carousel-type-group .slick-prev {
+    left: 25px; }
+    .carousel-type-group .slick-prev::before {
+      content: "\f341"; }
+  .carousel-type-group .slick-next {
+    right: 65px; }
+    .carousel-type-group .slick-next::before {
+      content: "\f345"; }
+
 .list-icon {
   padding-left: 10px;
   display: table-cell; }
@@ -1052,6 +1102,9 @@ ol.list-root {
         -moz-transition: transform 0.3s ease;
         -o-transition: transform 0.3s ease;
         transition: transform 0.3s ease; }
+
+.staff_profile_block .gallery {
+  justify-content: flex-start; }
 
 body.page-template-attachment-list .article-block section {
   margin-bottom: 5em; }
@@ -1634,12 +1687,6 @@ h6, .h6 {
     top: 5px;
     background-color: rgba(216, 207, 108, 0.5);
     border: 1px solid rgba(216, 207, 108, 0.82); }
-
-.widget_title {
-  border-bottom: 1px dotted #CCCCCC;
-  font-weight: 700;
-  font-size: 0.85em;
-  margin-bottom: 15px; }
 
 .dash_btm_headline {
   border-bottom-style: dashed;

@@ -220,4 +220,26 @@
 		font-size: 1.25em;
 	}
 	
+	
+	
+	#super-top-nav{
+		height: 4em;
+	}
+	
+	
+	.scroll_down{
+		#header.hide_header{
+			#super-top-nav{
+				.super-top-container{
+					> ul > li.btn-item{
+						display: block;
+					}
+				}
+			}
+		}	
+	} 
+	
+	
+	
+	
 }

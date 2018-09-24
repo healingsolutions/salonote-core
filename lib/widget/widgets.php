@@ -28,7 +28,7 @@ add_filter('widget_text', 'do_shortcode' );
         'description' => __('inner content','salonote-essence'),
         'before_widget' => '<div class="content_block_widget">',
         'after_widget' => '</div>',
-        'before_title' => '<div class="widget-title bdr-btm-1">',
+        'before_title' => '<div class="widget-title">',
         'after_title' => '</div>'
     ));
  
@@ -40,7 +40,7 @@ add_filter('widget_text', 'do_shortcode' );
          'description' => __('display widget in bottom of content','salonote-essence'),
          'before_widget' => '<div class="main-block-footer">',
         'after_widget' => '</div>',
-        'before_title' => '<div class="widget-title bdr-btm-1">',
+        'before_title' => '<div class="widget-title">',
         'after_title' => '</div>'
      ));
     
@@ -53,7 +53,7 @@ add_filter('widget_text', 'do_shortcode' );
 			'description' => __('display widghet in footer','salonote-essence'),
 			'before_widget' => null,
 			'after_widget' => null,
-			'before_title' => '<div class="widget-title bdr-btm-1">',
+			'before_title' => '<div class="widget-title">',
 			'after_title' => '</div>'
      ));
     
@@ -65,7 +65,7 @@ add_filter('widget_text', 'do_shortcode' );
 			'description' => __('display widghet in sidebar','salonote-essence'),
 			'before_widget' => '<div id="%1$s" class="side-block-item %2$s">',
 			'after_widget' => '</div>',
-			'before_title' => '<div class="widget-title bdr-btm-1">',
+			'before_title' => '<div class="widget-title">',
 			'after_title' => '</div>'
     ));
       
@@ -76,7 +76,7 @@ add_filter('widget_text', 'do_shortcode' );
         'description' => __('display widghet in bottom of navigation','salonote-essence'),
         'before_widget' => '<div class="front-top-before l-box">',
         'after_widget' => '</div>',
-        'before_title' => '<div class="widget-title bdr-btm-1">',
+        'before_title' => '<div class="widget-title">',
         'after_title' => '</div>'
     ));
     
@@ -124,8 +124,8 @@ add_filter('widget_text', 'do_shortcode' );
                         'description' => sprintf(__('display widget on %s common upper part','salonote-essence'),$post_type_label). $post_type_name. '_before_widgets',
                         'before_widget' => '<div class="'. $post_type_name. '_before_widgets">',
                         'after_widget' => '</div>',
-                        'before_title' => '<div class="widget-title bdr-btm-1">',
-                        'after_title' => '</div>'
+                        'before_title' => '<h2 class="widget-title">',
+                        'after_title' => '</h2>'
                     ));
 					
                     register_sidebar(array(
@@ -134,8 +134,8 @@ add_filter('widget_text', 'do_shortcode' );
                         'description' =>  sprintf(__('display widget on %s common bottom part','salonote-essence'),$post_type_label). $post_type_name. '_after_widgets',
                         'before_widget' => '<div class="'.$post_type_name. '_after_widgets mb-3">',
                         'after_widget' => '</div>',
-                        'before_title' => '<div class="widget-title bdr-btm-1">',
-                        'after_title' => '</div>'
+                        'before_title' => '<h2 class="widget-title">',
+                        'after_title' => '</h2>'
                     ));
                     
                     //ポストタイプウィジェット
@@ -143,9 +143,9 @@ add_filter('widget_text', 'do_shortcode' );
                         'name' => $post_type_label. __('Common side part','salonote-essence'),
                         'id' => $post_type_name. '_side',
                         'description' =>  sprintf(__('display widget on %s common side part','salonote-essence'),$post_type_label). $post_type_name. '_side',
-                        'before_widget' => '<div class="posttype-side mgb-50">',
+                        'before_widget' => '<div class="'.$post_type_name.'-posttype-side mgb-50">',
                         'after_widget' => '</div>',
-                        'before_title' => '<div class="widget-title bdr-btm-1">',
+                        'before_title' => '<div class="widget-title">',
                         'after_title' => '</div>'
                     ));
 					
@@ -154,10 +154,10 @@ add_filter('widget_text', 'do_shortcode' );
                         'name' => $post_type_label. __('on content bottom','salonote-essence'),
                         'id' => $post_type_name. '_after_content',
                         'description' =>  $post_type_label. sprintf(__('display widget on %s page content bottom','salonote-essence'),$post_type_label) . $post_type_name. '_after_content',
-                        'before_widget' => '<div class="posttype-content">',
+                        'before_widget' => '<div class="'.$post_type_name.'-posttype-content">',
                         'after_widget' => '</div>',
-                        'before_title' => '<div class="widget-title bdr-btm-1">',
-                        'after_title' => '</div>'
+                        'before_title' => '<h2 class="widget-title">',
+                        'after_title' => '</h2>'
                     ));
     }
      

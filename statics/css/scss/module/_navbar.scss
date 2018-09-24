@@ -206,6 +206,8 @@
         }
       }
     }
+		
+
     
   }//sp-navbar-unit
 
@@ -217,6 +219,14 @@
   }  
 }
 @media screen and (max-width: 768px) {
+	
+	
+		#menu-super-top{
+			text-align: center;
+			margin-left: auto;
+			margin-right: auto;
+			font-size: 0.75em;
+		}
   
   .sp-navbar-unit{
     display: fixed;
@@ -737,7 +747,7 @@ body.admin-bar .site-header-block{
 
 
 #super-top-nav{
-	height: 4em;
+		height: 4em;
 	
 	.header_logo-block.has_excerpt img{
 		max-height: 3em;
@@ -764,3 +774,29 @@ body.admin-bar .site-header-block{
 		}
 	}
 }
+
+
+.scroll_down{
+	#header.hide_header{
+		#super-top-nav .super-top-container{
+			z-index: 2;
+			position: fixed;
+			width: 1em;
+			right: 0;
+			top: 35vh;
+			text-align: right;
+
+			li.btn-item{
+				padding: 2em 1em;
+				-webkit-writing-mode: vertical-rl;
+				-ms-writing-mode: tb-rl;
+						writing-mode: vertical-rl;
+			}
+
+
+		}
+	}
+}
+
+
+
