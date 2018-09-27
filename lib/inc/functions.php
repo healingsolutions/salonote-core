@@ -209,6 +209,14 @@ function essence_class_names( $classes ) {
 	}
 	
 	$classes[] = 'no-scroll';
+
+	
+	if( is_singular()  ){
+		global $post;
+		$classes[] = empty(get_post_meta( $post->ID, 'es_slider_upload_images', true )) ? 'no-slider' : null ;
+	}
+	
+	
 	
   return $classes;
 }
@@ -438,7 +446,7 @@ function essence_search_form( $form ) {
 	
 	
 	$form = '
-	<div class="search-block bdr-block">
+	<div class="search-block">
 	<form role="search" method="get" id="searchform" class="searchform" action="' . home_url( '/' ) . '" >
 	
 	<div class="form-group">
@@ -446,20 +454,20 @@ function essence_search_form( $form ) {
 	</div>
 	';
 	
-	$form .= '
-	<div class="form-group">
-	<label class="inline-block" for="post_type">' . __( 'Search post type:' ,'salonote-essence') . '</label>
-	<select class="inline-block form-control" name="search_post_type">';
+	$form .= '<div class="form-group">';
+	
 	foreach($post_types as $post_type){
       $obj = get_post_type_object($post_type);
-      $form .= '<option value="'.$post_type.'"';
-			if( !empty($_GET['search_post_type']) && $_GET['search_post_type'] === $post_type ){
-				$form .= ' selected';
+
+			$form .= '<input id="'.$post_type.'-check" type="checkbox" class="form-check-input" name="search_post_type[]" value="'.$post_type.'"';
+			if( !empty($_GET['search_post_type']) && in_array('post_type',$_GET['search_post_type']) ){
+				$form .= ' checked';
 			}
-			$form .= '>'.$obj->label.'</option>';
+			$form .= '>';
+			$form .= '<label class="form-check-label" for="'.$post_type.'-check">'.$obj->label.'</label>';
+
 	}
 	$form .= '
-	</select>
 	</div>';
 	
 	$form .= '
@@ -507,3 +515,6 @@ function display_name_users_sortable_column( $columns ) {
 	return $columns;
 }
 add_filter( 'manage_users_sortable_columns', 'display_name_users_sortable_column' );
+
+
+

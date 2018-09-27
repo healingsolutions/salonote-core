@@ -139,6 +139,11 @@ $field_arr = array(
     'type' => 'checkbox',
   ),
 	
+	  'display_thumbnail' => array(
+    'label' => __('Show Thumbnail','salonote-essence'),
+    'type' => 'checkbox',
+    ),
+	
 	
   'display_grid_thumb_caption' => array(
     'label' => __('Caption','salonote-essence'),
@@ -171,6 +176,7 @@ $field_arr = array(
     'type' => 'checkbox',
   ),
 	
+	
 	'display_post_date' => array(
     'label' => __('post_date','salonote-essence'),
     'type' => 'checkbox',
@@ -201,11 +207,18 @@ $field_arr = array(
     'label' => __('Show ChildPosts in bottom','salonote-essence'),
     'type' => 'checkbox',
   ),
+	
+	'post_thumbnail' => array(
+    'label' => __('Show Thumbnail in post content','salonote-essence'),
+    'type' => 'checkbox',
+    ),
+	
   'display_index_nav' => array(
     'label' => __('Show Index Navigation','salonote-essence'),
     'type' => 'checkbox',
     'description' => __('Only if contain "headline_nav"','salonote-essence'),
   ),
+	
 	
 	'display_post_writer' => array(
     'label' => __('Writer','salonote-essence'),
@@ -228,10 +241,7 @@ $field_arr = array(
   ),
   
   //thumbnail ========================================
-  'display_thumbnail' => array(
-    'label' => __('Show Thumbnail','salonote-essence'),
-    'type' => 'checkbox',
-    ),
+
   'thumbnail_size' => array(
     'label' => __('Sizes','salonote-essence'),
     'type' => 'select',
@@ -245,10 +255,11 @@ $field_arr = array(
     'label' => __('Use First Image for Thumbnail','salonote-essence'),
     'type' => 'checkbox',
     ),
-  'post_thumbnail' => array(
-    'label' => __('Show Thumbnail in post content','salonote-essence'),
+	'side_thumbnail' => array(
+    'label' => __('Use Thumbnail for Side List ','salonote-essence'),
     'type' => 'checkbox',
     ),
+  
   'hide_thumbnail_caption' => array(
     'label' => __('Hide Gallery Caption','salonote-essence'),
     'type' => 'checkbox',
@@ -421,7 +432,7 @@ $field_arr = array(
 		$('dl.key-hide_header').before('<hr style="clear:both; width:100%; display:block;" ><h3><?php _e('Common Setting','salonote-essence'); ?></h3>');
 		$('dl.key-list_type').before('<hr style="clear:both; width:100%; display:block;" ><h3><?php _e('Archice Setting','salonote-essence'); ?></h3>');
     $('dl.key-display_entry_title').before('<hr style="clear:both; width:100%; display:block;" ><h3><?php _e('Singular Setting','salonote-essence'); ?></h3>');
-    $('dl.key-display_thumbnail').before('<hr style="clear:both; width:100%; display:block;" ><h3><?php _e('Thumbnail Setting','salonote-essence'); ?></h3>');
+    $('dl.key-thumbnail_size').before('<hr style="clear:both; width:100%; display:block;" ><h3><?php _e('Thumbnail Setting','salonote-essence'); ?></h3>');
     
     <?php
     foreach($post_types as $post_type){

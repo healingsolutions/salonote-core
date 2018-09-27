@@ -9,8 +9,8 @@ global $theme_opt;
 <div class="sp-navbar-unit">
     
     <?php
-    if( !empty(get_theme_mod( 'header_logo_url' )) )
-      $head_logo = '<img src="'.esc_url( get_theme_mod( 'header_logo_url' ) ).'" alt="'.get_bloginfo('name').'" title="'.get_bloginfo('name').'">';
+    if( !empty(get_theme_mod( 'sp_header_logo_url' )) )
+      $head_logo = '<img src="'.esc_url( get_theme_mod( 'sp_header_logo_url' ) ).'" alt="'.get_bloginfo('name').'" title="'.get_bloginfo('name').'">';
     else
       $head_logo = get_bloginfo('name');
 

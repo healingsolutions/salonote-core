@@ -6,18 +6,23 @@ global $post_type_name;
 global $post_type_tmpl;
 global $user_setting;
 
+
 if( is_tax() || is_category() ){
-	
 	if( is_tax()){
 		$taxonomy = get_query_var('taxonomy');
-		$post_type_name = get_taxonomy($taxonomy)->object_type[0];
+		
+		if(is_user_logged_in()){
+			echo '<pre>'; print_r($taxonomy); echo '</pre>';
+		}
+		$post_type_name = !empty(get_taxonomy($taxonomy)->object_type[0]) ? get_taxonomy($taxonomy)->object_type[0] : 'post';
 	}
 	if( is_category()){
 		$post_type_name = 'post';
 	}
-	
-	$post_type_set  = !empty($theme_opt['post_type'][$post_type_name]) ? $theme_opt['post_type'][$post_type_name] : null ;
 }
+
+$post_type_set  = !empty($post_type_name) ? $theme_opt['post_type'][$post_type_name] : $theme_opt['post_type']['post'];
+
 
 // =============================
 // initialize
@@ -97,6 +102,10 @@ if( is_tax() ){
 		);
 }
 
+if( is_month() ){
+	$args['year'] 		= get_query_var('year');
+	$args['monthnum'] = get_query_var('monthnum');
+}
 
 
 $query = new WP_Query( $args );
@@ -112,26 +121,44 @@ echo '<div class="'.$row_class.'">';
 
 		echo '<div class="archive-page-title-block">';
 
-			if( !empty( $post_type_set ) && in_array('display_archive_title',$post_type_set) ){
-				$obj = get_post_type_object($post_type_name);
+			if( !empty( $post_type_set ) && in_array('display_archive_title',$post_type_set)){
+				
+
+				$obj = !empty($post_type_name) ? get_post_type_object($post_type_name) :  get_post_type_object('post') ;
+				
+				
+
+				
 				echo '<div class="entry-block-title-wrap label-block '. $list_type .'-title">';
-					echo '<p class="entry_block_title nav_font">'.$obj->name.'</p>';
-					echo '<p class="entry_block_sub_title body_font">'.$obj->labels->singular_name.'</p>';
+
+					echo '<p class="entry_block_title nav_font"'. ((mb_strlen(esc_html( $obj->name )) > 6 ) ? ' style="font-size:1em;"' : '' ).'>'.strtoupper(str_replace('_',' ',esc_html( $obj->name ))).'</p>';
+				
+					echo '<p class="entry_block_sub_title body_font">'.esc_html( $obj->label ).'</p>';
+				
 				echo '</div>';
 			}
 
+
 			// ========================
 			// taxonomy
-			if (is_tax()) {
+			if (is_tax() || is_category()) {
+				
 				echo '<div class="entry_block_taxonomy_label">';
 				echo '<h1 class="taxonomy_lable">'.single_term_title('',false).'</h1>';
-				echo term_description();
 				echo '</div>';
+				
+			} elseif( is_tag() ){
+				
+				echo '<div class="entry_block_taxonomy_label">';
+				echo '<h1 class="taxonomy_lable">'.single_tag_title('',false).'</h1>';
+				echo '</div>';
+				
 			} elseif( is_archive() ){
 				
 				echo '<div class="entry_block_taxonomy_label">';
-				get_template_part('template-parts/module/taxonomy_list');
+				echo '<h1 class="taxonomy_lable">'.get_query_var('year').'年'.get_query_var('monthnum').'月'.'</h1>';
 				echo '</div>';
+
 			}
 
 		echo '</div>';

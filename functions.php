@@ -67,9 +67,9 @@ function essence_head_enqueue() {
   //wp_enqueue_style('yakuhanjp', '//cdn.jsdelivr.net/npm/yakuhanjp@2.0.0/dist/css/yakuhanjp.min.css', array(), '2.0.0');
 	if(is_user_logged_in()){
 		//$_salonote_ver = time();
-		$_salonote_ver = '1.0.0.20';
+		$_salonote_ver = '1.0.0.23';
 	}else{
-		$_salonote_ver = '1.0.0.20';
+		$_salonote_ver = '1.0.0.23';
 	}
 	wp_enqueue_style('essence', get_template_directory_uri().'/style-min.css', array(), $_salonote_ver);
 	wp_enqueue_script('essence', get_template_directory_uri().'/statics/js/main-min.js', array(), $_salonote_ver ,true);
@@ -80,6 +80,12 @@ function essence_head_enqueue() {
     wp_enqueue_script('colorbox', '//cdnjs.cloudflare.com/ajax/libs/jquery.colorbox/1.6.4/jquery.colorbox-min.js', array(),'1.6.4' ,true);
     //wp_enqueue_style('colorbox', get_template_directory_uri().'/statics/js/colorbox/colorbox.css');
   }
+	
+	if( !empty($theme_opt['extention']) && in_array('use_slick',$theme_opt['extention']) ){
+		wp_enqueue_script('slick', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js', array(), '1.6.0' ,true);
+		wp_enqueue_style ('slick', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css', array(), '1.6.0');
+		wp_enqueue_style ('slick-theme', '//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css', array(), '1.9.0');
+	}
  
 	if( !wp_is_mobile() ){
 		if( !empty($theme_opt['extention']) && in_array('use_lazy_load',$theme_opt['extention']) ){
@@ -287,7 +293,11 @@ require_once( get_template_directory(). '/lib/widget/customList.php' );
 require_once( get_template_directory(). '/lib/widget/sns_buttons.php' );
 
 require_once( get_template_directory(). '/lib/widget/blogRss.php' );
-//require_once( get_template_directory(). '/lib/widget/extra-archive-link.php' );
+
+
+require_once( get_template_directory(). '/lib/widget/extra-archive-link.php' );
+require_once( get_template_directory(). '/lib/widget/extra-taxonomy.php' );
+
 require_once( get_template_directory(). '/lib/widget/WriteBlock.php' );
 //require_once (get_template_directory(). '/lib/widget/event_info.php' );
 
@@ -539,3 +549,7 @@ function wp_my_widget_register() {
     register_widget('salonote_WP_Widget_Recent_Posts');
 }
 add_action('widgets_init', 'wp_my_widget_register');
+
+
+
+

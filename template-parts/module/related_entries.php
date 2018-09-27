@@ -3,6 +3,7 @@ global $theme_opt;
 global $post_type_set;
 global $page_info;
 global $post_type_name;
+global $post_taxonomies;
 
 $_list_show_excerpt_tmp = $post_type_set['list_show_excerpt'];
 
@@ -19,36 +20,52 @@ if(!in_array('display_other_post',$post_type_set ))
 
 
 
-$posts_per_page = isset($post_type_set['posts_per_page']) ? $post_type_set['posts_per_page'] : '10' ;
-$posts_order = isset($post_type_set['posts_order']) ?$post_type_set['posts_order'] : 'DESC' ;
+$args = array(
+		'post_type' => $post_type_name,
+		'post_status' => 'publish',
+		'post__not_in' => array($post->ID),
+);
+
+
+$args['posts_per_page']		= isset($post_type_set['posts_per_page']) ? $post_type_set['posts_per_page'] : 8 ;
+$args['order']			= isset($post_type_set['posts_order']) ?$post_type_set['posts_order'] : 'DESC' ;
 $event_date = isset($post_type_set['event_date']) ?$post_type_set['event_date'] : null ;
 
 if($event_date){
-  $orderby = 'meta_key';
-}elseif($posts_order == 'menu_order'){
-  $orderby = 'menu_order';
-  $posts_order = 'ASC';
+  $args['orderby']			= 'meta_key';
+}elseif($args['order'] == 'menu_order'){
+  $args['orderby']			= 'menu_order';
+  $args['order']	= 'ASC';
 }else{
-  $orderby = 'post_date';
+  $args['orderby']			= 'post_date';
 }
 
 
 
-$args = array(
-		'post_type' => $post_type_name,
-		'post_status' => 'publish',
-		'orderby' => $orderby,
-		'posts_per_page' => 8,
-		//'post__in' => $relatedPost,
-		'post__not_in' => array($post->ID),
-);
+if( !empty($post_taxonomies) ){
+	$term_list = wp_get_post_terms($post->ID, $post_taxonomies[0], array('fields' => 'all') );
+	$args['tax_query'][] = array(
+		'taxonomy' => $post_taxonomies[0],
+		'terms'    => $term_list[0]->slug,
+		'field'    => 'slug',
+	);
+
+	$post_type_label = $term_list[0]->name;
+	$post_type_arr = get_post_type_object(get_post_type());
+	$print_label			= sprintf('他の %s '.esc_html($post_type_arr->labels->name) ,$post_type_label );
+}else{
+	$post_type_label	= get_post_type_object($post_type_name)->label;
+	$print_label			= sprintf(__('other %s posts','salonote-essence') ,$post_type_label );
+}
+$post_type_label = $post_type_label ? $post_type_label : __('posts','salonote-essence');
+
+
 
 
 $query = query_posts( $args );
 
 
-$post_type_label = get_post_type_object($post_type_name)->label;
-$post_type_label = $post_type_label ? $post_type_label : __('posts','salonote-essence');
+
 
 $related_block_class   = [];
 $related_block_class[] = 'list-unit';
@@ -65,7 +82,7 @@ if( !empty($post_type_set['grid_cols']) ) {
 if( have_posts()){
 
 	echo '<div class="posts">';
-	echo '<div class="bold title_bdr_tbtm text-center">'.sprintf(__('other %s posts','salonote-essence') ,$post_type_label ) .'</div>';
+	echo '<div class="bold title_bdr_tbtm text-center">'. $print_label .'</div>';
 
 	echo '<div class="'.implode(' ',$related_block_class).'">';
 		while(have_posts()) : the_post();

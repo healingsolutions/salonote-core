@@ -239,7 +239,24 @@
 		}	
 	} 
 	
-	
+	.grid-type-group{
+		> section{
+			padding: 1em;
+			
+			> a{ 
+				position: relative;
+				top: 0;
+				@include _transition_( all ,0.3 );
+				box-shadow: 0 0 .1em #999999;
+
+				&:hover{
+					top: -4px;
+					box-shadow: 0em .3em .7em #D0D0D0;
+				}
+			}
+				
+		}
+	}
 	
 	
 }

@@ -65,3 +65,13 @@ section.content-section{
   background-size: cover;
 }
 
+
+
+body.no-slider{
+	.main-content-wrap.first-cover
+	.main-content-unit.none_sidebar{
+		.main-content-block{
+			margin-top: 0;
+		}
+	} 
+}

@@ -30,6 +30,14 @@ function add_essence_shop_menu_item(){
 function insert_essence_shop_menu_item(){
 	global $post;
 	wp_nonce_field(wp_create_nonce(__FILE__), 'essence_shop_menu_nonce');
+	
+	$shop_menu_import = get_post_meta($post->ID, 'shop_menu_import',true);
+	if( !empty($shop_menu_import)){
+		$shop_menu_import = unserialize($shop_menu_import);
+		update_post_meta($post->ID, 'essence_shop_menu', $shop_menu_import);
+		delete_post_meta($post->ID, 'shop_menu_import');
+	}
+	
   
   $shop_menu_items = get_post_meta($post->ID, 'essence_shop_menu',true);
 
@@ -388,19 +396,24 @@ function insert_essence_shop_menu_item(){
 	<div class="shop_menu_essence-more"><span class="dashicons dashicons-tagcloud"></span>詳細</div>
 	<div class="shop_menu_essence-simple"><span class="dashicons dashicons-text"></span>シンプル</div>
 	';
+
 	?>
 	
-	<?php
-	/*
+
 	<table class="form-table">
 		<tr>
 			<th>インポート</th>
-			<td><textarea class="large-text" name="shop_menu_import" rows="4"><?php //echo $shop_menu_import; ?></textarea></td>
+			<td><textarea class="large-text" name="shop_menu_import" rows="4"></textarea></td>
 		</tr>
 	</table>
-*/
-	?>
 
+
+	<table class="form-table">
+		<tr>
+			<th>エクスポート</th>
+			<td><textarea class="large-text" name="shop_menu_export" rows="4" readonly><?php echo serialize($shop_menu_items); ?></textarea></td>
+		</tr>
+	</table>
 
 
 <?php
@@ -410,10 +423,16 @@ function insert_essence_shop_menu_item(){
 add_action('save_post', 'save_essence_shop_menu_item');
 function save_essence_shop_menu_item($post_id){
 	$essence_shop_menu_nonce = isset($_POST['essence_shop_menu_nonce']) ? $_POST['essence_shop_menu_nonce'] : null;
-  
+
+	if( !empty($_POST['shop_menu_import']) ){
+		update_post_meta($post_id, 'shop_menu_import', $_POST['shop_menu_import']);
+	}
+	
 	if(!wp_verify_nonce($essence_shop_menu_nonce, wp_create_nonce(__FILE__))) {
 		return $post_id;
 	}
+	
+	
 	if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
     return $post_id;
   }
@@ -422,35 +441,9 @@ function save_essence_shop_menu_item($post_id){
     return $post_id;
   }
 	
+
 	
-	/*
-	if( !empty($_POST['shop_menu_import']) ){
-		
-		$menu_import_fields = [];
-		$menu_import_result = [];
-		
-		$shop_menu_arr = explode("\n", $_POST['shop_menu_import']);
-		foreach( $shop_menu_arr as $key => $value ){
-			if( empty($value)) continue;
-			$item_arr = explode("\t", $value);
-			$menu_import_fields[] = array_map('trim', $item_arr);
-		}
 
-		$shop_menu_fields = [];
-		foreach($menu_field_label as $key => $value){
-			$shop_menu_fields = $key;
-		}
-
-
-		foreach( $menu_import_fields as $key => $value ){
-			$menu_import_result[] = array_combine($shop_menu_fields, $value);
-			
-		}
-		update_post_meta($post_id, 'essence_shop_menu', $menu_import_result);
-		
-	}
-	*/
-	
  
 	$data = $_POST['essence_shop_menu'];
  

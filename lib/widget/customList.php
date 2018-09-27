@@ -41,17 +41,17 @@ class Essence_CustomList_Widget extends WP_Widget{
 			$post_type_set_tmp = $post_type_set;
 			$post_type_set = $theme_opt['post_type'][$instance['post_type_name']];
 			
+			if( is_array($post_type_set) ){
 			$post_type_set = array_diff($post_type_set, array(
 				'display_list_writer',
 				'display_entry_excerpt',
 				'display_grid_sub_title',
 				'display_list_term',
 				'display_other_post',
-				'display_thumbnail',
+				//'display_thumbnail',
 			));
+			}
 			$post_type_set['list_show_excerpt'] = null;
-			
-			echo $post_type_set_tmp['list_show_excerpt'];
 
 			if( !empty($instance['enable_excerpt'])) $post_type_set['list_show_excerpt'] = $instance['enable_excerpt'];
 			if( in_array('enable_writer',$instance) ) $post_type_set[] = 'display_list_writer';

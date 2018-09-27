@@ -166,7 +166,7 @@ add_filter('widget_text', 'do_shortcode' );
 /*-------------------------------------------*/
 /*	disable display title if before #
 /*-------------------------------------------*/
-add_filter( 'widget_title', 'remove_widget_title' );
+
 function remove_widget_title( $widget_title ) {
 	if ( substr ( $widget_title, 0, 1 ) == '#' )
 		return;
@@ -174,6 +174,6 @@ function remove_widget_title( $widget_title ) {
 		return ( $widget_title );
   }
 }
+add_filter( 'widget_title', 'remove_widget_title' );
      
-
 

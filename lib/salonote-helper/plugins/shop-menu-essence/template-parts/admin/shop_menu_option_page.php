@@ -71,9 +71,7 @@ $shop_menu_opt = get_option('shop_menu_essence_options');
 ?> 
 <table class="form-table">
 <tbody>
-	
-	<?php
-	/*
+
 <tr valign="top">
 	
 
@@ -89,9 +87,6 @@ $shop_menu_opt = get_option('shop_menu_essence_options');
 		</select>
   </td>
 </tr>
-	
-	*/
-	?>
 
 	
 <tr>

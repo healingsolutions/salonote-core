@@ -40,7 +40,7 @@ $color_customize_array = array(
 
 
   'navbar_bkg_hover' => array(
-    'target'   => '.navbar-block ul li:hover, #header_nav li.current-menu-item, .pagination a:hover, .pagination > *.current',
+    'target'   => '.navbar-block ul li:hover, #header_nav li.current-menu-item, .pagination a:hover, .pagination > *.current, .nav_hover-item:hover',
     'element'  => 'background-color',
     'default'  => null,
     'label_jp' => __('nav background-color(:hover)','salonote-essence'),
@@ -99,6 +99,20 @@ $color_customize_array = array(
     'section'  => 'colors',
   ),
 	
+	'side_title_bkg' => array(
+    'target'   => '.sidebar_inner .widget-title',
+    'element'  => 'background-color',
+    'default'  => null,
+    'label_jp' => __('side title background-color','salonote-essence'),
+    'section'  => 'colors',
+  ),
+	'side_title_color' => array(
+    'target'   => '.sidebar_inner .widget-title',
+    'element'  => 'color',
+    'default'  => null,
+    'label_jp' => __('side title color','salonote-essence'),
+    'section'  => 'colors',
+  ),
 	
 	'headline_bkg' => array(
     'target'   => '.headline_bkg',
@@ -126,7 +140,7 @@ $color_customize_array = array(
   ),
 	
 	'list_icon_color' => array(
-    'target'   => 'ul.list-icon li::before, ol.list-numbering>li:before, ol.list-flow>li:before, ol.list-root>li:before, dl.question-dl dt::before',
+    'target'   => 'ul.list-icon li::before, ol.list-numbering>li:before, ol.list-flow>li:before, ol.list-root>li:before, dl.question-dl dt::before, .icon-color',
     'element'  => 'background-color',
     'default'  => null,
     'label_jp' => __('list icon color','salonote-essence'),

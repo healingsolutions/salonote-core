@@ -13,6 +13,11 @@ global $page_info;
 		$sidebar_class[] = 'fit-sidebar';
   }
 
+	if( !empty( get_theme_mod('side_title_bkg') )) {
+		$sidebar_class[] = 'has_sidebar_color';
+	}
+
+
 
 	echo '<aside id="sidebar" class="'. implode(' ',$sidebar_class) .'">';
 		echo '<div class="sidebar_inner">';

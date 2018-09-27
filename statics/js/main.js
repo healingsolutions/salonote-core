@@ -16,6 +16,7 @@
 
 //async
 jQuery(document).ready(function($){
+
 	
 	if($('body.use_content_fade').length ){
 		//$('body.use_content_fade').animate({ scrollTop: 0 }, '1');
@@ -28,6 +29,7 @@ jQuery(document).ready(function($){
 			$('.super-top-container').insertBefore('.sp-navbar-unit .navbar-block');
 		}
 	}
+	
 	
 	if($('#replace-target').length ){
 		$('.replace-item img').each(function(){
@@ -42,6 +44,8 @@ jQuery(document).ready(function($){
 			})
 		})
 	}
+	
+	
 	
 	
 	// current list ====================
@@ -241,10 +245,13 @@ jQuery(document).ready(function($){
 	$(window).on('scroll',function(){
 
 		winScrollTop = $(this).scrollTop();
+		
+		//console.log('winScrollTop>'+winScrollTop+':startPos>'+startPos);
+		
 		if (winScrollTop >= startPos) {
 				$('#body-wrap').addClass('scroll_down');
 				$('#body-wrap').removeClass('scroll_up');
-		} else {
+		} else if (winScrollTop < startPos-5) {
 				$('#body-wrap').removeClass('scroll_down');
 				$('#body-wrap').addClass('scroll_up');
 		}
@@ -258,9 +265,9 @@ jQuery(document).ready(function($){
 
 
 		if( top >= nav_height){
-			$('.site-header-block').addClass('hide_header');
+			$('#body-wrap, .site-header-block').addClass('hide_header');
 		}else{
-			$('.site-header-block').removeClass('hide_header');
+			$('#body-wrap, .site-header-block').removeClass('hide_header');
 		}
 
 
@@ -269,7 +276,7 @@ jQuery(document).ready(function($){
 			$('.cover-image.bkg-fixed').each(function(){
 
 				var cover_offset = $(this).offset().top;
-				var cover_height = $(this).height() / 3;
+				var cover_height = $(this).height() / 8;
 
 				var blur = (top - cover_offset + cover_height) * 0.03;
 
@@ -295,12 +302,14 @@ jQuery(document).ready(function($){
 		//keyv-figure ==================
 		if( $('#keyv-figure').length && $(window).width() > 768 ){
 			if( top >= w_height){
+				
 				if( scroll_keyv < 64){
 					$('#keyv-figure').css({
 						"width"　: "64%",
 						"max-width": "64%",
 						"flex": '0 0 ' + "64%",
 					})
+					
 				}else{
 					$('#keyv-figure').css({
 						width　:scroll_keyv +'%',
@@ -310,8 +319,7 @@ jQuery(document).ready(function($){
 					$('#keyv-figure picture img').css({
 						left　: ((scroll_keyv * -1) )+'%',
 					})
-
-
+					
 				}
 			}else{
 					$('#keyv-figure').css({
@@ -463,6 +471,11 @@ jQuery(window).on('load', function() {
 
 	$("body.use_content_fade .entry_block_content").children("div.block-group-wrap").first().addClass('is_active');
 	$('body.use_content_fade .landing-page-block').children('div.landing-page-item').first().addClass('is_active');
+	
+	
+	
+	
+	
 
 	$(window).on('scroll', function(event){
 
@@ -516,7 +529,7 @@ jQuery(window).on('load', function() {
 	
 	
 	// 水平線でブロックを区切り、グルーピング　=======================================================
-	if($('hr.block-horizon').length && ( $(window).width() > 768 ) ){
+	if($('hr.block-horizon').length  ){
 
 			$('hr.block-horizon').each(function() {
 				if($(this).nextAll('hr').length){
@@ -535,12 +548,23 @@ jQuery(window).on('load', function() {
 						bg_url = bg_url ? bg_url[2] : ""; // If matched, retrieve url, otherwise ""
 						
 						if( bg_url.length || data_repeat.length || data_size.length ){
-							var hr_props = {
-									"background-image" : 'url('+bg_url+')',
-									"background-repeat" : data_repeat,
-									"background-size" : data_size
+							if (bg_url.indexOf('mp4') !== -1) {
+								
+								var hr_props = '<video class="cover-video" src="'+bg_url+'" poster="https://dummyimage.com/600x400/000/fff.gif&text=Please+wait+while+loading+movie" autoplay loop muted playsinline></video>';
+								$(this).next('.horizon-block').wrapInner('<div class="video-text"/>').addClass('has_video').append(hr_props).queue(function() {
+									this.next('.horizon-block').children('.cover-video').get(0).play();
+								});
+								
+								
+
+							}else{
+								var hr_props = {
+										"background-image" : 'url('+bg_url+')',
+										"background-repeat" : data_repeat,
+										"background-size" : data_size
+								}
+								$(this).next('.horizon-block').css(hr_props).dequeue();
 							}
-							$(this).next('.horizon-block').css(hr_props).dequeue();
 						}
 
 					});
@@ -675,6 +699,13 @@ jQuery(window).on('load', function() {
 	}
 	
 	
+	if($('.entry_block_content header + .cover-image').length ){
+		$('.main-content-wrap').addClass('first-cover');
+	}
+	
+	
+	
+	
 	$('body').removeClass('no-scroll');
 	$('#content-loader').fadeOut().queue(function() {
 							this.remove();
@@ -751,8 +782,10 @@ jQuery(function($){
 		essence_resize_script();
 });
 
-$(window).on('resize', function(){	
+
+$(window).on('resize', function(){
 		essence_resize_script();
+
 });
 
 // デバイスの向きが変わったら　=================================================

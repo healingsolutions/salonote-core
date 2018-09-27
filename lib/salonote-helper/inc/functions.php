@@ -25,7 +25,6 @@ add_action( 'wp_enqueue_scripts', 'salonote_essence_helper_head_enqueue' ,1);
 // edit the content
 add_filter('the_content', 'edit_content_hook',10);
 function edit_content_hook($content){
-
 	
 	if ( !wp_is_mobile() ) {
 
@@ -33,8 +32,10 @@ function edit_content_hook($content){
  
 		$doc = phpQuery::newDocumentHTML($content);
 
+
 		$counter = 0;
 		foreach($doc->find('.block-unit') as $block_unit) {
+
 			
 			if( pq($block_unit)->next('.block-unit')->length && pq($block_unit)->prev('.block-group')->length == 0 ) {
 				pq($block_unit)->removeClass('block-unit');
@@ -48,6 +49,8 @@ function edit_content_hook($content){
 				++$counter;
 			}
 		}
+		
+		
 
 		for ($count = 0; $count < $counter; $count++){
 			$length = 0;
@@ -72,6 +75,7 @@ function edit_content_hook($content){
 		for ($count = 0; $count < $counter; $count++){
 					pq('.block-index-'.$count)->wrapAll('<div class="block-group-wrap" />');
 		}
+		
 
 		return do_shortcode($doc); //only pc
 	}

@@ -808,6 +808,18 @@ ol.list-root{
 	}
 }
 
+dl.dldtdd-unit{
+	border-bottom: 1px dotted #CCCCCC;
+	dt{
+		display: inline-block;
+	}
+	dd{
+		display: inline-block;
+		margin-left: 1em;
+	}
+}
+
+
 
 @media screen and (min-width: 769px) {
     
@@ -855,4 +867,17 @@ ol.list-root{
 		}// > ul
 
 	}//tab-nav-unit
+}
+
+
+.icon-color{
+	color: white;
+}
+
+.tag-cloud-link{
+	padding: 3px .7em;
+	@include _transition_(background-color,0.3);
+	&:hover{
+		@include _transition_(background-color,0.3);
+	}
 }

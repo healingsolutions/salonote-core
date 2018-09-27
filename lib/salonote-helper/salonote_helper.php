@@ -74,6 +74,9 @@ class SALONOTE_HELPER__Class {
 		if( !empty( $theme_opt['base'] ) && in_array('enable_shop_menu',$theme_opt['base'] ) ){
 			require_once( get_template_directory(). '/lib/salonote-helper/plugins/shop-menu-essence/shop_menu_essence.php' );
 		}
+		
+		
+		require_once( get_template_directory(). '/lib/salonote-helper/plugins/note-essence/note-essence.php' );
 
 	}
   

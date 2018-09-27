@@ -749,6 +749,10 @@ body.admin-bar .site-header-block{
 #super-top-nav{
 		height: 4em;
 	
+	.header_logo-block img{
+		max-height: 5em;
+		height: 45px;
+	}
 	.header_logo-block.has_excerpt img{
 		max-height: 3em;
 	}

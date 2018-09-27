@@ -6,6 +6,7 @@ global $post_type_set;
 global $page_info;
 global $post_type_name;
 
+
 $_child_class = [];
 
 if(
@@ -21,6 +22,7 @@ function child_list_func($post,$_child_class = null){
   
   global $post_type_set;
 	global $_current_page;
+	global $post_taxonomies;
 
 	$page_sub_info = get_post_meta($post->ID,'page_info',true);
 	if( !empty($page_sub_info['exclude_list'])) return;
@@ -28,14 +30,39 @@ function child_list_func($post,$_child_class = null){
     
   ?>
   <li class="<?php echo implode(' ',$_child_class);?>">
-    <a href="<?php the_permalink(); ?>"><?php the_title(); ?>
+    <a href="<?php the_permalink(); ?>">
+		<span>
+		<?php the_title(); ?>
     <?php
+		// post date
 		if(
 			!empty( $post_type_set ) &&
 			in_array('display_post_date',$post_type_set)
 		){
 			echo '<time class="list_block_date">'.get_the_date('Y.m.d').'</time>';
 		}
+	
+		if(
+			!is_tax() &&
+			!empty( $post_type_set ) &&
+			in_array('display_list_term',$post_type_set)
+		){
+			$term_list = wp_get_post_terms($post->ID, $post_taxonomies[0], array('fields' => 'all') );
+			echo isset( $term_list[0]->name ) ? '<span class="taxonomy_label label-block">'.esc_attr($term_list[0]->name).'</span>' : '' ;
+		}
+	
+		echo '</span>';
+	
+		//thumbnail
+		if(
+			!empty( $post_type_set ) &&
+			in_array('side_thumbnail',$post_type_set)
+		){
+			echo '<figure class="list_block_thumbnail"><picture>'. get_the_post_thumbnail($post->ID,array(80,80),array('class'=>'img-responsive')) .'</picture></figure>';
+		}
+	
+	
+	
     ?>
     </a>
   </li>
@@ -59,9 +86,9 @@ if($event_date){
 
 
 
-if( $post_type_name !== 'page' && $post_type_name !== 'front_page' ){
+if( $post_type_name !== 'page' && $post_type_name !== 'front_page'  ){
   $type_obj = get_post_type_object($post_type_name);
-  $has_archive = $type_obj->has_archive;
+  $has_archive = isset($type_obj->has_archive) ? $type_obj->has_archive : false ;
 }else{
   $has_archive = true;
 }
@@ -143,6 +170,15 @@ if( is_singular() && $has_archive == true){
 					){
 						echo '<time class="list_block_date">'.get_the_date('Y.m.d').'</time>';
 					}
+	
+					//thumbnail
+					if(
+						!empty( $post_type_set ) &&
+						in_array('side_thumbnail',$post_type_set)
+					){
+						echo '<figure class="list_block_thumbnail"><picture>'. get_the_post_thumbnail($post->ID,array(80,80),array('class'=>'img-responsive')) .'</picture></figure>';
+					}
+	
 					?>
 
 

@@ -242,8 +242,13 @@ class nav_essence_walker_super_view extends Walker_Nav_Menu {
 				if( has_post_thumbnail( $page_id ) && $item->navtype ){
 					
 					$post = get_post($page_id);
+					
+					$thumb_attr = array(
+						'alt'   => trim( strip_tags( !empty($post->post_excerpt) ? $post->post_excerpt : $post->post_title ) ),
+						'title' => trim( strip_tags( $post->post_title ) ),
+					);
 
-					$thumbnail 	= '<div class="nav_thumbnail">'.get_the_post_thumbnail( $page_id, 'thumbnail' ).'</div>';
+					$thumbnail 	= '<div class="nav_thumbnail">'.get_the_post_thumbnail( $page_id, 'thumbnail', $thumb_attr ).'</div>';
 					$excerpt 		= '<div class="nav_excerpt">
 					<h1><span class="main_nav">'.apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth ).'</span></h1>';
 					

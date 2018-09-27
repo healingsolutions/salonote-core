@@ -6,8 +6,9 @@ global $post_type_name;
 global $post_type_tmpl;
 global $user_setting;
 
-$post_type_name = !empty($_GET['search_post_type']) ? esc_html($_GET['search_post_type']) : 'post' ;
-$post_type_set  = !empty($theme_opt['post_type'][$post_type_name]) ? $theme_opt['post_type'][$post_type_name] : null ;
+$post_type_name = !empty($_GET['search_post_type']) ? $_GET['search_post_type'][0] : 'post' ;
+$post_type_set  = !empty($post_type_name) ? $theme_opt['post_type'][$post_type_name] : $theme_opt['post_type']['post'] ;
+
 
 // =============================
 // initialize
@@ -89,7 +90,7 @@ if( is_tax() ){
 
 $args['s'] = get_search_query();
 
-$args['post_type'] = !empty($_GET['search_post_type']) ? esc_html($_GET['search_post_type']) : null ;
+$args['post_type'] = !empty($_GET['search_post_type']) ? $_GET['search_post_type'] : null ;
 
 
 
@@ -108,8 +109,12 @@ echo '<div class="'.$row_class.'">';
 				echo '<h1 class="entry_block_title">'. get_search_query() .'の検索結果</h1>';
 			}
 			if( !empty($_GET['search_post_type'])){
-				$obj = get_post_type_object($_GET['search_post_type']);
-				echo '<h2 class="entry_block_sub_title">'.$obj->label.'</h2>';
+				
+				foreach( $_GET['search_post_type'] as $post_type ){
+					$obj = get_post_type_object($post_type);
+					echo '<h2 class="entry_block_sub_title">'.$obj->label.'</h2>';
+				}
+				
 			}
 
 		echo '<div class="'.implode(' ',$list_class).'">';
@@ -142,6 +147,7 @@ echo '<div class="'.$row_class.'">';
         endwhile;
 
       }else{
+				echo '検索結果はありませんでした。';
         get_template_part('template-parts/common/single-content');
       }
 

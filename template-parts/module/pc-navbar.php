@@ -10,7 +10,7 @@ if( $_font_width > 1.5 ){
 }
 
 $_super_view = ' nav-super_view';
-$_nav_class = has_nav_menu('Header') ? '-has_top_nav' : '' ;
+$_nav_class = has_nav_menu('Top') ? '-has_top_nav container' : '' ;
 
 //$_super_view = '';
 
