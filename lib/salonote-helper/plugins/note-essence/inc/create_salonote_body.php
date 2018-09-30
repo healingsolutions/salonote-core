@@ -28,11 +28,17 @@ function create_salonote_body( $body=null, $images=null ){
 	$count_body		= count($body);
 	$count_image	= count($images);
 	
+	if(is_user_logged_in()){
+		//echo '<pre>count_body'; print_r($count_body); echo '</pre>';
+		//echo '<pre>count_image'; print_r($count_image); echo '</pre>';
+	}
+	
+	
 	$item_count = max($count_body,$count_image);
 	
 	$counter = 0;
 	$use_cover = 0;
-	
+	$gallery_arr = [];
 	
 	if( ($count_body + $count_image) === 0 ) return;
 
@@ -41,26 +47,47 @@ function create_salonote_body( $body=null, $images=null ){
 		$_tmp_html = [];
 
 		if( !empty($body[$key]) ){
+			
+			
+			
 			++$counter;
+			
+			if( substr_count($body[$key],"-") >= 3 ){
+				$body[$key] = preg_replace('/(\-){3,}/','<hr class="short-horizon" />', $body[$key]);
+			}
+			
 
-			if( substr_count($body[$key],"\n") >= 1 ){
+			if(
+					(!empty($body[$key]) && !empty($images[$key]['url'])) &&
+					(
+						( substr_count($body[$key],"\n") >= 1 && $key <= $count_image) ||
+						( !empty($body[($key-1)]) && substr_count($body[($key-1)],"\n") <= 1)
+					)
+			){
 				//set textarea
-				$_tmp_html['text'] = '<div class="block-unit vertical-middle">'.wpautop($body[$key]).'</div>';
-				$_tmp_html['image'] = '<div class="block-unit"><img class="img-responsive wow fadeIn aligncenter size-large" src="'.$images[$key].'" alt="" /></div>';
-
+				$_tmp_html['text'] 	= !empty($body[$key]) ? '<div class="block-unit vertical-middle">'.wpautop($body[$key]).'</div>': '';
+				$_tmp_html['image'] = !empty($images[$key]['url']) ? '<div class="block-unit"><img class="img-responsive wow wp-image-'.$images[$key]['id'].' fadeIn aligncenter size-large" src="'.$images[$key]['url'].'" alt="" /></div>' : '';
 			}else{
-				//set headline
 				
 				
-				if( $use_cover === 0 && !empty($images[$key]) ){
+				if( $use_cover <= 2 && !empty($images[$key]['url'])){
 					++$use_cover;
-					$_tmp_html['text'] = '<div class="block-unit"><img class="img-responsive wow fadeIn aligncenter size-large img-cover-block bkg-fixed" src="'.$images[$key].'" alt="" /></div>';
-					$_tmp_html['text'] .= '<div class="text-cover-block"><div class="block-center"><div class="bkg-white-text"><h1>'.$body[$key].'</h1></div></div></div>';
-				}else{
-					$_tmp_html['text'] = '<h1>'.$body[$key].'</h1>';
 					
-					if( !empty($images[$key]) ){
-					$_tmp_html['image'] = '<div class="block-unit"><img class="img-responsive wow fadeIn aligncenter size-large" src="'.$images[$key].'" alt="" /></div>';
+					$_tmp_html['text'] = '<div class="block-unit"><img class="img-responsive wow wp-image-'.$images[$key]['id'].' fadeIn aligncenter size-large img-cover-block bkg-fixed" src="'.$images[$key]['url'].'" alt="" /></div>';
+					$_tmp_html['text'] .= '<div class="text-cover-block"><div class="block-center"><div class="bkg-white-text"><h1>'.$body[$key].'</h1></div></div></div>';
+
+				}else{
+					
+					if( substr_count($body[($key-1)],"\n") > 0 && substr_count($body[($key)],"\n") === 0 ){
+						//前に見出しが含まれていない場合
+						$_tmp_html['text'] = '<h1>'.$body[$key].'</h1>';
+					}else{
+						//前が見出しだった場合
+						$_tmp_html['text'] = wpautop($body[$key]);
+					}
+					
+					if( !empty($images[$key]['url']) ){
+					$_tmp_html['image'] = '<img class="img-responsive wow wp-image-'.$images[$key]['id'].' fadeIn aligncenter size-large" src="'.$images[$key]['url'].'" alt="" />';
 					}
 				}
 				
@@ -76,23 +103,28 @@ function create_salonote_body( $body=null, $images=null ){
 				$_note_html .= !empty($_tmp_html['text']) 	? $_tmp_html['text'] : '';
 				$_note_html .= !empty($_tmp_html['image']) 	? $_tmp_html['image'] : '';
 			}
+			
+			if( !empty($_tmp_html['image']) && !empty($_tmp_html['text'] ) ){
+				$_note_html .= '<hr class="short-horizon" />';
+			}
 
-			$_note_html .= '<hr class="short-horizon" />';
+			
 
 
 		}else{
 			if( $key >= $count_body ){
-				if( $key === $count_body ) $_note_html .= '<div class="row col-12">';
-				$_note_html .='<div class="col-3"><img class="img-responsive" src="'.$images[$key].'"></div>';
-				if( $key === $item_count ) $_note_html .= '</div>';
+
+				$gallery_arr[] = $images[$key]['id'];
+
 			}else{
-				'<img class="img-responsive" src="'.$images[$key].'">';
+				'<img class="img-responsive wp-image-'.$images[$key]['id'].'" src="'.$images[$key]['url'].'">';
 			}
 		}
 
-
-
-
+	}
+	
+	if( !empty($gallery_arr) ){
+		$_note_html .= '[gallery columns="4" link="file" size="thumbnail_M" ids="'.implode(',',$gallery_arr).'"]';
 	}
 
 

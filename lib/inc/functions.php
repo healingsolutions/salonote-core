@@ -458,13 +458,14 @@ function essence_search_form( $form ) {
 	
 	foreach($post_types as $post_type){
       $obj = get_post_type_object($post_type);
-
+			$form .= '<div class="form-check form-check-inline">';
 			$form .= '<input id="'.$post_type.'-check" type="checkbox" class="form-check-input" name="search_post_type[]" value="'.$post_type.'"';
 			if( !empty($_GET['search_post_type']) && in_array('post_type',$_GET['search_post_type']) ){
 				$form .= ' checked';
 			}
 			$form .= '>';
 			$form .= '<label class="form-check-label" for="'.$post_type.'-check">'.$obj->label.'</label>';
+			$form .= '</div>';
 
 	}
 	$form .= '

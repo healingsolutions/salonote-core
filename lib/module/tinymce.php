@@ -264,6 +264,19 @@ function essence_tinymce($initArray) {
 						'wrapper' => 'true',
 						'classes' => 'bkg-white-text'
 				),
+				
+				array(
+						'title' => __('square label block','salonote-essence'),
+						'block' => 'div',
+						'wrapper' => 'true',
+						'classes' => 'square_label_block'
+				),
+				array(
+						'title' => __('square label block white','salonote-essence'),
+						'block' => 'div',
+						'wrapper' => 'true',
+						'classes' => 'square_label_block type-white'
+				),
 
       ),
     ), //object
@@ -362,6 +375,12 @@ function essence_tinymce($initArray) {
             'title' => __('fixed cover image','salonote-essence'),
             'selector' => 'img',
             'classes' => 'img-cover-block bkg-fixed'
+          ),
+				
+				array(
+            'title' => __('parallax cover image','salonote-essence'),
+            'selector' => 'img',
+            'classes' => 'img-cover-block bkg-parallax'
           ),
 				
 					array(
@@ -621,9 +640,9 @@ function essence_tinymce($initArray) {
 	$initArray[ 'toolbar4' ] = '';
 
   $initArray[ 'extended_valid_elements' ] = "iframe[id|class|title|style|align|frameborder|height|longdesc|marginheight|marginwidth|name|scrolling|src|width]";
-  $initArray[ 'extended_valid_elements' ] = 'dl';
-  $initArray[ 'extended_valid_elements' ] = 'dt';
-  $initArray[ 'extended_valid_elements' ] = 'dd';
+  //$initArray[ 'extended_valid_elements' ] = 'dl';
+  //$initArray[ 'extended_valid_elements' ] = 'dt';
+  //$initArray[ 'extended_valid_elements' ] = 'dd';
 	
 	//$initArray[ 'fontsize_formats' ] = '0.6em 0.7em 0.8em 0.9em 1em 1.1em 1.15em 1.2em 1.3em 1.4em 1.5em 1.6em 1.7em 1.8em 1.9em 2em 2.5em 3em 4em';
 	//$initArray[ 'fontsize_formats' ] = "85% 100% 116%; 138.5% 153.9% 167% 182% 197%";

@@ -121,6 +121,13 @@ class nav_essence_walker_super_top extends Walker_Nav_Menu {
         $classes = empty( $item->classes ) ? array() : (array) $item->classes;
         $classes[] = 'menu-item-' . $item->ID;
 				$classes[] = 'btn-item';
+			
+				$page_id = $item->object_id;
+				if( has_post_thumbnail( $page_id ) && $item->flexnav ){
+					$classes[] = 'has_thumbnail';
+				}else{
+					$classes[] = 'none_thumbnail';
+				}
  
         /**
          * Filters the arguments for a single nav menu item.
@@ -200,6 +207,7 @@ class nav_essence_walker_super_top extends Walker_Nav_Menu {
         /** This filter is documented in wp-includes/post-template.php */
         $title = apply_filters( 'the_title', $item->title, $item->ID );
  
+				
         /**
          * Filters a menu item's title.
          *
@@ -220,10 +228,47 @@ class nav_essence_walker_super_top extends Walker_Nav_Menu {
         $sub_title = '';
         if( $depth === 0 )
           $sub_title = !empty($atts['title']) ? '<span class="sub_nav">'.$atts['title'].'</span>' : '' ;
+			
+			
+				$thumbnail	= '';
+				$excerpt		= '';
+				if( has_post_thumbnail( $page_id ) && $item->flexnav ){
+					
+					$post = get_post($page_id);
+					
+					$thumb_attr = array(
+						'alt'   => trim( strip_tags( !empty($post->post_excerpt) ? $post->post_excerpt : $post->post_title ) ),
+						'title' => trim( strip_tags( $post->post_title ) ),
+					);
+
+					$thumbnail 	= '<div class="nav_thumbnail">'.get_the_post_thumbnail( $page_id, 'thumbnail', $thumb_attr ).'</div>';
+					$excerpt 		= '<div class="nav_excerpt">
+					<h2><span class="main_nav">'.apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth ).'</span></h2>';
+					
+					if( has_excerpt($page_id) ){
+						$excerpt 		.= '<p>'.nl2br($post->post_excerpt) .'</p>';
+					};
+					
+					$excerpt 		.= '</div>';
+					$title = '';
+				}
  
         $item_output = $args->before;
         $item_output .= '<a'. $attributes .'>';
-        $item_output .= $args->link_before . $title . $sub_title . $args->link_after;
+        
+				if( empty($thumbnail) ){
+					$item_output .= $args->link_before . $title . $sub_title . $args->link_after;
+				}else{
+					
+					$item_output .= $args->link_before;
+					$item_output .= $thumbnail ? $thumbnail	: '' ;
+					$item_output .= $excerpt	 ? $excerpt		: '' ;
+					$item_output .= $title . $sub_title;
+					
+					$item_output .= $args->link_after;
+				}
+			
+			
         $item_output .= '</a>';
         $item_output .= $args->after;
  

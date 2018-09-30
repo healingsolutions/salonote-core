@@ -80,38 +80,6 @@
 
 
 
-@keyframes scroll_left_in {
-  0% { right: 1em;}
-  100% { right: 2em;}
-}
-
-@keyframes scroll_left_out {
-  0% { right: 2em;}
-  100% { right: 1em;}
-}
-
-@keyframes scroll_right_in {
-  0% { left: 1em;}
-  100% { left: 2em;}
-}
-
-@keyframes scroll_right_out {
-  0% { left: 2em;}
-  100% { left: 1em;}
-}
-
-@keyframes scroll_up_in {
-  0% { top: 0em;}
-  100% { top: -1em;}
-}
-
-@keyframes scroll_up_out {
-  0% { top: -1em;}
-  100% { top: 0em;}
-}
-
-
-
 
 .sidebar_inner__content{
 	.widget_title{

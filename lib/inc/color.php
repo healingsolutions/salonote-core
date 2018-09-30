@@ -121,6 +121,14 @@ $color_customize_array = array(
     'label_jp' => __('headline background-color','salonote-essence'),
     'section'  => 'colors',
   ),
+	
+	'caption_bkg' => array(
+    'target'   => '.caption_bkg, .square_label_block .square_label_block-inner.caption_bkg',
+    'element'  => 'background-color',
+    'default'  => null,
+    'label_jp' => __('Caption background-color','salonote-essence'),
+    'section'  => 'colors',
+  ),
 
 
   'bdr_color' => array(

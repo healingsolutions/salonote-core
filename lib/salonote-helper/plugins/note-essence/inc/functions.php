@@ -21,9 +21,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 function note_essence_public_style(){
+
 	
 	if( !is_singular() ) return;
-	if( empty( $_GET['note']) ) return;
+	if( empty( $_POST['note']) ) return;
 	if( !current_user_can('edit_posts') ) return $content;
 	wp_enqueue_script('jquery','//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js', array(), '3.2.1', true);
 	wp_enqueue_style('essence', get_template_directory_uri().'/style-min.css', array(), $_salonote_ver);
@@ -35,10 +36,20 @@ add_action( 'admin_enqueue_scripts', 'note_essence_public_style' ); //公開用�
 
 
 function note_essence($content){
-	if( !is_singular() ) return;
-	if( empty( $_GET['note']) ) return $content;
+
+	
+	if( empty( $_POST['note']) ) return $content;
 	if( !current_user_can('edit_posts') ) return $content;
 	
+	global $post;
+	global $post_id;
+	global $insert_id;
+	
+	if( empty( $_POST['post_new'])){
+		$post_id = !empty( $_POST['post_id'] ) ? $_POST['post_id'] : null ;
+	}else{
+		$post_id = null;
+	}
 	
 	//echo '<pre>note_body'; print_r($_FILES); echo '</pre>';
 	
@@ -60,12 +71,18 @@ function note_essence($content){
 				//echo '<pre>_file_data'; print_r($_file_data); echo '</pre>';
 				
 				$_up_dir = wp_upload_dir();
-				$save_folder 	= $_up_dir['basedir'] . '/tmp/';
-				$save_url 		= $_up_dir['baseurl'] . '/tmp/';
+				//$save_folder 	= $_up_dir['basedir'] . '/tmp/';
+				//$save_url 		= $_up_dir['baseurl'] . '/tmp/';
+				$save_folder 	= $_up_dir['path'].'/';
+				$save_url 		= $_up_dir['url'].'/';
 				
 				// 保存先フォルダの作成する。
-				if (!file_exists($save_folder)) {
-						mkdir($save_folder);
+				if (!is_dir($save_folder)) {
+					if ( mkdir( $save_folder, 0755,true ) ) {
+					 //echo "ディレクトリ作成成功！！";      
+					} else {
+					 //echo "ディレクトリ作成失敗！！";
+					}
 				}
 				
 				$_use_files = [];
@@ -75,26 +92,71 @@ function note_essence($content){
 					if(is_uploaded_file($image_item['tmp_name'])){
 						
 						//$name = basename($image_item['tmp_name']);
-						$_file_name = base64_encode($image_item['name']).'.'.pathinfo($image_item['name'], PATHINFO_EXTENSION);
+
+						$_file_name = str_replace('=','', base64_encode($image_item['name'])).'.'.pathinfo($image_item['name'], PATHINFO_EXTENSION);
 						$save_filename = $save_folder . $_file_name;
+						$save_fileurl = $save_url.$_file_name;
 						
-						$_use_files[] = $save_url.$_file_name;
+						
+						if(is_user_logged_in()){
+							//echo '<pre>'; print_r($save_url.$_file_name); echo '</pre>';
+						}
 						
 						//画像ファイルが無い時は取得
 						if (!file_exists($save_filename)) {
 							if(move_uploaded_file( $image_item['tmp_name'], $save_filename)){
 									//echo "uploaded";
 								
+								//アップロードファイルがある場合、以下実行
+								//拡張子をチェックする
+								$exten = '';
+								if ( $image_item['type'] == 'image/jpeg' ) { $exten = 'jpg'; }
+								elseif ( $image_item['type'] == 'image/png' ) { $exten = 'png'; }
+								elseif ( $image_item['type'] == 'image/gif' ) { $exten = 'gif'; }
+								if($exten !== ''){
+									//アップロードファイルを添付する
+									$attachment = array(
+										'post_mime_type' => $image_item['type'], 
+										'post_title' => $image_item['name'], 
+										'post_content' => '', 
+										'post_status' => 'inherit'
+									);
+
+								 $attach_id = wp_insert_attachment( $attachment, $save_filename, $post_id );
+
+								//echo 'attach_id:' . $attach_id . '<br>';
+
+								 require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+								 $attach_data = wp_generate_attachment_metadata( $attach_id, $save_filename );
+								 wp_update_attachment_metadata( $attach_id,  $attach_data );
+
+							 }
+
+								
+
 							}else{
 									echo "error while saving.";
 							}
 						}else{
-							//echo 'already uploaded.';
+							//echo $save_filename .'<br>';
+							echo 'already uploaded<br>';
+							$attach_id = attachment_url_to_postid($save_fileurl);
+							require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+						  $attach_data = wp_generate_attachment_metadata( $attach_id, $save_fileurl );
+						  wp_update_attachment_metadata( $attach_id,  $attach_data );
 						}
+						
+						
+						
 
 					}else{
 							echo "file not uploaded.";
 					}
+					
+					
+					$attach_id = attachment_url_to_postid($save_fileurl);
+					$_use_files[$key]['url'] 	= $save_fileurl;
+					$_use_files[$key]['id'] 	= $attach_id;	
 				}
 			}
 			
@@ -108,7 +170,15 @@ function note_essence($content){
 			//echo '<pre>_use_files'; print_r($_use_files); echo '</pre>';
 			
 			$_insert_text = create_salonote_body($note_body , $_use_files);
+			
+			
 			insert_salonote_note($_insert_text);
+			
+			//アイキャッチを登録
+			if(!empty ($_use_files) ){
+				set_post_thumbnail( $insert_id, $_use_files[0]['id'] );
+			}
+
 			
 			
 		}else{
@@ -116,22 +186,111 @@ function note_essence($content){
 			exit( '不正な遷移です' );
 		}
 		
-		//wp_safe_redirect( get_post_permalink() );
-		//return;
+		
+		wp_safe_redirect( get_post_permalink($insert_id) );
+		exit();
 	}else{
 	
 	global $post;
+	$post_type = null;
 
 	?>
-	<form method="post" action="#thanks" enctype="multipart/form-data" data-persist="garlic">
-	<div class="container col-12 row">
+	<form method="post" action="#note" enctype="multipart/form-data" data-persist="garlic">
+	<div class="container col-12 row mt-5">
 	
 
 		<?php wp_nonce_field( 'add_note_essence_post', 'nonce_note_essence' ); ?>
-		<input type="hidden" name="post_id" value="<?php echo $post->ID;?>">
+		<input type="hidden" name="note" value="1">
+		
+		
+		<div class="col-12 col-md-6 form-control-checkbox mb-5">
+			
+			<?php
+				if( !empty($_POST) && !empty($_POST['post_id']) ){
+				$post_type = get_post_type($_POST['post_id']);
+				echo '
+				<div id="post_target_field" class="form-group row mt-3">
+				<label for="post_title" class="col-sm-3 col-form-label text-left">編集するページ</label>
+				<div class="col-sm-9 text-left">
+					<input class="form-control" type="text" value="'.get_the_title($_POST['post_id']).'" readonly>
+					<input class="form-control" type="hidden" name="post_id" value="'.$_POST['post_id'].'">
+				</div>
+				</div>';
+				}
+			?>
+			
+			<div id="post_title_field" class="form-group row mt-3" style="display : none;">
+				<label for="post_title" class="col-sm-3 col-form-label text-left">タイトル</label>
+				<div class="col-sm-9 text-left">
+					<input class="form-control" type="text" name="post_title" value="" id="post_title">
+				</div>
+			</div>
+			
+			<div class="form-group row mt-3">
+				<label for="post_new" class="col-sm-3 col-form-label text-left">新規投稿</label>
+				<div class="col-sm-9 text-left">
+					<input class="form-check-input" type="checkbox" id="post_new" name="post_new" value="1">
+				</div>	
+			</div>
+			
+			<div id="post_type_field" class="form-group row mt-3" style="display: none;">
+				<label for="post_type" class="col-sm-3 col-form-label text-left">投稿タイプ</label>
+				<div class="col-sm-9">
+				<?php
+				$args = array(
+					 'public'   => true,
+					 '_builtin' => false
+				);
 
+				$post_types = get_post_types( $args, 'names' );
+				array_push($post_types, "post");
+				array_push($post_types, "page");
+		
+				echo '<select name="post_type" class="form-control">';
+		
+		
+				
+		
+				foreach ( array_reverse($post_types) as $post_type_name ) {
+					if( !empty($post_type_name) && $post_type_name !== 'front_page' ){
+						$post_type_label = !empty(get_post_type_object($post_type_name)->labels->singular_name) ? get_post_type_object($post_type_name)->labels->singular_name : null ;
+					}
+					if( empty($post_type_label) ) continue;
+
+					echo '<option value="'.$post_type_name.'"';
+					if( $post_type_name === $post_type ){
+						echo ' selected';
+					}
+					echo'>'.$post_type_label.'</option>';
+				}
+
+				echo '</select>';
+
+				?>
+				</div>
+			</div>
+			
+		</div>
+		
+		<div class="col-12 col-md-6 form-control-checkbox mb-5">
+				<div id="post_style_field" class="form-group row mt-3">
+				<label for="post_style" class="col-sm-3 col-form-label text-left">スタイル</label>
+				<div class="col-sm-9">
+					<select class="form-control" id="post_style" name="post_style">
+						<option value="left_right">左右振り分け</option>
+						<option value="simple_blog">シンプルブログ</option>
+						<option value="keyv_landing">キービジュアルランディング</option>
+					</select>
+			</div>
+		</div>
+			
+		</div>
+		
+		
+		
+		
 		<div class="col-12 col-md-7 mb-5">
-			<textarea rows="20" class="form-control" name="note_body"><?php echo $post->post_content ;?></textarea>
+			<textarea rows="20" class="form-control" name="note_body"><?php echo !empty($post->post_content) ? $post->post_content : '' ;?></textarea>
 		</div>
 
 		<div class="col-12 col-md-5 mb-5">
@@ -154,72 +313,100 @@ function note_essence($content){
 		</div>
 		
 		
-		<div class="text-center">
-	<button class="btn-item" type="submit" value="投稿">投稿</button>
-			</div>
+		<div class="col-12 text-center">
+			<button class="btn-item" type="submit" value="投稿">投稿</button>
+		</div>
 	
 	</div>
 	</form>
 
 	<?php
 	}
+	remove_action('error_page_action','note_essence',10);
 }
-add_action('the_content','note_essence',9);
+add_action('error_page_action','note_essence',9);
 
 
 
-add_action('wp_footer', function () {
+add_action('wp_footer', 'footer_note_action',99);
+function footer_note_action(){
+	global $post;
 	
-	if( !is_singular() )
-		return;
+	if( current_user_can('edit_posts') ){
+		echo '
+		<form id="note-essence-write-form" action="'.get_home_url().'/note_essence/" method="post">
+			<input type="hidden" name="post_id" value="'. (isset($post->ID) ? $post->ID : '' ) .'">
+			<button id="note-essence-write-btn" name="note" value="1"><span class="dashicons dashicons-edit"></span></button>
+		</form>';
+	}
+
 	
 	global $post;
-	if( empty( $_GET['note']) ) return;
+	if( empty( $_POST['note']) ) return;
 	
 	?>
 <script>
 $(document).ready(function() {
-                var storedFiles = [];      
-                $('#note_images').on('change', function() {
-                    $('#note_images').html('');
-                    var myfiles = document.getElementById('note_images');
-                    var files = myfiles.files;
-                    var i=0;
-                    for (i = 0; i<files.length; i++) {
-                        var readImg = new FileReader();
-                        var file=files[i];
-                        if(file.type.match('image.*')){
-                            storedFiles.push(file);
-                            readImg.onload = (function(file) {
-                                return function(e) {
-                                    $('#uploadedfiles').append('<tr class="imageinfo"><td><img width="80" height="70" src="'+e.target.result+'"/></td><td>'+file.name+'</td><td>'+Math.round((file.size/1024))+'KB</td><td><a href="" class="lnkcancelimage" file="'+file.name+'" title="Cancel">X</a></td></tr>');
-                                };
-                            })(file);
-                            readImg.readAsDataURL(file);
-                        }else{
-                            alert('the file '+file.name+' is not an image<br/>');
-                        }
-                    }
-                });
 
-                $('#uploadedfiles').on('click','a.lnkcancelimage',function(){
-                    $(this).parent().parent().html('');
-                    var file=$(this).attr('file');
-                    for(var i=0;i<storedFiles.length;i++) {
-                        if(storedFiles[i].name == file) {
-                            storedFiles.splice(i,1);
-                            break;
-                        }
-                    }
-                    return false;
-                });
-
-
-            });
-</script>
-	<?php
 	
-},99);
+	$('#post_new').on('change', function(e) {
+		if( $(this).prop('checked') ){
+			$('#post_type_field').show('fast');
+			$('#post_target_field').hide('fast');
+			$('#post_title_field').show('fast');
+		}else{
+			$('#post_type_field').hide('fast');
+			$('#post_target_field').show('fast');
+			$('#post_title_field').hide('fast');
+			
+		}
+	});
+
+	var storedFiles = [];      
+	$('#note_images').on('change', function() {
+			$('#note_images').html('');
+			var myfiles = document.getElementById('note_images');
+			var files = myfiles.files;
+			var i=0;
+			for (i = 0; i<files.length; i++) {
+					var readImg = new FileReader();
+					var file=files[i];
+					if(file.type.match('image.*')){
+							storedFiles.push(file);
+							readImg.onload = (function(file) {
+									return function(e) {
+											$('#uploadedfiles').append('<tr class="imageinfo"><td><img width="80" height="70" src="'+e.target.result+'"/></td><td>'+file.name+'</td><td>'+Math.round((file.size/1024))+'KB</td><td><a href="" class="lnkcancelimage" file="'+file.name+'" title="Cancel">X</a></td></tr>');
+									};
+							})(file);
+							readImg.readAsDataURL(file);
+					}else{
+							alert('the file '+file.name+' is not an image<br/>');
+					}
+			}
+	});
+
+	$('#uploadedfiles').on('click','a.lnkcancelimage',function(){
+			$(this).parent().parent().html('');
+			var file=$(this).attr('file');
+			for(var i=0;i<storedFiles.length;i++) {
+					if(storedFiles[i].name == file) {
+							storedFiles.splice(i,1);
+							break;
+					}
+			}
+			return false;
+	});
+
+
+});
+</script>
+
+
+<?php
+
+	remove_action('wp_footer','footer_note_action');
+	
+};
 
 
 ?>

@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Clicker+Script|Dynalight|Monsieur+La+Doulaise");
 .table {
   width: 100%;
   max-width: 100%;
@@ -1494,6 +1495,7 @@ span.line_marker {
   background-size: cover;
   background-position: center center;
   padding: 50px;
+  margin-bottom: 3em;
   zoom: 1; }
   .cover-image:before, .cover-image:after {
     display: table;
@@ -1508,6 +1510,8 @@ span.line_marker {
   .cover-image.bkg-fixed {
     background-attachment: fixed;
     min-height: 35vh; }
+  .cover-image.bkg-parallax {
+    background-position-y: 0px; }
   .cover-image.bkg-right {
     background-position: right center; }
   .cover-image.bkg-left {
@@ -1842,6 +1846,7 @@ h6, .h6 {
 .band_bkg {
   margin-left: -30px;
   margin-right: -30px;
+  margin-bottom: 1.5em;
   padding: 15px 30px;
   box-shadow: 0 0 10px #CCCCCC; }
 
@@ -1906,6 +1911,53 @@ hr.short-horizon {
   margin-bottom: 5em;
   padding: 15px;
   border-radius: 4px; }
+
+.square_label_block {
+  position: absolute;
+  top: 1.5em;
+  left: 0;
+  right: 0;
+  font-size: 0.8em;
+  text-align: center;
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  opacity: 0; }
+  .square_label_block .square_label_block-inner {
+    font-family: 'Dynalight', cursive,"ＭＳ Ｐ明朝", "MS PMincho","ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "serif";
+    background-color: black;
+    color: white;
+    display: inline-block;
+    padding: .6em 1.5em;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 45%;
+    min-width: 25%; }
+    .square_label_block .square_label_block-inner p {
+      margin-bottom: 0.3em; }
+    .square_label_block .square_label_block-inner span {
+      position: relative;
+      font-size: .75em; }
+      .square_label_block .square_label_block-inner span::before {
+        content: '';
+        border-bottom: 0.5px solid whitesmoke;
+        top: 0;
+        width: 7;
+        position: absolute;
+        top: -6px;
+        margin: auto;
+        text-align: center;
+        left: 0;
+        right: 0; }
+  .square_label_block.type-white .square_label_block-inner {
+    background-color: #F6F3F3;
+    color: black; }
+    .square_label_block.type-white .square_label_block-inner span::before {
+      border-bottom: 0.5px solid #C0C0C0; }
+
+.is_active .square_label_block {
+  top: -.6em;
+  animation: fadeIn 1s ease .7s 1 forwards;
+  -webkit-animation: fadeIn .7s ease 1s 1 forwards; }
 
 .btn-item {
   top: 0;
@@ -2384,6 +2436,27 @@ body#tinymce dl.question-dl dd {
 
 body#tinymce dl.toggle-dl dd {
   display: block; }
+
+body#tinymce .mceTemp {
+  border: none; }
+  body#tinymce .mceTemp::before {
+    content: none; }
+  body#tinymce .mceTemp dl.wp-caption {
+    width: auto !important; }
+    body#tinymce .mceTemp dl.wp-caption dt, body#tinymce .mceTemp dl.wp-caption dd {
+      border-left: none;
+      font-size: 1em;
+      padding-left: 0; }
+
+body#tinymce .square_label_block {
+  filter: alpha(opacity=100);
+  -moz-opacity: 1;
+  opacity: 1; }
+
+body#tinymce .wp-caption-dd {
+  border-top: 1px solid #CCCCCC;
+  border-bottom: 1px solid #CCCCCC;
+  padding: 5px; }
 
 .gallery-columns-1 .gallery-item {
   width: 100%; }

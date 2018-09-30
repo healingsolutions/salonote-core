@@ -226,6 +226,26 @@
 			margin-left: auto;
 			margin-right: auto;
 			font-size: 0.75em;
+			display: flex;
+			flex-wrap: nowrap;
+			
+			
+			li a{
+				display: flex;
+				flex-wrap: wrap;
+				
+				.nav_thumbnail{
+					display: none;
+				}
+				.nav_excerpt{
+					p{
+						display: none;
+					}
+				}
+			}
+			
+			
+			
 		}
   
   .sp-navbar-unit{
@@ -747,7 +767,7 @@ body.admin-bar .site-header-block{
 
 
 #super-top-nav{
-		height: 4em;
+		min-height: 4em;
 	
 	.header_logo-block img{
 		max-height: 5em;
@@ -761,6 +781,7 @@ body.admin-bar .site-header-block{
 		text-align: right;
 		margin-right: 2em;
 		font-size: 0.75em;
+		@include _transition_ (height,0.3);
 
 
 		> ul{
@@ -770,12 +791,53 @@ body.admin-bar .site-header-block{
 
 			> li{
 				display: inline-block;
+				box-shadow: 0 0 .1em #999999;
 
 				&.btn-item:hover{
 					top: -3px;
+					box-shadow: 0em .3em .7em #333333;
+					
 				}
-			}
-		}
+				
+				
+				.nav_thumbnail,
+				.nav_excerpt{
+					display: inline-block;
+				}
+				
+				.nav_thumbnail{
+					img{
+						width: auto;
+						height: 80px;
+					}
+				}
+				
+				&.has_thumbnail{
+					&.btn-item{
+						padding: 0;
+						margin-right: 2em;
+					}
+					.nav_excerpt{
+						padding: 0 1em;
+						text-align: left;
+						vertical-align: middle;
+						
+						h2{
+							font-size: 1em;
+							font-weight: normal;
+							margin-bottom: .6em;
+						}
+						p{
+							font-size: 0.8em;
+							font-weight: normal;
+						}
+					}
+				}
+				
+				
+				
+			}//li
+		}//ul
 	}
 }
 
@@ -786,15 +848,30 @@ body.admin-bar .site-header-block{
 			z-index: 2;
 			position: fixed;
 			width: 1em;
-			right: 0;
+			right: -3em;
 			top: 35vh;
 			text-align: right;
+			animation: slide_left_in .5s ease 1s 1 forwards;
+				-webkit-animation: slide_left_in .5s ease 1s 1 forwards;
 
 			li.btn-item{
 				padding: 2em 1em;
 				-webkit-writing-mode: vertical-rl;
 				-ms-writing-mode: tb-rl;
 						writing-mode: vertical-rl;
+				
+				.nav_thumbnail{
+					display: none;
+				}
+				.nav_excerpt{
+					padding: 0;
+					h2{
+						font-weight: normal;
+					}
+					p{
+						display: none;
+					}
+				}
 			}
 
 
@@ -802,5 +879,21 @@ body.admin-bar .site-header-block{
 	}
 }
 
+.scroll_up{
+	#header.hide_header{
+		#super-top-nav .super-top-container{
+		}
+	}
 
+}
 
+	#header.show_header{
+		#super-top-nav .super-top-container{
+			.nav_thumbnail{
+				
+			}
+			.nav_excerpt p{
+			}
+
+		}
+	}

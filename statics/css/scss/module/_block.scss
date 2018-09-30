@@ -29,6 +29,7 @@
 .band_bkg{
 	margin-left: -30px;
 	margin-right: -30px;
+	margin-bottom: 1.5em;
 	padding: 15px 30px;
 	box-shadow: 0 0 10px #CCCCCC;
 }
@@ -112,4 +113,75 @@ hr.short-horizon{
 	margin-bottom: 5em;
 	padding: 15px;
 	border-radius: 4px;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Clicker+Script|Dynalight|Monsieur+La+Doulaise');
+.square_label_block{
+	position: absolute;
+	top: 1.5em;
+	left: 0;
+	right: 0;
+	font-size: 0.8em;
+	text-align: center;
+	filter:alpha(opacity=0);
+    -moz-opacity: 0;
+    opacity: 0;
+	
+	
+	.square_label_block-inner{
+		font-family: 'Dynalight', cursive,"ＭＳ Ｐ明朝", "MS PMincho","ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "serif";
+		background-color: black;
+		color: white;
+		display: inline-block;
+		padding: .6em 1.5em;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 45%;
+		min-width: 25%;
+		
+		p{
+			margin-bottom: 0.3em;
+		}
+		
+		span{
+			position: relative;
+			
+			&::before{
+				content: '';
+				border-bottom: 0.5px solid whitesmoke;
+				top: 0;
+				width: 7;
+				position: absolute;
+				top: -6px;
+				margin: auto;
+				text-align: center;
+				left: 0;
+				right: 0;
+			}
+			font-size: .75em;
+		}
+	}
+	
+	&.type-white{
+		.square_label_block-inner{
+			background-color: #F6F3F3;
+			color: black;
+			
+			span{
+				&::before{
+					border-bottom: 0.5px solid #C0C0C0;
+				}
+			}
+		}
+	}
+	
+	
+}//square_label_block
+
+.is_active{
+	.square_label_block{
+		top: -.6em;
+		animation: fadeIn 1s ease .7s 1 forwards;
+				-webkit-animation: fadeIn .7s ease 1s 1 forwards;
+	}
 }

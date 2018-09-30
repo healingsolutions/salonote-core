@@ -21,9 +21,15 @@ endif;
 
 
 
+$header_class = array('site-header-block');
+if (has_nav_menu('Top')) {
+	$header_class[] = 'has_top_nav';
+}else{
+	$header_class[] = 'none_top_nav';
+}
 
 ?>
-<header id="header" class="site-header-block">
+<header id="header" class="<?php echo implode(' ',$header_class);?>">
   <?php
     // action essence_before_header =============================
     if ( current_user_can( 'administrator' ) && $user_setting['display_shortcode'] ) { echo '<span class="do_action">do_action: [essence_before_header]</span>';}

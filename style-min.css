@@ -14,6 +14,7 @@ Text Domain: salonote-essence
 Tags: one-column, two-columns, right-sidebar, left-sidebar, custom-header, custom-menu, editor-style, featured-images, post-formats, rtl-language-support, sticky-post, translation-ready
 */
 /* CSS Document */
+@import url("https://fonts.googleapis.com/css?family=Clicker+Script|Dynalight|Monsieur+La+Doulaise");
 html,
 body {
   font-size: inherit; }
@@ -426,6 +427,94 @@ template {
  */
 [hidden] {
   display: none; }
+
+/* CSS Document */
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes scroll_left_in {
+  0% {
+    right: 1em; }
+  100% {
+    right: 2em; } }
+
+@keyframes scroll_left_out {
+  0% {
+    right: 2em; }
+  100% {
+    right: 1em; } }
+
+@keyframes scroll_right_in {
+  0% {
+    left: 1em; }
+  100% {
+    left: 2em; } }
+
+@keyframes scroll_right_out {
+  0% {
+    left: 2em; }
+  100% {
+    left: 1em; } }
+
+@keyframes scroll_up_in {
+  0% {
+    top: 0em; }
+  100% {
+    top: -1em; } }
+
+@keyframes scroll_up_out {
+  0% {
+    top: -1em; }
+  100% {
+    top: 0em; } }
+
+@keyframes slide_left_in {
+  0% {
+    right: -3em; }
+  100% {
+    right: 0em; } }
+
+@keyframes slide_left_out {
+  0% {
+    right: 0em; }
+  100% {
+    right: -3em; } }
+
+@keyframes fader {
+  0% {
+    opacity: 0;
+    filter: alpha(opacity=0); }
+  30% {
+    opacity: 0;
+    filter: alpha(opacity=0); }
+  100% {
+    opacity: 1;
+    filter: alpha(opacity=100); } }
+
+@-webkit-keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
 
 :root {
   --blue: #007bff;
@@ -6346,7 +6435,16 @@ h1.header-description {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    font-size: 0.75em; }
+    font-size: 0.75em;
+    display: flex;
+    flex-wrap: nowrap; }
+    #menu-super-top li a {
+      display: flex;
+      flex-wrap: wrap; }
+      #menu-super-top li a .nav_thumbnail {
+        display: none; }
+      #menu-super-top li a .nav_excerpt p {
+        display: none; }
   .sp-navbar-unit {
     display: fixed; }
   #header_nav.navbar-block {
@@ -6757,7 +6855,7 @@ body.admin-bar .site-header-block {
         transition: opacity 0.3s ease; }
 
 #super-top-nav {
-  height: 4em; }
+  min-height: 4em; }
   #super-top-nav .header_logo-block img {
     max-height: 5em;
     height: 45px; }
@@ -6766,28 +6864,64 @@ body.admin-bar .site-header-block {
   #super-top-nav .super-top-container {
     text-align: right;
     margin-right: 2em;
-    font-size: 0.75em; }
+    font-size: 0.75em;
+    -webkit-transition: height 0.3s ease;
+    -moz-transition: height 0.3s ease;
+    -o-transition: height 0.3s ease;
+    transition: height 0.3s ease; }
     #super-top-nav .super-top-container > ul {
       display: block;
       margin-bottom: 0;
       padding-top: 0.5em; }
       #super-top-nav .super-top-container > ul > li {
-        display: inline-block; }
+        display: inline-block;
+        box-shadow: 0 0 .1em #999999; }
         #super-top-nav .super-top-container > ul > li.btn-item:hover {
-          top: -3px; }
+          top: -3px;
+          box-shadow: 0em .3em .7em #333333; }
+        #super-top-nav .super-top-container > ul > li .nav_thumbnail,
+        #super-top-nav .super-top-container > ul > li .nav_excerpt {
+          display: inline-block; }
+        #super-top-nav .super-top-container > ul > li .nav_thumbnail img {
+          width: auto;
+          height: 80px; }
+        #super-top-nav .super-top-container > ul > li.has_thumbnail.btn-item {
+          padding: 0;
+          margin-right: 2em; }
+        #super-top-nav .super-top-container > ul > li.has_thumbnail .nav_excerpt {
+          padding: 0 1em;
+          text-align: left;
+          vertical-align: middle; }
+          #super-top-nav .super-top-container > ul > li.has_thumbnail .nav_excerpt h2 {
+            font-size: 1em;
+            font-weight: normal;
+            margin-bottom: .6em; }
+          #super-top-nav .super-top-container > ul > li.has_thumbnail .nav_excerpt p {
+            font-size: 0.8em;
+            font-weight: normal; }
 
 .scroll_down #header.hide_header #super-top-nav .super-top-container {
   z-index: 2;
   position: fixed;
   width: 1em;
-  right: 0;
+  right: -3em;
   top: 35vh;
-  text-align: right; }
+  text-align: right;
+  animation: slide_left_in .5s ease 1s 1 forwards;
+  -webkit-animation: slide_left_in .5s ease 1s 1 forwards; }
   .scroll_down #header.hide_header #super-top-nav .super-top-container li.btn-item {
     padding: 2em 1em;
     -webkit-writing-mode: vertical-rl;
     -ms-writing-mode: tb-rl;
     writing-mode: vertical-rl; }
+    .scroll_down #header.hide_header #super-top-nav .super-top-container li.btn-item .nav_thumbnail {
+      display: none; }
+    .scroll_down #header.hide_header #super-top-nav .super-top-container li.btn-item .nav_excerpt {
+      padding: 0; }
+      .scroll_down #header.hide_header #super-top-nav .super-top-container li.btn-item .nav_excerpt h2 {
+        font-weight: normal; }
+      .scroll_down #header.hide_header #super-top-nav .super-top-container li.btn-item .nav_excerpt p {
+        display: none; }
 
 body .breadcrumb {
   position: relative;
@@ -8414,7 +8548,8 @@ span.line_marker {
 .cover-image {
   background-size: cover;
   background-position: center center;
-  padding: 50px; }
+  padding: 50px;
+  margin-bottom: 3em; }
   .cover-image::after {
     display: block;
     clear: both;
@@ -8422,6 +8557,8 @@ span.line_marker {
   .cover-image.bkg-fixed {
     background-attachment: fixed;
     min-height: 35vh; }
+  .cover-image.bkg-parallax {
+    background-position-y: 0px; }
   .cover-image.bkg-right {
     background-position: right center; }
   .cover-image.bkg-left {
@@ -8749,6 +8886,7 @@ h6, .h6 {
 .band_bkg {
   margin-left: -30px;
   margin-right: -30px;
+  margin-bottom: 1.5em;
   padding: 15px 30px;
   box-shadow: 0 0 10px #CCCCCC; }
 
@@ -8813,6 +8951,53 @@ hr.short-horizon {
   margin-bottom: 5em;
   padding: 15px;
   border-radius: 4px; }
+
+.square_label_block {
+  position: absolute;
+  top: 1.5em;
+  left: 0;
+  right: 0;
+  font-size: 0.8em;
+  text-align: center;
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  opacity: 0; }
+  .square_label_block .square_label_block-inner {
+    font-family: 'Dynalight', cursive,"ＭＳ Ｐ明朝", "MS PMincho","ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "serif";
+    background-color: black;
+    color: white;
+    display: inline-block;
+    padding: .6em 1.5em;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 45%;
+    min-width: 25%; }
+    .square_label_block .square_label_block-inner p {
+      margin-bottom: 0.3em; }
+    .square_label_block .square_label_block-inner span {
+      position: relative;
+      font-size: .75em; }
+      .square_label_block .square_label_block-inner span::before {
+        content: '';
+        border-bottom: 0.5px solid whitesmoke;
+        top: 0;
+        width: 7;
+        position: absolute;
+        top: -6px;
+        margin: auto;
+        text-align: center;
+        left: 0;
+        right: 0; }
+  .square_label_block.type-white .square_label_block-inner {
+    background-color: #F6F3F3;
+    color: black; }
+    .square_label_block.type-white .square_label_block-inner span::before {
+      border-bottom: 0.5px solid #C0C0C0; }
+
+.is_active .square_label_block {
+  top: -.6em;
+  animation: fadeIn 1s ease .7s 1 forwards;
+  -webkit-animation: fadeIn .7s ease 1s 1 forwards; }
 
 .btn-item {
   top: 0;
@@ -8983,33 +9168,6 @@ hr.short-horizon {
   left: 0;
   bottom: 0;
   right: 0; }
-
-@keyframes fader {
-  0% {
-    opacity: 0;
-    filter: alpha(opacity=0); }
-  30% {
-    opacity: 0;
-    filter: alpha(opacity=0); }
-  100% {
-    opacity: 1;
-    filter: alpha(opacity=100); } }
-
-@-webkit-keyframes load3 {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg); }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg); } }
-
-@keyframes load3 {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg); }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg); } }
 
 body.use_content_fade .entry_block_content > div.block-group-wrap,
 body.use_content_fade .landing-page-item {
@@ -9230,16 +9388,6 @@ select.form-control:not([size]):not([multiple]) {
       #keyv-figure .figure-text .figure-text-inner {
         vertical-align: middle;
         display: table-cell; }
-  @keyframes fadeIn {
-    0% {
-      opacity: 0; }
-    100% {
-      opacity: 1; } }
-  @-webkit-keyframes fadeIn {
-    0% {
-      opacity: 0; }
-    100% {
-      opacity: 1; } }
   #keyv-content {
     left: 66.6%;
     margin-top: 210vh;
@@ -9311,42 +9459,6 @@ body.page-template-keyv-landing .main-content-wrap {
     animation: scroll_left_in .6s ease 0s forwards; }
   .widget_banner_block:hover .banner_caption_block.text-center {
     animation: scroll_up_in .6s ease 0s forwards; }
-
-@keyframes scroll_left_in {
-  0% {
-    right: 1em; }
-  100% {
-    right: 2em; } }
-
-@keyframes scroll_left_out {
-  0% {
-    right: 2em; }
-  100% {
-    right: 1em; } }
-
-@keyframes scroll_right_in {
-  0% {
-    left: 1em; }
-  100% {
-    left: 2em; } }
-
-@keyframes scroll_right_out {
-  0% {
-    left: 2em; }
-  100% {
-    left: 1em; } }
-
-@keyframes scroll_up_in {
-  0% {
-    top: 0em; }
-  100% {
-    top: -1em; } }
-
-@keyframes scroll_up_out {
-  0% {
-    top: -1em; }
-  100% {
-    top: 0em; } }
 
 .sidebar_inner__content .widget_title {
   border-bottom: 1px dotted #CCCCCC;
@@ -9771,8 +9883,6 @@ body.single-style #keyv-figure .figure-text {
   .timeline-type-group .list_block_title,
   .list-type-group .list_block_title {
     font-size: 1.25em; }
-  #super-top-nav {
-    height: 4em; }
   .scroll_down #header.hide_header #super-top-nav .super-top-container > ul > li.btn-item {
     display: block; }
   .grid-type-group > section {

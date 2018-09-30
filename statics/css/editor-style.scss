@@ -396,6 +396,34 @@ body#tinymce{
 		}
 	}
 	
+	.mceTemp{
+		border: none;
+		&::before{
+			content: none;
+		}
+		dl.wp-caption{
+			width: auto !important;
+			dt,dd{
+				border-left: none;
+				font-size: 1em;
+				padding-left: 0;
+			}
+		}
+	}
+	
+	.square_label_block{
+		filter:alpha(opacity=100);
+    -moz-opacity: 1;
+    opacity: 1;
+	}
+	
+	.wp-caption-dd{
+		border-top: 1px solid #CCCCCC;
+		border-bottom: 1px solid #CCCCCC;
+		padding: 5px;
+	}
+	
+	
 }//body#tinymce
 
 

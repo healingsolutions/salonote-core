@@ -7,6 +7,7 @@
 	background-position: center center;
 	//margin-bottom: 25px;
 	padding: 50px;
+	margin-bottom: 3em;
 	@include clearfix;
 	
 	&.bkg-fixed{
@@ -14,6 +15,11 @@
 		min-height: 35vh;
 		//background-size: 100% auto;
 	}
+	
+	&.bkg-parallax{
+		background-position-y: 0px;
+	}
+	
 	&.bkg-right{
 		background-position: right center;
 	}

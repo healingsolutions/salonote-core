@@ -22,17 +22,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 function insert_salonote_note($_insert_text){
 	global $post;
 	global $post_type;
+	global $post_id;
+	global $insert_id;
 	
 	//echo $_insert_text;
+
 	
-	$post_value = array(
-		'ID'						=> (isset($post->ID) ? $post->ID : null ),
-		'post_content'	=> $_insert_text,
-	);
-	$insert_id = wp_update_post($post_value);
+	if( !empty( $_POST['post_new'] ) ){
+		$post_value['post_title'] = !empty($_POST['post_title']) ? esc_html($_POST['post_title']) : 'new title' ;
+		$post_value['post_status'] = 'publish';
+		$post_value['post_type'] = !empty($_POST['post_type']) ? esc_html($_POST['post_type']) : null ;
+		$post_value['post_content'] = !empty($_insert_text) ? $_insert_text : '' ;
+		return $insert_id = wp_insert_post($post_value);
+	}else{
+		$post_value['ID'] = !empty($post_id) ? esc_html($post_id) : null ;
+		$post_value['post_type'] = !empty($_POST['post_type']) ? esc_html($_POST['post_type']) : null ;
+		$post_value['post_content'] = !empty($_insert_text) ? $_insert_text : '' ;
+		return $insert_id = wp_update_post($post_value);
+	}
+	
+	
+	
 	
 
-	echo $insert_id;
 }
 
 ?>

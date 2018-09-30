@@ -1,0 +1,93 @@
+/* CSS Document */
+
+
+	@keyframes fadeIn {
+			0% {opacity: 0}
+			100% {opacity: 1}
+	}
+
+	@-webkit-keyframes fadeIn {
+			0% {opacity: 0}
+			100% {opacity: 1}
+	}
+
+
+
+@keyframes scroll_left_in {
+  0% { right: 1em;}
+  100% { right: 2em;}
+}
+
+@keyframes scroll_left_out {
+  0% { right: 2em;}
+  100% { right: 1em;}
+}
+
+@keyframes scroll_right_in {
+  0% { left: 1em;}
+  100% { left: 2em;}
+}
+
+@keyframes scroll_right_out {
+  0% { left: 2em;}
+  100% { left: 1em;}
+}
+
+@keyframes scroll_up_in {
+  0% { top: 0em;}
+  100% { top: -1em;}
+}
+
+@keyframes scroll_up_out {
+  0% { top: -1em;}
+  100% { top: 0em;}
+}
+
+
+
+@keyframes slide_left_in {
+  0% { right: -3em;}
+  100% { right: 0em;}
+}
+
+@keyframes slide_left_out {
+  0% { right: 0em;}
+  100% { right: -3em;}
+}
+
+
+
+
+@keyframes fader {
+  0% {
+    @include opacity(0);
+  }
+	30% {
+    @include opacity(0);
+  }
+  100% {
+    @include opacity(100);
+  }
+}
+
+
+@-webkit-keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}

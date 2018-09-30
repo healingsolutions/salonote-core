@@ -199,9 +199,7 @@ jQuery(document).ready(function($){
 	
 	//lazy image
 	if($('body.use_lazy_load').length && ( $(window).width() > 768 ) ){
-		
-		
-		
+	
 		$('body.use_lazy_load .entry_block_content img[class*="wp-image-"]').each(function() {
 			if( $(this).hasClass('img-cover-block') ){
 				$(this).addClass('cover-figure');
@@ -216,6 +214,24 @@ jQuery(document).ready(function($){
 		//$('body.use_lazy_load .entry_block_content img.lazy').lazyload();
 		
 	};
+	
+	if($('.square_label_block').length ){
+		$('.square_label_block').each(function(){
+			$(this).wrapInner('<div class="square_label_block-inner caption_bkg" />');
+		});
+	}
+	
+	if($('.wp-caption-text').length ){
+		$('.wp-caption-text').each(function(){
+			$(this).addClass('square_label_block');
+			var caption_title = $(this).prev('img').attr('title');
+			var caption_text = $(this).prev('img').attr('alt');
+			$(this).wrapInner('<div class="square_label_block-inner caption_bkg" />');
+			$(this).children('.square_label_block-inner').prepend('<p>'+caption_title+'<br><span>'+caption_text+'</span><\/p>');
+		});
+	}
+																	
+	
 	
 	
 	
@@ -265,9 +281,9 @@ jQuery(document).ready(function($){
 
 
 		if( top >= nav_height){
-			$('#body-wrap, .site-header-block').addClass('hide_header');
+			$('#body-wrap, .site-header-block').addClass('hide_header').removeClass('show_header');
 		}else{
-			$('#body-wrap, .site-header-block').removeClass('hide_header');
+			$('#body-wrap, .site-header-block').removeClass('hide_header').addClass('show_header');
 		}
 
 
@@ -290,6 +306,27 @@ jQuery(document).ready(function($){
 					$(this).children('.text-cover-block').css({
 						"top"		:	'0%',
 						"opacity"	:	'1',
+					});
+				}
+
+			});
+			
+			
+			$('.cover-image.bkg-parallax').each(function(){
+
+				var cover_offset = $(this).offset().top;
+				var cover_height = $(this).height() * 0.03;
+
+				var blur = (top - cover_offset + cover_height) * 0.3;
+
+				if( (top - cover_offset + cover_height) > 0 ){
+
+					$(this).css({
+						"background-position-y"		:	(blur) +'px',
+					});
+				}else{
+					$(this).css({
+						"background-position-y"		:	'0px',
 					});
 				}
 
@@ -643,6 +680,12 @@ jQuery(window).on('load', function() {
 				var cover_height = cover_height/1.5;
 				$(this).parent('.cover-image').addClass('bkg-fixed').height(cover_height);
 			}
+			
+			if( $(this).hasClass("bkg-parallax")){
+				var cover_height = cover_height / 1.8;
+				$(this).parent('.cover-image').addClass('bkg-parallax').height(cover_height);
+			}
+			
 			if( $(this).hasClass("bkg-right"))
 				$(this).parent('.cover-image').addClass('bkg-right');
 			if( $(this).hasClass("bkg-left"))

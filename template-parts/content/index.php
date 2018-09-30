@@ -153,8 +153,7 @@ echo '<div class="'.$row_class.'">';
 				echo '<h1 class="taxonomy_lable">'.single_tag_title('',false).'</h1>';
 				echo '</div>';
 				
-			} elseif( is_archive() ){
-				
+			} elseif( is_month() ){
 				echo '<div class="entry_block_taxonomy_label">';
 				echo '<h1 class="taxonomy_lable">'.get_query_var('year').'年'.get_query_var('monthnum').'月'.'</h1>';
 				echo '</div>';

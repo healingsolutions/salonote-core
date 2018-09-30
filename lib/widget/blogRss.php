@@ -118,15 +118,15 @@ function my_wp_widget_rss_output( $rss, $args = array() ) {
 	$show_date     = (int) $args['show_date'];
 
 	if ( !$rss->get_item_quantity() ) {
-		echo '<ul><li class="bdr-btm-1-dotted">' . __( 'An error has occurred, which probably means the feed is down. Try again later.' ,'salonote-essence') . '</li></ul>';
+		echo '<ul><li class="parent-list-item">' . __( 'An error has occurred, which probably means the feed is down. Try again later.' ,'salonote-essence') . '</li></ul>';
 		$rss->__destruct();
 		unset($rss);
 		return;
 	}
 
 
-	echo '<div class="topic-list mod_hover-list inner mgb-50">
-	<ul class="l-sidebar__side-list">';
+	echo '<div class="side_list">
+	<ul class="list-bordered">';
 	foreach ( $rss->get_items( 0, $items ) as $item ) {
 		$link = $item->get_link();
 		while ( stristr( $link, 'http' ) != $link ) {
@@ -174,11 +174,11 @@ function my_wp_widget_rss_output( $rss, $args = array() ) {
 
         if ( ! (strstr($title, 'PR'))) :
             if ( $link == '' ) {
-                echo "<li class='bdr-btm-1-dotted'>$title{$date}{$summary}{$author}</li>";
+                echo "<li class='parent-list-item'>$title{$date}{$summary}{$author}</li>";
             } elseif ( $show_summary ) {
-                echo "<li class='bdr-btm-1-dotted'><a class='rsswidget' href='$link' target='_blank'>$title{$date}{$summary}{$author}</a></li>";
+                echo "<li class='parent-list-item'><a class='rsswidget' href='$link' target='_blank'>$title{$date}{$summary}{$author}</a></li>";
             } else {
-                echo "<li class='bdr-btm-1-dotted'><a class='rsswidget' href='$link' target='_blank'>$title{$date}{$author}</a></li>";
+                echo "<li class='parent-list-item'><a class='rsswidget' href='$link' target='_blank'>$title{$date}{$author}</a></li>";
             }
         endif;
 	}

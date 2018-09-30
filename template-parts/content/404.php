@@ -17,8 +17,19 @@ $event_date = isset($post_type_set['event_date']) ?$post_type_set['event_date'] 
 echo '<div class="main-content-wrap">';
 	echo '<div class="'.$main_block_class.' main-content-unit">';
 		echo '<div class="container text-center">';
-			echo '<div class="h1">404</h1>';
-			echo '<p>'.__('no posts','salonote-essence').'</p>';
+
+
+			if( !empty($_POST) && !empty($_POST['post_id']) ){
+				echo '<div class="h1">';
+				echo get_the_title($_POST['post_id']);
+				echo '</div>';
+				
+			}else{
+				echo '<div class="h1">404</div>';
+				echo '<p>'.__('no posts','salonote-essence').'</p>';
+			}
+
+			do_action('error_page_action');
 		echo '</div>';
 	echo '</div>';
 echo '</div>';

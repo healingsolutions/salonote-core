@@ -78,47 +78,6 @@ global $change_button;
 global $sort_button;
 global $hide_button;
 
-if( !isset($change_button) && $change_button !== true && count($shop_menu_arr) > 2 ){
-	echo '<div class="shop_menu_change-button">';
-	if( !wp_is_mobile() ){
-		echo '<div class="shop_menu-list-view';
-		if($list_type === 'list') echo ' active';
-		echo '"><span class="dashicons dashicons-list-view"></span></div>';
-
-		echo '<div class="shop_menu-grid-view';
-		if($list_type === 'grid') echo ' active';
-		echo '"><span class="dashicons dashicons-screenoptions"></span></div>';
-	}
-	
-	//sort buttns
-	if( !isset($sort_button) && $sort_button !== true ){
-		/*
-		echo '<div class="shop_menu-sort-price';
-		echo '"><span class="dashicons dashicons-arrow-up-alt2"></span>安い順</div>';
-
-		echo '<div class="shop_menu-sort-time';
-		echo '"><span class="dashicons dashicons-arrow-down-alt2"></span>時間の長い順</div>';
-		*/
-	}
-	
-	
-
-	//sort buttns
-	if( !isset($hide_button) && $hide_button !== true ){
-		/*
-		echo '<div class="shop_menu_show-button-unit">';
-		foreach( $shop_menu_fields as $key => $value ){
-			echo '<div rel="'.$value['menu_field'].'" class="shop_menu_show-button btn-color active">'.$value['menu_label'].'</div>'; 
-		}
-		echo '</div>';
-		*/
-	}
-	
-	echo '</div>';
-
-	$change_button = true;
-}
-
 
 
 
