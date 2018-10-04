@@ -138,6 +138,10 @@ $field_arr = array(
       'label' =>  __('ShopMenu PostType','salonote-essence'),
       'type'  => 'checkbox',
   ),
+	'enable_character' => array(
+      'label' =>  __('Character PostType','salonote-essence'),
+      'type'  => 'checkbox',
+  ),
 
 	
 	'header_type' => array(

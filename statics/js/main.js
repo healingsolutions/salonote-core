@@ -173,6 +173,12 @@ jQuery(document).ready(function($){
 				}
 			});
 			
+			$('.character_essence').each(function() {
+				if($(this).offset().top < scrollPos) {
+						$(this).addClass('is_active');
+				}
+			});
+			
 		});
 	};
 	
@@ -754,6 +760,10 @@ jQuery(window).on('load', function() {
 							this.remove();
 						});
 	$('#body-wrap').removeClass('fader');
+	
+	if(document.body.scrollTop == 0){
+			setTimeout(function(){scrollTo(0,1)}, 1);
+	}
 
 	
 });//load

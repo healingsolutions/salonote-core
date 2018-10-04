@@ -40,13 +40,15 @@ function page_bkg_upload_postmeta(){
 	if( !empty($page_bkg_upload_images) ){
 
 				$thumb_src = wp_get_attachment_image_src ($page_bkg_upload_images,'large');
-				if( empty($thumb_src[0]) ){
+				if( empty($thumb_src) ){
 					$thumb_src = wp_get_attachment_image_src ($page_bkg_upload_images,'full');
 				}
-				if ( empty ($thumb_src[0]) ){
+				if ( empty ($thumb_src) ){
 						//delete_post_meta( $post_id, 'page_bkg_upload_images', $img_id );
 					$thumb_src[0] = wp_get_attachment_url($page_bkg_upload_images);
 				}
+
+		
 				if ( !empty ($thumb_src[0]) )
 					{
 						$page_bkg_upload_li.= 

@@ -76,6 +76,28 @@ function insert_landing_page_info(){
     </dl>
     ';
   }
+	
+	
+	echo '
+		<dl class="essence_landing_page_info_fields">
+			<label for="landing_page_info_txt_color">
+			<dt>テキスト色</dt>
+			<dd>
+				<input type="text" name="landing_page_info[txt_color]" size="8" id="landing_page_info_txt_color" class="page_txt_color" value="'. (!empty($landing_page_info_value['txt_color']) ? esc_html($landing_page_info_value['txt_color']) : '' ) .'">
+			</dd>
+			</label>
+		</dl>
+		
+		
+		<dl class="essence_landing_page_info_fields">
+			<label for="landing_page_info_bkg_color">
+			<dt>背景色</dt>
+			<dd>
+				<input type="text" name="landing_page_info[bkg_color]" size="8" id="landing_page_info_bkg_color" class="page_bkg_color" value="'. (!empty($landing_page_info_value['bkg_color']) ? esc_html($landing_page_info_value['bkg_color']) : '' ) .'">
+			</dd>
+			</label>
+		</dl>
+	';
 
 }
  
@@ -101,5 +123,7 @@ function save_landing_page_info($post_id){
 		delete_post_meta($post_id, 'landing_page_info', get_post_meta($post_id, 'landing_page_info', true));
 	}
 }
+
+
 
 ?>

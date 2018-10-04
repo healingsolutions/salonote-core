@@ -15,7 +15,15 @@ global $hide_header;
 global $hide_footer;
 
 $page_info = get_post_meta($post->ID,'page_info',true);
+if( empty($page_info) ){
+	$page_info = [];
+}
+
 $page_info['none_sidebar'] = true;
+$page_info['has_sidebar'] = false;
+$page_info['full_size'] = false;
+$page_info['disable_title'] = true;
+
 
 $landing_page_info = get_post_meta($post->ID,'landing_page_info',true);
 
@@ -93,9 +101,9 @@ if((
 }
 
 
-if( !empty( $page_info ) ) {
+if( !empty( $page_info ) && in_array(1,$page_info) ) {
   foreach( $page_info as $info_key => $value){
-    $main_unit[] = $info_key;
+		if( !empty($value) ) $main_unit[] = $info_key;
   }
 }
 
@@ -104,14 +112,13 @@ if( !empty( $page_info ) ) {
 get_header();
 
 
-
 echo '<div class="'.implode(' ',$main_unit).'">';
 echo '<div class="'.$row_class.'">';
 
   // main =======================
   echo '<div class="'.implode(' ',$main_content).'">';
 
-	$page_info['disable_title'] = true;
+	
 
 	if(have_posts()): while(have_posts()): the_post();
 

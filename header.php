@@ -54,8 +54,7 @@ EOM;
 	
 	
 	//if has page bkg
-		
-	if( !empty($page_bkg) ){
+	if( !empty($page_bkg) && get_page_template_slug() !== 'template/keyv-landing.php' ){
 		$thumb_src = wp_get_attachment_image_src ($page_bkg,'large');
 		if( empty($thumb_src[0]) ){
 			$thumb_src = wp_get_attachment_image_src ($page_bkg,'full');

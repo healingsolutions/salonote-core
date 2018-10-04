@@ -51,6 +51,26 @@ jQuery(document).ready( function($) {
         });
     }
     media_upload('.custom_media_button.button');
+	
+	
+	
+	var myOptions = {
+			// デフォルトカラー（falseまたはカラーコード）
+			defaultColor: false,
+			// カラー変更時のイベント
+			change: function(event, ui){},
+			// カラークリア時のイベント
+			clear: function() {},
+			// 画面ロード時にカラーピッカーを隠すかどうか
+			hide: true,
+			// カラーパレットの表示方法
+			palettes: true
+	};
+
+	$('#page_bkg_color').wpColorPicker(myOptions);
+	
 });
+
+
 
 

@@ -155,6 +155,12 @@
 			
 			.block-item-inner{
 				vertical-align: top;
+				
+				img{
+					display: block;
+					margin-left: auto;
+					margin-right: auto;
+				}
 			}
 			
 			&.vertical-middle .block-item-inner{

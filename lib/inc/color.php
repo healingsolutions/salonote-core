@@ -251,6 +251,23 @@ $color_customize_array = array(
   ),
 	
 
+	'char_left' => array(
+    'target'   => '.char_left',
+    'element'  => 'background-color',
+    'default'  => '#57af69',
+    'label_jp' => __('char_left background-color','salonote-essence'),
+    'section'  => 'colors',
+  ),
+	
+	'char_right' => array(
+    'target'   => '.char_right',
+    'element'  => 'background-color',
+    'default'  => '#56a7ad',
+    'label_jp' => __('char_right background-color','salonote-essence'),
+    'section'  => 'colors',
+  ),
+	
+
 );
 
 add_action('wp_print_styles','print_style_head', 10,2);

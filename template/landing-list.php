@@ -35,7 +35,7 @@ if( !empty($landing_page_info) && $landing_page_info['none_footer'] ){
 }
 
 $landing_page_item_inner = array('landing-page-item-inner');
-if( !empty($landing_page_info) && $landing_page_info['use_container'] ){
+if( !empty($landing_page_info['use_container']) && $landing_page_info['use_container'] ){
 	$landing_page_item_inner[] = 'container';
 }
 
@@ -115,7 +115,7 @@ echo '<div class="'.$row_class.'">';
 
   // main =======================
   echo '<div class="'.implode(' ',$main_content).'">';
-	echo '<div class="landing-page-block">';
+	echo '<div class="landing-page-block main-content-wrap">';
 	
 
 	$page_info['disable_title'] = true;
@@ -135,9 +135,17 @@ echo '<div class="'.$row_class.'">';
 		}
 
 		echo '<div id="landing-'.get_the_ID().'" name="landing-'.get_the_ID().'" class="ancor"></div>';
-		echo '<div class="landing-page-item"';
-		if( !empty($page_bkg) && !empty($thumb_src[0]) ) echo ' style="background-image: url('.$thumb_src[0].'); padding-top: 2em; padding-bottom: 2em;"';
-		echo '>';
+		echo '<div class="landing-page-item" style="';
+		if( !empty($page_bkg) && !empty($thumb_src[0]) ){
+			 echo ' background-image: url('.$thumb_src[0].'); padding-top: 2em; padding-bottom: 2em;';
+		}
+		if( !empty($landing_page_info['bkg_color'] ) ){
+			 echo ' background-color: '. $landing_page_info['bkg_color'].';';
+		}
+		if( !empty($landing_page_info['txt_color'] ) ){
+			 echo ' color: '. $landing_page_info['txt_color'].' !important;';
+		}
+		echo '">';
 		echo '<div class="'.implode(' ',$landing_page_item_inner).'">';
 			get_template_part('template-parts/module/single-content');
 			edit_post_link( get_the_title() . 'を編集', '<div class="entry_block_content"><div class="btn btn-primary randing_page_edit">', '</div></div>');
@@ -148,6 +156,8 @@ echo '<div class="'.$row_class.'">';
 
 	if($query->have_posts()){
 		while($query->have_posts()): $query->the_post();
+		
+		$pageTemplate = get_post_meta($post->ID, '_wp_page_template', true);
 		
 		$page_bkg	= get_post_meta(get_the_ID(),'page_bkg_upload_images', true );
 		if( !empty($page_bkg) ){
@@ -161,14 +171,78 @@ echo '<div class="'.$row_class.'">';
 			}
 		}
 		
-		$post_data = get_post();
+		$post = get_post();
 		echo '<div id="landing-'.get_the_ID().'" name="landing-'.get_the_ID().'" class="ancor"></div>';
-		echo '<div class="landing-page-item"';
-		if( !empty($page_bkg) && !empty($thumb_src[0]) ) echo ' style="background-image: url('.$thumb_src[0].'); padding-top: 2em; padding-bottom: 2em;"';
-		echo '>';
+		
+		echo '<div class="landing-page-item" style="';
+		if( !empty($page_bkg) && !empty($thumb_src[0]) && $pageTemplate !== 'template/landing-list.php'){
+			 echo ' background-image: url('.$thumb_src[0].'); padding-top: 2em; padding-bottom: 2em;';
+		}
+		if( !empty($landing_page_info['bkg_color'] )  ){
+			 echo ' background-color: '. $landing_page_info['bkg_color'].';';
+		}
+		if( !empty($landing_page_info['txt_color'] ) ){
+			 echo ' color: '. $landing_page_info['txt_color'].' !important;';
+		}
+		echo '">';
 		echo '<div class="'.implode(' ',$landing_page_item_inner).'">';
-			get_template_part('template-parts/module/single-content');
-			edit_post_link($post_data->post_title . 'を編集', '<div class="entry_block_content"><div class="btn btn-primary randing_page_edit">', '</div></div>');
+		
+		
+			
+			if($pageTemplate == 'template/landing-list.php' ){
+				
+				$page_bkg	= get_post_meta(get_the_ID(),'page_bkg_upload_images', true );
+				if( !empty($page_bkg) ){
+					$thumb_src = wp_get_attachment_image_src ($page_bkg,'full');
+					if( empty($thumb_src[0]) ){
+						$thumb_src = wp_get_attachment_image_src ($page_bkg,'full');
+					}
+					if ( empty ($thumb_src[0]) ){
+							//delete_post_meta( $post_id, 'page_bkg_upload_images', $img_id );
+						$thumb_src[0] = wp_get_attachment_url($page_bkg);
+					}
+					$key_image = $thumb_src[0];
+				}else{
+
+					$attachment_images = get_attached_media( 'image', get_the_ID() );
+					$attachment_images = array_shift($attachment_images);
+
+					$attachment_id = $attachment_images->ID;
+					$key_image_arr = wp_get_attachment_image_src ($attachment_id,'full');
+					$key_image = $key_image_arr[0];
+				}
+				
+				echo '
+					<figure id="keyv-figure" class="col-12 col-md-7">
+						<picture>
+							<img class="img-fit" src="'. $key_image .'" alt="'.get_the_title().' - メインビジュアル">
+						</picture>';
+
+					if( has_excerpt() ){
+						echo '<div class="figure-text">
+						<div class="figure-text-inner">
+						<h1>'. get_the_title() .'</h1>
+						<p class="figure-text-inner-excerpt">';
+
+						echo nl2br(get_the_excerpt());
+
+						echo '</p>
+						</div>
+						</div>';
+					}
+					echo '</figure>';
+					echo '<div id="keyv-content" class="col-12 col-md-5">';
+						get_template_part('template-parts/module/single-content');
+					echo '</div>';
+
+			}else{
+				get_template_part('template-parts/module/single-content');
+			}
+			
+			
+			
+		
+			edit_post_link($post->post_title . 'を編集', '<div class="entry_block_content"><div class="btn btn-primary randing_page_edit">', '</div></div>');
 		echo '</div>';
 		echo '</div>';
 		endwhile;

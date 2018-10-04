@@ -65,12 +65,24 @@ function create_salonote_body( $body=null, $images=null ){
 					)
 			){
 				//set textarea
-				$_tmp_html['text'] 	= !empty($body[$key]) ? '<div class="block-unit vertical-middle">'.wpautop($body[$key]).'</div>': '';
-				$_tmp_html['image'] = !empty($images[$key]['url']) ? '<div class="block-unit"><img class="img-responsive wow wp-image-'.$images[$key]['id'].' fadeIn aligncenter size-large" src="'.$images[$key]['url'].'" alt="" /></div>' : '';
+				if( !empty($body[$key]) ){
+					$_tmp_html['text'] = '';
+					if( $_POST['post_style'] === 'left_right' ) $_tmp_html['text'] 	.= '<div class="block-unit vertical-middle">';
+					$_tmp_html['text'] 	.= wpautop($body[$key]);
+					if( $_POST['post_style'] === 'left_right' ) $_tmp_html['text'] 	.= '</div>';
+				}
+
+				if( !empty($images[$key]['url']) ){
+					$_tmp_html['image'] = '';
+					if( $_POST['post_style'] === 'left_right' ) $_tmp_html['image'] 	.= '<div class="block-unit vertical-middle">';
+					$_tmp_html['image'] .= '<img class="img-responsive wow wp-image-'.$images[$key]['id'].' fadeIn aligncenter size-large" src="'.$images[$key]['url'].'" alt="" />';
+					if( $_POST['post_style'] === 'left_right' ) $_tmp_html['image'] 	.= '</div>';
+				}
+
 			}else{
 				
 				
-				if( $use_cover <= 2 && !empty($images[$key]['url'])){
+				if( $use_cover <= 2 && !empty($images[$key]['url']) && $_POST['post_style'] !== 'keyv-landing'){
 					++$use_cover;
 					
 					$_tmp_html['text'] = '<div class="block-unit"><img class="img-responsive wow wp-image-'.$images[$key]['id'].' fadeIn aligncenter size-large img-cover-block bkg-fixed" src="'.$images[$key]['url'].'" alt="" /></div>';
@@ -96,7 +108,7 @@ function create_salonote_body( $body=null, $images=null ){
 			
 
 
-			if( $counter%2 === 0 ){
+			if( $counter%2 === 0 && $_POST['post_style'] === 'left_right' ){
 				$_note_html .= !empty($_tmp_html['image']) 	? $_tmp_html['image'] : '';
 				$_note_html .= !empty($_tmp_html['text']) 	? $_tmp_html['text'] : '';
 			}else{
@@ -104,7 +116,7 @@ function create_salonote_body( $body=null, $images=null ){
 				$_note_html .= !empty($_tmp_html['image']) 	? $_tmp_html['image'] : '';
 			}
 			
-			if( !empty($_tmp_html['image']) && !empty($_tmp_html['text'] ) ){
+			if( !empty($_tmp_html['image']) && !empty($_tmp_html['text'] ) && $_POST['post_style'] !== 'keyv-landing' ){
 				$_note_html .= '<hr class="short-horizon" />';
 			}
 

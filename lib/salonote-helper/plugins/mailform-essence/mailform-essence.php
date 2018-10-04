@@ -32,7 +32,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 
-//プラグインのパスを設定
 define('MAILFORM_ESSENCE_PLUGIN_PATH' , dirname(__FILE__)  );
 
 //$_plug_url = preg_replace( '/https?\:/', '', plugins_url());

@@ -87,6 +87,8 @@ function note_essence($content){
 				
 				$_use_files = [];
 				
+				require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+				
 				
 				foreach( $_file_data as $key => $image_item ){
 					if(is_uploaded_file($image_item['tmp_name'])){
@@ -126,7 +128,7 @@ function note_essence($content){
 
 								//echo 'attach_id:' . $attach_id . '<br>';
 
-								 require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+								 
 								 $attach_data = wp_generate_attachment_metadata( $attach_id, $save_filename );
 								 wp_update_attachment_metadata( $attach_id,  $attach_data );
 
@@ -141,8 +143,7 @@ function note_essence($content){
 							//echo $save_filename .'<br>';
 							echo 'already uploaded<br>';
 							$attach_id = attachment_url_to_postid($save_fileurl);
-							require_once(ABSPATH . "wp-admin" . '/includes/image.php');
-						  $attach_data = wp_generate_attachment_metadata( $attach_id, $save_fileurl );
+						  $attach_data = wp_generate_attachment_metadata( $attach_id, $save_filename );
 						  wp_update_attachment_metadata( $attach_id,  $attach_data );
 						}
 						
@@ -161,7 +162,8 @@ function note_essence($content){
 			}
 			
 
-			$note_body = preg_split("/\R{2,}/", esc_attr($_POST['note_body']) ); // とりあえず行に分割
+			$br_count = 2;
+			$note_body = preg_split("/\R{{$br_count},}/", esc_attr($_POST['note_body']) ); // とりあえず行に分割
 			$note_body = array_map('trim', $note_body); // 各行にtrim()をかける
 			$note_body = array_filter($note_body, 'strlen'); // 文字数が0の行を取り除く
 			$note_body = array_values($note_body); // これはキーを連番に振りなおしてるだけ
@@ -172,12 +174,24 @@ function note_essence($content){
 			$_insert_text = create_salonote_body($note_body , $_use_files);
 			
 			
+			echo $note_body[0];
+			
 			insert_salonote_note($_insert_text);
 			
 			//アイキャッチを登録
 			if(!empty ($_use_files) ){
 				set_post_thumbnail( $insert_id, $_use_files[0]['id'] );
+				
+				if( $_POST['post_style'] === 'keyv-landing' ){
+					update_post_meta( $insert_id, 'page_bkg_upload_images', $_use_files[0]['id'] );
+						$excerpt_arr = array(
+								'ID'           => $insert_id,
+								'post_excerpt' => !empty($note_body[0]) ? esc_html($note_body[0]) : 'new title'
+						);
+						wp_update_post( $excerpt_arr );
+				}
 			}
+
 
 			
 			
@@ -185,7 +199,12 @@ function note_essence($content){
 			echo 'error';
 			exit( '不正な遷移です' );
 		}
+
 		
+		$post_custom = get_post_custom($insert_id);
+		echo '<pre>post_custom'; print_r($post_custom); echo '</pre>';
+		
+		echo '<a href="'. get_post_permalink($insert_id)  .'">'.get_the_title($insert_id).'</a>';
 		
 		wp_safe_redirect( get_post_permalink($insert_id) );
 		exit();
@@ -207,15 +226,16 @@ function note_essence($content){
 			
 			<?php
 				if( !empty($_POST) && !empty($_POST['post_id']) ){
-				$post_type = get_post_type($_POST['post_id']);
-				echo '
-				<div id="post_target_field" class="form-group row mt-3">
-				<label for="post_title" class="col-sm-3 col-form-label text-left">編集するページ</label>
-				<div class="col-sm-9 text-left">
-					<input class="form-control" type="text" value="'.get_the_title($_POST['post_id']).'" readonly>
-					<input class="form-control" type="hidden" name="post_id" value="'.$_POST['post_id'].'">
-				</div>
-				</div>';
+					$post = get_post($_POST['post_id']);
+					$post_type = get_post_type($_POST['post_id']);
+					echo '
+					<div id="post_target_field" class="form-group row mt-3">
+					<label for="post_title" class="col-sm-3 col-form-label text-left">編集するページ</label>
+					<div class="col-sm-9 text-left">
+						<input class="form-control" type="text" value="'.get_the_title($_POST['post_id']).'" readonly>
+						<input class="form-control" type="hidden" name="post_id" value="'.$_POST['post_id'].'">
+					</div>
+					</div>';
 				}
 			?>
 			
@@ -272,6 +292,9 @@ function note_essence($content){
 			
 		</div>
 		
+		<?php
+		$template = get_page_template_slug($_POST['post_id']);
+		?>
 		<div class="col-12 col-md-6 form-control-checkbox mb-5">
 				<div id="post_style_field" class="form-group row mt-3">
 				<label for="post_style" class="col-sm-3 col-form-label text-left">スタイル</label>
@@ -279,18 +302,17 @@ function note_essence($content){
 					<select class="form-control" id="post_style" name="post_style">
 						<option value="left_right">左右振り分け</option>
 						<option value="simple_blog">シンプルブログ</option>
-						<option value="keyv_landing">キービジュアルランディング</option>
+						<option value="keyv-landing"<?php if(strpos($template,'keyv-landing') !== false) echo ' selected'; ?>>キービジュアルランディング</option>
 					</select>
 			</div>
 		</div>
 			
 		</div>
 		
-		
-		
+
 		
 		<div class="col-12 col-md-7 mb-5">
-			<textarea rows="20" class="form-control" name="note_body"><?php echo !empty($post->post_content) ? $post->post_content : '' ;?></textarea>
+			<textarea rows="20" class="form-control" name="note_body"><?php echo !empty($post->post_content) ? strip_tags($post->post_content) : '' ;?></textarea>
 		</div>
 
 		<div class="col-12 col-md-5 mb-5">

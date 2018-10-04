@@ -32,9 +32,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 
-//プラグインのパスを設定
 define('SEARCH_ENGINE_ESSENCE_PLUGIN_PATH' , dirname(__FILE__)  );
 
+//$_plug_url = preg_replace( '/https?\:/', '', plugins_url()); //for usage plugin
 $_plug_url = preg_replace( '/https?\:/', '', get_template_directory_uri().'/lib/salonote-helper/plugins');
 define('SEARCH_ENGINE_ESSENCE_PLUGIN_URI'  , $_plug_url.'/search-engine-essence'  );
 

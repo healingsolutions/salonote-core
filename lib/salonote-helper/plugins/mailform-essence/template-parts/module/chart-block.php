@@ -39,7 +39,7 @@ function chart_data($counter=0,$title=null,$data_item_arr=null){
                 ?>],
                 backgroundColor: [<?php
                 
-                $color_code = mailform_essence_hex2rgb( sprintf("#%06x",rand(0x000000, 0xFFFFFF)) );
+                $color_code = salonote_hex2rgb( sprintf("#%06x",rand(0x000000, 0xFFFFFF)) );
                 $color_counter = 0;
                 foreach($data_item_arr as $key => $data_label){
                   ++$color_counter;

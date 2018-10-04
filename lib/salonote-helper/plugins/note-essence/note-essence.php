@@ -35,6 +35,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 //プラグインのパスを設定
 define('NOTE_ESSENCE_PLUGIN_PATH' , dirname(__FILE__)  );
 
+
+//$_plug_url = preg_replace( '/https?\:/', '', plugins_url()); //for usage plugin
 $_plug_url = preg_replace( '/https?\:/', '', get_template_directory_uri().'/lib/salonote-helper/plugins');
 define('NOTE_ESSENCE_PLUGIN_URI'  , $_plug_url.'/note-essence'  );
 

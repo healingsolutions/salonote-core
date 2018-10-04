@@ -437,6 +437,12 @@ function essence_tinymce($initArray) {
 							'wrapper' => 'true',
 							'classes' => 'overflow-block'
 					),
+				
+					array(
+							'title' => __('movie-block','salonote-essence'),
+							'block' => 'div',
+							'classes' => 'movie-block-wrapper'
+					),
 
           
         ),

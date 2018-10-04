@@ -185,3 +185,33 @@ hr.short-horizon{
 				-webkit-animation: fadeIn .7s ease 1s 1 forwards;
 	}
 }
+
+
+
+.movie-block-wrapper{
+	display: block;
+	text-align: center;
+	background-color: white;
+	
+	&::before{
+		content: '';
+		background-image: url(statics/images/movie-border.svg);
+		background-repeat: repeat-x;
+		background-size: 60px auto;
+		height: 20px;
+		width: 100%;
+		display: block;
+		background-color: #828282;
+	}
+	
+	&::after{
+		content: '';
+		background-image: url(statics/images/movie-border.svg);
+		background-repeat: repeat-x;
+		background-size: 60px auto;
+		height: 20px;
+		width: 100%;
+		display: block;
+		background-color: #828282;
+	}
+}

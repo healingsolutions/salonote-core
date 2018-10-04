@@ -98,6 +98,9 @@
   .gallery-item{
     margin: 0;
     margin-top: 0 !important;
+		position: relative;
+		display: block;
+		
     a{
       display: block;
       padding: 5px;

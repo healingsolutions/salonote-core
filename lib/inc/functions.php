@@ -519,3 +519,11 @@ add_filter( 'manage_users_sortable_columns', 'display_name_users_sortable_column
 
 
 
+
+//hex2rgb 色変換
+function salonote_hex2rgb ( $hex ) {
+	if ( substr( $hex, 0, 1 ) == "#" ) $hex = substr( $hex, 1 ) ;
+	if ( strlen( $hex ) == 3 ) $hex = substr( $hex, 0, 1 ) . substr( $hex, 0, 1 ) . substr( $hex, 1, 1 ) . substr( $hex, 1, 1 ) . substr( $hex, 2, 1 ) . substr( $hex, 2, 1 ) ;
+
+	return array_map( "hexdec", [ substr( $hex, 0, 2 ), substr( $hex, 2, 2 ), substr( $hex, 4, 2 ) ] ) ;
+}

@@ -70,6 +70,27 @@ foreach($color_customize_array as $key => $value):
 			}
 			
 			
+			//char_left
+			if( $key == 'char_left' && !empty(get_theme_mod($key,$value['default']))){
+				
+				$color_code = salonote_hex2rgb( get_theme_mod($key,$value['default']) );
+				$char_rgba = 'rgba('.$color_code[0].','.$color_code[1].','.$color_code[2].',0.05)';
+				
+				$color_set .= '.character_essence.char_position_left .char_content{ border-color: '.get_theme_mod($key,$value['default']).' !important; background-color: '.$char_rgba.'; }';
+				$color_set .= '.character_essence.char_position_left .char_content::after{ border-right-color: '.get_theme_mod($key,$value['default']).' !important; }';
+			}
+			
+			//char_left
+			if( $key == 'char_right' && !empty(get_theme_mod($key,$value['default']))){
+				
+				$color_code = salonote_hex2rgb( get_theme_mod($key,$value['default']) );
+				$char_rgba = 'rgba('.$color_code[0].','.$color_code[1].','.$color_code[2].',0.05)';
+				
+				$color_set .= '.character_essence.char_position_right .char_content{ border-color: '.get_theme_mod($key,$value['default']).' !important; background-color: '.$char_rgba.'; }';
+				$color_set .= '.character_essence.char_position_right .char_content::after{ border-right-color: '.get_theme_mod($key,$value['default']).' !important; }';
+			}
+			
+			
 
       
     }
@@ -181,5 +202,7 @@ if( !empty( $theme_opt['base'] ) && in_array('sp_none_float_img',$theme_opt['bas
 }
 ';
 }
+
+
 
 ?>

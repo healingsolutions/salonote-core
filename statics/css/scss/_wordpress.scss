@@ -159,3 +159,21 @@ pre.pre_code-block{
 			@include _transition_(transform , 0.3);
 		}
 }
+
+
+
+#note-essence-write-form{
+	position: fixed;
+	right: 0;
+	bottom: 3.5em;
+	background-color: white;
+	border: 1px solid #CCCCCC;
+	padding: 3px;
+	border-radius: 4px;
+	z-index: 100;
+	
+	button{
+		background-color: white;
+		border: none;
+	}
+}

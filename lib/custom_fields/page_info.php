@@ -101,4 +101,49 @@ function save_page_info($post_id){
 }
 
 
+
+
+
+
+
+$page_info_arr = array(
+    'full_size'    			=> __('Full Size','salonote-essence'),
+    'none_sidebar' 			=> __('Hide Sidebar','salonote-essence'),
+		'has_sidebar' 			=> __('Show Sidebar','salonote-essence'),
+    'single_child_unit' => __('Show Children','salonote-essence'),
+		'child_tab_nav' 		=> __('Tab navigation','salonote-essence'),
+    'exclude_list' 			=> __('Hide in list','salonote-essence'),
+    'disable_title' 		=> __('HIde Title','salonote-essence'),
+    'super_container' 	=> __('Small container','salonote-essence'),
+		'hide_header_description' 	=> __('Hide header description','salonote-essence'),
+  );
+
+
+function check_page_info( $post ) {
+	global $post;
+
+	if( !is_singular() ) return;
+	
+	
+	$page_info_value = get_post_meta($post->ID,'page_info',true);
+
+	if( empty($page_info_value)){
+		$page_info_arr = array(
+			'full_size'    			=> null,
+			'none_sidebar' 			=> null,
+			'has_sidebar' 			=> null,
+			'single_child_unit' => null,
+			'child_tab_nav' 		=> null,
+			'exclude_list' 			=> null,
+			'disable_title' 		=> null,
+			'super_container' 	=> null,
+			'hide_header_description' 	=> null,
+		);
+		update_post_meta($post->ID, 'page_info', $page_info_arr);
+	}
+
+	
+}
+add_action( 'template_redirect', 'check_page_info' );
+
 ?>

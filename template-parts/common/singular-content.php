@@ -49,9 +49,9 @@ if(
 }
 
 
-if( !empty( $page_info ) ) {
+if( !empty( $page_info ) && in_array(1,$page_info) ) {
   foreach( $page_info as $info_key => $value){
-    $main_unit[] = $info_key;
+		if( !empty($value) ) $main_unit[] = $info_key;
   }
 }
 

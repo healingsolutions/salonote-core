@@ -1112,7 +1112,9 @@ dl.dldtdd-unit {
   /* 子要素をflexboxにより中央に配置する */ }
   .gallery .gallery-item {
     margin: 0;
-    margin-top: 0 !important; }
+    margin-top: 0 !important;
+    position: relative;
+    display: block; }
     .gallery .gallery-item a {
       display: block;
       padding: 5px;
@@ -1610,6 +1612,10 @@ span.line_marker {
       display: inline-block; }
       .block-group-wrap > div .block-item-inner {
         vertical-align: top; }
+        .block-group-wrap > div .block-item-inner img {
+          display: block;
+          margin-left: auto;
+          margin-right: auto; }
       .block-group-wrap > div.vertical-middle .block-item-inner {
         display: -webkit-flex;
         display: flex;
@@ -1959,6 +1965,29 @@ hr.short-horizon {
   animation: fadeIn 1s ease .7s 1 forwards;
   -webkit-animation: fadeIn .7s ease 1s 1 forwards; }
 
+.movie-block-wrapper {
+  display: block;
+  text-align: center;
+  background-color: white; }
+  .movie-block-wrapper::before {
+    content: '';
+    background-image: url(statics/images/movie-border.svg);
+    background-repeat: repeat-x;
+    background-size: 60px auto;
+    height: 20px;
+    width: 100%;
+    display: block;
+    background-color: #828282; }
+  .movie-block-wrapper::after {
+    content: '';
+    background-image: url(statics/images/movie-border.svg);
+    background-repeat: repeat-x;
+    background-size: 60px auto;
+    height: 20px;
+    width: 100%;
+    display: block;
+    background-color: #828282; }
+
 .btn-item {
   top: 0;
   position: relative;
@@ -2035,7 +2064,103 @@ hr.short-horizon {
     right: 0;
     top: 25%;
     font-size: 5em;
-    color: #FFFFFF; }
+    color: #FFFFFF;
+    text-shadow: 1px 1px 4px gray; }
+
+/* CSS Document */
+.character_essence {
+  position: relative;
+  margin-bottom: .5em;
+  zoom: 1;
+  filter: alpha(opacity=0);
+  -moz-opacity: 0;
+  opacity: 0;
+  -webkit-transition: opacity 0.6s, left 0.6s, right 0.6s;
+  -moz-transition: opacity 0.6s, left 0.6s, right 0.6s;
+  -ms-transition: opacity 0.6s, left 0.6s, right 0.6s;
+  -o-transition: opacity 0.6s, left 0.6s, right 0.6s;
+  transition: opacity 0.6s, left 0.6s, right 0.6s; }
+  .character_essence:before, .character_essence:after {
+    display: table;
+    content: "";
+    line-height: 0;
+    height: 0;
+    width: 0; }
+  .character_essence:after {
+    clear: both;
+    height: 0;
+    width: 0; }
+  .character_essence.is_active {
+    filter: alpha(opacity=100);
+    -moz-opacity: 1;
+    opacity: 1;
+    -webkit-transition: opacity 0.6s, left 0.6s, right 0.6s;
+    -moz-transition: opacity 0.6s, left 0.6s, right 0.6s;
+    -ms-transition: opacity 0.6s, left 0.6s, right 0.6s;
+    -o-transition: opacity 0.6s, left 0.6s, right 0.6s;
+    transition: opacity 0.6s, left 0.6s, right 0.6s; }
+  .character_essence > img {
+    padding: 10px;
+    max-width: 150px !important;
+    height: auto;
+    top: -1em;
+    position: relative; }
+  @media screen and (max-width: 768px) {
+    .character_essence > img {
+      max-width: 120px !important; } }
+  .character_essence.char_reverse_true > img {
+    transform: scale(-1, 1); }
+  .character_essence.char_position_right {
+    right: -4em; }
+    .character_essence.char_position_right > img {
+      float: right; }
+    .character_essence.char_position_right .char_content::after {
+      right: -32px;
+      border: 8px solid transparent;
+      border-right-width: 23px;
+      border-right-style: solid;
+      -ms-transform: rotate(168deg);
+      -webkit-transform: rotate(168deg);
+      transform: rotate(168deg); }
+    .character_essence.char_position_right.is_active {
+      right: 0em; }
+  .character_essence.char_position_left {
+    left: -4em; }
+    .character_essence.char_position_left > img {
+      float: left; }
+    .character_essence.char_position_left .char_content::after {
+      left: -32px;
+      border: 8px solid transparent;
+      border-right-width: 23px;
+      border-right-style: solid;
+      -ms-transform: rotate(10deg);
+      -webkit-transform: rotate(10deg);
+      transform: rotate(10deg); }
+    .character_essence.char_position_left.is_active {
+      left: 0em; }
+  .character_essence .char_content {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    top: 2em;
+    padding: 1em;
+    border: 4px solid #CCCCCC;
+    border-radius: .4em;
+    background-color: white;
+    z-index: 2;
+    margin-bottom: 3.5em; }
+    .character_essence .char_content::after {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      z-index: 1;
+      top: 3px; }
+    .character_essence .char_content img {
+      padding: 0.5em;
+      background-color: white;
+      box-shadow: 0 4px 10px gray; }
+    .character_essence .char_content p {
+      width: 100%; }
 
 .wp-caption {
   display: inherit;
@@ -2159,6 +2284,19 @@ pre.pre_code-block {
   -moz-transition: transform 0.3s ease;
   -o-transition: transform 0.3s ease;
   transition: transform 0.3s ease; }
+
+#note-essence-write-form {
+  position: fixed;
+  right: 0;
+  bottom: 3.5em;
+  background-color: white;
+  border: 1px solid #CCCCCC;
+  padding: 3px;
+  border-radius: 4px;
+  z-index: 100; }
+  #note-essence-write-form button {
+    background-color: white;
+    border: none; }
 
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, 'Hiragino Sans', "ヒラギノ角ゴシック", 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ Pro W3', Roboto, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', sans-serif; }
@@ -2457,6 +2595,24 @@ body#tinymce .wp-caption-dd {
   border-top: 1px solid #CCCCCC;
   border-bottom: 1px solid #CCCCCC;
   padding: 5px; }
+
+body#tinymce .character_essence {
+  filter: alpha(opacity=100);
+  -moz-opacity: 1;
+  opacity: 1;
+  left: 0;
+  right: 0;
+  background-color: #F2F2F2; }
+  body#tinymce .character_essence::before {
+    content: 'キャラクター'; }
+  body#tinymce .character_essence .char_content {
+    flex-wrap: wrap; }
+    body#tinymce .character_essence .char_content p {
+      width: 100%; }
+    body#tinymce .character_essence .char_content::before {
+      content: none; }
+  body#tinymce .character_essence img {
+    top: 0; }
 
 .gallery-columns-1 .gallery-item {
   width: 100%; }
