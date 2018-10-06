@@ -23,15 +23,15 @@ $args = array(
 );
 $query = new WP_Query( $args );
 
-$page_info = get_post_meta($post->ID,'page_info',true);
-$landing_page_info = get_post_meta($post->ID,'landing_page_info',true);
+$page_info = !empty( get_post_meta($post->ID,'page_info',true) ) ? get_post_meta($post->ID,'page_info',true) : array();
+$landing_page_info = !empty( get_post_meta($post->ID,'landing_page_info',true) ) ? get_post_meta($post->ID,'landing_page_info',true) : array();
 
 
-if( !empty($landing_page_info) && $landing_page_info['none_header'] ){
+if( !empty($landing_page_info['none_header']) && $landing_page_info['none_header'] ){
 	$hide_header = true;
 	$main_content[] = 'none_header';
 }
-if( !empty($landing_page_info) && $landing_page_info['none_footer'] ){
+if( !empty($landing_page_info['none_header']) && $landing_page_info['none_footer'] ){
 	$hide_footer = true;
 	$main_content[] = 'none_footer';
 }
@@ -166,8 +166,9 @@ echo '<div class="'.$row_class.'">';
 		
 		$pageTemplate = get_post_meta(get_the_ID(), '_wp_page_template', true);
 		
-		$page_bkg	= get_post_meta(get_the_ID(),'page_bkg_upload_images', true );
-		$page_info = get_post_meta(get_the_ID(),'page_info',true);
+		$page_bkg = !empty( get_post_meta(get_the_ID(),'page_bkg_upload_images',true) ) ? get_post_meta(get_the_ID(),'page_bkg_upload_images',true) : null;
+		$page_info = !empty( get_post_meta(get_the_ID(),'page_info',true) ) ? get_post_meta(get_the_ID(),'page_info',true) : array();
+		
 		$landing_page_info = get_post_meta(get_the_ID(),'landing_page_info',true);
 		
 		if( !empty($page_bkg) ){
@@ -194,7 +195,7 @@ echo '<div class="'.$row_class.'">';
 			
 		}
 		if( !empty($landing_page_info['bkg_color'] )  ){
-			 echo ' background-color: '. $landing_page_info['bkg_color'].'; padding: 5em 0;';
+			 echo ' background-color: '. $landing_page_info['bkg_color'].'; padding: 5em 0; margin-bottom: 3em;';
 		}
 		if( !empty($landing_page_info['txt_color'] ) ){
 			 echo ' color: '. $landing_page_info['txt_color'].' !important;';
@@ -215,14 +216,12 @@ echo '<div class="'.$row_class.'">';
 		}
 		echo '">';
 		
-		
-		
+
 		$page_info['disable_title'] = true;
 		
 			
 			if($pageTemplate == 'template/keyv-landing.php' ){
 				
-				$page_bkg	= get_post_meta(get_the_ID(),'page_bkg_upload_images', true );
 				if( !empty($page_bkg) ){
 					$thumb_src = wp_get_attachment_image_src ($page_bkg,'full');
 					if( empty($thumb_src[0]) ){
@@ -236,12 +235,16 @@ echo '<div class="'.$row_class.'">';
 				}else{
 
 					$attachment_images = get_attached_media( 'image', get_the_ID() );
-					$attachment_images = array_shift($attachment_images);
 
-					$attachment_id = $attachment_images->ID;
-					$key_image_arr = wp_get_attachment_image_src ($attachment_id,'full');
-					$key_image = $key_image_arr[0];
+					if( !empty($attachment_images) ){
+						$attachment_id = $attachment_images->ID;
+						$key_image_arr = wp_get_attachment_image_src ($attachment_id,'full');
+						$key_image = $key_image_arr[0];
+					}
 				}
+
+				
+				if( !empty($key_image) ){
 				
 				$keyv_content = '
 					<figure id="keyv-figure" class="col-12 col-md-7">
@@ -268,6 +271,10 @@ echo '<div class="'.$row_class.'">';
 					echo '<div id="keyv-content" class="col-12 col-md-5">';
 						get_template_part('template-parts/module/single-content');
 					echo '</div>';
+					
+				}else{
+					get_template_part('template-parts/module/single-content');
+				}
 
 			}else{
 				get_template_part('template-parts/module/single-content');

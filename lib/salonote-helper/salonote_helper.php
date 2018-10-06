@@ -83,6 +83,8 @@ class SALONOTE_HELPER__Class {
 		
 		require_once( get_template_directory(). '/lib/salonote-helper/plugins/note-essence/note-essence.php' );
 		
+		//hook
+		require_once ( SALONOTE_HELPER__PLUGIN_PATH. '/hook/save_post_action.php' );
 
 	}
   

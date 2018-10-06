@@ -138,6 +138,7 @@ function check_page_info( $post ) {
 			'disable_title' 		=> null,
 			'super_container' 	=> null,
 			'hide_header_description' 	=> null,
+			'sidebar' 	=> null,
 		);
 		update_post_meta($post->ID, 'page_info', $page_info_arr);
 	}
