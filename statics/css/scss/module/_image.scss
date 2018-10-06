@@ -198,3 +198,38 @@ body.page-template-attachment-list{
 				} 
 	}
 }
+
+.img-diamond-unit{
+	text-align: center;
+	margin: 5em auto;
+}
+.img-diamond-wrap {
+	position: relative;
+  overflow: hidden;
+	margin-left: auto;
+	margin-right: auto;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+	box-shadow: 10px -10px 0px #CCCCCC;
+	
+	&::after{
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		border: 6px solid white;
+		
+	}
+	
+	img.img-diamond {
+		-webkit-transform: rotate(-45deg);
+		-ms-transform: rotate(-45deg);
+		transform: rotate(-45deg);
+	}
+}

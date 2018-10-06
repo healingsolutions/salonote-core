@@ -382,13 +382,34 @@ body#tinymce{
 		dt{
 			border-left: none;
 			padding-left: 3em;
+			
 			&::before{
+				position: absolute;
+				left: 0;
+				top: -3px;
+				content: 'Q';
+				padding: 3px 10px 6px;
+				text-align: center;
+				vertical-align: middle;
+				color: white;
 				background-color: #868686;
 			}
 		}
 		dd{
 			border-left: none;
 			padding-left: 3em;
+			
+			&::before{
+				position: absolute;
+				left: 0;
+				//top: -3px;
+				content: 'A';
+				padding: 3px 10px 6px;
+				text-align: center;
+				vertical-align: middle;
+				background-color: #817677;
+				color: white;
+			}
 		}
 	}
 	

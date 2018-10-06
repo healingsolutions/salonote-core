@@ -735,8 +735,11 @@ ol.list-root{
 	@media screen and (max-width: 768px) {
     dl{
 			display: inline-block;
-			width: 100%;
-		}    
+			width: 100% !important;
+		}
+		dl.gallery-item{
+			margin-bottom: 3em;
+		}
   }
 	
 

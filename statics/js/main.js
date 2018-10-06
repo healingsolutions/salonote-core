@@ -46,6 +46,33 @@ jQuery(document).ready(function($){
 	}
 	
 	
+	if($('.img-diamond').length ){
+		$('.img-diamond').each(function(){
+			var img_width = $(this).width();
+			var img_size = $(this).width() / Math.SQRT2 ;
+	
+			$(this).wrap('<div class="img-diamond-unit"><div class="img-diamond-wrap" /></div>');
+			$(this).parent('.img-diamond-wrap').css({
+				width : img_size +'px',
+				height : img_size +'px',
+			});
+			
+			var img_length = $(this).width() * Math.SQRT2 ;
+			$(this).css({
+				'max-width' : img_length +'px',
+				width : img_length +'px',
+				height : img_length +'px',
+				'margin-top' : (img_size * -0.2) + 'px',
+				'margin-left' : (img_size * -0.2) + 'px'
+			});
+			
+			$(this).parent('.img-diamond-wrap').css({
+				'margin-bottom' : (img_size * 0.35) + 'px',
+			});
+		})
+	}
+	
+	
 	
 	
 	// current list ====================
@@ -233,7 +260,10 @@ jQuery(document).ready(function($){
 			var caption_title = $(this).prev('img').attr('title');
 			var caption_text = $(this).prev('img').attr('alt');
 			$(this).wrapInner('<div class="square_label_block-inner caption_bkg" />');
-			$(this).children('.square_label_block-inner').prepend('<p>'+caption_title+'<br><span>'+caption_text+'</span><\/p>');
+			
+			if( caption_title ){
+				$(this).children('.square_label_block-inner').prepend('<p>'+caption_title+'<br><span>'+caption_text+'</span><\/p>');
+			}
 		});
 	}
 																	
@@ -343,7 +373,7 @@ jQuery(document).ready(function($){
 
 
 		//keyv-figure ==================
-		if( $('#keyv-figure').length && $(window).width() > 768 ){
+		if( $('body.page-template-keyv-landing #keyv-figure').length && $(window).width() > 768 ){
 			if( top >= w_height){
 				
 				if( scroll_keyv < 64){

@@ -1,5 +1,6 @@
 @media screen and (min-width: 769px) {
-        
+ 
+	body.page-template-keyv-landing{
 
 	.landing-page-item{
 		position: relative;
@@ -93,7 +94,7 @@
 		margin-bottom: 15%;
 	}
 
-
+	}
 	
 	
 }//media 
@@ -132,3 +133,21 @@
 			background-image: none;
 		}
 	}
+
+
+
+
+body.page-template-landing-list{
+	padding-top: 0;
+	
+	.main-content-unit{
+		padding: 0;
+	}
+	
+	@media screen and (max-width: 768px) {
+		.landing-page-item-inner{
+			padding: 10px;
+		} 
+	}
+	
+}

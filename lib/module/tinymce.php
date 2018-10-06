@@ -351,6 +351,11 @@ function essence_tinymce($initArray) {
               'selector' => 'img',
               'classes' => 'img-rounded'
           ),
+					array(
+              'title' => __('image diamond','salonote-essence'),
+              'selector' => 'img',
+              'classes' => 'img-diamond'
+          ),
           array(
               'title' => __('image shadow','salonote-essence'),
               'selector' => 'img',
@@ -473,6 +478,14 @@ function essence_tinymce($initArray) {
             'block' => 'div',
             'classes' => 'btn-item btn-circled'
         ),
+				array(
+            'title' => __('moving button','salonote-essence'),
+						'wrapper' => 'true',
+            'block' => 'div',
+            'classes' => 'btn-item btn-moving'
+        ),
+				
+				
       ),
     ), // buttons
 		
@@ -641,7 +654,7 @@ function essence_tinymce($initArray) {
 	
 	$initArray[ 'toolbar1' ] = 'bold,italic,underline,strikethrough,removeformat,blockquote,bullist,numlist,alignleft,aligncenter,alignright,outdent,indent,forecolor,backcolor,link,unlink,fullscreen,hr,wp_page,wp_adv';
   $initArray[ 'toolbar2' ] = 'styleselect,formatselect,fontsizeselect,fontselect,table,wp_more,media,image';
-  $initArray[ 'toolbar3' ] = 'btn_add_sample_block, btn_add_col_block, btn_add_separate_block, btn_add_dldtdd_block, btn_only_spbr,btn_add_youtube_block,btn_add_horizon_block,btn_add_editor_block';
+  $initArray[ 'toolbar3' ] = 'btn_add_sample_block, btn_add_col_block, btn_add_separate_block, btn_add_dldtdd_block, btn_only_spbr,btn_add_youtube_block,btn_add_horizon_block,btn_add_editor_block, btn_add_countdown_timer';
 	//$initArray[ 'toolbar3' ] = 'btn_add_sample_block, btn_only_spbr,btn_add_youtube_block,btn_add_horizon_block,btn_add_editor_block';
 	$initArray[ 'toolbar4' ] = '';
 
@@ -691,7 +704,8 @@ function my_register_tinymce_button( $buttons ) {
 		array_push($buttons, "btn_only_spbr" );
     array_push($buttons, "btn_add_editor_block" );
 		array_push($buttons, "btn_add_dldtdd_block" );
-	
+		array_push($buttons, "btn_add_countdown_timer" );
+
   return $buttons;
 }
 

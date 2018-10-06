@@ -191,4 +191,149 @@ function biz_info_Func() {
 }
 add_shortcode('salonote_biz_info', 'biz_info_Func');
 
+
+//Business Info
+function count_down_func( $atts) {
+	extract( shortcode_atts( array(
+		'limit'					=> null,
+		'before_text'		=> '公開終了まであと',
+		'after_text'		=> '',
+		'sec'						=> false,
+		'mili'					=> false,
+	), $atts ) );
+	
+	if( empty($limit) ) return;
+	
+	
+  $_today = date('Y-m-d');
+  $_end_date	= !empty( $limit )	? $limit	: '' ;
+  
+  $_private_date = date($limit);
+
+
+/*
+  if( $_private_essence_atts['display'] == 1 ){
+    $before_text = date('Y年m月d日',strtotime( $_private_date));
+    $after_text = $_private_essence_atts['text'];
+  }else{
+    $before_text = $after_text = '';
+  }
+  */
+$_sec = $sec;
+$_mili = $mili;
+?>
+
+
+<script type="text/javascript">
+<!-- start of JavaScript
+function CountdownTimer( elemID, timeLimit, limitMessage, msgClass ) {
+	this.initialize.apply( this, arguments );
+}
+
+CountdownTimer.prototype = 	{
+
+	/**
+	 * Constructor
+	 */
+	initialize: function( elemID, timeLimit, limitMessage, msgClass ) {
+		this.elem = document.getElementById( elemID );
+		this.timeLimit = timeLimit;
+		this.limitMessage = limitMessage;
+		this.msgClass = msgClass;
+	},
+
+	/**
+	 * カウントダウン
+	 */
+	countDown : function()	{
+		var	timer;
+		var	today = new Date()
+		var	days = Math.floor( ( this.timeLimit - today ) / ( 24 * 60 * 60 * 1000 ) );
+		var	hours = Math.floor( ( ( this.timeLimit - today ) % ( 24 * 60 * 60 * 1000 ) ) / ( 60 * 60 * 1000 ) );
+		var	mins = Math.floor( ( ( this.timeLimit - today ) % ( 24 * 60 * 60 * 1000 ) ) / ( 60 * 1000 ) ) % 60;
+    <?php if( !empty($_sec) && $_sec == true ){
+      echo 'var	secs = Math.floor( ( ( this.timeLimit - today ) % ( 24 * 60 * 60 * 1000 ) ) / 1000 ) % 60 % 60;';
+    }?>
+    <?php if( !empty($_mili) && $_mili == true ){
+      echo 'var	milis = Math.floor( ( ( this.timeLimit - today ) % ( 24 * 60 * 60 * 1000 ) ) / 10 ) % 100;';
+    }?>
+		
+		
+		var	me = this;
+
+	        if( ( this.timeLimit - today ) > 0 ){
+			timer = '<span class="count_down_timer-before_text"><?php echo $before_text;?><\/span><span class="count_down_timer-block">' + days + '日 ' + this.addZero( hours ) + '時間 ' + this.addZero( mins ) + '分 '<?php
+            if( !empty($_sec) && $_sec == true ){
+            echo "+ this.addZero( secs ) + '秒 '";
+            }
+            if( !empty($_sec) && $_sec == true && !empty($_mili) && $_mili == true  ){
+              echo '+ this.addZero( milis )';
+            }
+						echo " + '<\/span><span class=\"count_down_timer-after_text\">".$after_text."<\/span>'";
+            echo PHP_EOL;
+        ?>
+			this.elem.innerHTML = timer;
+			tid = setTimeout( function() { me.countDown(); }, 10 );
+
+	        }else{
+			this.elem.innerHTML = this.limitMessage;
+			if( this.msgClass )	{
+				this.elem.setAttribute( 'class', this.msgClass );
+			}
+			return;
+	        }
+	},
+
+	/**
+	 * ゼロを付与
+	 */
+	addZero : function( num )	{
+		num = '00' + num;
+		str = num.substring( num.length - 2, num.length );
+
+		return str ;
+	}
+}
+
+// end of JavaScript -->
+</script>
+
+<div class="timer-block">  
+<div class="private-access-essence-timer" id="private-access-essence"></div>  
+<script type="text/javascript">  
+<!--  
+cdTimer1();  
+  
+function cdTimer1() {  
+  
+// 設定項目 ここから---------------------------------------------  
+    // タグ要素のID名  
+    var elemID = 'private-access-essence';  
+  
+    // 期限日を設定  
+    var year    =   <?php echo date('Y',strtotime( $_private_date));?>;           // 年  
+    var month   =   <?php echo date('m',strtotime( $_private_date));?>;              // 月  
+    var day     =   <?php echo date('d',strtotime( $_private_date));?>;             // 日  
+  
+    // 期限終了後のメッセージ  
+    var limitMessage    =   '一般公開は終了しました。';  
+  
+    // メッセージのスタイルクラス名（変更しない場合は空欄）  
+    var msgClass = 'private_essence_msg';  
+// 設定項目 ここまで---------------------------------------------  
+  
+  
+    var timeLimit = new Date( year, month - 1, day );  
+    var timer = new CountdownTimer( elemID, timeLimit, limitMessage, msgClass );  
+    timer.countDown();  
+}  
+  
+// -->  
+</script>  
+</div>
+	<?php
+}
+add_shortcode('countdown', 'count_down_func');
+
+
 ?>

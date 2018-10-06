@@ -191,7 +191,7 @@ hr.short-horizon{
 .movie-block-wrapper{
 	display: block;
 	text-align: center;
-	background-color: white;
+	background-color: black;
 	
 	&::before{
 		content: '';
@@ -213,5 +213,20 @@ hr.short-horizon{
 		width: 100%;
 		display: block;
 		background-color: #828282;
+	}
+}
+
+.timer-block{
+	padding: .5em 0;
+	text-align: center;
+	display: block;
+	
+	.private-access-essence-timer{
+		.count_down_timer-block{
+			font-size: 2em;
+			@media screen and (max-width: 768px) {
+        font-size: 1.2em;
+      }
+		}
 	}
 }

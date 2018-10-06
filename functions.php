@@ -342,12 +342,13 @@ function filter_handler( $seconds ) {
 add_action('template_redirect','get_template_hook');
 function get_template_hook(){
   
+	global $post;
   global $theme_opt;
   global $post_type_name;
 	global $post_type_tmpl;
   global $post_type_set;
 	global $post_taxonomies;
-  
+
   $theme_opt['base'] = get_option('essence_base');
   $theme_opt['post_type'] = get_option('essence_post_type');
   
@@ -371,6 +372,13 @@ function get_template_hook(){
   }elseif( is_singular() ){
     $post_type_tmpl = get_post_type();
     $post_type_name  = get_post_type();
+		
+		$parent_id = wp_get_post_parent_id($post->ID);
+		$parent_template = get_page_template_slug($parent_id);
+		if( $parent_id !== 0 && $parent_template === 'template/landing-list.php' ){
+			wp_safe_redirect( get_post_permalink($parent_id) );
+			exit;
+		}
 		
 	}elseif( is_tax() ){
 		$post_type_tmpl = get_post_type();

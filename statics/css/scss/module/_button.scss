@@ -77,3 +77,12 @@
 .randing_page_edit a{
 	color: white;
 }
+
+
+
+.btn-moving{
+	-moz-animation: moving_btn 1s ease .2s infinite alternate;
+	-webkit-animation: moving_btn 1s ease .2s infinite alternate;
+	-o-animation: moving_btn 1s ease .2s infinite alternate;
+	-ms-animation: moving_btn 1s ease .2s infinite alternate;
+}

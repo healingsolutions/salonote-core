@@ -73,7 +73,7 @@ if(
   in_array('display_grid_title',$post_type_set)
 ){
 	$_the_title = get_the_title();
-	if( in_array('break_title',$theme_opt['base'])){
+	if( !empty($theme_opt['base']) && in_array('break_title',$theme_opt['base'])){
 		$_the_title = preg_replace('/(\,|】|'.__(',','salonote-essence').')/', '$1<br />', $_the_title);
 		$_the_title = preg_replace('/(~|〜)/', '<br /><span class="small">$1', $_the_title).'</span>';
 	}

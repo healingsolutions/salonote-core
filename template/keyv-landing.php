@@ -36,6 +36,8 @@ if( !empty($landing_page_info) && $landing_page_info['none_footer'] ){
 }
 
 $landing_page_item_inner = array('landing-page-item-inner');
+
+
 if( !empty($landing_page_info) && $landing_page_info['use_container'] ){
 	$landing_page_item_inner[] = 'container';
 }
