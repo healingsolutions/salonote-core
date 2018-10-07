@@ -68,6 +68,7 @@ a.page_bkg_upload_images_remove:hover {
 
 .wp-list-table #words_count {
   width: 280px; }
+
 .wp-list-table .column_badge {
   color: white;
   padding: 3px 7px;
@@ -90,6 +91,7 @@ a.page_bkg_upload_images_remove:hover {
     color: #B23C3E;
     font-size: 160%;
     font-weight: bold; }
+
 .headline-count-block ul {
   padding: 5px 5px 5px 15px;
   background-color: white; }
@@ -133,7 +135,10 @@ a.page_bkg_upload_images_remove:hover {
       filter: grayscale(60%);
       -webkit-transition: transform 0.3s, grayscale 0.3s;
       transition: transform 0.3s, grayscale 0.3s; }
-  .salonote_images_upload_images-unit .salonote_images_upload_images_remove {
+
+.salonote_images_upload_block {
+  position: relative; }
+  .salonote_images_upload_block .salonote_images_upload_images_remove {
     position: absolute;
     left: 0;
     top: 0;
@@ -146,7 +151,7 @@ a.page_bkg_upload_images_remove:hover {
     background-color: white;
     border-radius: 50%;
     z-index: 10; }
-    .salonote_images_upload_images-unit .salonote_images_upload_images_remove::after {
+    .salonote_images_upload_block .salonote_images_upload_images_remove::after {
       font-size: 2.4em;
       content: "\f153";
       font-family: "dashicons";

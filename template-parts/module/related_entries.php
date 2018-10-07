@@ -44,15 +44,18 @@ if($event_date){
 
 if( !empty($post_taxonomies) ){
 	$term_list = wp_get_post_terms($post->ID, $post_taxonomies[0], array('fields' => 'all') );
-	$args['tax_query'][] = array(
-		'taxonomy' => $post_taxonomies[0],
-		'terms'    => $term_list[0]->slug,
-		'field'    => 'slug',
-	);
+	
+		if( !empty($term_list[0]->slug) ){
+			$args['tax_query'][] = array(
+				'taxonomy' => $post_taxonomies[0],
+				'terms'    => $term_list[0]->slug,
+				'field'    => 'slug',
+			);
+		}
 
-	$post_type_label = $term_list[0]->name;
-	$post_type_arr = get_post_type_object(get_post_type());
-	$print_label			= sprintf('他の %s '.esc_html($post_type_arr->labels->name) ,$post_type_label );
+		$post_type_label = !empty( $term_list[0]->name ) ? $term_list[0]->name : '' ;
+		$post_type_arr = get_post_type_object(get_post_type());
+		$print_label			= sprintf('他の %s '.esc_html($post_type_arr->labels->name) ,$post_type_label );
 }else{
 	$post_type_label	= get_post_type_object($post_type_name)->label;
 	$print_label			= sprintf(__('other %s posts','salonote-essence') ,$post_type_label );

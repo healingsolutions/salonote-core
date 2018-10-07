@@ -616,9 +616,9 @@ jQuery(window).on('load', function() {
 						$_data_size = $(this).attr('data-size');
 						var data_size = $_data_size ? $_data_size : "";
 						
-						
 						bg_url = /^url\((['"]?)(.*)\1\)$/.exec(bg_url);
 						bg_url = bg_url ? bg_url[2] : ""; // If matched, retrieve url, otherwise ""
+						
 						
 						if( bg_url.length || data_repeat.length || data_size.length ){
 							if (bg_url.indexOf('mp4') !== -1) {
@@ -628,9 +628,13 @@ jQuery(window).on('load', function() {
 									this.next('.horizon-block').children('.cover-video').get(0).play();
 								});
 								
-								
 
+							}else if (bg_url.indexOf('#') !== -1) {
+								bg_url = /(.+?)\#(.*)/.exec(bg_url);
+								console.log(bg_url);
+								$(this).next('.horizon-block').css('background-color','#'+bg_url[2]).dequeue();
 							}else{
+								
 								var hr_props = {
 										"background-image" : 'url('+bg_url+')',
 										"background-repeat" : data_repeat,

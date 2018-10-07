@@ -50,6 +50,8 @@ function es_character_upload_postmeta(){ //投稿ページに表示されるカ�
 		'question'   => 'わからない',
 		'angry'  		 => '怒る',
 		'surprised'  => 'おどろく',
+		'speechless' => '呆れる',
+		'sorry' 		 => 'あやまる',
 		'sleep'  		 => '寝る',
 	);
 	
@@ -71,10 +73,10 @@ function es_character_upload_postmeta(){ //投稿ページに表示されるカ�
 					<a rel="character_<?php echo $key; ?>" type="button" class="button character_image_upload" title="画像を追加・変更"<?php if( !empty($assets[$key])) echo ' style="display:none;"';?>>追加・削除</a>
 					
 					<div id="character_<?php echo $key; ?>_asset">
-						<div class="character_asset_block">
+						<div class="character_asset_block salonote_images_upload_block">
 							<?php
 							if( !empty($assets[$key]) ){
-								echo '<a href="#" class="character_image_remove" title="画像を削除する"></a>';
+								echo '<a href="#" class="salonote_images_upload_images_remove" title="画像を削除する"></a>';
 								echo '<img src="'.$assets[$key].'" />';
 								echo '<input id="character_'.$key.'" type="hidden" name="es_character_upload_images['.$key.']" value="'.$assets[$key].'" />';
 							} 

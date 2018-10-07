@@ -29,6 +29,19 @@ function salonote_landing_updated_create_child_post( $post_ID ) {
 	if ( wp_is_post_revision( $post_ID ) )
 		return;
 	
+	$post_type = get_post_type($post_ID);
+	$post_types = get_post_types(
+		array(
+			'public'   => true,
+			'_builtin' => true,
+			'capability_type'	=> 'page'
+		),
+		'names','and'
+	);
+	
+	if ( !in_array($post_type,$post_types) )
+		return;
+	
 	
 	//一番上の親要素か確認
 	$parent_id = wp_get_post_parent_id( $post_ID );
