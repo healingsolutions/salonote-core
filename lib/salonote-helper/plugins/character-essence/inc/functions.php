@@ -57,4 +57,6 @@ class Character_Essence_Theme_Customize
 // テーマ設定やコントロールをセットアップします。
 add_action( 'customize_register' , array( 'Character_Essence_Theme_Customize' , 'character_essence_customize_register' ),20 );
 
+
+
 ?>

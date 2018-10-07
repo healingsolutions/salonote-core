@@ -23,20 +23,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 //プラグインのパスを設定
-define('SLIDER_ESSENCE_PLUGIN_PATH' , dirname(__FILE__)  );
+define('INSTALLER_ESSENCE_PLUGIN_PATH' , dirname(__FILE__)  );
 
 $_plug_url = preg_replace( '/https?\:/', '', get_template_directory_uri().'/lib/salonote-helper/plugins');
-define('SLIDER_ESSENCE_PLUGIN_URI'  , $_plug_url.'/installer-essence'  );
+define('INSTALLER_ESSENCE_PLUGIN_URI'  , $_plug_url.'/installer-essence'  );
 
 
-class SLIDER_ESSENCE_Class {
+class INSTALLER_ESSENCE_Class {
 
 	function __construct() {
     
     //function 
-    require( SLIDER_ESSENCE_PLUGIN_PATH . '/inc/functions.php');
+    require( INSTALLER_ESSENCE_PLUGIN_PATH . '/inc/functions.php');
 
 	}
 
 }
-$obj = new SLIDER_ESSENCE_Class();
+$obj = new INSTALLER_ESSENCE_Class();

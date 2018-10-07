@@ -20,12 +20,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
+
+
 function note_essence_public_style(){
 
 	
 	if( !is_singular() ) return;
 	if( empty( $_POST['note']) ) return;
 	if( !current_user_can('edit_posts') ) return $content;
+	if ( !is_admin_bar_showing() )  return $content;
+	
 	wp_enqueue_script('jquery','//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js', array(), '3.2.1', true);
 	wp_enqueue_style('essence', get_template_directory_uri().'/style-min.css', array(), $_salonote_ver);
 	wp_enqueue_script('essence', get_template_directory_uri().'/statics/js/main-min.js', array(), $_salonote_ver ,true);
@@ -40,6 +44,7 @@ function note_essence($content){
 	
 	if( empty( $_POST['note']) ) return $content;
 	if( !current_user_can('edit_posts') ) return $content;
+	if ( !is_admin_bar_showing() ) return $content;
 	
 	global $post;
 	global $post_id;
@@ -303,6 +308,7 @@ function note_essence($content){
 						<option value="left_right">左右振り分け</option>
 						<option value="simple_blog">シンプルブログ</option>
 						<option value="keyv-landing"<?php if(strpos($template,'keyv-landing') !== false) echo ' selected'; ?>>キービジュアルランディング</option>
+						<option value="character">キャラクター会話</option>
 					</select>
 			</div>
 		</div>

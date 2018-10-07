@@ -141,7 +141,13 @@ function create_salonote_body( $body=null, $images=null ){
 
 
 	//return edit_content_hook($_note_html); // show confirm
-	return $_note_html;
+	
+	if( $_POST['post_style'] === 'character' ){
+		return markdown_char($_note_html);
+	}else{
+		return $_note_html;
+	}
+	
 }
 
 

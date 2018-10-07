@@ -784,13 +784,15 @@ ol.list-flow {
       display: inline-block;
       width: 2em;
       height: 2em;
-      line-height: 2em;
+      line-height: 1.5em;
       text-align: center;
       border-radius: 50%;
       color: #fff;
       margin-right: .3em;
       position: absolute;
-      left: -20px; }
+      left: -20px;
+      top: -5px;
+      border: 5px solid white; }
 
 ol.list-inline.list-numbering > li:before {
   left: 0px; }
@@ -2202,6 +2204,9 @@ hr.short-horizon {
       transform: rotate(10deg); }
     .character_essence.char_position_left.is_active {
       left: 0em; }
+  .character_essence.char_circled img {
+    border-radius: 50%;
+    background-color: white; }
   .character_essence .char_content {
     position: relative;
     display: flex;

@@ -99,7 +99,12 @@
 		}
 	}
 	
-	
+	&.char_circled{
+		img{
+			border-radius: 50%;
+			background-color: white;
+		}
+	}
 	
 	.char_content{
 			position: relative;

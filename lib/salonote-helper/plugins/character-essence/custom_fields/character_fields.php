@@ -47,6 +47,7 @@ function es_character_upload_postmeta(){ //投稿ページに表示されるカ�
 		'happy'  		 => '楽しい',
 		'seriously'  => '決め台詞',
 		'sad'		 		 => '悲しい',
+		'understand' => 'わかった',
 		'question'   => 'わからない',
 		'angry'  		 => '怒る',
 		'surprised'  => 'おどろく',
@@ -65,6 +66,7 @@ function es_character_upload_postmeta(){ //投稿ページに表示されるカ�
 	<table id="character_essence_table">
 		<tbody>
 		<?php
+		$index = 0;
 		foreach($fields_arr as $key => $label){
 		?>
 		<tr>
@@ -85,9 +87,14 @@ function es_character_upload_postmeta(){ //投稿ページに表示されるカ�
 					</div>
 
 			</td>
+			<td>
+			<p>[character id=<?php echo $post_id; ?> type=<?php echo $key; ?> reverse=false position=left src=""]テキスト[/character]</p>
+			<p>[char id=<?php echo $post_id; ?> t=<?php echo $key; ?> r=f p=l src=""]テキスト[/char]</p>
+			</td>
 		</tr>
 			
 		<?php
+			++ $index;
 		};
 		?>
 			</tbody>

@@ -1,0 +1,37 @@
+/* CSS Document */
+
+body{
+	background-color: #EBEAEA;
+	background-image: url(images/salonote_installer_image_1.jpg);
+	background-size: cover;
+	background-position: center center;
+	
+	
+	#installer-essence-body{
+		//position: fixed;
+		top: 3em;
+		right: 0px;
+		bottom: 3em;
+		left: 0px;
+		padding: 5em;
+		border-radius: 1em;
+		background-color:rgba(255,255,255,0.80);
+		box-shadow: 0 4px 15px #CCCCCC;
+		
+		h1{
+			font-family: "ヒラギノ明朝 ProN W6", "HiraMinProN-W6", "HG明朝E", "ＭＳ Ｐ明朝", "MS PMincho", "MS 明朝", serif;
+		}
+		
+		
+		.installer-essence-content{
+			overflow: scroll;
+		}
+		
+	}//#installer-essence-body
+	
+	.main-content-wrap,
+	#note-essence-write-form,
+	footer{
+		display: none;
+	}
+}//body

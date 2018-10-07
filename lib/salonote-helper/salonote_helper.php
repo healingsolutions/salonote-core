@@ -72,16 +72,22 @@ class SALONOTE_HELPER__Class {
 				
 		// user parts post_type =======================================
 		if( !empty( $theme_opt['base'] ) && in_array('enable_shop_menu',$theme_opt['base'] ) ){
-			require_once( get_template_directory(). '/lib/salonote-helper/plugins/shop-menu-essence/shop_menu_essence.php' );
+			
 		}
+		require_once( get_template_directory(). '/lib/salonote-helper/plugins/shop-menu-essence/shop_menu_essence.php' );
 		
 		// user parts post_type =======================================
 		if( !empty( $theme_opt['base'] ) && in_array('enable_character',$theme_opt['base'] ) ){
-			require_once( get_template_directory(). '/lib/salonote-helper/plugins/character-essence/character-essence.php' );
+			
 		}
+		
+		require_once( get_template_directory(). '/lib/salonote-helper/plugins/character-essence/character-essence.php' );
+		
 		
 		
 		require_once( get_template_directory(). '/lib/salonote-helper/plugins/note-essence/note-essence.php' );
+		require_once( get_template_directory(). '/lib/salonote-helper/plugins/installer-essence/installer-essence.php' );
+		
 		
 		//hook
 		require_once ( SALONOTE_HELPER__PLUGIN_PATH. '/hook/save_post_action.php' );
