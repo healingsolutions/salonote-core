@@ -29,6 +29,9 @@ function salonote_landing_updated_create_child_post( $post_ID ) {
 	if ( wp_is_post_revision( $post_ID ) )
 		return;
 	
+	if( empty(get_the_content( $post_ID )) )
+		return;
+	
 	$post_type = get_post_type($post_ID);
 	$post_types = get_post_types(
 		array(

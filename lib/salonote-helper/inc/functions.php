@@ -396,13 +396,20 @@ function markdown_char($content){
 			'normal' 		 => 'ノーマル',
 			'smile'  		 => 'スマイル',
 			'happy'  		 => '楽しい',
+			'pleased'  	 => '嬉しい',
 			'seriously'  => '決め台詞',
-			'sad'		 		 => '悲しい',
+			'correct'  	 => '合っている',
+			'mistaken'   => '間違っている',
 			'understand' => 'わかった',
 			'question'   => 'わからない',
+			'thanks'  	 => 'お礼を言う',
 			'angry'  		 => '怒る',
 			'surprised'  => 'おどろく',
+			'panicked'   => 'あせる',
 			'speechless' => '呆れる',
+			'upset' 		 => '困る',
+			'sad'		 		 => '悲しい',
+			'trying'		 => '苦しい',
 			'sorry' 		 => 'あやまる',
 			'sleep'  		 => '寝る',
 		);
@@ -464,7 +471,7 @@ function markdown_char($content){
 			$char_content .= ' type=normal';
 		}
 
-		if( !empty($char_set_arr[$match_key]['r']) && strpos($char_set_arr[$match_key]['r'],'t') === false){
+		if( !empty($char_set_arr[$match_key]['r']) && strpos($char_set_arr[$match_key]['r'],'t') !== false){
 			$char_content .= ' reverse=true';
 		}else{
 			$char_content .= ' reverse=false';
@@ -502,12 +509,12 @@ function markdown_char($content){
 		if( !empty($char_set_arr[$match_key]['src']) ){
 			$src = $char_set_arr[$match_key]['src'];
 		}else{
-			if( $check_char === 'male' ){
-				$src = $default_char[0]['normal'];
-				$check_char = 'female';
-			}else{
-				$src = $default_char[1]['normal'];
+			if( $check_char === 'female' ){
+				$src = $default_char[1][$type];
 				$check_char = 'male';
+			}else{
+				$src = $default_char[0][$type];
+				$check_char = 'female';
 			}
 			
 		}
@@ -524,6 +531,7 @@ function markdown_char($content){
 		$char_content .= ']';
 		$char_content .= str_replace('[char]','',$match_txt[2][$match_key]);
 		$char_content .= '[/character]';
+
 
 	}
 	

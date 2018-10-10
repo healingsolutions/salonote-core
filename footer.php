@@ -162,13 +162,33 @@ if($theme_opt['base']['google_map'] && !$hide_footer ){
 		// slick box ====================================================
 			$('.carousel-type-group').slick({
 				infinite: true,
-				dots: false,
-				arrows: false,
-				slidesToShow: 4,
+				dots: true,
+				arrows: true,
 				autoplay: true,
-				autoplaySpeed: 0,
-				cssEase: 'linear',
-				speed: 8500,
+				responsive: [
+							{
+								breakpoint: 2400,
+								settings: {
+									dots: false,
+									arrows: false,
+									autoplaySpeed: 0,
+									cssEase: 'linear',
+									speed: 8500,
+									slidesToShow: 4,
+								}
+							},
+							{
+								breakpoint: 600,
+								settings: {
+									dots: true,
+									arrows: true,
+									autoplaySpeed: 4000,
+									//speed: 1000,
+									//cssEase: false,
+									slidesToShow: 2,
+								}
+							},
+						]
 			});
 		}
 	});

@@ -51,13 +51,20 @@ function print_character_essence_image($atts, $content = '') {
 					'normal' 		 => 'ノーマル',
 					'smile'  		 => 'スマイル',
 					'happy'  		 => '楽しい',
+					'pleased'  	 => '嬉しい',
 					'seriously'  => '決め台詞',
-					'sad'		 		 => '悲しい',
+					'correct'  	 => '合っている',
+					'mistaken'   => '間違っている',
 					'understand' => 'わかった',
 					'question'   => 'わからない',
+					'thanks'  	 => 'お礼を言う',
 					'angry'  		 => '怒る',
 					'surprised'  => 'おどろく',
+					'panicked'   => 'あせる',
 					'speechless' => '呆れる',
+					'upset' 		 => '困る',
+					'sad'		 		 => '悲しい',
+					'trying'		 => '苦しい',
 					'sorry' 		 => 'あやまる',
 					'sleep'  		 => '寝る',
 				);
@@ -75,9 +82,10 @@ function print_character_essence_image($atts, $content = '') {
 
 	$style = ( $reverse == 'true' ) ? ' style="transform: scale(-1, 1);"' : '' ;
 
-	if( !empty($circled) && $circled === true ){
+	if( !empty($circled) && $circled === 'true' ){
 		$position .= ' char_circled';
 	}
+
 	
 	$image = !empty( $default_char[$type] ) ? $default_char[$type] : $src;
 	

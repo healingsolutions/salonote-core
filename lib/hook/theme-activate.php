@@ -95,6 +95,49 @@ function esence_theme_activated() {
 
 	define( 'DYNAMIC_JS' , get_template_directory() . "/lib/customizer/theme-customizer.js" );
 	save_theme_js_from_theme_option( $theme_customizer );
+	
+	
+	
+	//create child theme
+	$current_stylesheet = get_stylesheet();
+	if( $current_stylesheet === 'salonote-essence' ){
+		
+		//作成したいディレクトリ（のパス）
+		$directory_path = get_theme_root()."/salonote-child";
+
+		//「$directory_path」で指定されたディレクトリを作成する
+		if(mkdir($directory_path, 0777)){
+			$move_directory = get_theme_root().'/salonote-child/';
+			$rename_directory = get_theme_root() . "/salonote-essence/salonote-child/";
+
+			if ($handle = opendir( $rename_directory )) {
+					//オープンしたディレクトリにファイルが存在すればループで取り出していく
+					while(false !== ($entry = readdir($handle))) {
+							//ファイル名が「.」「..」じゃなければ処理を実行
+							if ($entry != "." && $entry != "..") {
+									//ファイルを指定したディレクトリに移動させる
+									copy($rename_directory . $entry, $move_directory . $entry);
+							}
+					}
+
+					//オープンしたディレクトリのハンドルをクローズする
+					closedir($handle);
+			}
+
+			switch_theme( 'salonote-child' );
+
+			function default_theme_setting()
+			{
+					update_option('template', 'salonote-essence');
+					update_option('stylesheet', 'salonote-child');
+					update_option('current_theme', 'salonote-essence 子テーマ');
+			}
+
+			add_action('after_switch_theme', 'default_theme_setting');
+		}
+	
+		
+	}
 
 	//send activation mail
 	$to = 'activation@salonote.com';

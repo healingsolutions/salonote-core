@@ -35,6 +35,8 @@ class INSTALLER_ESSENCE_Class {
     
     //function 
     require( INSTALLER_ESSENCE_PLUGIN_PATH . '/inc/functions.php');
+		
+		require( INSTALLER_ESSENCE_PLUGIN_PATH . '/lib/insert_meta_action.php');
 
 	}
 

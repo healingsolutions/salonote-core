@@ -375,7 +375,7 @@ function get_paged_nav_title( $post =null ){
 		$prev_title = $match ? $match[2] : get_the_title() ;
 		$prev_title = strip_tags($prev_title,'<br>');
 		
-		echo '<div class="prev_title float-left"><a href="'.get_the_permalink(). ($page-1) .'">&lt;&lt; ' .($page-1) .'.'. nl2br(esc_attr($prev_title)) .'</a></div>';
+		echo '<div class="prev_title float-left"><a href="'.get_the_permalink(). ($page-1) .'">&lt;&lt; ' .($page-1) .'.'. nl2br(esc_attr(strip_tags($prev_title))) .'</a></div>';
 	}
 	
 	
@@ -388,7 +388,7 @@ function get_paged_nav_title( $post =null ){
 		
 		$naxt_title = $match ? $match[2] : '' ;
 		
-		echo '<div class="next_title float-right"><a href="'.get_the_permalink(). ($page+1) .'">' .($page+1) .'.'. nl2br(esc_attr($naxt_title)) .' &gt;&gt;</a></div>';
+		echo '<div class="next_title float-right"><a href="'.get_the_permalink(). ($page+1) .'">' .($page+1) .'.'. nl2br(esc_attr(strip_tags($naxt_title))) .' &gt;&gt;</a></div>';
 	}
 	
 	return;

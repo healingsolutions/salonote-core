@@ -8,23 +8,85 @@ body{
 	
 	
 	#installer-essence-body{
+		
+		font-family:"ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
+		
 		//position: fixed;
 		top: 3em;
 		right: 0px;
 		bottom: 3em;
 		left: 0px;
-		padding: 5em;
+		
 		border-radius: 1em;
-		background-color:rgba(255,255,255,0.80);
+		background-color:rgba(255,255,255,0.90);
 		box-shadow: 0 4px 15px #CCCCCC;
 		
-		h1{
-			font-family: "ヒラギノ明朝 ProN W6", "HiraMinProN-W6", "HG明朝E", "ＭＳ Ｐ明朝", "MS PMincho", "MS 明朝", serif;
+		@media screen and (min-width: 769px) {
+        padding: 5em;
+    }
+
+		
+		.installer_essence_form_block{
+			min-width: 50%;
+			line-height: 2;
+			background-color: white;
+			padding: 1.5em;
+			border-radius: 1em;
+			box-shadow: 3px 0 10px #CCCCCC;
+			margin-bottom: 2.5em;
+			
+			input[type=radio]{
+				margin-right: 1em;
+			}
+
+		}
+		
+		.hint{
+			color: dimgray;
+		}
+
+		
+		#sidebar{
+			width: 100%;
+			
+			li.step_done{
+				a{
+					position: relative;
+					padding-right: 4em;
+					
+					&::before{
+						content: '完了';
+						background-color: #DB7627;
+						color: white;
+						font-size: 80%;
+						padding: 3px 7px;
+						border-radius: 4px;
+						position: absolute;
+						right: 5px;
+					}
+				}
+			}
+			
+			li.step_disable{
+				a{
+					pointer-events: none !important;
+					color: gray;
+				}
+			}
+			
 		}
 		
 		
 		.installer-essence-content{
-			overflow: scroll;
+			@media screen and (max-width: 768px) {
+        padding: 0;
+
+				
+				.character_essence>img {
+					max-width: 90px !important;
+					top: 0;
+				}
+      }
 		}
 		
 	}//#installer-essence-body

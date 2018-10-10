@@ -35,9 +35,31 @@ function add_keywords(){
 }
  
 function insert_keywords(){
-     global $post;
-     wp_nonce_field(wp_create_nonce(__FILE__), 'keywords_nonce');
-     echo '<label for="keywords"></label><input type="text" name="keywords" size="60" value="'.esc_html(get_post_meta($post->ID, 'keywords', true)).'" />';
+	global $post;
+	wp_nonce_field(wp_create_nonce(__FILE__), 'keywords_nonce');
+	
+	$keywords = esc_html(get_post_meta($post->ID, 'keywords', true));
+	
+	echo '<label for="keywords"></label><input type="text" name="keywords" size="60" value="'.$keywords.'" />';
+
+	if( !empty($keywords) ){
+		$suggest_data = suggest_from_keywords($keywords );
+		
+		if( count($suggest_data) > 0 ){
+			
+			echo '<p class="hint">Googleでは同時にこのようなワードが検索されています</p>';
+			echo '<ul style="background-color: white; padding:1.5em; border:1px solid #CCCCCC; ">';
+			foreach( $suggest_data as $key => $word_item ){
+				echo '<li style="display:inline-block; margin:4px; padding: 3px 7px; background-color: #F2F2F2;">'.$word_item.'</li>';
+			}
+			echo '</ul>';
+		
+		//echo '<pre>suggest_data'; print_r($suggest_data); echo '</pre>';
+		}else{
+			echo '<p class="hint">関連サジェストが見つかりません</p>';
+		}
+	}
+	
 }
  
 function save_keywords($post_id){
@@ -58,5 +80,32 @@ function save_keywords($post_id){
 		delete_post_meta($post_id, 'keywords', get_post_meta($post_id, 'keywords', true));
 	}
 }
+
+
+
+//Google Suggest
+
+function suggest_from_keywords($keywords){
+	
+	if( empty($keywords) ) return;
+	
+	$suggest_data = array();
+	$keywords_arr = explode(',',$keywords);
+	
+	foreach( $keywords_arr as $key => $words){
+		$suggest_url = 'http://www.google.com/complete/search?hl=en&output=toolbar&q='. preg_replace('/(　| )/','%20',$words);
+		$content = utf8_encode(file_get_contents($suggest_url));
+		$xml = simplexml_load_string($content);
+
+		foreach($xml->CompleteSuggestion as $item){
+			$str = (string)$item->suggestion['data'];
+				$suggest_data[] = $str;
+		}
+	}
+
+	return $suggest_data;
+	
+}
+
 
 ?>
