@@ -1,6 +1,6 @@
 @media screen and (min-width: 769px) {
  
-	body.page-template-keyv-landing{
+	body[class*="-template-keyv-landing"]{
 
 	.landing-page-item{
 		position: relative;
@@ -128,11 +128,11 @@
 
 }
 
-	body.page-template-keyv-landing{
-		.main-content-wrap{
-			background-image: none;
-		}
+body[class*="-template-keyv-landing"]{
+	.main-content-wrap{
+		background-image: none;
 	}
+}
 
 
 

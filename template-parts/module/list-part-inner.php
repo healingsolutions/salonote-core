@@ -92,7 +92,9 @@ if(
   !empty( $post_type_set ) &&
   in_array('display_post_date',$post_type_set)
 ){
-  echo '<time class="list_block_date">'.get_the_date('Y.m.d').'</time>';
+	$data_format = !empty($post_type_set['post_data_format']) ? esc_attr($post_type_set['post_data_format']) : 'Y.m.d' ;
+	
+  echo '<time class="list_block_date">'.get_the_date($data_format).'</time>';
 }
 
 
@@ -132,7 +134,7 @@ if(
 	in_array('list_show_body',$post_type_set)
 	&& get_the_content()
 ){
-	echo '<div class="content-block">'.strip_tags(get_the_content(),'<img><p>').'</div>';
+	echo '<div class="content-block mt-3 mb-5">'.nl2br(strip_tags(get_the_content(),'<img><p><br><a><span><ul><li><ol>')).'</div>';
 }
 
 echo '</div>';

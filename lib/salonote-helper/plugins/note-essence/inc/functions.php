@@ -179,7 +179,7 @@ function note_essence($content){
 			$_insert_text = create_salonote_body($note_body , $_use_files);
 			
 			
-			echo $note_body[0];
+			//echo $note_body[0];
 			
 			insert_salonote_note($_insert_text);
 			
@@ -197,8 +197,6 @@ function note_essence($content){
 				}
 			}
 
-
-			
 			
 		}else{
 			echo 'error';
@@ -207,9 +205,8 @@ function note_essence($content){
 
 		
 		$post_custom = get_post_custom($insert_id);
-		echo '<pre>post_custom'; print_r($post_custom); echo '</pre>';
-		
-		echo '<a href="'. get_post_permalink($insert_id)  .'">'.get_the_title($insert_id).'</a>';
+		//echo '<pre>post_custom'; print_r($post_custom); echo '</pre>';
+		//echo '<a href="'. get_post_permalink($insert_id)  .'">'.get_the_title($insert_id).'</a>';
 		
 		wp_safe_redirect( get_post_permalink($insert_id) );
 		exit();
@@ -227,6 +224,7 @@ function note_essence($content){
 		<input type="hidden" name="note" value="1">
 		
 		
+		
 		<div class="col-12 col-md-6 form-control-checkbox mb-5">
 			
 			<?php
@@ -234,17 +232,20 @@ function note_essence($content){
 					$post = get_post($_POST['post_id']);
 					$post_type = get_post_type($_POST['post_id']);
 					echo '
-					<div id="post_target_field" class="form-group row mt-3">
+					<div id="post_target_field" class="form-group row mt-3" style="display : none;">
 					<label for="post_title" class="col-sm-3 col-form-label text-left">編集するページ</label>
 					<div class="col-sm-9 text-left">
 						<input class="form-control" type="text" value="'.get_the_title($_POST['post_id']).'" readonly>
 						<input class="form-control" type="hidden" name="post_id" value="'.$_POST['post_id'].'">
+						<input type="hidden" name="edit_post_type" value="'.$post_type.'">
 					</div>
 					</div>';
 				}
 			?>
 			
-			<div id="post_title_field" class="form-group row mt-3" style="display : none;">
+			
+			
+			<div id="post_title_field" class="form-group row mt-3">
 				<label for="post_title" class="col-sm-3 col-form-label text-left">タイトル</label>
 				<div class="col-sm-9 text-left">
 					<input class="form-control" type="text" name="post_title" value="" id="post_title">
@@ -254,11 +255,11 @@ function note_essence($content){
 			<div class="form-group row mt-3">
 				<label for="post_new" class="col-sm-3 col-form-label text-left">新規投稿</label>
 				<div class="col-sm-9 text-left">
-					<input class="form-check-input" type="checkbox" id="post_new" name="post_new" value="1">
+					<input class="form-check-input" type="checkbox" id="post_new" name="post_new" value="1" checked>
 				</div>	
 			</div>
 			
-			<div id="post_type_field" class="form-group row mt-3" style="display: none;">
+			<div id="post_type_field" class="form-group row mt-3">
 				<label for="post_type" class="col-sm-3 col-form-label text-left">投稿タイプ</label>
 				<div class="col-sm-9">
 				<?php
@@ -268,14 +269,12 @@ function note_essence($content){
 				);
 
 				$post_types = get_post_types( $args, 'names' );
-				array_push($post_types, "post");
+				
 				array_push($post_types, "page");
+				array_push($post_types, "post");
 		
 				echo '<select name="post_type" class="form-control">';
-		
-		
-				
-		
+
 				foreach ( array_reverse($post_types) as $post_type_name ) {
 					if( !empty($post_type_name) && $post_type_name !== 'front_page' ){
 						$post_type_label = !empty(get_post_type_object($post_type_name)->labels->singular_name) ? get_post_type_object($post_type_name)->labels->singular_name : null ;
@@ -283,7 +282,7 @@ function note_essence($content){
 					if( empty($post_type_label) ) continue;
 
 					echo '<option value="'.$post_type_name.'"';
-					if( $post_type_name === $post_type ){
+					if( 'post' === $post_type_name ){
 						echo ' selected';
 					}
 					echo'>'.$post_type_label.'</option>';
@@ -305,9 +304,9 @@ function note_essence($content){
 				<label for="post_style" class="col-sm-3 col-form-label text-left">スタイル</label>
 				<div class="col-sm-9">
 					<select class="form-control" id="post_style" name="post_style">
-						<option value="left_right">左右振り分け</option>
 						<option value="simple_blog">シンプルブログ</option>
-						<option value="keyv-landing"<?php if(strpos($template,'keyv-landing') !== false) echo ' selected'; ?>>キービジュアルランディング</option>
+						<option value="left_right">左右振り分け</option>
+						<option value="keyv-landing">キービジュアルランディング</option>
 						<option value="character">キャラクター会話</option>
 					</select>
 			</div>

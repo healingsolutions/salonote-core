@@ -28,8 +28,15 @@ if (has_nav_menu('Top')) {
 	$header_class[] = 'none_top_nav';
 }
 
+
+if (has_nav_menu('HeaderBottom')) {
+	$header_class[] = 'has_header_bottom_nav';
+}else{
+	$header_class[] = 'none_header_bottom_nav';
+}
+
 ?>
-<header id="header" class="<?php echo implode(' ',$header_class);?>">
+<header id="header" class="check <?php echo implode(' ',$header_class);?>">
   <?php
     // action essence_before_header =============================
     if ( current_user_can( 'administrator' ) && $user_setting['display_shortcode'] ) { echo '<span class="do_action">do_action: [essence_before_header]</span>';}
@@ -58,12 +65,6 @@ if (has_nav_menu('Top')) {
 		do_action( 'essence_before_carousel_block' );
 		// ^action =============================
 	
-		
-		if ( has_header_image() && $post_type_name == 'front_page' ) {
-			echo '<div class="header-image" style="background-image: url('.get_header_image().'); ">
-			<img src="'.get_header_image().'" />
-			</div>';
-		}
 
 		// action essence_after_carousel_block =============================
 		if ( current_user_can( 'administrator' ) && $user_setting['display_shortcode'] ) { echo '<span class="do_action">do_action: [essence_after_carousel_block]</span>';}
@@ -79,6 +80,27 @@ if (has_nav_menu('Top')) {
 </header>
 
 <?php
+
+if ( has_header_image() && $post_type_name == 'front_page' ) {
+	
+	$header_images = get_uploaded_header_images();
+	
+	if (!empty($header_images) && count($header_images) > 1 ){
+		echo '<div class="slick-unit-1">';
+				foreach ($header_images as $header_image) {
+					echo '<img src="' . $header_image['url'] . '" />';
+				}
+		echo '</div>';
+	}else{
+		echo '<div class="header-image" style="background-image: url('.get_header_image().'); ">
+		<img src="'.get_header_image().'" />
+		</div>';
+	}
+
+	
+}
+
+
 if(	is_singular() && has_excerpt()){
 	if(
 		!empty( $post_type_set ) &&
@@ -91,5 +113,12 @@ if(	is_singular() && has_excerpt()){
 
 
 get_template_part('template-parts/module/pc-navbar-bottom');
+
+
+
+//ヘッダーウィジェット
+if(!function_exists('dynamic_sidebar') || !dynamic_sidebar('content_top')): 
+	//dynamic_sidebar( 'content_top');
+endif;
 ?>
 

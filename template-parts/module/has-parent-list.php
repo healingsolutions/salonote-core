@@ -31,6 +31,19 @@ function child_list_func($post,$_child_class = null){
   ?>
   <li class="<?php echo implode(' ',$_child_class);?>">
     <a href="<?php the_permalink(); ?>">
+		<?php
+		echo '<div class="side_list_content';
+		//thumbnail
+		if(
+			!empty( $post_type_set ) &&
+			in_array('side_thumbnail',$post_type_set)&&
+			has_post_thumbnail()
+		){
+			echo ' has_thumbnail';
+		}
+		echo '">';
+		?>
+			
 		<span>
 		<?php the_title(); ?>
     <?php
@@ -41,6 +54,7 @@ function child_list_func($post,$_child_class = null){
 		){
 			echo '<time class="list_block_date">'.get_the_date('Y.m.d').'</time>';
 		}
+		echo '</span>';
 	
 		if(
 			!is_tax() &&
@@ -51,7 +65,7 @@ function child_list_func($post,$_child_class = null){
 			echo isset( $term_list[0]->name ) ? '<span class="taxonomy_label label-block">'.esc_attr($term_list[0]->name).'</span>' : '' ;
 		}
 	
-		echo '</span>';
+		echo '</div>';
 	
 		//thumbnail
 		if(
@@ -64,6 +78,7 @@ function child_list_func($post,$_child_class = null){
 	
 	
     ?>
+		
     </a>
   </li>
   <?php

@@ -67,6 +67,12 @@
 	clear: none;
 }
 
+.events-information-block{
+	dl{
+		width: 100%;
+	}
+}
+
 @media screen and (max-width: 768px) {
 	.btn-item{
 		padding: 10px 20px;

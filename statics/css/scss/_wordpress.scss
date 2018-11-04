@@ -8,9 +8,24 @@
   display: inherit;
 	max-width: 100%;
 };
-.wp-caption-text{
-  display: inherit;
-};
+
+
+.main-content-block{
+	.wp-caption-text{
+		display: inherit;
+		margin-top: -1.2em;
+		border-bottom: 1px solid #CCCCCC;
+
+		&::before{
+			content: "\f101";
+			font-size: 1.2em;
+			font-family: 'dashicons';
+			position: relative;
+			bottom: -.3em;
+			color: #CCCCCC;
+		}
+	};
+}
 .gallery-caption{
   display: inherit;
 };

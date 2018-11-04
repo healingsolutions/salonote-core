@@ -42,6 +42,10 @@
 
 }
 
+header{
+	@include clearfix;
+}
+
 header.site-header-block{
   position: relative;
 	z-index: 10;

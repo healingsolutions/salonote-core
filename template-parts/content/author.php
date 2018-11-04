@@ -39,6 +39,7 @@ if(
 ){
   $main_unit[]    = 'has_sidebar';
   $main_content[] = 'col-12';
+	if( $_main_width >= 10 ) $main_content[] = 'col-md-'.($_main_width-1);
   $main_content[] = 'col-lg-'.$_main_width;
 }else{
 	$row_class .= '-block';
@@ -48,7 +49,7 @@ if(
 
 // =============================
 // list_type
-$list_class[] = !empty($post_type_set['list_type']) ? $post_type_set['list_type'].'-type-group' : 'list-type-group' ;
+$list_class[] = !empty($post_type_set['list_type']) ? $post_type_set['list_type'].'-type-group' : 'timeline-type-group' ;
 
 if( !empty($post_type_set['list_type']) && $post_type_set['list_type'] == 'grid'){
 	if(!empty($post_type_set['grid_cols']) ) {
@@ -61,7 +62,14 @@ if( !empty($post_type_set['list_type']) && $post_type_set['list_type'] == 'grid'
 
 global $wp_query;
 
-$args['post_type'] = 'any';
+$args = array(
+	 'public'   => true,
+	 '_builtin' => false
+);
+$post_types = get_post_types( $args, 'names' );
+array_push($post_types, "post");
+
+$args['post_type'] = $post_types;
 $args['posts_per_page'] = !empty($post_type_set['posts_per_page']) ? $post_type_set['posts_per_page'] : get_option('posts_per_page');
 $args['order'] = !empty($post_type_set['posts_order']) ? $post_type_set['posts_order'] : 'ASC';
 

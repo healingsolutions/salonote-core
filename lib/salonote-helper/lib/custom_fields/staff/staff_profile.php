@@ -32,7 +32,9 @@ function insert_staff_profile(){
 		'goal'					=> __('目標','salonote-essence'),
 		'favorit_artist'=> __('好きなアーティスト','salonote-essence'),
 		'favorit_words'	=> __('好きな言葉','salonote-essence'),
-		'reason'				=> __('美容師になったきっかけ','salonote-essence'),
+		'favorit_song'	=> __('好きな曲','salonote-essence'),
+		'reason'				=> __('この仕事を始めたきっかけ','salonote-essence'),
+		'policy'				=> __('仕事のこだわり','salonote-essence'),
     'workday'				=> __('出勤','salonote-essence'),
 		'comment'				=> __('一言コメント','salonote-essence'),
     'blog'					=> __('ブログ','salonote-essence'),
@@ -53,7 +55,7 @@ function insert_staff_profile(){
 			<th><label for="staff_profile_<?php echo $key;?>"><?php echo $value; ?></labe></th>
 			
 			<?php
-			if( $key === 'comment' ){
+			if( $key === 'comment' || $key === 'favorit_song' || $key === 'favorit_words' || $key === 'policy'){
 			?>
 			<td><textarea id="staff_profile_<?php echo $key;?>" rows="4" class="regular-text" name="staff_profile[staff_<?php echo $key;?>]"><?php echo !empty($staff_profile_value[$_field_key]) ? $staff_profile_value[$_field_key] : '' ; ?></textarea></td>
 				

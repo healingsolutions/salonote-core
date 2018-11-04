@@ -157,3 +157,6 @@ a.page_bkg_upload_images_remove:hover {
       font-family: "dashicons";
       top: 1px;
       position: relative; }
+
+table.media .column-title .media-icon img {
+  width: auto; }

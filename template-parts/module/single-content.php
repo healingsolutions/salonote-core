@@ -24,7 +24,12 @@ if(
 		$_the_title = preg_replace('/(\,|】|'.__(',','salonote-essence').')/', '$1<br />', $_the_title);
 		$_the_title = preg_replace('/(~|〜)/', '<br /><span class="small">$1', $_the_title).'</span>';
 	}
-  echo '<h1 class="entry_block_title">'.$_the_title;
+	
+	$entry_block_title = array('entry_block_title');
+	if( !empty($theme_opt['base']['entry_title']) ){
+		$entry_block_title[] = $theme_opt['base']['entry_title'];
+	}
+  echo '<h1 class="'. implode(' ',$entry_block_title) .'">'.$_the_title;
 	
 	//paged
   if( $paged >= 2 || $page >= 2 ){

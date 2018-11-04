@@ -18,6 +18,7 @@ $main_content[] = 'main-content-block';
 
 $_main_width = !empty($theme_opt['base']['side_width']) ? (12 - $theme_opt['base']['side_width']) : 9 ;
 
+
 // =============================
 // if has sidebar
 if(
@@ -34,7 +35,9 @@ if(
     ){
     $main_unit[]    = 'has_sidebar';
     $main_content[] = 'col-12';
+		if( $_main_width >= 10 ) $main_content[] = 'col-md-'.($_main_width-1);
     $main_content[] = 'col-lg-'.$_main_width;
+		
   }
 	if(
       !empty($page_info['full_size'] )
@@ -97,6 +100,16 @@ echo '<main class="'.implode(' ',$main_content).'">';
 			//display child pages
 			get_template_part('template-parts/module/single_child_unit');
   }
+
+
+	// if has prev ||  next post
+	if(
+		is_singular() && !is_front_page() &&
+		!empty( $post_type_set ) &&
+		in_array('display_next_post',$post_type_set)
+	){
+		get_template_part('template-parts/module/paging');
+	}
 
   // action essence_after_single_content =============================
   if ( current_user_can( 'administrator' ) && $user_setting['display_shortcode'] ) { echo '<span class="do_action">do_action: [essence_after_single_content]</span>';}

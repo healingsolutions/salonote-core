@@ -39,7 +39,9 @@ function slider_essence_public_style(){
 	
 	global $post;
 	$sliders = get_post_meta( $post->ID, 'es_slider_upload_images', true );
-	if( empty($sliders) ) return;
+	$header_images = get_uploaded_header_images();
+	
+	if( empty($sliders) && empty($header_images) ) return;
 	
 	wp_enqueue_script('slick', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js', array(), '1.6.0' ,true);
 	wp_enqueue_style ('slick', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css', array(), '1.6.0');
@@ -58,7 +60,7 @@ function slider_essence(){
 	
 	$slider_essence_opt = get_option('slider_essence_options');
 	$opt['place'] = !empty($slider_essence_opt['place']) ? $slider_essence_opt['place'] : '#header' ;
-	$opt['height'] = !empty($slider_essence_opt['height']) ? $slider_essence_opt['height'] : '60vh' ;
+	$opt['height'] = !empty($slider_essence_opt['height']) ? $slider_essence_opt['height'] : 'auto' ;
 	$opt['sp_height'] = !empty($slider_essence_opt['sp_height']) ? $slider_essence_opt['sp_height'] : '' ;
 	$opt['sp_right'] = !empty($slider_essence_opt['sp_right']) ? $slider_essence_opt['sp_right'] : 0 ;
 	$opt['speed'] = !empty($slider_essence_opt['speed']) ? $slider_essence_opt['speed'] : 8 ;

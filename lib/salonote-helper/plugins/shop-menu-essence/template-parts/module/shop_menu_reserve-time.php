@@ -33,46 +33,64 @@ function diff_date($date1, $date2) {
 //曜日の配列
 $weekday = array('日', '月', '火', '水', '木', '金', '土');
 
-
 ?>
 <fieldset class="form-horizontal" role="form">
-<legend class="text-center stitch_headline headline_bkg mb-5">ご希望をお聞かせください</legend>
+<legend class="h2 text-center stitch_headline headline_bkg mb-5">日程のご希望をお聞かせください</legend>
 
-<div id="reserve_type-btn" class="text-center">
-	<div class="inline-block">
-	<div class="btn btn-item btn-lg" rel="reserve_type-hearing">
-		希望を伝える<br>
-		<span>ご要望をお伝えいただき、<br>当店から最適な日程の候補をご返信いたします</span>
-	</div>
-	</div>
-
-	<div class="inline-block">
-	<div class="btn btn-item btn-lg" rel="reserve_type-recommend">
-		空いている候補から選択する<br>
-		<span>確実に空いているオススメの日程から<br>お選びいただけます</span>
-	</div>
-	</div>
-
-	<div class="inline-block">
-	<div class="btn btn-item btn-lg" rel="reserve_type-preferred">
-		第３希望まで伝える<br>
-		<span>ご希望日を３つまで<br>お選びいただけます</span>
-	</div>
-	</div>
-</div>
-	
 <?php
+		
+if( !empty($shop_menu_opt['reserve_type']) && count($shop_menu_opt['reserve_type']) > 1 ){
+	echo '<div class="text-center">以下の'. count($shop_menu_opt['reserve_type']) .'つの方法からお選び頂けます</div>';
+
+	echo '<div id="reserve_type-btn" class="text-center">';
+
+	if( !empty($shop_menu_opt['reserve_type']) && in_array( 'hearing' , $shop_menu_opt['reserve_type'] ) ){
+	echo '<div class="inline-block m-3">
+		<div class="btn btn-item btn-lg" rel="reserve_type-hearing">
+			希望を伝える<br>
+			<span>ご要望をお伝えいただき、<br>当店から最適な日程の候補をご返信いたします</span>
+		</div>
+		</div>';
+	}
+
+	if( !empty($shop_menu_opt['reserve_type']) && in_array( 'recommend' , $shop_menu_opt['reserve_type'] ) ){
+	echo '<div class="inline-block m-3">
+		<div class="btn btn-item btn-lg" rel="reserve_type-recommend">
+			空いている候補から選択する<br>
+			<span>確実に空いているオススメの日程から<br>お選びいただけます</span>
+		</div>
+		</div>';
+	}
+
+	if( !empty($shop_menu_opt['reserve_type']) && in_array( 'preferred' , $shop_menu_opt['reserve_type'] ) ){
+	echo '<div class="inline-block m-3">
+		<div class="btn btn-item btn-lg" rel="reserve_type-preferred">
+			第３希望まで伝える<br>
+			<span>ご希望日を３つまで<br>お選びいただけます</span>
+		</div>
+		</div>';
+	}
+
+	echo '</div>';
+	
+}
+
 
 // hearing
 if( !empty($shop_menu_opt['reserve_type']) && in_array( 'hearing' , $shop_menu_opt['reserve_type'] ) ){
 	?>
 
-<div id="reserve_type-hearing" class="reserve_type-block mb-5">
+<div id="reserve_type-hearing" class="reserve_type-block mb-5"<?php
+	if( count($shop_menu_opt['reserve_type']) === 1 && in_array( 'hearing' , $shop_menu_opt['reserve_type'] ) )
+	echo ' style="display: block !important;"';
+?>>
 	
 	<div class="mb-5">
 	<p class="h2 heading">ご都合の良い曜日</p>
 	<?php
 	foreach( $weekday as $key => $value ){
+		if( !empty($shop_menu_opt['holiday'][$key]) ) continue;
+		
 		echo '<label for="hearing-week-'.$key.'" class="inline-block" style="display: inline-block; margin-right: 15px;"><input id="hearing-week-'.$key.'" type="checkbox" name="hearing[week][]" value="'.$value.'" /> '. $value .'</label>';
 	}
 	?>
@@ -105,11 +123,7 @@ if( !empty($shop_menu_opt['reserve_type']) && in_array( 'hearing' , $shop_menu_o
 	?>
 	</div>
 	
-	<div class="mb-5">
-	<p class="h2 heading">差し支えなければ上記の理由をお聞かせください</p>
-	<textarea class="form-control" rows="7" name="hearing[reason]" placeholder="例：子どもが学校から帰ってくる時間よりも前に帰りたいから
-																																					例：午後から美容院に行く予約があるから"></textarea>
-	</div>
+	
 </div>
 	
 
@@ -120,9 +134,12 @@ if( !empty($shop_menu_opt['reserve_type']) && in_array( 'hearing' , $shop_menu_o
 // select
 if( !empty($shop_menu_opt['reserve_type']) && in_array( 'recommend' , $shop_menu_opt['reserve_type'] ) ){
 	echo '
-	<div id="reserve_type-recommend" class="reserve_type-block mb-5">
-	<p class="h2 heading">ご予約可能なオススメの時間帯</p>
-	';
+	<div id="reserve_type-recommend" class="reserve_type-block mb-5"';
+	if( count($shop_menu_opt['reserve_type']) === 1 && in_array( 'recommend' , $shop_menu_opt['reserve_type'] ) )
+	echo ' style="display: block !important;"';
+	echo '>';
+	
+	echo '<p class="h2 heading">ご予約可能なオススメの時間帯</p>';
 	
 	$recommend_datetime = !empty($shop_menu_opt['recommend_datetime']) ? $shop_menu_opt['recommend_datetime'] : null ;
 
@@ -143,9 +160,12 @@ if( !empty($shop_menu_opt['reserve_type']) && in_array( 'recommend' , $shop_menu
 if( !empty($shop_menu_opt['reserve_type']) && in_array( 'preferred' , $shop_menu_opt['reserve_type'] ) ){
 	
 	echo '
-	<div id="reserve_type-preferred" class="reserve_type-block mb-5">
-	<p class="h2 heading">ご希望日</p>
-	';
+	<div id="reserve_type-preferred" class="reserve_type-block mb-5"';
+	if( count($shop_menu_opt['reserve_type']) === 1 && in_array( 'preferred' , $shop_menu_opt['reserve_type'] ) )
+	echo ' style="display: block !important;"';
+	echo '>';
+	
+	echo '<p class="h2 heading">ご希望日</p>';
 
 		$holiday_week = !empty($shop_menu_opt['holiday']) ? $shop_menu_opt['holiday'] : null;
 		$_reserve_start = !empty($shop_menu_opt['enable_reserve']['start']) ? $shop_menu_opt['enable_reserve']['start'] : 0 ;
@@ -171,9 +191,11 @@ if( !empty($shop_menu_opt['reserve_type']) && in_array( 'preferred' , $shop_menu
 		}
 
 	
+	echo '<div class="row">';
 		for ($count = 0; $count < 3; $count++){
 			echo '
-			<div class="mb-5 preferred-block text-center">
+			<div class="col-12 col-md-4 mb-5">
+			<div class="preferred-block text-center">
 			
 			<div class="form-group">
 			<label for="reserve_time_'.$count.'" class="control-label h2">第'.($count+1).'希望</label>
@@ -209,10 +231,20 @@ if( !empty($shop_menu_opt['reserve_type']) && in_array( 'preferred' , $shop_menu
 			}
 
 			echo '</div>';
+			echo '</div>';
 		}
+	
+	echo '</div>';
 
 	echo '</div>';
 }//^ preferred
+	
+	
+	echo '<div class="mb-5">
+	<p class="heading">ご予約についてのご希望などをお聞かせください</p>
+	<textarea class="form-control" rows="7" name="hearing[reason]" placeholder="例：子どもが学校から帰ってくる時間よりも前に帰りたい
+																																					例：午後から美容院に行く予約がある"></textarea>
+	</div>';
 
 
 echo '</fieldset>';

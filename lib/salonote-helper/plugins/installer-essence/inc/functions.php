@@ -21,12 +21,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 function installer_start(){
+	
+	if( !is_user_logged_in()) return;
+	
+	//delete_option('insert_essence');
+	
 	$opt_values 		= get_option('insert_essence',true);
-
 
 	$count_posts = wp_count_posts('page');
 	
-
 	if( is_front_page() && is_home() && ($count_posts->publish + $count_posts->draft) <= 1 && current_user_can( 'activate_plugins' ) ){
 
 		//postがある場合は、値をセットする

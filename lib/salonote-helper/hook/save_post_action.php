@@ -29,8 +29,11 @@ function salonote_landing_updated_create_child_post( $post_ID ) {
 	if ( wp_is_post_revision( $post_ID ) )
 		return;
 	
-	if( empty(get_the_content( $post_ID )) )
+	
+	$parent_template = get_page_template_slug($post_ID);
+	if( $parent_template !== 'template/landing-list.php' )
 		return;
+
 	
 	$post_type = get_post_type($post_ID);
 	$post_types = get_post_types(
@@ -51,7 +54,8 @@ function salonote_landing_updated_create_child_post( $post_ID ) {
 	if( $parent_id > 0 )
 		return;
 	
-
+	if( !empty(get_the_content( $post_ID )) )
+		return;
 	
 	$base_saved = isset( $base_saved ) ? $base_saved : false ;
 	

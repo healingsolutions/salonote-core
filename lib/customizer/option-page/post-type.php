@@ -56,6 +56,8 @@ $field_arr = array(
         'list' => __('list','salonote-essence'),
         'grid' => __('grid','salonote-essence'),
         'timeline' => __('timeline','salonote-essence'),
+				'calendar' => __('calendar','salonote-essence'),
+				'qanda' => __('Q & A','salonote-essence'),
       ),
   ),
   'posts_per_page' => array(
@@ -181,6 +183,11 @@ $field_arr = array(
     'label' => __('post_date','salonote-essence'),
     'type' => 'checkbox',
   ),
+	'post_data_format' => array(
+		'label'       => __('post data format','salonote-essence'),
+		'type'        => 'text',
+	),
+	
   'display_entry_sub_title' => array(
     'label' => __('Page SubTitle','salonote-essence'),
     'type' => 'checkbox',

@@ -25,7 +25,7 @@ global $id;
 global $show_title;
 global $list_type;
 global $search;
-
+global $field_set;
 
 
 
@@ -61,8 +61,6 @@ if( !empty($shop_menu_fields) ){
 }
 
 $field_set = [];
-
-
 foreach( $shop_menu_fields as $key => $value ){
 	$field_set[$value['menu_field']]['label']   = $value['menu_label'];
 	$field_set[$value['menu_field']]['type']    = !empty($value['menu_type']) 	 ? $value['menu_type'] 		: null ;
@@ -126,7 +124,7 @@ if( $show_title === true ){
 	echo '<h2 class="title_bdr_tbtm">'.get_the_title($id).'</h2>';
 }
 do_action('before_print_shop_menu');
-require( SHOP_MENU_ESSENCE_PLUGIN_PATH. "/template-parts/module/shop_menu_item.php");
+print_shop_menu_item( $field_set, $shop_menu_arr);
 do_action('after_print_shop_menu');
 
 echo '</div>';

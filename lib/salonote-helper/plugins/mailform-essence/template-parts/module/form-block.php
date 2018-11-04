@@ -213,36 +213,7 @@ if(is_user_logged_in()){
 			
 			echo '
 
-			<script>
-			jQuery( function($) {
-				$(\'#get_address\').click(function(){
-					var zipcord = $(\'#mailform_essence_form-'.$counter.' input\').val(); //郵便版番号入力値 名前はそれぞれ
-					if (zipcord != "" ){
-						//loadingとか入れたいとき用　使用時は //を外します
-						//$(\'#loading_address\').fadeIn();
-						$.ajaxSetup({
-						// IE対策 キャッシュクリア
-						cache: false, });
-						$.ajax({
-							type: \'GET\',
-							url: \''.MAILFORM_ESSENCE_PLUGIN_URI.'/lib/get_address.php?zipcord=\'+zipcord,
-							datatype: \'json\',
-							success: function(json){
-								$.each(json, function(i, item){
-								$(\'#mailform_essence_form-'.$counter.' + div input\').val(item.location1);
-								//$(\'#loading_address\').fadeOut();//loadingとか入れた人はこいつで読み込み後消せます。
-								});
-							}, error: function(){
-								// $(\'#loading_address\').fadeOut();//loadingとか入れた人はこいつで読み込み後消せます。
-								alert(\'error\');
-							}
-						});
-					} else {
-						alert(\'error\');
-					}
-				});
-			});
-			</script>
+			
 
 			<div class="row">
 				<div class="col-sm-5" style="display:inline-block">

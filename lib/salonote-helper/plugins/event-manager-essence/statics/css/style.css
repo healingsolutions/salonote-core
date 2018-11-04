@@ -1,0 +1,173 @@
+form #event_manager_form div textarea,
+form #event_price_form div textarea,
+form #event_timetable_form div textarea {
+  vertical-align: top; }
+form #event_manager_form .doraggable-fields,
+form #event_price_form .doraggable-fields,
+form #event_timetable_form .doraggable-fields {
+  clear: both;
+  cursor: move;
+  position: relative;
+  padding: 15px 35px 15px 55px;
+  border: 1px solid #B4C2CB;
+  background-color: #FFFFFF;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  display: flex; }
+  form #event_manager_form .doraggable-fields > div,
+  form #event_price_form .doraggable-fields > div,
+  form #event_timetable_form .doraggable-fields > div {
+    width: 100%; }
+  form #event_manager_form .doraggable-fields textarea,
+  form #event_price_form .doraggable-fields textarea,
+  form #event_timetable_form .doraggable-fields textarea {
+    min-height: 65px; }
+  form #event_manager_form .doraggable-fields::before,
+  form #event_price_form .doraggable-fields::before,
+  form #event_timetable_form .doraggable-fields::before {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 1;
+    font-size: 2em;
+    font-family: dashicons;
+    content: "\f333";
+    color: #CCCCCC; }
+  form #event_manager_form .doraggable-fields > *,
+  form #event_price_form .doraggable-fields > *,
+  form #event_timetable_form .doraggable-fields > * {
+    display: inline-block; }
+  form #event_manager_form .doraggable-fields .event_manager_number,
+  form #event_price_form .doraggable-fields .event_manager_number,
+  form #event_timetable_form .doraggable-fields .event_manager_number {
+    position: absolute;
+    left: 5px;
+    top: 40%;
+    font-size: 3em;
+    font-weight: 700;
+    color: #CCCCCC; }
+  form #event_manager_form .doraggable-fields div.event_manager_form_item,
+  form #event_price_form .doraggable-fields div.event_manager_form_item,
+  form #event_timetable_form .doraggable-fields div.event_manager_form_item {
+    padding: 5px 7px;
+    box-sizing: border-box;
+    vertical-align: top;
+    display: inline-block; }
+    form #event_manager_form .doraggable-fields div.event_manager_form_item.item-type-textarea, form #event_manager_form .doraggable-fields div.event_manager_form_item.item-type-upload,
+    form #event_price_form .doraggable-fields div.event_manager_form_item.item-type-textarea,
+    form #event_price_form .doraggable-fields div.event_manager_form_item.item-type-upload,
+    form #event_timetable_form .doraggable-fields div.event_manager_form_item.item-type-textarea,
+    form #event_timetable_form .doraggable-fields div.event_manager_form_item.item-type-upload {
+      width: 50%; }
+      form #event_manager_form .doraggable-fields div.event_manager_form_item.item-type-textarea textarea, form #event_manager_form .doraggable-fields div.event_manager_form_item.item-type-upload textarea,
+      form #event_price_form .doraggable-fields div.event_manager_form_item.item-type-textarea textarea,
+      form #event_price_form .doraggable-fields div.event_manager_form_item.item-type-upload textarea,
+      form #event_timetable_form .doraggable-fields div.event_manager_form_item.item-type-textarea textarea,
+      form #event_timetable_form .doraggable-fields div.event_manager_form_item.item-type-upload textarea {
+        min-height: 65px; }
+    form #event_manager_form .doraggable-fields div.event_manager_form_item.item-type-text, form #event_manager_form .doraggable-fields div.event_manager_form_item.item-type-select,
+    form #event_price_form .doraggable-fields div.event_manager_form_item.item-type-text,
+    form #event_price_form .doraggable-fields div.event_manager_form_item.item-type-select,
+    form #event_timetable_form .doraggable-fields div.event_manager_form_item.item-type-text,
+    form #event_timetable_form .doraggable-fields div.event_manager_form_item.item-type-select {
+      width: 25%; }
+    @media screen and (max-width: 768px) {
+      form #event_manager_form .doraggable-fields div.event_manager_form_item,
+      form #event_price_form .doraggable-fields div.event_manager_form_item,
+      form #event_timetable_form .doraggable-fields div.event_manager_form_item {
+        width: 100% !important; } }
+    form #event_manager_form .doraggable-fields div.event_manager_form_item label,
+    form #event_price_form .doraggable-fields div.event_manager_form_item label,
+    form #event_timetable_form .doraggable-fields div.event_manager_form_item label {
+      font-weight: 700;
+      color: #5C646A;
+      display: block; }
+    form #event_manager_form .doraggable-fields div.event_manager_form_item input[type="text"],
+    form #event_manager_form .doraggable-fields div.event_manager_form_item input[type="date"],
+    form #event_manager_form .doraggable-fields div.event_manager_form_item input[type="number"],
+    form #event_manager_form .doraggable-fields div.event_manager_form_item textarea,
+    form #event_price_form .doraggable-fields div.event_manager_form_item input[type="text"],
+    form #event_price_form .doraggable-fields div.event_manager_form_item input[type="date"],
+    form #event_price_form .doraggable-fields div.event_manager_form_item input[type="number"],
+    form #event_price_form .doraggable-fields div.event_manager_form_item textarea,
+    form #event_timetable_form .doraggable-fields div.event_manager_form_item input[type="text"],
+    form #event_timetable_form .doraggable-fields div.event_manager_form_item input[type="date"],
+    form #event_timetable_form .doraggable-fields div.event_manager_form_item input[type="number"],
+    form #event_timetable_form .doraggable-fields div.event_manager_form_item textarea {
+      padding: 5px;
+      border-radius: 4px;
+      width: 100%; }
+  form #event_manager_form .doraggable-fields a.rmElement,
+  form #event_price_form .doraggable-fields a.rmElement,
+  form #event_timetable_form .doraggable-fields a.rmElement {
+    position: absolute;
+    right: 10px;
+    text-decoration: none; }
+  form #event_manager_form .doraggable-fields .event_timetable_remove_btn,
+  form #event_manager_form .doraggable-fields .event_manager_remove_btn,
+  form #event_price_form .doraggable-fields .event_timetable_remove_btn,
+  form #event_price_form .doraggable-fields .event_manager_remove_btn,
+  form #event_timetable_form .doraggable-fields .event_timetable_remove_btn,
+  form #event_timetable_form .doraggable-fields .event_manager_remove_btn {
+    text-decoration: none; }
+    form #event_manager_form .doraggable-fields .event_timetable_remove_btn::before,
+    form #event_manager_form .doraggable-fields .event_manager_remove_btn::before,
+    form #event_price_form .doraggable-fields .event_timetable_remove_btn::before,
+    form #event_price_form .doraggable-fields .event_manager_remove_btn::before,
+    form #event_timetable_form .doraggable-fields .event_timetable_remove_btn::before,
+    form #event_timetable_form .doraggable-fields .event_manager_remove_btn::before {
+      position: relative;
+      top: 10px;
+      font-size: 2em;
+      font-family: dashicons;
+      content: "\f335"; }
+  form #event_manager_form .doraggable-fields .event_manager_img,
+  form #event_price_form .doraggable-fields .event_manager_img,
+  form #event_timetable_form .doraggable-fields .event_manager_img {
+    position: relative;
+    display: inline-block; }
+    form #event_manager_form .doraggable-fields .event_manager_img a.event_manager_image_remove,
+    form #event_price_form .doraggable-fields .event_manager_img a.event_manager_image_remove,
+    form #event_timetable_form .doraggable-fields .event_manager_img a.event_manager_image_remove {
+      padding: 0;
+      margin: 0; }
+      form #event_manager_form .doraggable-fields .event_manager_img a.event_manager_image_remove::after,
+      form #event_price_form .doraggable-fields .event_manager_img a.event_manager_image_remove::after,
+      form #event_timetable_form .doraggable-fields .event_manager_img a.event_manager_image_remove::after {
+        content: '';
+        position: absolute;
+        left: -7px;
+        top: -7px;
+        font-family: dashicons;
+        content: "\f153";
+        font-size: 2em;
+        background-color: #FFFFFF;
+        line-height: 1;
+        border-radius: 50%;
+        padding-top: 2px; }
+
+a.addPrototype {
+  clear: both;
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none; }
+  a.addPrototype .event_manager_add_btn::before,
+  a.addPrototype .event_timetable_add_btn::before {
+    font-family: dashicons;
+    content: "\f502";
+    font-size: 2em;
+    text-decoration: none; }
+
+i[class*="dashicons"]::before {
+  font-family: dashicons; }
+
+form#event_manager_essence_option #event_manager_form .event_manager_form_item.image_size-item, form#event_manager_essence_option #event_manager_form .event_manager_form_item.menu_values-item {
+  display: none; }
+
+form .sfPrototypeMan div hr.sepalater {
+  display: block;
+  height: 0;
+  border: none; }
+form .sfPrototypeMan div .item-type-number input {
+  width: 100px; }

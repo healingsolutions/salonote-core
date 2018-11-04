@@ -27,7 +27,11 @@ if(
 		$_the_title = preg_replace('/(\,|】|'.__(',','salonote-essence').')/', '$1<br />', $_the_title);
 		$_the_title = preg_replace('/(~|〜)/', '<br /><span class="small">$1', $_the_title).'</span>';
 	}
-  echo '<h1 class="entry_block_title">'.$_the_title;
+  $entry_block_title = array('entry_block_title');
+	if( !empty($theme_opt['base']['entry_title']) ){
+		$entry_block_title[] = $theme_opt['base']['entry_title'];
+	}
+  echo '<h1 class="'. implode(' ',$entry_block_title) .'">'.$_the_title;
 	
 	//paged
   if( $paged >= 2 || $page >= 2 ){
@@ -107,7 +111,9 @@ if( $staff_profile_value ){
 		'goal'					=> __('目標','salonote-essence'),
 		'favorit_artist'=> __('好きなアーティスト','salonote-essence'),
 		'favorit_words'	=> __('好きな言葉','salonote-essence'),
-		'reason'				=> __('美容師になったきっかけ','salonote-essence'),
+		'favorit_song'	=> __('好きな曲','salonote-essence'),
+		'reason'				=> __('この仕事を始めたきっかけ','salonote-essence'),
+		'policy'				=> __('仕事のこだわり','salonote-essence'),
     'workday'				=> __('出勤','salonote-essence'),
 		'comment'				=> __('一言コメント','salonote-essence'),
     'blog'					=> __('ブログ','salonote-essence'),
@@ -130,7 +136,7 @@ if( $staff_profile_value ){
 			if(strpos($value,'http') !== false){
 				echo '<td><a href="'. ($value ? $value : '') .'" target="_blank">'. ($value ? $value : '') .'</a></td>';
 			}else{
-				echo '<td>'. ($value ? $value : '') .'</td>';
+				echo '<td>'. ($value ? nl2br($value) : '') .'</td>';
 			}
 			
 			echo '</tr>';

@@ -16,6 +16,9 @@
 
 //async
 jQuery(document).ready(function($){
+	
+	
+	console.log($(window).width());
 
 	
 	if($('body.use_content_fade').length ){
@@ -254,9 +257,10 @@ jQuery(document).ready(function($){
 		});
 	}
 	
-	if($('.wp-caption-text').length ){
-		$('.wp-caption-text').each(function(){
+	if($('.gallery .wp-caption-text').length ){
+		$('.gallery .wp-caption-text').each(function(){
 			$(this).addClass('square_label_block');
+			$(this).removeClass('wp-caption-text');
 			var caption_title = $(this).prev('img').attr('title');
 			var caption_text = $(this).prev('img').attr('alt');
 			$(this).wrapInner('<div class="square_label_block-inner caption_bkg" />');
@@ -267,16 +271,13 @@ jQuery(document).ready(function($){
 		});
 	}
 																	
-	
-	
-	
-	
+
 	
 	//keyv-landing ==================
 	var startPos = 0,winScrollTop = 0;
 	var nav_height = $('.site-header-block').height();
 
-	$("#body-wrap").css("padding-top", nav_height+"px" );
+	$("body.has_header_nav #body-wrap").css("padding-top", nav_height+"px" );
 
 	if( $(window).width() < 769 ){
 		var nav_height = 80;
@@ -373,7 +374,7 @@ jQuery(document).ready(function($){
 
 
 		//keyv-figure ==================
-		if( $('body.page-template-keyv-landing #keyv-figure').length && $(window).width() > 768 ){
+		if( $('body[class*="-template-keyv-landing"] #keyv-figure').length && $(window).width() > 768 ){
 			if( top >= w_height){
 				
 				if( scroll_keyv < 64){
@@ -480,7 +481,7 @@ jQuery(document).ready(function($){
 	};
 
 	// slick box ====================================================
-	if (jQuery && jQuery.slick) {
+	//if (jQuery && jQuery.slick) {
 		$('.slick-unit-1').slick({
 			infinite: true,
 			dots: true,
@@ -498,7 +499,7 @@ jQuery(document).ready(function($){
 			autoplay: true,
 			autoplaySpeed: 4000,
 		});
-	};
+	//};
 	
 
 	
@@ -559,12 +560,18 @@ jQuery(window).on('load', function() {
 					$(this).addClass('is_active');
 			}
 		});
+		$("body.use_content_fade .entry_block_content").children("div.gallery").each(function() {
+			if( $(this).offset().top - sct <= 0) {
+					$(this).addClass('is_active');
+			}
+		});
+		
 		$('body.use_content_fade .landing-page-block').children('div.landing-page-item').each(function() {
 			if( $(this).offset().top - sct <= 0) {
 					$(this).addClass('is_active');
 			}
 		});
-
+		
 
 		if($('body.single-style').length && ( $(window).width() > 768 ) ){
 			$('body.single-style .entry_block_content img').each(function(i){
@@ -774,6 +781,7 @@ jQuery(window).on('load', function() {
 					){
 						 $(this).css('min-height',(inner_height-50)+'px');
 					 }
+
 				});
 
 			};
@@ -782,10 +790,63 @@ jQuery(window).on('load', function() {
 	}
 	
 	
+	// ブロックをグルーピング　=======================================================
+	if($('.left-and-right-unit').length && ( $(window).width() <= 768 ) ){
+
+		
+		group_text = [];
+		var counter = 0;
+		var return_text = '';
+		var group_length = $('.left-and-right-unit .block-group-wrap:eq(0) > .block-group').length;
+		
+		$('.block-group-wrap').each(function(){
+
+			for (var i = 0; i < group_length; i++) {
+				
+				if( i === 0 ) group_text[counter] = [];
+				
+				group_text[counter][i] = $(this).children('.block-group').eq(i).html();
+			}
+			$(this).next('hr').remove();
+			$(this).remove();
+			
+			++ counter;
+		});
+
+		for (var i = 0; i < group_length; i++) {
+				$.each( group_text, function( num, value ){
+					$('.left-and-right-unit .entry_block_content').append('<div class="block-group-wrap">'+value[i]+'</div>');
+				})
+		}
+
+	}
+	
+	
+	
+	
+	
 	if($('.entry_block_content header + .cover-image').length ){
 		$('.main-content-wrap').addClass('first-cover');
 	}
 	
+	
+	/*
+	$('#slider-essence h2').addClass('animation-style_01');
+	$('.animation-style_01').children().addBack().contents().each(function() {
+    if (this.nodeType == 3) {
+        $(this).replaceWith($(this).text().replace(/(\w)/g, "<span class='char'>$&</span>"));
+    }
+	});
+	$('.animation-style_01').each(function() {
+		//span要素に番号付きのclassを与える
+		$('span.char', this).each(function(i) {
+			i = i+1;            
+			$(this).css({
+				'animation-delay': (1 + i*0.1)+'s'
+			})
+		});
+	});
+	*/
 	
 	
 	
@@ -878,6 +939,22 @@ $(window).on('resize', function(){
 // デバイスの向きが変わったら　=================================================
 $(window).on('orientationchange', function(){
 		essence_resize_script();
+});
+
+var default_width = $(window).width()
+var timer = false;
+$(window).resize(function() {
+    if (timer !== false) {
+        clearTimeout(timer);
+    }
+    timer = setTimeout(function() {
+				if( default_width > 768 && $(window).width() <= 768 ){
+        	location.reload();
+				}
+				if( default_width < 768 && $(window).width() >= 768 ){
+        	location.reload();
+				}
+    }, 200);
 });
 
 // ^ resize events =================================================

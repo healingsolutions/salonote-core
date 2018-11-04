@@ -45,6 +45,7 @@
 				a{
 					border-right-style: solid;
 					border-right-width: 4px;
+					margin-right: -4px;
 					padding-left: 0.5em;
 				}
 			}
@@ -78,6 +79,7 @@
 						opacity: 0.5;
 					border-right-style: solid;
 					border-right-width: 4px;
+					margin-right: -4px;
 					
 					-webkit-transition: all 0.3s;
 					-moz-transition: all 0.3s;
@@ -86,8 +88,18 @@
 					transition: all 0.3s;
 				}
 				
-				> span{
+				> .side_list_content{
+					span.taxonomy_label{
+						display: inline-block;
+					}
+				}
+				
+				
+				> .side_list_content.has_thumbnail{
 					float: left;
+					span.taxonomy_label{
+						display: block;
+					}
 				}
 				> span.list-item-count{
 					float: right;

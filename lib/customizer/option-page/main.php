@@ -198,6 +198,68 @@ $field_arr = array(
               'maru-gothic'  =>  __('maru-gothic','salonote-essence'),
       )
   ),
+	
+	'entry_title' => array(
+      'label' => __('Entry Title Class','salonote-essence'),
+      'type'  => 'select',
+      'selecter' => array(
+							'title_bdr_btm' 		=> 'title_bdr_btm',
+              'title_bdr_tbtm' 		=> 'title_bdr_tbtm',
+              'heading' 					=> 'heading',
+							'headline_bdr-left' => 'headline_bdr',
+      )
+  ),
+	
+	'headline_1' => array(
+      'label' => __('Headline 1 Class','salonote-essence'),
+      'type'  => 'select',
+      'selecter' => array(
+							'title_bdr_btm' 		=> 'title_bdr_btm',
+              'title_bdr_tbtm' 		=> 'title_bdr_tbtm',
+              'heading' 					=> 'heading',
+							'headline_bdr-left' => 'headline_bdr',
+      )
+  ),
+	'headline_2' => array(
+      'label' => __('Headline 2 Class','salonote-essence'),
+      'type'  => 'select',
+      'selecter' => array(
+							'title_bdr_btm' 		=> 'title_bdr_btm',
+              'title_bdr_tbtm' 		=> 'title_bdr_tbtm',
+              'heading' 					=> 'heading',
+							'headline_bdr-left' => 'headline_bdr',
+      )
+  ),
+	'headline_3' => array(
+      'label' => __('Headline 3 Class','salonote-essence'),
+      'type'  => 'select',
+      'selecter' => array(
+							'title_bdr_btm' 		=> 'title_bdr_btm',
+              'title_bdr_tbtm' 		=> 'title_bdr_tbtm',
+              'heading' 					=> 'heading',
+							'headline_bdr-left' => 'headline_bdr',
+      )
+  ),
+	'headline_4' => array(
+      'label' => __('Headline 4 Class','salonote-essence'),
+      'type'  => 'select',
+      'selecter' => array(
+							'title_bdr_btm' 		=> 'title_bdr_btm',
+              'title_bdr_tbtm' 		=> 'title_bdr_tbtm',
+              'heading' 					=> 'heading',
+							'headline_bdr-left' => 'headline_bdr',
+      )
+  ),
+	'widget_title' => array(
+      'label' => __('Widget Title Class','salonote-essence'),
+      'type'  => 'select',
+      'selecter' => array(
+							'title_bdr_btm' 		=> 'title_bdr_btm',
+              'title_bdr_tbtm' 		=> 'title_bdr_tbtm',
+              'heading' 					=> 'heading',
+							'headline_bdr-left' => 'headline_bdr',
+      )
+  ),
 );
 ?>
 

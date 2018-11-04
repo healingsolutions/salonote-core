@@ -89,6 +89,7 @@ add_image_size('thumbnail_L', 600, 600, true);
 add_image_size('medium_banner', 468, 0, false);
 add_image_size('side_banner', 350, 0, false);
 add_image_size('profile', 450, 800, true);
+add_image_size('profile_s', 250, 450, true);
 //add_image_size('small_thumb', 250, 0, false);
 
 global $essence_custom_image_sizes;
@@ -125,6 +126,13 @@ $essence_custom_image_sizes = array(
 				'name'       => __('profile','salonote-essence'),
 				'width'      => 450,
 				'height'     => 800,
+				'crop'       => true,
+				'selectable' => true
+		),
+		'profile_S' => array(
+				'name'       => __('profile_S','salonote-essence'),
+				'width'      => 250,
+				'height'     => 450,
 				'crop'       => true,
 				'selectable' => true
 		),
@@ -258,3 +266,135 @@ function add_attachement_url( $post ){
 add_action('wxr_export_skip_postmeta','add_attachement_url');
 
 
+
+/*
+
+function set_post_attachment(){
+	
+	global $post;
+
+	$_custom = get_post_custom($post->ID);	
+	
+	if( !empty($_custom['_thumbnail_url']) ){
+		set_new_attachment($_custom['_thumbnail_url'][0]);
+	}
+	
+	return;
+}
+//add_action( 'template_redirect', 'set_post_attachment' );
+
+
+
+function set_post_attachment_loop(){
+	
+	if( !empty($_GET) && $_GET['set_post_attachment'] ){
+	
+		$args = array(
+			'post_type'				=> 'works',
+			'posts_per_page'	=> -1,
+			'meta_key' => '_thumbnail_url',
+			'meta_value' => 'null',
+			'meta_compare' => '!='
+		);
+
+		$posts = get_posts($args);
+
+		
+		if( $posts ){
+			foreach( $posts as $post ){
+				$_custom = get_post_custom($post->ID);	
+				if( !empty($_custom['_thumbnail_url']) ){
+					set_new_attachment($_custom['_thumbnail_url'][0],$post->ID);
+				}
+			}
+			sleep(1);
+			delete_post_meta( $post->ID, '_thumbnail_url', null );
+			//echo 'wp_redirect: ' .get_post_permalink().'&?set_post_attachment=true';
+			//return;
+			
+			echo '
+			<script>
+			jQuery(window).load(function () {
+					location.reload();
+			});
+			</script>
+			';
+			
+			return;
+			
+		}else{
+			return 'all done.';
+		}
+
+	}
+	
+	return;
+}
+add_action( 'the_content', 'set_post_attachment_loop' );
+
+
+
+function set_new_attachment( $url,$id=null ){
+	
+	global $post;
+	
+	$id = $id ? $id : $post->ID ;
+	
+	if( empty($id) ) return;
+	
+	
+	
+	$pathData = pathinfo($url);
+	$pattern = '/(.+?)\/wp-content\/uploads\//i';
+	
+	$_directory = preg_replace($pattern, '', $pathData['dirname']);
+	$upload_dir = wp_upload_dir();
+
+
+	//画像をサーバーに保存 =======================
+
+	//保存するフォルダ名
+	$save_folder = $upload_dir['basedir'].'/'.$_directory;
+
+	//保存するファイル名
+	$save_filename = $save_folder.'/'.$pathData['basename'];
+
+	// 保存先フォルダの作成する。
+	if (!file_exists($save_folder)) {
+			mkdir($save_folder);
+	}
+
+	//画像ファイルが無い時は取得
+	if (!file_exists($save_filename)) {
+			$file_get_contents = file_get_contents($url);
+			file_put_contents($save_folder,$file_get_contents);
+	}
+
+	$wp_filetype = wp_check_filetype($save_filename );
+	$attachment = array(
+			'post_mime_type' => $wp_filetype['type'],
+			'post_title' => sanitize_file_name($pathData['basename']),
+			'post_content' => '',
+			'post_status' => 'inherit'
+	);
+	
+	//アイキャッチを登録
+	if(!empty ($attachment) ){
+		$attach_id = wp_insert_attachment( $attachment, $save_filename, $id );
+		require_once(ABSPATH . 'wp-admin/includes/image.php');
+		$attach_data = wp_generate_attachment_metadata( $attach_id, $save_filename );
+		wp_update_attachment_metadata( $attach_id, $attach_data );
+		set_post_thumbnail( $id, $attach_id );
+	}
+	
+	delete_post_meta( $id, '_thumbnail_url', null );
+	
+	return;
+}
+
+
+add_filter('stylesheet_directory_uri',function(){
+	return get_template_directory_uri();
+});
+
+*/

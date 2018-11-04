@@ -1,7 +1,6 @@
 <?php
 
 
-
 if( !empty($_POST) ){
 	if(is_user_logged_in()){
 		//echo '<pre>_POST'; print_r($_POST); echo '</pre>';
@@ -33,14 +32,39 @@ if(is_user_logged_in()){
 			<input type="hidden" name="ticket" value="<?php echo $_POST['ticket']; ?>">
 			
 				<fieldset id="menu_check">
-            <legend class="heading">ご予約メニュー</legend>
+					
+						<h2 class="text-center stitch_headline headline_bkg mb-5">ご予約メニューの確認</h2>
+					
+            
             <div class="form-group">
-							<input id="reserve_menu" name="reserve_menu" type="text" class="form-control" value="<?php echo $shop_menu_items[$menu_item_id]['menu_global_name']; ?>" required readonly />
+							<legend class="heading">選択中のご予約メニュー</legend>
+							<input id="reserve_menu" name="reserve_menu" type="hidden" class="form-control" value="<?php echo $shop_menu_items[$menu_item_id]['menu_global_name']; ?>" required readonly />
+							
+							<div class="reserve_menu_info">
+								<?php
+
+								$shop_menu_type_id 			= get_post_meta($_POST['menu_post_id'],	'shop_menu_type'		,true);
+								$shop_menu_fields_value = get_post_meta($shop_menu_type_id, 'essence_shop_menu_fields',true);
+								$shop_menu_fields = $shop_menu_fields_value['fields'];
+
+								$field_set = [];
+								foreach( $shop_menu_fields as $key => $value ){
+									$field_set[$value['menu_field']]['label']   = $value['menu_label'];
+									$field_set[$value['menu_field']]['type']    = !empty($value['menu_type']) 	 ? $value['menu_type'] 		: null ;
+									$field_set[$value['menu_field']]['display'] = !empty($value['menu_display']) ? $value['menu_display'] : false ;
+									$field_set[$value['menu_field']]['size']    = !empty($value['image_size']) 	 ? $value['image_size'] 	: 'thumbnail' ;
+								}
+								
+								print_shop_menu_item( $field_set, array($shop_menu_items[$menu_item_id]) , $not_reserve = true );
+
+								?>
+							</div>
+							
 						</div>
 						<?php
 						if( !empty($menu_reserve_option) ){
 							
-							echo '<p class="heading">オプション</p>';
+							echo '<p class="heading">選択中のオプション</p>';
 							
 							foreach($menu_reserve_option as $key => $value){
 
@@ -64,6 +88,11 @@ if(is_user_logged_in()){
 						}
 						?>
         </fieldset>
+			
+				<?php
+					require_once( SHOP_MENU_ESSENCE_PLUGIN_PATH. "/template-parts/module/shop_menu_reserve-time.php");
+				?>
+
 			
 			
         <fieldset id="profile_form">
@@ -131,10 +160,7 @@ if(is_user_logged_in()){
 						
         </fieldset>
 			
-				<?php
-					require_once( SHOP_MENU_ESSENCE_PLUGIN_PATH. "/template-parts/module/shop_menu_reserve-time.php");
-				?>
-
+				
         <button id="SaveAccount" type="submit" class="btn btn-item submit">予約送信</button>
 
     </form>

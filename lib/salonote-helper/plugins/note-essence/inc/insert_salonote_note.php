@@ -60,7 +60,7 @@ function insert_salonote_note($_insert_text){
 		return $insert_id = wp_insert_post($post_value);
 	}else{
 		$post_value['ID'] = !empty($post_id) ? esc_html($post_id) : null ;
-		$post_value['post_type'] = !empty($_POST['post_type']) ? esc_html($_POST['post_type']) : null ;
+		$post_value['post_type'] = !empty($_POST['edit_post_type']) ? esc_html($_POST['edit_post_type']) : null ;
 		$post_value['post_content'] = !empty($_insert_text) ? $_insert_text : '' ;
 		
 		echo '<pre>post_value'; print_r($post_value); echo '</pre>';

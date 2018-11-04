@@ -1,7 +1,8 @@
 
 .entry_block_content{
 	p{
-		line-height: 1.6;
+		line-height: 2;
+		margin-bottom: 2em;
 	}
 }
 
@@ -10,7 +11,46 @@
 }
 
 
-	.bkg-white-text{
-		color: #FFFFFF;
-		text-shadow: 1px 1px 3px #000000;
+.bkg-white-text{
+	color: #FFFFFF;
+	text-shadow: 1px 1px 3px #000000;
+}
+
+
+
+.animation-style_01{
+	text-shadow: none;
+	span {/*各テキストにanimationを設定*/
+		color: transparent;
+		opacity:0;
+						animation: headline_blur 5s ease-out 0s 1 forwards;
+		-webkit-animation: headline_blur 5s ease-out 0s 1 forwards;
 	}
+}
+
+@keyframes headline_blur {/*opacityとtext-shadow+animationでフェードインを表現する*/
+  0%   {text-shadow: 0 0 100px #ffffff; opacity:0;}
+  10%  {text-shadow: 0 0 30px #ffffff; opacity: 1;}
+	25%  {text-shadow: 0 0 0px #ffffff; opacity: 1;}
+	100% {text-shadow: 0 0 10px #333333; color: #FFFFFF; opacity: 1;}
+}
+
+
+.is_active .animation-style_01{
+	text-shadow: none;
+	span {/*各テキストにanimationを設定*/
+		color: transparent;
+		position: relative;
+		top: -.5em;
+		opacity:0;
+						animation: headline_animation_01 5s ease-out 0s 1 forwards;
+		-webkit-animation: headline_animation_01 5s ease-out 0s 1 forwards;
+	}
+}
+ 
+@keyframes headline_animation_01 {/*opacityとtext-shadow+animationでフェードインを表現する*/
+  0%   {text-shadow: 0 0 100px #ffffff; opacity:0; top: -.5em;}
+  10%  {text-shadow: 0 0 30px #ffffff; opacity: 1;}
+	25%  {text-shadow: 0 0 0px #ffffff; opacity: 1; top: 0em;}
+	100% {text-shadow: 0 0 10px #333333; color: #FFFFFF; opacity: 1;}
+}

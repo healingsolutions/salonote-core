@@ -7,6 +7,7 @@ global $page_info;
 
 	$_side_width = !empty($theme_opt['base']['side_width']) ? $theme_opt['base']['side_width'] : 3 ;
 	$sidebar_class = array('sidebar','col-12','col-lg-'.$_side_width);
+	if( $_side_width <= 2 ) $sidebar_class[] = 'col-md-'.($_side_width+1);
 
 	// fit-sidebar =======================================
   if( !empty( $theme_opt['base'] ) && in_array('fitSidebar',$theme_opt['base'] ) ){

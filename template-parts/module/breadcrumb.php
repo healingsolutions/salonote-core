@@ -59,7 +59,11 @@ if (is_tax()) {
 // ========================
 // post_type
 if( !is_front_page() && $post_type_name !== 'post' && $post_type_name !== 'page' ){
-	if( !empty($post_type_name) && is_post_type_archive($post_type_name) ){
+	global $post_type_name;
+	
+	$post_type_name = isset( $post_type_name ) ? $post_type_name :  get_post_type();
+
+	if( !empty($post_type_name) ){
 		$bread_arr[] = array(
 			'label' => esc_html(get_post_type_object($post_type_name)->label),
 			'url'   => get_post_type_archive_link($post_type_name)

@@ -183,33 +183,34 @@ PHP_EOL;
 
 	
 	// admin_notification ====================================
-	$admin_message = '予約を付けました。'.PHP_EOL.
+	$admin_message = '予約希望を受信しました。'.PHP_EOL.
 	'管理者用の確認メールを送信いたします。'.PHP_EOL.
 	PHP_EOL.
 	PHP_EOL;
 	
   $to      = $_admin_mail;
-  $subject = get_bloginfo('name') .'【ご予約確認メール】　ご予約希望ありがとうございます';
+  $subject = get_bloginfo('name') .'【管理者用　ご予約確認メール】';
   $message = strip_tags($admin_message.$return_text);
   $headers = 'From: '.($user_name ? esc_attr($user_name) : '').' <'.$user_email.'>' . "\r\n";
 	wp_mail( $to, $subject, $message, $headers);
 	
 	
 	// custmer_notification ====================================
-	$user_message = '予約を付けました。'.PHP_EOL.
+	$user_message = 'ご予約希望を受付け致しました。'.PHP_EOL.
 	'ご予約の確認メールを送信いたします。'.PHP_EOL.
 	PHP_EOL.
 	PHP_EOL;
 	$return_text .= PHP_EOL. 'ご予約ありがとうございました。'.PHP_EOL;
 	
 	$to      = $user_email;
-  $subject = get_bloginfo('name') .'【ご予約確認メール】';
+  $subject = get_bloginfo('name') .'【ご予約確認メール】　ご予約希望ありがとうございます';
   $message = strip_tags($user_message.$return_text);
 	$headers = 'From: '.get_bloginfo('name').' <'.$_admin_mail.'>' . "\r\n";
   
 	wp_mail( $to, $subject, $message, $headers);
 
 	echo nl2br(esc_attr(strip_tags($return_text)));
+	
 
 }
 

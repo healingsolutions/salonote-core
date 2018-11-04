@@ -63,7 +63,7 @@ if(
   if(!empty( $post_type_set ) && $_link_check !== true){
     echo '<a href="'.get_the_permalink().'">';
 	}
-                         
+    
     get_template_part( 'template-parts/module/list-part-inner' );
 
   // action essence_list_part_inner =============================

@@ -31,6 +31,7 @@ if(
 ){
   $main_unit[]    = 'has_sidebar';
   $main_content[] = 'col-12';
+	if( $_main_width >= 10 ) $main_content[] = 'col-md-'.($_main_width-1);
   $main_content[] = 'col-lg-'.$_main_width;
 }else{
 	$row_class .= '-block';
@@ -102,7 +103,6 @@ echo '<div class="'.$row_class.'">';
 
 
 			//ポストタイプウィジェット
-
 			if(!function_exists('dynamic_sidebar') || !dynamic_sidebar($post_type_tmpl . '_before_widgets')): 
 				//dynamic_sidebar( $post_type_name . 'widgets');
 			endif;

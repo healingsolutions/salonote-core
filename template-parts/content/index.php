@@ -10,10 +10,6 @@ global $user_setting;
 if( is_tax() || is_category() ){
 	if( is_tax()){
 		$taxonomy = get_query_var('taxonomy');
-		
-		if(is_user_logged_in()){
-			echo '<pre>'; print_r($taxonomy); echo '</pre>';
-		}
 		$post_type_name = !empty(get_taxonomy($taxonomy)->object_type[0]) ? get_taxonomy($taxonomy)->object_type[0] : 'post';
 	}
 	if( is_category()){
@@ -51,6 +47,7 @@ if(
 ){
   $main_unit[]    = 'has_sidebar';
   $main_content[] = 'col-12';
+	if( $_main_width >= 10 ) $main_content[] = 'col-md-'.($_main_width-1);
   $main_content[] = 'col-lg-'.$_main_width;
 }else{
 	$row_class .= '-block';
@@ -60,6 +57,9 @@ if(
 
 // =============================
 // list_type
+
+if( is_tax() && $post_type_set['list_type'] === 'calendar' ) $post_type_set['list_type'] = 'timeline';
+
 $list_type = $list_class[] = !empty($post_type_set['list_type']) ? $post_type_set['list_type'].'-type-group' : 'list-type-group' ;
 
 if( !empty($post_type_set['list_type']) && $post_type_set['list_type'] == 'grid'){
@@ -119,7 +119,7 @@ echo '<div class="'.$row_class.'">';
   // main =======================
   echo '<article class="'.implode(' ',$main_content).'">';
 
-		echo '<div class="archive-page-title-block">';
+		echo '<div class="archive-page-title-block type-'.$list_type. (($post_type_set['list_type'] === 'calendar') ? ' navbar-block' : '' ) .'">';
 
 			if( !empty( $post_type_set ) && in_array('display_archive_title',$post_type_set)){
 				
@@ -153,11 +153,10 @@ echo '<div class="'.$row_class.'">';
 				echo '<h1 class="taxonomy_lable">'.single_tag_title('',false).'</h1>';
 				echo '</div>';
 				
-			} elseif( is_month() ){
-				echo '<div class="entry_block_taxonomy_label">';
-				echo '<h1 class="taxonomy_lable">'.get_query_var('year').'年'.get_query_var('monthnum').'月'.'</h1>';
-				echo '</div>';
-
+			}elseif( (is_date() && is_archive()) || is_month()  ){
+					echo '<div class="entry_block_taxonomy_label">';
+					echo '<h1 class="month_lable">'.get_query_var('year').'年'.get_query_var('monthnum').'月'.'</h1>';
+					echo '</div>';
 			}
 
 		echo '</div>';
@@ -188,13 +187,15 @@ echo '<div class="'.$row_class.'">';
 
 
 
-			
-      if($query->have_posts()){
-        while($query->have_posts()): $query->the_post();  
+			if( $post_type_set['list_type'] === 'calendar' && !is_tax() ){
+				get_template_part('template-parts/module/parts/calendar-block');
+			}elseif($query->have_posts()){
+        while($query->have_posts()): $query->the_post();
           get_template_part('template-parts/module/list-part');
         endwhile;
 
       }else{
+				
         get_template_part('template-parts/common/single-content');
       }
 
@@ -215,6 +216,9 @@ echo '<div class="'.$row_class.'">';
       // ^action =============================
 
 				// pagenation
+
+			if( $post_type_set['list_type'] !== 'calendar' ){
+
 				if (function_exists("essence_pagination")) {
 						essence_pagination($query->max_num_pages,$args['posts_per_page']);
 				}else{
@@ -228,6 +232,8 @@ echo '<div class="'.$row_class.'">';
 					echo paginate_links($arg);
 				}
 				//^pagenation
+				
+			}
 
   
 	echo '</article>';

@@ -380,6 +380,7 @@ body#tinymce{
 	
 	dl.question-dl{
 		dt{
+			position: relative;
 			border-left: none;
 			padding-left: 3em;
 			
@@ -396,6 +397,7 @@ body#tinymce{
 			}
 		}
 		dd{
+			position: relative;
 			border-left: none;
 			padding-left: 3em;
 			

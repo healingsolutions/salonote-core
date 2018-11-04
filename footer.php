@@ -158,6 +158,9 @@ if($theme_opt['base']['google_map'] && !$hide_footer ){
 </noscript>
 <script>
 	jQuery(document).ready(function($){
+		
+
+		
 		if($('.carousel-type-group').length ){
 		// slick box ====================================================
 			$('.carousel-type-group').slick({

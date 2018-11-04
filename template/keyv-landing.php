@@ -1,6 +1,7 @@
 <?php
 /*
 Template Name: Key visual Landing Page
+Description: キービジュアルランディングページ
 Template Post Type: post, page, style
 */
 
@@ -72,6 +73,7 @@ if(
     ){
     $main_unit[]    = 'has_sidebar';
     $main_content[] = 'col-12';
+		if( $_main_width >= 10 ) $main_content[] = 'col-md-'.($_main_width-1);
     $main_content[] = 'col-lg-'.$_main_width;
   }
 	if(

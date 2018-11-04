@@ -7,6 +7,7 @@ get_header();
       get_template_part('template-parts/content/frontpage');
     }
 		elseif( is_home() ){
+			//echo 'is_home';
 			get_template_part('template-parts/content/index');
 		}
 		elseif(is_singular()){

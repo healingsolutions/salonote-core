@@ -235,6 +235,11 @@ function essence_class_names( $classes ) {
 		$classes[] = empty(get_post_meta( $post->ID, 'es_slider_upload_images', true )) ? 'no-slider' : null ;
 	}
 	
+	if ( has_nav_menu('Header')) {
+		global $post;
+		$classes[] = 'has_header_nav';
+	}
+	
 	
 	
   return $classes;
@@ -375,7 +380,7 @@ function get_paged_nav_title( $post =null ){
 		$prev_title = $match ? $match[2] : get_the_title() ;
 		$prev_title = strip_tags($prev_title,'<br>');
 		
-		echo '<div class="prev_title float-left"><a href="'.get_the_permalink(). ($page-1) .'">&lt;&lt; ' .($page-1) .'.'. nl2br(esc_attr(strip_tags($prev_title))) .'</a></div>';
+		echo '<div class="prev_title float-left"><a href="'.get_the_permalink(). ($page-1) .'"><< ' .($page-1) .'.'. nl2br(esc_attr(strip_tags($prev_title))) .'</a></div>';
 	}
 	
 	
@@ -388,7 +393,7 @@ function get_paged_nav_title( $post =null ){
 		
 		$naxt_title = $match ? $match[2] : '' ;
 		
-		echo '<div class="next_title float-right"><a href="'.get_the_permalink(). ($page+1) .'">' .($page+1) .'.'. nl2br(esc_attr(strip_tags($naxt_title))) .' &gt;&gt;</a></div>';
+		echo '<div class="next_title float-right"><a href="'.get_the_permalink(). ($page+1) .'">' .($page+1) .'.'. nl2br(esc_attr(strip_tags($naxt_title))) .' >></a></div>';
 	}
 	
 	return;
@@ -546,3 +551,176 @@ function salonote_hex2rgb ( $hex ) {
 
 	return array_map( "hexdec", [ substr( $hex, 0, 2 ), substr( $hex, 2, 2 ), substr( $hex, 4, 2 ) ] ) ;
 }
+
+
+
+
+/**
+* @function get_archives_array
+* @param post_type(string) / period(string) / year(Y) / limit(int)
+* @return array
+*/
+if(!function_exists('get_archives_array')){
+    function get_archives_array($args = ''){
+        global $wpdb, $wp_locale;
+
+        $defaults = array(
+            'post_type' => '',
+            'period'  => 'monthly',
+            'year' => '',
+            'limit' => ''
+        );
+        $args = wp_parse_args($args, $defaults);
+        extract($args, EXTR_SKIP);
+
+        if($post_type == ''){
+            $post_type = 'post';
+        }elseif($post_type == 'any'){
+            $post_types = get_post_types(array('public'=>true, '_builtin'=>false, 'show_ui'=>true));
+            $post_type_ary = array();
+            foreach($post_types as $post_type){
+                $post_type_obj = get_post_type_object($post_type);
+                if(!$post_type_obj){
+                    continue;
+                }
+
+                if($post_type_obj->has_archive === true){
+                    $slug = $post_type_obj->rewrite['slug'];
+                }else{
+                    $slug = $post_type_obj->has_archive;
+                }
+
+                array_push($post_type_ary, $slug);
+            }
+
+            $post_type = join("', '", $post_type_ary); 
+        }else{
+            if(!post_type_exists($post_type)){
+                return false;
+            }
+        }
+        if($period == ''){
+            $period = 'monthly';
+        }
+        if($year != ''){
+            $year = intval($year);
+            $year = " AND DATE_FORMAT(post_date, '%Y') = ".$year;
+        }
+        if($limit != ''){
+            $limit = absint($limit);
+            $limit = ' LIMIT '.$limit;
+        }
+
+        $where  = "WHERE post_type IN ('".$post_type."') AND post_status = 'publish'{$year}";
+        $join   = "";
+        $where  = apply_filters('getarchivesary_where', $where, $args);
+        $join   = apply_filters('getarchivesary_join' , $join , $args);
+
+        if($period == 'monthly'){
+                $query = "SELECT YEAR(post_date) AS 'year', MONTH(post_date) AS 'month', count(ID) as posts FROM $wpdb->posts $join $where GROUP BY YEAR(post_date), MONTH(post_date) ORDER BY post_date DESC $limit";
+        }elseif($period == 'yearly'){
+            $query = "SELECT YEAR(post_date) AS 'year', count(ID) as posts FROM $wpdb->posts $join $where GROUP BY YEAR(post_date) ORDER BY post_date DESC $limit";
+        }
+
+        $key = md5($query);
+        $cache = wp_cache_get('get_archives_array', 'general');
+        if(!isset($cache[$key])){
+            $arcresults = $wpdb->get_results($query);
+            $cache[$key] = $arcresults;
+            wp_cache_set('get_archives_array', $cache, 'general');
+        }else{
+            $arcresults = $cache[$key];
+        }
+        if($arcresults){
+            $output = (array)$arcresults;
+        }
+
+        if(empty($output)){
+            return false;
+        }
+
+        return $output;
+    }
+}
+
+
+
+
+function day_diff($date1, $date2) {
+ 
+    // 日付をUNIXタイムスタンプに変換
+    $timestamp1 = strtotime($date1);
+    $timestamp2 = strtotime($date2);
+ 
+    // 何秒離れているかを計算
+    $seconddiff = abs($timestamp2 - $timestamp1);
+ 
+    // 日数に変換
+    $daydiff = $seconddiff / (60 * 60 * 24);
+ 
+    // 戻り値
+    return $daydiff;
+ 
+}
+
+
+function get_monthly_nav( $current_ymd = null, $post_type ){
+	global $wpdb;
+	global $post;
+	
+	//echo $current_ymd;
+	//echo $post_type;
+	
+	$sql = $wpdb->prepare("
+		SELECT DISTINCT MONTH(post_date) AS month, YEAR(post_date) AS year
+		FROM $wpdb->posts
+		WHERE post_date < '%s'
+		AND post_type = '$post_type' AND post_status = 'publish'
+				ORDER BY post_date DESC
+				LIMIT 1",$current_ymd);
+
+	$previous = $wpdb->get_results($sql);
+	
+	
+	
+	$sql = $wpdb->prepare("
+		SELECT DISTINCT MONTH(post_date) AS month, YEAR(post_date) AS year
+		FROM $wpdb->posts
+		WHERE post_date > '%s'
+		AND MONTH( post_date ) != MONTH( '%s' )
+		AND post_type = '$post_type' AND post_status = 'publish'
+				ORDER   BY post_date ASC
+				LIMIT 1",array($current_ymd,$current_ymd));
+
+	$next = $wpdb->get_results($sql);
+	
+	if(is_user_logged_in()){
+		//echo '<pre>previous'; print_r($previous); echo '</pre>';
+		//echo '<pre>next'; print_r($next); echo '</pre>';
+	}
+	
+	$print_monthly_nav = '';
+	
+	$post_type_path = ($post_type !== 'post') ? $post_type .'/date' : 'date' ;
+	
+	if( !empty($previous) || !empty($next) ){
+		
+		echo '<div class="monthly_nav-unit clearfix">';
+
+		if( !empty($previous) ){
+			$print_monthly_nav .= '<a class="monthly_nav-previous float-left" href="'.str_replace('date',$post_type_path,get_month_link($previous[0]->year,zeroise($previous[0]->month,2))).'"> &lt;&lt;'.$previous[0]->year.'年'.zeroise($previous[0]->month,2).'月</a>';
+		}
+
+		if( !empty($next) ){
+			$print_monthly_nav .= '<a class="monthly_nav-next float-right" href="'.str_replace('date',$post_type_path,get_month_link($next[0]->year,zeroise($next[0]->month,2))).'"> '.$next[0]->year.'年'.zeroise($next[0]->month,2).'月&gt;&gt;</a>';
+		}
+		
+		echo '</div>';
+		
+	}
+	
+	
+	return $print_monthly_nav;
+}
+
+?>

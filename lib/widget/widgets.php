@@ -3,6 +3,8 @@
 //do_shortcode on widget text
 add_filter('widget_text', 'do_shortcode' );
 
+global $theme_opt;
+
 
 /*-------------------------------------------*/
 /*	widgets
@@ -19,6 +21,17 @@ add_filter('widget_text', 'do_shortcode' );
         //'before_title' => '<div class="widget-title bdr-btm-1">',
         //'after_title' => '</div>'
     ));
+			
+		//コンテンツヘッダーウィジェット定義
+    register_sidebar(array(
+         'name' => __('top content','salonote-essence'),
+         'id' => 'content_top',
+         'description' => __('display widget in top of content','salonote-essence'),
+         'before_widget' => '<div class="main-block-top_widget">',
+        'after_widget' => '</div>',
+        'before_title' => '<div class="widget-title">',
+        'after_title' => '</div>'
+     ));
 
      
      //コンテンツ内ウィジェット定義
@@ -63,9 +76,9 @@ add_filter('widget_text', 'do_shortcode' );
 			'name' => __('side widget','salonote-essence'),
 			'id' => 'sidebar',
 			'description' => __('display widghet in sidebar','salonote-essence'),
-			'before_widget' => '<div id="%1$s" class="side-block-item %2$s">',
+			'before_widget' => '<div id="%1$s" class="side-block-item mb-3 %2$s">',
 			'after_widget' => '</div>',
-			'before_title' => '<div class="widget-title">',
+			'before_title' => '<div class="widget-title'. (!empty($theme_opt['base']['widget_title']) ? ' '.$theme_opt['base']['widget_title'] : '' ).'">',
 			'after_title' => '</div>'
     ));
       
@@ -145,7 +158,7 @@ add_filter('widget_text', 'do_shortcode' );
                         'description' =>  sprintf(__('display widget on %s common side part','salonote-essence'),$post_type_label). $post_type_name. '_side',
                         'before_widget' => '<div class="'.$post_type_name.'-posttype-side mgb-50">',
                         'after_widget' => '</div>',
-                        'before_title' => '<div class="widget-title">',
+                        'before_title' => '<div class="widget-title'. (!empty($theme_opt['base']['widget_title']) ? ' '.$theme_opt['base']['widget_title'] : '' ).'">',
                         'after_title' => '</div>'
                     ));
 					

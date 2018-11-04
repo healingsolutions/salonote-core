@@ -170,7 +170,7 @@ $color_customize_array = array(
   ),
 	
 	'list_icon_color' => array(
-    'target'   => 'ul.list-icon li::before, ol.list-numbering>li:before, ol.list-flow>li:before, ol.list-root>li:before, dl.question-dl dt::before, .icon-color',
+    'target'   => 'ul.list-icon li::before, ol.list-numbering>li:before, ol.list-flow>li:before, ol.list-root>li:before, dl.question-dl dt::before, .qanda-type-group .list_block_title::before, .icon-color',
     'element'  => 'background-color',
     'default'  => null,
     'label_jp' => __('list icon color','salonote-essence'),

@@ -33,7 +33,7 @@ body {
       width: 100%; }
       body #installer-essence-body #sidebar li.step_done a {
         position: relative;
-        padding-right: 4em; }
+        padding-right: 3em; }
         body #installer-essence-body #sidebar li.step_done a::before {
           content: '完了';
           background-color: #DB7627;

@@ -1,10 +1,15 @@
 /* CSS Document */
-#slider-essence{
+
+.none_header_bottom_nav + #slider-essence{
 	margin-bottom: 3em;
+}
+
+#slider-essence{
+
 	
 	.slick-block-essence{
 		position: relative;
-		max-height: 95vh;
+		//max-height: 95vh;
 		vertical-align: middle;
 		
 

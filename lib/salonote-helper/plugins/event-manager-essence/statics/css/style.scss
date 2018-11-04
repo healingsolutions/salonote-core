@@ -1,0 +1,208 @@
+
+form #event_manager_form,
+form #event_price_form,
+form #event_timetable_form{
+  
+ 
+  
+
+  div textarea {
+    vertical-align: top;
+  }
+  
+  .doraggable-fields{
+		
+		> div{
+			width: 100%;
+		}
+		
+		textarea{
+			min-height: 65px;
+		}
+
+		clear: both;
+    cursor: move;
+    position: relative;
+    padding: 15px 35px 15px 55px;
+    border: 1px solid #B4C2CB;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    margin-bottom: 5px;
+		display: flex;
+    
+    &::before{
+      display: inline-block;
+      position: absolute;
+      top: 0;
+			left: 0;
+      line-height: 1;
+      font-size: 2em;
+      font-family: dashicons;
+      content: "\f333";
+      color: #CCCCCC;
+      
+    }
+		
+		> *{
+				display: inline-block;
+			}
+
+		
+		.event_manager_number{
+				position: absolute;
+				left: 5px;
+				top: 40%;
+				font-size: 3em;
+				font-weight: 700;
+			color: #CCCCCC;
+			}
+    
+    div.event_manager_form_item{
+      //width: 80% !important;
+			//float: left;
+			padding: 5px 7px;
+			box-sizing: border-box;
+			vertical-align: top;
+			display: inline-block;
+			
+			&.item-type-textarea,
+			&.item-type-upload{
+				width: 50%;
+				textarea{
+					min-height: 65px;
+				}
+				
+			}
+			&.item-type-text,
+			&.item-type-select{
+				width: 25%;
+			}
+
+			
+			@media screen and (max-width: 768px) {
+        width: 100% !important;
+      }
+			
+			
+			
+			label{
+				font-weight: 700;
+				color:#5C646A;
+				display: block;
+			}
+			
+			input[type="text"],
+			input[type="date"],
+			input[type="number"],
+			textarea{
+				padding: 5px;
+				border-radius: 4px;
+				width: 100%;
+			}
+			
+			
+			
+			
+			
+			
+			
+    }
+    
+    a.rmElement{
+      position: absolute;
+      right: 10px;
+			text-decoration: none;
+    }
+		
+		.event_timetable_remove_btn,
+		.event_manager_remove_btn{
+			text-decoration: none;
+			&::before{
+				position: relative;
+				top: 10px;
+				font-size: 2em;
+				font-family: dashicons;
+				content: "\f335";
+			}
+		}
+		
+		
+		.event_manager_img{
+				position: relative;
+			display: inline-block;
+
+				
+				a.event_manager_image_remove{
+					padding: 0;
+					margin: 0;
+					&::after{
+						content: '';
+						position: absolute;
+						left: -7px;
+						top: -7px;
+						font-family: dashicons;
+						content: "\f153";
+						font-size: 2em;
+						background-color: #FFFFFF;
+						line-height: 1;
+						border-radius: 50%;
+						padding-top: 2px;
+					}
+				}
+			}
+  }
+  
+  
+
+  
+
+
+  
+ 
+}//form
+
+
+a.addPrototype{
+  clear: both;
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+	
+	
+  .event_manager_add_btn,
+	.event_timetable_add_btn{
+    &::before{
+      font-family: dashicons;
+      content: "\f502";
+      font-size: 2em;
+      text-decoration: none;
+    }
+  }
+}
+
+i[class*="dashicons"]::before{
+	font-family: dashicons;
+}
+
+
+
+form#event_manager_essence_option #event_manager_form{
+	.event_manager_form_item{
+		&.image_size-item,
+		&.menu_values-item{
+			display: none;
+		}
+	}
+}
+
+
+form .sfPrototypeMan div {
+		 hr.sepalater{
+			display: block;
+			height: 0;
+			border: none; 
+		}
+	.item-type-number input{
+		width: 100px;
+	}
+}

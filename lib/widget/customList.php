@@ -16,7 +16,10 @@ class Essence_CustomList_Widget extends WP_Widget{
 			
 			global $theme_opt;
 			global $post_type_set;
+			global $post_type;
 
+			
+						
       //$main_content[] = 'main-content-block';
       $main_content[] = 'list-unit';
       $main_content[] = $instance['list_type'] . '-type-group';
@@ -31,10 +34,22 @@ class Essence_CustomList_Widget extends WP_Widget{
 				$instance['list_count'] = 12;
 			}
       
+			
+			$post_type = $instance['post_type_name'];
       $query_args = array(
         'post_type' 		 => $instance['post_type_name'],
 				'posts_per_page' => $instance['list_count'],
       );
+			
+			if( !empty($instance['taxonomy']) ){
+				$query_args['tax_query'] = array(
+						array(
+							'taxonomy' => $instance['taxonomy'],
+							'field'    => 'slug',
+							'terms'    => '',
+					),
+				);
+			}
 			
       $query = new WP_Query( $query_args );
 			
@@ -43,6 +58,7 @@ class Essence_CustomList_Widget extends WP_Widget{
 			
 			if( is_array($post_type_set) ){
 			$post_type_set = array_diff($post_type_set, array(
+				'display_grid_title',
 				'display_list_writer',
 				'display_entry_excerpt',
 				'display_grid_sub_title',
@@ -54,8 +70,12 @@ class Essence_CustomList_Widget extends WP_Widget{
 			$post_type_set['list_show_excerpt'] = null;
 
 			if( !empty($instance['enable_excerpt'])) $post_type_set['list_show_excerpt'] = $instance['enable_excerpt'];
+			if( !empty($instance['post_data_format'])) $post_type_set['post_data_format'] = $instance['post_data_format'];
+			
+			if( in_array('enable_title',$instance) ) $post_type_set[] = 'display_grid_title';
 			if( in_array('enable_writer',$instance) ) $post_type_set[] = 'display_list_writer';
 			if( in_array('enable_thumbnail',$instance) ) $post_type_set[] = 'display_thumbnail';
+			if( in_array('enable_tax',$instance) ) $post_type_set[] = 'display_list_term';
 
 			
 			echo !empty($args['before_widget']) ? $args['before_widget'] : '' ;
@@ -65,9 +85,15 @@ class Essence_CustomList_Widget extends WP_Widget{
 			}
 			
       echo '<div class="'.implode(' ',$main_content).'">';
-        if($query->have_posts()): while($query->have_posts()): $query->the_post();
-          get_template_part('template-parts/module/list-part');
-        endwhile; endif;
+			
+				if( $instance['list_type'] === 'calendar' ){
+					get_template_part('template-parts/module/parts/calendar-block');
+					return;
+				}else{
+						if($query->have_posts()): while($query->have_posts()): $query->the_post();
+							get_template_part('template-parts/module/list-part');
+						endwhile; endif;
+				}
       echo '</div>';
 			
 			$post_type_set = $post_type_set_tmp;
@@ -85,14 +111,20 @@ class Essence_CustomList_Widget extends WP_Widget{
 			);
 			$post_types = get_post_types( $args, 'names' );
 
-
-
 		//array_unshift($post_types, "author");
 		//array_unshift($post_types, "page");
 		array_unshift($post_types, "post");
 		//array_unshift($post_types, "front_page");
 			
 		$post_types_array = get_post_type_list($post_types);
+			
+			
+		$tax_args = array(
+			'public'   => true,
+			'_builtin' => false
+		); 
+		$taxonomy_array = get_taxonomies($tax_args,'names');
+
 			
     global $field_arr;
     $field_arr = array(
@@ -106,6 +138,26 @@ class Essence_CustomList_Widget extends WP_Widget{
 								'selecter' => $post_types_array
         ),
 			
+				'taxonomy' => array(
+            'label' => __('custom list taxonomy','salonote-essence'),
+            'type'  => 'select',
+								'selecter' => $taxonomy_array
+        ),
+			
+			
+			/*
+				'terms' => array(
+            'label' => __('custom list term','salonote-essence'),
+            'type'  => 'select',
+								'selecter' => $terms_array
+        ),
+			*/
+			
+				'enable_title' => array(
+            'label' => __('enable Title','salonote-essence'),
+            'type'  => 'checkbox'
+        ),
+
 				'enable_excerpt' => array(
             'label' => __('enable excerpt','salonote-essence'),
             'type' => 'select',
@@ -122,8 +174,17 @@ class Essence_CustomList_Widget extends WP_Widget{
             'label' => __('enable date','salonote-essence'),
             'type'  => 'checkbox'
         ),
+				'post_data_format' => array(
+            'label'       => __('data format','salonote-essence'),
+            'type'        => 'text',
+        ),
 				'enable_thumbnail' => array(
             'label' => __('enable thumbnail','salonote-essence'),
+            'type'  => 'checkbox'
+        ),
+			
+				'enable_tax' => array(
+            'label' => __('enable tax','salonote-essence'),
             'type'  => 'checkbox'
         ),
 			
@@ -135,12 +196,14 @@ class Essence_CustomList_Widget extends WP_Widget{
 												'grid'  		=> __('grid','salonote-essence'),
 												'timeline' 	=> __('timeline','salonote-essence'),
 												'carousel' 	=> __('carousel','salonote-essence'),
+												'calendar' 	=> __('calendar','salonote-essence'),
 								)
         ),
         'list_count' => array(
             'label'       => __('display number','salonote-essence'),
             'type'        => 'number',
         ),
+				
       );
       $field_key = 'widget-'. $this->id_base .'['.$this->number.']';
 			

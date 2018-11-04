@@ -78,14 +78,18 @@ class rc_sweet_custom_menu {
 			
 		
 	    if ( !empty($_REQUEST['menu-item-navtype']) && is_array( $_REQUEST['menu-item-navtype']) ) {
-				$navtype_value = !empty($_REQUEST['menu-item-navtype'][$menu_item_db_id]) ? $_REQUEST['menu-item-navtype'][$menu_item_db_id] : '' ;
+				$navtype_value = !empty($_REQUEST['menu-item-navtype'][$menu_item_db_id]) ? $_REQUEST['menu-item-navtype'][$menu_item_db_id] : null ;
 				update_post_meta( $menu_item_db_id, '_menu_item_navtype', $navtype_value );
-	    }
+	    }else{
+				update_post_meta( $menu_item_db_id, '_menu_item_navtype', '' );
+			}
 		
 			if ( !empty($_REQUEST['menu-item-flexnav']) && is_array( $_REQUEST['menu-item-flexnav']) ) {
-				$flexnav_value = !empty($_REQUEST['menu-item-flexnav'][$menu_item_db_id]) ? $_REQUEST['menu-item-flexnav'][$menu_item_db_id] : '' ;
+				$flexnav_value = !empty($_REQUEST['menu-item-flexnav'][$menu_item_db_id]) ? $_REQUEST['menu-item-flexnav'][$menu_item_db_id] : null ;
 				update_post_meta( $menu_item_db_id, '_menu_item_flexnav', $flexnav_value );
-	    }
+	    }else{
+				update_post_meta( $menu_item_db_id, '_menu_item_flexnav', '' );
+			}
 	    
 	}
 	

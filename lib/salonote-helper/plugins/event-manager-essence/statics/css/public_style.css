@@ -1,0 +1,104 @@
+@charset "UTF-8";
+/* CSS Document */
+.event_manager_unit .event_manager_block {
+  margin-bottom: 50px; }
+  .event_manager_unit .event_manager_block dl {
+    display: block;
+    clear: both;
+    zoom: 1; }
+    .event_manager_unit .event_manager_block dl:before, .event_manager_unit .event_manager_block dl:after {
+      display: table;
+      content: "";
+      line-height: 0;
+      height: 0;
+      width: 0; }
+    .event_manager_unit .event_manager_block dl:after {
+      clear: both;
+      height: 0;
+      width: 0; }
+    .event_manager_unit .event_manager_block dl dd {
+      display: inline-block; }
+      .event_manager_unit .event_manager_block dl dd.member_price {
+        margin: 0 10px;
+        padding: 3px 7px;
+        border-radius: 4px;
+        background-color: #298D16;
+        color: #FFFFFF; }
+        .event_manager_unit .event_manager_block dl dd.member_price::after {
+          content: '円'; }
+      .event_manager_unit .event_manager_block dl dd.member_tag {
+        margin: 0 10px;
+        padding: 3px 7px;
+        border-radius: 4px;
+        background-color: #C7681F;
+        color: #FFFFFF;
+        font-size: 80%; }
+.event_manager_unit .event_member_block dl {
+  clear: both;
+  margin-bottom: 0;
+  line-height: 1.6;
+  border-bottom: 1px dotted #E0DDDD; }
+  .event_manager_unit .event_member_block dl dd.member_memo {
+    padding: 3px 10px;
+    border-radius: 4px;
+    border: 1px solid #CCCCCC;
+    background-color: white;
+    font-size: 80%;
+    margin-left: 20px; }
+  .event_manager_unit .event_member_block dl dd.member_return {
+    margin: 0 10px;
+    padding: 3px 7px;
+    border-radius: 4px;
+    background-color: #3F8FC1;
+    color: #FFFFFF; }
+    .event_manager_unit .event_member_block dl dd.member_return::before {
+      content: '還元金額'; }
+    .event_manager_unit .event_member_block dl dd.member_return::after {
+      content: '円'; }
+  .event_manager_unit .event_member_block dl dd.member_paid {
+    font-size: 0.8em;
+    margin: 0 10px;
+    padding: 3px 7px;
+    border-radius: 4px;
+    background-color: red;
+    color: #FFFFFF;
+    float: right; }
+.event_manager_unit .event_price_block dl {
+  line-height: 1.6;
+  border-bottom: 1px dotted #E0DDDD; }
+  .event_manager_unit .event_price_block dl dd.price_number, .event_manager_unit .event_price_block dl dd.price_times {
+    margin: 0 10px;
+    font-weight: 700;
+    font-size: 1.4em; }
+    .event_manager_unit .event_price_block dl dd.price_number::after, .event_manager_unit .event_price_block dl dd.price_times::after {
+      content: '円'; }
+  .event_manager_unit .event_price_block dl dd.price_memo {
+    margin: 0 10px;
+    font-style: italic;
+    color: #929292; }
+.event_manager_unit p span {
+  font-size: 1.4em;
+  font-weight: 700; }
+  .event_manager_unit p span.result {
+    color: #D52629;
+    font-size: 1.8em; }
+.event_manager_unit ul.events_reslut_block {
+  margin-top: 50px;
+  padding-left: 0;
+  list-style: none;
+  font-size: 1.2em;
+  border-top: 3px solid #CCCCCC; }
+  .event_manager_unit ul.events_reslut_block li {
+    list-style: none;
+    border-bottom: 1px dotted #CCCCCC; }
+    .event_manager_unit ul.events_reslut_block li span {
+      font-size: 1.2em; }
+    .event_manager_unit ul.events_reslut_block li.minus {
+      color: red;
+      font-weight: 700; }
+
+.only_login_member {
+  padding: 15px;
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+  background-color: #EFEFEF; }

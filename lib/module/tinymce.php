@@ -95,6 +95,29 @@ function essence_tinymce($initArray) {
             'selector' => 'h1, h2, h3, h4, h5, h6, p',
             'classes' => 'side_bdr_headline'
         ),
+				array(
+            'title' => __('headline animation-style 01','salonote-essence'),
+            'selector' => 'h1, h2, h3, h4, h5, h6, p',
+            'classes' => 'animation-style_01'
+        ),
+				
+				
+				array(
+            'title' => __('headline ribbon_type_01','salonote-essence'),
+            'selector' => 'h1, h2, h3, h4, h5, h6, p',
+            'classes' => 'ribbon_type_01'
+        ),
+				
+				array(
+            'title' => __('headline ribbon_type_02','salonote-essence'),
+            'selector' => 'h1, h2, h3, h4, h5, h6, p',
+            'classes' => 'ribbon_type_02',
+					'block' => 'div',
+						'wrapper' => 'true',
+        ),
+				
+				
+				
 				
 				//------------
 				

@@ -36,7 +36,7 @@ function save_additional_user_meta( $user_id ) {
     if ( !current_user_can( 'edit_user', $user_id ) )
         return false;
  
-    update_usermeta( $user_id, 'user_meta_image', $_POST['user_meta_image'] );
+    wp_update_user( $user_id, 'user_meta_image', $_POST['user_meta_image'] );
 }
  
 add_action( 'personal_options_update', 'save_additional_user_meta' );

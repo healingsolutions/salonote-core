@@ -69,6 +69,17 @@ function edit_content_hook($content){
 				if( pq($block_unit)->parent('.block-group-wrap')->length == 0 ) {
 					pq($group_col)->wrapInner('<div class="block-item-inner"><div class="block-content"></div></div>');
 				}
+				
+				/*
+				if( pq($block_unit)->parent('.block-content img')->length > 0 ) {
+					$img_count = 0;
+					foreach($doc->find('.block-content img') as $image_item) {
+						pq($image_item)->addClass('image-item-'. $img_count );
+						++ $img_count;
+					}
+					
+				}
+				*/
 			}
 		}
 	
@@ -77,9 +88,28 @@ function edit_content_hook($content){
 		}
 		
 
-		return do_shortcode($doc); //only pc
+		return do_shortcode(replace_headline_text_content($doc)); //only pc
 	}
-	return do_shortcode($content); //only sp
+	return do_shortcode(replace_headline_text_content($content)); //only sp
+}
+
+function replace_headline_text_content( $content ){
+	global $theme_opt;
+
+	if( !empty($theme_opt['base']['headline_1']) ){
+		$content = str_replace('<h1>','<h1 class="'.$theme_opt['base']['headline_1'].'">',$content);
+	}
+	if( !empty($theme_opt['base']['headline_2']) ){	
+		$content = str_replace('<h2>','<h2 class="'.$theme_opt['base']['headline_2'].'">',$content);
+	}
+	if( !empty($theme_opt['base']['headline_3']) ){	
+		$content = str_replace('<h3>','<h3 class="'.$theme_opt['base']['headline_3'].'">',$content);
+	}
+	if( !empty($theme_opt['base']['headline_4']) ){	
+		$content = str_replace('<h4>','<h4 class="'.$theme_opt['base']['headline_4'].'">',$content);
+	}
+	
+	return $content;
 }
 
 
