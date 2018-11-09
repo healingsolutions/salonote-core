@@ -67,9 +67,9 @@ function essence_head_enqueue() {
   //wp_enqueue_style('yakuhanjp', '//cdn.jsdelivr.net/npm/yakuhanjp@2.0.0/dist/css/yakuhanjp.min.css', array(), '2.0.0');
 	if(is_user_logged_in()){
 		//$_salonote_ver = time();
-		$_salonote_ver = '1.0.0.3';
+		$_salonote_ver = '1.0.0.32';
 	}else{
-		$_salonote_ver = '1.0.0.3';
+		$_salonote_ver = '1.0.0.32';
 	}
 	wp_enqueue_style('essence', get_template_directory_uri().'/style-min.css', array(), $_salonote_ver);
 	wp_enqueue_script('essence', get_template_directory_uri().'/statics/js/main-min.js', array(), $_salonote_ver ,true);
@@ -151,6 +151,7 @@ add_action('wp_footer','comment_js_queue');
 
 
 //if use 'maru gothic' read webfonts
+/*
 if(
 	!empty($theme_opt['base']['headline_font']) &&
 	!empty($theme_opt['base']['body_font']) &&
@@ -164,6 +165,7 @@ if(
 	}
 	add_action( 'wp_enqueue_scripts', 'essence_font_links',50 );
 }
+*/
 
 
 

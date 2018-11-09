@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css?family=Clicker+Script|Dynalight|Monsieur+La+Doulaise");
 .table {
   width: 100%;
   max-width: 100%;
@@ -1027,10 +1026,6 @@ dl.question-dl dd {
     -moz-transition: background-color 0.3s ease;
     -o-transition: background-color 0.3s ease;
     transition: background-color 0.3s ease; }
-
-.entry_block_content p {
-  line-height: 2;
-  margin-bottom: 2em; }
 
 .no-break-words {
   word-break: keep-all; }

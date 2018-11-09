@@ -50,6 +50,7 @@ function slider_essence_public_style(){
 add_action( 'wp_enqueue_scripts', 'slider_essence_public_style' ); //公開用のCSS
 
 
+
 function slider_essence(){
 	if( !is_singular() ) return;
 	
