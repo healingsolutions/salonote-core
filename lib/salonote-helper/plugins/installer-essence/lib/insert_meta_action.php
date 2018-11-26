@@ -24,21 +24,21 @@ function insert_meta_action( $values ){
 	$opt_values = get_option('insert_essence',true);
 	
 	if(is_user_logged_in()){
-		echo '<pre>opt_values'; print_r($opt_values); echo '</pre>';
+		//echo '<pre>opt_values'; print_r($opt_values); echo '</pre>';
 	}
 	
 	if(is_user_logged_in()){
-		echo '<pre>post_values'; print_r($values); echo '</pre>';
+		//echo '<pre>post_values'; print_r($values); echo '</pre>';
 	}
 	
 	
 	if( !empty($opt_values) && is_array($opt_values) ){
-		echo 'do_merge';
+		//echo 'do_merge';
 		$values = array_merge($opt_values, $values);
 	}
 	
 	if(is_user_logged_in()){
-		echo '<pre>unique_values'; print_r($values); echo '</pre>';
+		//echo '<pre>unique_values'; print_r($values); echo '</pre>';
 	}
 
 	update_option('insert_essence', $values);

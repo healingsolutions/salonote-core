@@ -236,8 +236,9 @@ function essence_class_names( $classes ) {
 	}
 	
 	if ( has_nav_menu('Header')) {
-		global $post;
 		$classes[] = 'has_header_nav';
+	}else{
+		$classes[] = 'no-header_nav';
 	}
 	
 	
@@ -722,5 +723,111 @@ function get_monthly_nav( $current_ymd = null, $post_type ){
 	
 	return $print_monthly_nav;
 }
+
+
+
+function br2array( $value, $count = null ){
+	
+	if( !empty($count)){
+		$br_array = preg_split("/\R{{$count},}/", esc_attr($value) ); // とりあえず行に分割
+	}else{
+		$br_array = explode("\n", $value); // とりあえず行に分割
+	}
+	
+	$br_array = array_map('trim', $br_array); // 各行にtrim()をかける
+	$br_array = array_filter($br_array, 'strlen'); // 文字数が0の行を取り除く
+	$br_array = array_values($br_array); // これはキーを連番に振りなおしてるだけ
+
+	return $br_array;
+}
+
+
+
+
+/*-------------------------------------------*/
+/*	サムネイル取得
+/*-------------------------------------------*/
+function get_post_first_thumbnail(  $post_id = null , $thumb_size='thumbnail' , $return_parama='url' ){
+	
+	if( empty($post_id) ) return;
+
+	$image_id = '';
+	$image_url = '';
+    
+	//the_post_thumbnail( $post_id );
+	if ( has_post_thumbnail( $post_id )) {
+			$image_id = get_post_thumbnail_id( $post_id );
+			$image_url = wp_get_attachment_image_src($image_id, $thumb_size , true);
+			$image_url = $image_url[0];
+	}
+
+	
+	if( strpos($image_url,'media/default.png') !== false  ){
+		$image_url_tmp = catch_that_image();
+		
+		if( isset($image_url_tmp) ){
+			$image_id = get_attachment_id($image_url_tmp);
+			$image_url = wp_get_attachment_image_src($image_id, $thumb_size , true);
+			$image_url = $image_url[0];
+		}
+	}else{
+		$image_url = '';
+	}
+	
+		
+	if( $return_parama === 'url' ){
+		return $image_url;
+	}elseif( $return_parama === 'id' ){
+		return $image_id;
+	}
+	
+	
+}
+
+
+
+//記事の一番最初の画像をキャッチイメージに設定
+function catch_that_image() {
+    global $post, $posts;
+    $first_img = '';
+    ob_start();
+    ob_end_clean();
+    $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+    if( isset($matches[1] [0]) ){
+        $first_img = $matches [1] [0];
+        
+        //画像登録されていない場合はエラーになるので、IDを取得しない仕様に変更
+        //$first_img = get_attachment_image_src( $first_img_url, 'thumbnail' );
+    }
+ 
+    if(empty($first_img)){ //Defines a default image
+        $first_img = null;
+    }
+    
+return $first_img;
+}
+
+
+
+/**
+ * 画像のURLからattachemnt_idを取得する
+ *
+ * @param string $url 画像のURL
+ * @return int attachment_id
+ */
+function get_attachment_id($url)
+{
+  global $wpdb;
+  $sql = "SELECT ID FROM {$wpdb->posts} WHERE post_name = %s";
+  preg_match('/([^\/]+?)(-e\d+)?(-\d+x\d+)?(\.\w+)?$/', $url, $matches);
+	if( $matches ){
+		$post_name = $matches[1];
+		return (int)$wpdb->get_var($wpdb->prepare($sql, $post_name));
+	}else{
+		return;
+	}
+  
+}
+
 
 ?>

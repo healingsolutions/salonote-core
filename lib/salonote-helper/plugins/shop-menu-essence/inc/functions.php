@@ -153,25 +153,6 @@ add_action( 'template_redirect', 'shopmenu_essence_none_cache_hook_wrap');
 
 
 
-function shop_menu_content_hook($content){
-
-	if( !is_singular('shop_menu')){
-		return $content;
-	}else{
-		
-		global $id;
-		$id = get_the_ID();
-		ob_start();
-		echo $content;
-		require( SHOP_MENU_ESSENCE_PLUGIN_PATH. "/template-parts/print_shop_menu.php");
-		return ob_get_clean();
-	}
-	
-	
-	
-}
-add_filter('the_content','shop_menu_content_hook');
-
 
 
 

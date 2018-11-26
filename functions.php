@@ -61,6 +61,7 @@ function essence_head_enqueue() {
   
   //jQuery
   wp_enqueue_script('jquery','//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js', array(), '3.2.1', true);
+
   
   //in head
   //wp_enqueue_style('normalize', '//cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css', array(), '1.0');
@@ -276,7 +277,6 @@ function include_library() {
   require_once( get_template_directory(). '/lib/module/images.php' );
 	
   require_once( get_template_directory(). '/lib/customizer/theme-customizer.php' );
-  require_once( get_template_directory(). '/lib/widget/widgets.php' );
 	
   require_once (get_template_directory(). '/lib/custom_fields/page_info.php' );
 	require_once (get_template_directory(). '/lib/custom_fields/profile_fields.php' );
@@ -290,8 +290,10 @@ function include_library() {
 }
 add_action('init', 'include_library', 10);
 
-
-
+function include_widgets() {
+	require_once( get_template_directory(). '/lib/widget/widgets.php' );
+}
+add_action('init', 'include_widgets', 50);
 
 require_once( get_template_directory(). '/lib/widget/onePage.php' );
 require_once( get_template_directory(). '/lib/widget/customList.php' );
@@ -308,12 +310,6 @@ require_once( get_template_directory(). '/lib/widget/WriteBlock.php' );
 
 //Salonote helper
 require_once( get_template_directory(). '/lib/salonote-helper/salonote_helper.php' );
-
-//plugins
-require_once( get_template_directory(). '/lib/salonote-helper/plugins/slider-essence/slider_essence.php' );
-require_once( get_template_directory(). '/lib/salonote-helper/plugins/search-engine-essence/search-engine-essence.php' );
-require_once( get_template_directory(). '/lib/salonote-helper/plugins/mailform-essence/mailform-essence.php' );
-
 
 // ====================
 // check login user

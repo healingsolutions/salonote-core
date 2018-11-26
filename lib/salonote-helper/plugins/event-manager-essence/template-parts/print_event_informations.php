@@ -47,11 +47,8 @@ foreach( $event_information_fields as $key => $value ){
 			}
 			
 		}elseif( $key == 'event_target' || $key == 'event_gain' ){
-			
-			$value_arr = explode("\n", $value); // とりあえず行に分割
-			$value_arr = array_map('trim', $value_arr); // 各行にtrim()をかける
-			$value_arr = array_filter($value_arr, 'strlen'); // 文字数が0の行を取り除く
-			$value_arr = array_values($value_arr); // これはキーを連番に振りなおしてるだけ
+
+			$value_arr = br2array($value);
 			
 			echo '<dd class="'.$key.'"><ul class="list-icon">';
 			foreach( $value_arr as $list_key => $list_value ){

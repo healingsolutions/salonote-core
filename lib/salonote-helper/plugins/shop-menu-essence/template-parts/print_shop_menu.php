@@ -28,15 +28,10 @@ global $search;
 global $field_set;
 
 
-
-
 // ========================================
 // shop menu print
 
 if( empty($id) ) return;
-
-echo '<div id="menu_block_unit_id" class="menu_block_unit">';
-
 
 //fields
 
@@ -46,7 +41,6 @@ $shop_menu_items 				= get_post_meta($id,	'essence_shop_menu'	,true);
 $shop_menu_type_id 			= get_post_meta($id,	'shop_menu_type'		,true);
 $shop_menu_fields_value = get_post_meta($shop_menu_type_id, 'essence_shop_menu_fields',true);
 $shop_menu_fields = $shop_menu_fields_value['fields'];
-
 
 if( empty($shop_menu_fields) ) return;
 
@@ -70,11 +64,19 @@ foreach( $shop_menu_fields as $key => $value ){
 
 //post meta
 $shop_menu_arr = get_post_meta($id,'essence_shop_menu',true);
+
+
 if( empty($shop_menu_arr) ) return;
+
+
+
+
 
 global $change_button;
 global $sort_button;
 global $hide_button;
+
+echo '<div id="menu_block_unit_id" class="menu_block_unit">';
 
 if( !isset($change_button) && $change_button !== true && count($shop_menu_arr) > 2 ){
 	echo '<div class="shop_menu_change-button">';

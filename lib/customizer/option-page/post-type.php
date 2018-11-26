@@ -262,6 +262,10 @@ $field_arr = array(
     'label' => __('Use First Image for Thumbnail','salonote-essence'),
     'type' => 'checkbox',
     ),
+	'first_attachement' => array(
+    'label' => __('Set First Image to eyecache','salonote-essence'),
+    'type' => 'checkbox',
+    ),
 	'side_thumbnail' => array(
     'label' => __('Use Thumbnail for Side List ','salonote-essence'),
     'type' => 'checkbox',

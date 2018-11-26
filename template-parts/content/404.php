@@ -19,10 +19,8 @@ echo '<div class="main-content-wrap">';
 		echo '<div class="container text-center">';
 
 
-			if( !empty($_POST) && !empty($_POST['post_id']) ){
-				echo '<div class="h1">';
-				echo get_the_title($_POST['post_id']);
-				echo '</div>';
+			if( !empty($_GET['post_id']) && !empty($_GET['note']) ){
+				echo '<div class="h1">シンプル投稿</div>';
 				
 			}else{
 				echo '<div class="h1">404</div>';

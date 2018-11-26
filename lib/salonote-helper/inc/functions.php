@@ -34,19 +34,30 @@ function edit_content_hook($content){
 
 
 		$counter = 0;
+		$element = '';
 		foreach($doc->find('.block-unit') as $block_unit) {
-
+			
+			$element = '';
+			if( pq($block_unit)->find('img')->attr('src') ) {
+				$element = ' has_image';
+			}else{
+				$element = ' has_text';
+			}
 			
 			if( pq($block_unit)->next('.block-unit')->length && pq($block_unit)->prev('.block-group')->length == 0 ) {
 				pq($block_unit)->removeClass('block-unit');
-				pq($block_unit)->addClass('block-group block-index-'.$counter);
+				pq($block_unit)->addClass('block-group block-index-'.$counter.$element);
 			}
 			if( pq($block_unit)->prev('.block-group')->length && pq($block_unit)->next('.block-group')->length == 0 ) {
 				pq($block_unit)->removeClass('block-unit');
-				pq($block_unit)->addClass('block-group block-index-'.$counter);
+				pq($block_unit)->addClass('block-group block-index-'.$counter.$element);
+				
+				
+				
 			}
 			if( pq($block_unit)->next('.block-unit')->length == 0 ) {
 				++$counter;
+				
 			}
 		}
 		
@@ -84,7 +95,11 @@ function edit_content_hook($content){
 		}
 	
 		for ($count = 0; $count < $counter; $count++){
-					pq('.block-index-'.$count)->wrapAll('<div class="block-group-wrap" />');
+			pq('.block-index-'.$count)->wrapAll('<div class="block-group-wrap" />');
+			
+			if( pq('.block-index-'.$count)->parent('.block-group-wrap')->find('img')->length == 1 ) {
+				pq('.block-index-'.$count)->parent('.block-group-wrap')->addClass('has_image_block_group');
+			}
 		}
 		
 

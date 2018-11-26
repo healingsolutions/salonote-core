@@ -197,7 +197,7 @@ jQuery(document).ready(function($){
 			var winScroll = $(window).scrollTop();
 			var scrollPos = winScroll + (winHeight * 0.85);
 
-			$('.entry_block_content').children('div.block-group-wrap').each(function() {
+			$('.entry_block_content').find('div.block-group-wrap').each(function() {
 				if($(this).offset().top < scrollPos) {
 						$(this).addClass('is_active');
 				}
@@ -214,7 +214,7 @@ jQuery(document).ready(function($){
 	
 	
 	
-	
+
 	
 	// #で始まるアンカーをクリックした場合に処理
 	$('a.smoothscroll').click(function() {
@@ -481,7 +481,7 @@ jQuery(document).ready(function($){
 	};
 
 	// slick box ====================================================
-	//if (jQuery && jQuery.slick) {
+	if (jQuery && jQuery.slick) {
 		$('.slick-unit-1').slick({
 			infinite: true,
 			dots: true,
@@ -499,7 +499,7 @@ jQuery(document).ready(function($){
 			autoplay: true,
 			autoplaySpeed: 4000,
 		});
-	//};
+	};
 	
 
 	
@@ -717,7 +717,12 @@ jQuery(window).on('load', function() {
 		$('.img-cover-block').each(function() {
 
 			var cover_image  = $(this).attr('src');
-			var cover_height = $(this).height();
+			
+			if( $(this).height() < $(window).height() ){
+				var cover_height = $(this).height();
+			}else{
+				var cover_height = $(window).height();
+			}
 			var cover_class  = $(this).attr('class');
 
 			$(this).hide().unwrap();

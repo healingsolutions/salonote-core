@@ -24,27 +24,30 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function note_essence_public_style(){
 
-	
-	if( !is_singular() ) return;
-	if( empty( $_POST['note']) ) return;
+	if( empty( $_GET['note']) ) return;
 	if( !current_user_can('edit_posts') ) return $content;
-	if ( !is_admin_bar_showing() )  return $content;
+	//if ( !is_admin_bar_showing() )  return $content;
 	
-	wp_enqueue_script('jquery','//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js', array(), '3.2.1', true);
-	wp_enqueue_style('essence', get_template_directory_uri().'/style-min.css', array(), $_salonote_ver);
-	wp_enqueue_script('essence', get_template_directory_uri().'/statics/js/main-min.js', array(), $_salonote_ver ,true);
-
+	wp_enqueue_script('jQuery');
+	wp_enqueue_style('wp-admin');
+	wp_enqueue_media();
+	
+	wp_enqueue_style('note-essence', NOTE_ESSENCE_PLUGIN_URI.'/statics/css/style-min.css', array(), '1.0.0');
+	wp_enqueue_script('note-essence', NOTE_ESSENCE_PLUGIN_URI.'/statics/js/main-min.js', array(), '1.0.0' ,true);
+	
+	wp_enqueue_style('upload_images-essence', get_template_directory_uri().'/statics/css/upload-images.css', array(), '1.0.0');
+	wp_enqueue_script('upload_images-essence', get_template_directory_uri().'/statics/js/upload_images-min.js', array(), '1.0.0' ,true);
 }
-add_action( 'admin_enqueue_scripts', 'note_essence_public_style' ); //公開用のCSS
+add_action( 'wp_enqueue_scripts', 'note_essence_public_style' ); //公開用のCSS
 
 
 
-function note_essence($content){
-
+function posted_note_essence(){
 	
-	if( empty( $_POST['note']) ) return $content;
-	if( !current_user_can('edit_posts') ) return $content;
-	if ( !is_admin_bar_showing() ) return $content;
+
+  if( empty( $_POST['note']) ) return;
+	if( !current_user_can('edit_posts') ) return;
+	//if ( !is_admin_bar_showing() ) return;
 	
 	global $post;
 	global $post_id;
@@ -55,133 +58,32 @@ function note_essence($content){
 	}else{
 		$post_id = null;
 	}
-	
-	//echo '<pre>note_body'; print_r($_FILES); echo '</pre>';
-	
+
 	if( !empty($_POST['nonce_note_essence']) ){
 		//CSRF対策用のチェック
 		if(wp_verify_nonce($_POST['nonce_note_essence'], 'add_note_essence_post')){
 			//echo 'success';
-			
-			if( !empty($_FILES) ){
-				foreach( $_FILES['note_images']['name'] as $key => $image_data ){
-					$_file_data[$key]['name']			= $image_data;
-					$_file_data[$key]['type'] 		= $_FILES['note_images']['type'][$key];
-					$_file_data[$key]['tmp_name'] = $_FILES['note_images']['tmp_name'][$key];
-					$_file_data[$key]['error'] 		= $_FILES['note_images']['error'][$key];
-					$_file_data[$key]['size'] 		= $_FILES['note_images']['size'][$key];
-				}
-				
-				
-				//echo '<pre>_file_data'; print_r($_file_data); echo '</pre>';
-				
-				$_up_dir = wp_upload_dir();
-				//$save_folder 	= $_up_dir['basedir'] . '/tmp/';
-				//$save_url 		= $_up_dir['baseurl'] . '/tmp/';
-				$save_folder 	= $_up_dir['path'].'/';
-				$save_url 		= $_up_dir['url'].'/';
-				
-				// 保存先フォルダの作成する。
-				if (!is_dir($save_folder)) {
-					if ( mkdir( $save_folder, 0755,true ) ) {
-					 //echo "ディレクトリ作成成功！！";      
-					} else {
-					 //echo "ディレクトリ作成失敗！！";
-					}
-				}
-				
-				$_use_files = [];
-				
-				require_once(ABSPATH . "wp-admin" . '/includes/image.php');
-				
-				
-				foreach( $_file_data as $key => $image_item ){
-					if(is_uploaded_file($image_item['tmp_name'])){
-						
-						//$name = basename($image_item['tmp_name']);
 
-						$_file_name = str_replace('=','', base64_encode($image_item['name'])).'.'.pathinfo($image_item['name'], PATHINFO_EXTENSION);
-						$save_filename = $save_folder . $_file_name;
-						$save_fileurl = $save_url.$_file_name;
-						
-						
-						if(is_user_logged_in()){
-							//echo '<pre>'; print_r($save_url.$_file_name); echo '</pre>';
-						}
-						
-						//画像ファイルが無い時は取得
-						if (!file_exists($save_filename)) {
-							if(move_uploaded_file( $image_item['tmp_name'], $save_filename)){
-									//echo "uploaded";
-								
-								//アップロードファイルがある場合、以下実行
-								//拡張子をチェックする
-								$exten = '';
-								if ( $image_item['type'] == 'image/jpeg' ) { $exten = 'jpg'; }
-								elseif ( $image_item['type'] == 'image/png' ) { $exten = 'png'; }
-								elseif ( $image_item['type'] == 'image/gif' ) { $exten = 'gif'; }
-								if($exten !== ''){
-									//アップロードファイルを添付する
-									$attachment = array(
-										'post_mime_type' => $image_item['type'], 
-										'post_title' => $image_item['name'], 
-										'post_content' => '', 
-										'post_status' => 'inherit'
-									);
-
-								 $attach_id = wp_insert_attachment( $attachment, $save_filename, $post_id );
-
-								//echo 'attach_id:' . $attach_id . '<br>';
-
-								 
-								 $attach_data = wp_generate_attachment_metadata( $attach_id, $save_filename );
-								 wp_update_attachment_metadata( $attach_id,  $attach_data );
-
-							 }
-
-								
-
-							}else{
-									echo "error while saving.";
-							}
-						}else{
-							//echo $save_filename .'<br>';
-							echo 'already uploaded<br>';
-							$attach_id = attachment_url_to_postid($save_fileurl);
-						  $attach_data = wp_generate_attachment_metadata( $attach_id, $save_filename );
-						  wp_update_attachment_metadata( $attach_id,  $attach_data );
-						}
-						
-						
-						
-
-					}else{
-							echo "file not uploaded.";
-					}
-					
-					
-					$attach_id = attachment_url_to_postid($save_fileurl);
-					$_use_files[$key]['url'] 	= $save_fileurl;
-					$_use_files[$key]['id'] 	= $attach_id;	
+			$_use_files = [];
+			if( !empty($_POST['note_images']) ){
+				foreach( $_POST['note_images'] as $attach_key => $attach_id ){
+					$_use_files[$attach_key]['id'] 		= $attach_id;
+					$_use_files[$attach_key]['url'] 	= wp_get_attachment_url($attach_id);
 				}
 			}
-			
 
-			$br_count = 2;
-			$note_body = preg_split("/\R{{$br_count},}/", esc_attr($_POST['note_body']) ); // とりあえず行に分割
-			$note_body = array_map('trim', $note_body); // 各行にtrim()をかける
-			$note_body = array_filter($note_body, 'strlen'); // 文字数が0の行を取り除く
-			$note_body = array_values($note_body); // これはキーを連番に振りなおしてるだけ
+			$note_body = br2array( $_POST['note_body'], 2 );// value , count
 			
 			//echo '<pre>note_body'; print_r($note_body); echo '</pre>';
 			//echo '<pre>_use_files'; print_r($_use_files); echo '</pre>';
 			
+			//$note_body = mb_convert_encoding($note_body, bloginfo('charset'), "auto");
 			$_insert_text = create_salonote_body($note_body , $_use_files);
 			
 			
 			//echo $note_body[0];
 			
-			insert_salonote_note($_insert_text);
+			$insert_id = insert_salonote_note($_insert_text);
 			
 			//アイキャッチを登録
 			if(!empty ($_use_files) ){
@@ -195,28 +97,68 @@ function note_essence($content){
 						);
 						wp_update_post( $excerpt_arr );
 				}
+				
+				
+				
+
+				
 			}
+			
+			
+			//オプションを登録
+			if( !empty($_POST['page_info'])){
+				update_post_meta( $insert_id, 'page_info', $_POST['page_info'] );
+			}
+			
 
 			
 		}else{
-			echo 'error';
+			//echo 'error';
 			exit( '不正な遷移です' );
 		}
 
 		
-		$post_custom = get_post_custom($insert_id);
+		//$post_custom = get_post_custom($insert_id);
 		//echo '<pre>post_custom'; print_r($post_custom); echo '</pre>';
-		//echo '<a href="'. get_post_permalink($insert_id)  .'">'.get_the_title($insert_id).'</a>';
+		//echo '<a href="'. get_post_permalink($insert_id)  .'">'.get_the_title($insert_id).'-'.$insert_id.'</a>';
 		
+		/**/
 		wp_safe_redirect( get_post_permalink($insert_id) );
 		exit();
-	}else{
+    die;
+		
+	}
+}
+add_action( 'template_redirect', 'posted_note_essence' );
+
+
+
+add_filter( 'body_class', 'note_essence_class_names' );
+function note_essence_class_names( $classes ) {
 	
+	if( !empty( $_GET['note']) ){
+		$classes[] = 'note_essence_form';
+	}
+	
+	return $classes;
+}
+
+
+function note_essence($content){
+	
+	
+	if( empty( $_GET['note']) ) return $content;
+	if( !current_user_can('edit_posts') ) return $content;
+	//if ( !is_admin_bar_showing() ) return;
+	
+
 	global $post;
 	$post_type = null;
+	
+	$post_id = !empty($_GET['post_id']) ? esc_attr($_GET['post_id']) : null ;
 
 	?>
-	<form method="post" action="#note" enctype="multipart/form-data" data-persist="garlic">
+	<form method="post" action="<?php echo get_the_permalink($post_id); ?>" enctype="multipart/form-data" data-persist="garlic">
 	<div class="container col-12 row mt-5">
 	
 
@@ -225,18 +167,18 @@ function note_essence($content){
 		
 		
 		
-		<div class="col-12 col-md-6 form-control-checkbox mb-5">
+		<div class="col-12 col-md-6 note_post_fields mb-5">
 			
 			<?php
-				if( !empty($_POST) && !empty($_POST['post_id']) ){
-					$post = get_post($_POST['post_id']);
-					$post_type = get_post_type($_POST['post_id']);
+				if( !empty($post_id) ){
+					$post = get_post($post_id);
+					$post_type = get_post_type($post_id);
 					echo '
 					<div id="post_target_field" class="form-group row mt-3" style="display : none;">
 					<label for="post_title" class="col-sm-3 col-form-label text-left">編集するページ</label>
 					<div class="col-sm-9 text-left">
-						<input class="form-control" type="text" value="'.get_the_title($_POST['post_id']).'" readonly>
-						<input class="form-control" type="hidden" name="post_id" value="'.$_POST['post_id'].'">
+						<input class="form-control" type="text" value="'.get_the_title($post_id).'" readonly>
+						<input class="form-control" type="hidden" name="post_id" value="'.$post_id.'">
 						<input type="hidden" name="edit_post_type" value="'.$post_type.'">
 					</div>
 					</div>';
@@ -297,20 +239,49 @@ function note_essence($content){
 		</div>
 		
 		<?php
-		$template = get_page_template_slug($_POST['post_id']);
+		$template = get_page_template_slug($post_id);
 		?>
-		<div class="col-12 col-md-6 form-control-checkbox mb-5">
+		<div class="col-12 col-md-6 note_post_fields mb-5">
+			
 				<div id="post_style_field" class="form-group row mt-3">
-				<label for="post_style" class="col-sm-3 col-form-label text-left">スタイル</label>
-				<div class="col-sm-9">
-					<select class="form-control" id="post_style" name="post_style">
-						<option value="simple_blog">シンプルブログ</option>
-						<option value="left_right">左右振り分け</option>
-						<option value="keyv-landing">キービジュアルランディング</option>
-						<option value="character">キャラクター会話</option>
-					</select>
-			</div>
-		</div>
+						<label for="post_style" class="col-sm-3 col-form-label text-left">スタイル</label>
+						<div class="col-sm-9">
+							<select class="form-control" id="post_style" name="post_style">
+								<option value="simple_blog">シンプルブログ</option>
+								<option value="left_right">左右振り分け</option>
+								<option value="left_image">左に画像</option>
+								<option value="right_image">右に画像</option>
+								<option value="keyv-landing">キービジュアルランディング</option>
+								<option value="character">キャラクター会話</option>
+							</select>
+					</div>
+				</div>
+			
+				<div id="post_option_field" class="form-group row mt-3">
+						<label for="post_style" class="col-sm-3 col-form-label text-left">オプション</label>
+						<div class="col-sm-9 text-left">
+							<div class="form-group">
+								
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" id="post_option_full_size" name="page_info[full_size]" value="1">
+									<label class="form-check-label ml-3" for="post_option_full_size">全画面表示</label>
+								</div>
+								
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" id="post_option_none_sidebar" name="page_info[none_sidebar]" value="1">
+									<label class="form-check-label ml-3" for="post_option_none_sidebar">メインのみ</label>
+								</div>
+								
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" id="post_option_super_container" name="page_info[super_container]" value="1">
+									<label class="form-check-label ml-3" for="post_option_super_container">コンテンツの幅を狭める</label>
+								</div>
+								
+							</div>
+
+					</div>
+				</div>
+			
 			
 		</div>
 		
@@ -321,119 +292,67 @@ function note_essence($content){
 		</div>
 
 		<div class="col-12 col-md-5 mb-5">
-			<div class="imagePreview"></div>
-			<div class="input-group">
-					<label class="input-group-btn">
-							<span class="btn btn-primary">
-									ファイルを選択
-								<input id="note_images" name="note_images[]" type="file" multiple="multiple" style="display:none" class="uploadFile" accept="image/*">
-							</span>
-					</label>
-					<input id="form-input-note_images" type="text" class="form-control" readonly="">
-					<input type="hidden" name="file_label" value="" />
-<br>
-					<table id="uploadedfiles" class="table table-striped">
-							<tr><th>Image</th><th>Name</th><th>Size</th><th>Actions</th></tr>
-					</table>
-				
-			</div>
+			
+			
+<?php	
+	$custom_text = '';
+	$upload_images = !empty($opt_values['upload_images']) ?$opt_values['upload_images'] : null;
+	if(is_user_logged_in()){
+		//echo '<pre>upload_images'; print_r($upload_images); echo '</pre>';
+	}
+
+	if( $upload_images ){
+		foreach( $upload_images as $key => $item ){
+			$custom_text .= '<li class="upload_images_wrap" id=img_'.$item.'>
+			<div class="upload_images_item">
+			<a href="#" class="upload_images_remove" title="画像を削除する"><span class="dashicons dashicons-dismiss"></span></a><div class="upload_images_bkg">'.wp_get_attachment_image( $item, 'thumbnail' ) .'
+			<input type="hidden" name="note_images[]" value="'.$item.'" />
+			</div></div>
+			</li>';
+		}
+	}
+
+		echo '
+		<div class="image-upload-wrap">
+			<ul class="image-preview-wrapper upload_images">'.preg_replace('/(?:\n|\r|\r\n)/', '', $custom_text ).'</ul>
+			<input id="upload_image_button-1" type="button" class="btn btn-item upload_image_button" rel="multiple" data-name="note_images" data-parent="'.$post_id.'" value="画像アップロード" />
+		</div>
+		';
+
+?>
+
 		</div>
 		
 		
 		<div class="col-12 text-center">
-			<button class="btn-item" type="submit" value="投稿">投稿</button>
+			<button class="btn btn-item" type="submit" value="投稿">投稿</button>
 		</div>
 	
 	</div>
 	</form>
 
 	<?php
-	}
 	remove_action('error_page_action','note_essence',10);
 }
 add_action('error_page_action','note_essence',9);
 
 
 
-add_action('wp_footer', 'footer_note_action',99);
-function footer_note_action(){
-	global $post;
-	
+
+function toolbar_link_to_mypage( $wp_admin_bar ) {
 	if( current_user_can('edit_posts') ){
-		echo '
-		<form id="note-essence-write-form" action="'.get_home_url().'/note_essence/" method="post">
-			<input type="hidden" name="post_id" value="'. (isset($post->ID) ? $post->ID : '' ) .'">
-			<button id="note-essence-write-btn" name="note" value="1"><span class="dashicons dashicons-edit"></span></button>
-		</form>';
-	}
-
-	
-	global $post;
-	if( empty( $_POST['note']) ) return;
-	
-	?>
-<script>
-$(document).ready(function() {
-
-	
-	$('#post_new').on('change', function(e) {
-		if( $(this).prop('checked') ){
-			$('#post_type_field').show('fast');
-			$('#post_target_field').hide('fast');
-			$('#post_title_field').show('fast');
-		}else{
-			$('#post_type_field').hide('fast');
-			$('#post_target_field').show('fast');
-			$('#post_title_field').hide('fast');
-			
+		global $post;
+		
+		$args = array(
+			'id'    => 'note-essence',
+			'title' => '<span class="ab-icon dashicons dashicons-book-alt"></span><span class="ab-label">シンプル投稿</span>',
+			'href'  => get_home_url().'/note_essence/?post_id='. (isset($post->ID) ? $post->ID : '' ).'&note=true',
+		);
+		$wp_admin_bar->add_node( $args );
+		
 		}
-	});
-
-	var storedFiles = [];      
-	$('#note_images').on('change', function() {
-			$('#note_images').html('');
-			var myfiles = document.getElementById('note_images');
-			var files = myfiles.files;
-			var i=0;
-			for (i = 0; i<files.length; i++) {
-					var readImg = new FileReader();
-					var file=files[i];
-					if(file.type.match('image.*')){
-							storedFiles.push(file);
-							readImg.onload = (function(file) {
-									return function(e) {
-											$('#uploadedfiles').append('<tr class="imageinfo"><td><img width="80" height="70" src="'+e.target.result+'"/></td><td>'+file.name+'</td><td>'+Math.round((file.size/1024))+'KB</td><td><a href="" class="lnkcancelimage" file="'+file.name+'" title="Cancel">X</a></td></tr>');
-									};
-							})(file);
-							readImg.readAsDataURL(file);
-					}else{
-							alert('the file '+file.name+' is not an image<br/>');
-					}
-			}
-	});
-
-	$('#uploadedfiles').on('click','a.lnkcancelimage',function(){
-			$(this).parent().parent().html('');
-			var file=$(this).attr('file');
-			for(var i=0;i<storedFiles.length;i++) {
-					if(storedFiles[i].name == file) {
-							storedFiles.splice(i,1);
-							break;
-					}
-			}
-			return false;
-	});
-
-
-});
-</script>
-
-
-<?php
-
-	remove_action('wp_footer','footer_note_action');
-	
-};
+	}
+add_action( 'admin_bar_menu', 'toolbar_link_to_mypage', 90 );
 
 
 ?>

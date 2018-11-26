@@ -159,10 +159,7 @@ function insert_essence_shop_menu_item(){
 			case 'checkbox':
 					
 					if( !empty($value[2]) ){
-						$select_arr = explode("\n", $value[2]); // とりあえず行に分割
-						$select_arr = array_map('trim', $select_arr); // 各行にtrim()をかける
-						$select_arr = array_filter($select_arr, 'strlen'); // 文字数が0の行を取り除く
-						$select_arr = array_values($select_arr); // これはキーを連番に振りなおしてるだけ
+						$select_arr = br2array(value[2]);
 
 						foreach($select_arr as $select_key => $select){
 							if(strpos($select,':') !== false){
@@ -181,12 +178,8 @@ function insert_essence_shop_menu_item(){
 			case 'select':
 				
 				if( !empty($value[2]) ){
-					
-					$select_arr = explode("\n", $value[2]); // とりあえず行に分割
-					$select_arr = array_map('trim', $select_arr); // 各行にtrim()をかける
-					$select_arr = array_filter($select_arr, 'strlen'); // 文字数が0の行を取り除く
-					$select_arr = array_values($select_arr); // これはキーを連番に振りなおしてるだけ
-					
+
+					$select_arr = br2array($value[2]);
 
 					
 				$repeat_field .= '
@@ -306,10 +299,7 @@ function insert_essence_shop_menu_item(){
 				case 'checkbox':
 					
 					if( !empty($field_value[2]) ){
-						$select_arr = explode("\n", $field_value[2]); // とりあえず行に分割
-						$select_arr = array_map('trim', $select_arr); // 各行にtrim()をかける
-						$select_arr = array_filter($select_arr, 'strlen'); // 文字数が0の行を取り除く
-						$select_arr = array_values($select_arr); // これはキーを連番に振りなおしてるだけ
+						$select_arr = br2array($field_value[2]);
 
 						foreach($select_arr as $select_key => $select){
 							if(strpos($select,':') !== false){
@@ -332,10 +322,7 @@ function insert_essence_shop_menu_item(){
 				case 'select':
 
 					if( !empty($field_value[2]) ){
-						$select_arr = explode("\n", $field_value[2]); // とりあえず行に分割
-						$select_arr = array_map('trim', $select_arr); // 各行にtrim()をかける
-						$select_arr = array_filter($select_arr, 'strlen'); // 文字数が0の行を取り除く
-						$select_arr = array_values($select_arr); // これはキーを連番に振りなおしてるだけ
+						$select_arr = br2array($field_value[2]);
 
 						echo '<select id="shop_menu_form_'.$key.'" name="essence_shop_menu['.$key.']['.$field_key.']">';
 						echo '<option value="">---</option>';

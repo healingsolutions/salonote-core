@@ -1,17 +1,17 @@
 @charset "UTF-8";
 /* CSS Document */
+body,
+p {
+  font-size: 16px !important; }
+
 body {
-  background-color: #EBEAEA;
-  background-image: url(images/salonote_installer_image_1.jpg);
-  background-size: cover;
-  background-position: center center; }
+  background-color: #EBEAEA; }
   body #installer-essence-body {
     font-family: "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
     top: 3em;
     right: 0px;
     bottom: 3em;
     left: 0px;
-    border-radius: 1em;
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0 4px 15px #CCCCCC; }
     @media screen and (min-width: 769px) {
@@ -52,6 +52,21 @@ body {
         body #installer-essence-body .installer-essence-content .character_essence > img {
           max-width: 90px !important;
           top: 0; } }
+    body #installer-essence-body div[class="h1"],
+    body #installer-essence-body div[class="h2"],
+    body #installer-essence-body div[class="h3"],
+    body #installer-essence-body .radio label[class*="h"] {
+      margin-bottom: 0.5em; }
+    body #installer-essence-body .font-mincho * {
+      font-family: "Times New Roman", "游明朝", "Yu Mincho", "游明朝体", "YuMincho", "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "HiraMinProN-W3", "HGS明朝E", "ＭＳ Ｐ明朝", "MS PMincho", serif !important; }
+    body #installer-essence-body .font-gothic * {
+      font-family: "Segoe UI", Verdana, "游ゴシック", "Yu Gothic", "YuGothic", "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif !important; }
+    body #installer-essence-body .font-maru-gothic * {
+      font-family: "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO" !important; }
+    body #installer-essence-body .font-meiryo * {
+      font-family: "メイリオ", Meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif !important; }
+    body #installer-essence-body #header_nav.navbar-block {
+      display: block !important; }
   body .main-content-wrap,
   body #note-essence-write-form,
   body footer {

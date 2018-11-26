@@ -50,6 +50,11 @@ class SALONOTE_HELPER__Class {
 		//dashboard widget
 		require_once( SALONOTE_HELPER__PLUGIN_PATH. '/lib/module/dashboard_ajax.php' ); 
 		
+		//plugins
+		require_once( get_template_directory(). '/lib/salonote-helper/plugins/slider-essence/slider_essence.php' );
+		require_once( get_template_directory(). '/lib/salonote-helper/plugins/search-engine-essence/search-engine-essence.php' );
+		require_once( get_template_directory(). '/lib/salonote-helper/plugins/mailform-essence/mailform-essence.php' );
+		
 		// user parts post_type =======================================
 		if( !empty( $theme_opt['base'] ) && in_array('enable_parts',$theme_opt['base'] ) ){
 			require_once ( SALONOTE_HELPER__PLUGIN_PATH. '/lib/post_type/parts.php' );
@@ -72,9 +77,9 @@ class SALONOTE_HELPER__Class {
 				
 		// user parts post_type =======================================
 		if( !empty( $theme_opt['base'] ) && in_array('enable_shop_menu',$theme_opt['base'] ) ){
-			
+			require_once( get_template_directory(). '/lib/salonote-helper/plugins/shop-menu-essence/shop_menu_essence.php' );
 		}
-		require_once( get_template_directory(). '/lib/salonote-helper/plugins/shop-menu-essence/shop_menu_essence.php' );
+		
 		
 		// user parts post_type =======================================
 		if( !empty( $theme_opt['base'] ) && in_array('enable_character',$theme_opt['base'] ) ){
@@ -88,9 +93,14 @@ class SALONOTE_HELPER__Class {
 		require_once( get_template_directory(). '/lib/salonote-helper/plugins/note-essence/note-essence.php' );
 		require_once( get_template_directory(). '/lib/salonote-helper/plugins/installer-essence/installer-essence.php' );
 		
+		//require_once( get_template_directory(). '/lib/salonote-helper/plugins/line-messaging-api-essence/line-messaging-api-essence.php' );
+		
 		
 		//hook
 		require_once ( SALONOTE_HELPER__PLUGIN_PATH. '/hook/save_post_action.php' );
+		
+		
+		
 
 	}
   

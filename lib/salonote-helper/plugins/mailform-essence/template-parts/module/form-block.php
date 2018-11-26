@@ -229,11 +229,8 @@ if(is_user_logged_in()){
     if( $item['type'] === 'textarea' ) echo '<textarea id="form-input-' . $counter .'" class="form-control'.$_required_class.'" name="'.$form_field.'" rows="8"'.$_required_label.'></textarea>';
     
     if( $item['type'] === 'select' && !empty($item['fields']) ){
-      
-      $fields_arr = explode("\n", $item['fields']); // 行に分割
-      $fields_arr = array_map('trim', $fields_arr); // 各行にtrim()をかける
-      $fields_arr = array_filter($fields_arr, 'strlen'); // 文字数が0の行を取り除く
-      $fields_arr = array_values($fields_arr); // これはキーを連番に振りなおす
+
+			$fields_arr = br2array($item['fields']);
   
        echo '<select id="form-input-' . $counter .'" class="form-control'.$_required_class.'" name="'.$form_field.'"'.$_required_label.'>';
        foreach( $fields_arr as $select ){
@@ -245,10 +242,8 @@ if(is_user_logged_in()){
 
     if($item['type'] == 'radio' && !empty($item['fields']) ){
       
-      $fields_arr = explode("\n", $item['fields']); // 行に分割
-      $fields_arr = array_map('trim', $fields_arr); // 各行にtrim()をかける
-      $fields_arr = array_filter($fields_arr, 'strlen'); // 文字数が0の行を取り除く
-      $fields_arr = array_values($fields_arr); // これはキーを連番に振りなおす
+			$fields_arr = br2array($item['fields']);
+			
       echo '<div class="form-check">';
        foreach( $fields_arr as $key => $check_item ){
          echo '<div class="form-'.$item['type'].'-item form-check-inline">';
@@ -262,10 +257,8 @@ if(is_user_logged_in()){
     
     if( $item['type'] == 'checkbox' && !empty($item['fields']) ){
       
-      $fields_arr = explode("\n", $item['fields']); // 行に分割
-      $fields_arr = array_map('trim', $fields_arr); // 各行にtrim()をかける
-      $fields_arr = array_filter($fields_arr, 'strlen'); // 文字数が0の行を取り除く
-      $fields_arr = array_values($fields_arr); // これはキーを連番に振りなおす
+			$fields_arr = br2array($item['fields']);
+			
       echo '<div class="form-check">';
        foreach( $fields_arr as $key => $check_item ){
          echo '<div class="form-'.$item['type'].'-item form-check-inline">';

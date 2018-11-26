@@ -5,7 +5,7 @@ global $page_info;
 global $post_type_name;
 global $post_taxonomies;
 
-$_list_show_excerpt_tmp = $post_type_set['list_show_excerpt'];
+$_list_show_excerpt_tmp = !empty($post_type_set['list_show_excerpt']) ? esc_attr($post_type_set['list_show_excerpt']) : null ;
 
 $post_type_set['list_show_excerpt'] = !empty($post_type_set['related_list_show_excerpt']) ? $post_type_set['related_list_show_excerpt']  : 'hide' ;
 

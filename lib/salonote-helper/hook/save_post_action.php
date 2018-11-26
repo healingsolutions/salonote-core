@@ -68,7 +68,7 @@ function salonote_landing_updated_create_child_post( $post_ID ) {
 	);
 	$children = get_children( $child_args );
 	
-	if( count($children) > 0 )
+	if( !empty($children) && count($children) > 0 )
 		return;
 	
 	$bkg_color = [];

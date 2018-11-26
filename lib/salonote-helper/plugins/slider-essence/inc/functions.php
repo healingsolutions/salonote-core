@@ -89,7 +89,9 @@ function slider_essence(){
 	}
 		
 	<?php
+	/*
 	if( !empty($_sp_height) && $_sp_height > 60 ){
+		
 	echo '
 		@media screen and (max-width: 768px) {
 				#slider-essence .slick-block-essence .slick-item img{
@@ -100,10 +102,13 @@ function slider_essence(){
 	echo '
 		@media screen and (max-width: 600px) {
 				#slider-essence .slick-block-essence .slick-item img{
-					left: '. ((60 - $_sp_height) * 2.1 - $opt['sp_right']) .'%;
+					left: '. ((60 - $_sp_height) * 1.4 - $opt['sp_right']) .'%;
 				}
 		}';
+	
 	}
+	*/
+	
 		
 
 	$mods = get_theme_mods();	

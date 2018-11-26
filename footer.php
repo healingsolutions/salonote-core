@@ -32,7 +32,7 @@ if(
 
 
 //display Google Map
-if($theme_opt['base']['google_map'] && !$hide_footer ){
+if( !empty($theme_opt['base']['google_map']) && !$hide_footer ){
   echo '<div class="mod-footer_map onlyPC" style="margin-bottom: -15px; position:relative; z-index:20;background-color:white;">';
   echo do_shortcode('[GoogleMap width="100%" height="250"]');
   echo '</div>';
@@ -209,6 +209,5 @@ if($theme_opt['base']['google_map'] && !$hide_footer ){
 	if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
 	else window.addEventListener('load', loadDeferredStyles);
 </script>
-<div id="content-loader"><div class="loader"></div></div>
 </body>
 </html>

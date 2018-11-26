@@ -616,6 +616,9 @@ hr {
     .carousel-type-group .slick-next::before {
       content: "\f345"; }
 
+.list-icon {
+  display: inline-block; }
+
 ol.list-icon {
   margin-left: 0;
   margin-bottom: 25px;
@@ -2475,6 +2478,44 @@ pre.pre_code-block {
   #note-essence-write-form button {
     background-color: white;
     border: none; }
+
+body.note_essence_form {
+  padding-top: 5em;
+  background-color: #F0EDE1; }
+  body.note_essence_form .main-content-wrap {
+    background-color: #F0EDE1; }
+  body.note_essence_form .note_post_fields > div {
+    position: relative;
+    background-color: #E6D2D2;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 5px;
+    top: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s; }
+    body.note_essence_form .note_post_fields > div:hover {
+      top: -4px;
+      box-shadow: 3px 3px 7px #CCCCCC;
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s; }
+    body.note_essence_form .note_post_fields > div label.col-form-label {
+      font-weight: bold;
+      font-size: 1.1em; }
+
+#wpadminbar li#wp-admin-bar-note-essence .ab-icon:before {
+  top: 2px; }
+
+@media screen and (max-width: 782px) {
+  #wpadminbar li#wp-admin-bar-note-essence {
+    display: block; }
+    #wpadminbar li#wp-admin-bar-note-essence .ab-icon:before {
+      top: 5px; } }
 
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, 'Hiragino Sans', "ヒラギノ角ゴシック", 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ Pro W3', Roboto, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', sans-serif; }

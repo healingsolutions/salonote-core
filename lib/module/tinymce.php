@@ -675,7 +675,7 @@ function essence_tinymce($initArray) {
   //$initArray[ 'toolbar_4' ] = '';
 	
 	
-	$initArray[ 'toolbar1' ] = 'bold,italic,underline,strikethrough,removeformat,blockquote,bullist,numlist,alignleft,aligncenter,alignright,outdent,indent,forecolor,backcolor,link,unlink,fullscreen,hr,wp_page,wp_adv';
+	$initArray[ 'toolbar1' ] = 'bold,italic,underline,strikethrough,removeformat,blockquote,bullist,numlist,alignleft,aligncenter,alignright,outdent,indent,forecolor,backcolor,link,unlink,fullscreen,hr,wp_page,undo,wp_adv';
   $initArray[ 'toolbar2' ] = 'styleselect,formatselect,fontsizeselect,fontselect,table,wp_more,media,image';
   $initArray[ 'toolbar3' ] = 'btn_add_sample_block, btn_add_col_block, btn_add_separate_block, btn_add_dldtdd_block, btn_only_spbr,btn_add_youtube_block,btn_add_horizon_block,btn_add_editor_block, btn_add_countdown_timer';
 	//$initArray[ 'toolbar3' ] = 'btn_add_sample_block, btn_only_spbr,btn_add_youtube_block,btn_add_horizon_block,btn_add_editor_block';

@@ -15,17 +15,14 @@ $_nav_class = has_nav_menu('Top') ? '-has_top_nav container' : '' ;
 //$_super_view = '';
 
 echo '<nav id="header_nav" class="navbar-block">';
-
-
-
-	echo '<div class="header_logo-block onlyPC';
-	if( !empty( $theme_opt['base']['description'] ) && in_array('header_h1_txt',$theme_opt['base'] )){
-		echo ' has_excerpt';
-	}
-	if ( !has_nav_menu('Header')) {
-		echo ' none_header_nav';
-	}
-	echo '">';
+echo '<div class="header_logo-block onlyPC';
+if( !empty( $theme_opt['base']['description'] ) && in_array('header_h1_txt',$theme_opt['base'] )){
+	echo ' has_excerpt';
+}
+if ( !has_nav_menu('Header')) {
+	echo ' none_header_nav';
+}
+echo '">';
 	
 	
 	echo '<a href="'.home_url().'">';

@@ -80,8 +80,8 @@ if( !empty($theme_opt['extention']['head_tag_admin']) && !current_user_can( 'adm
 	echo $theme_opt['extention']['head_tag_admin'];
 }
 	
-if( !empty($theme_opt['extention']['head_tag_uesr']) ){
-	echo $theme_opt['extention']['head_tag_uesr'];
+if( !empty($theme_opt['extention']['head_tag_user']) ){
+	echo $theme_opt['extention']['head_tag_user'];
 }
 ?>
 </head>
@@ -89,6 +89,10 @@ if( !empty($theme_opt['extention']['head_tag_uesr']) ){
   <div id="body-wrap" class="fader">
     
 <?php
+		
+	if( !empty($theme_opt['extention']['header_html_user']) ){
+		echo $theme_opt['extention']['header_html_user'];
+	}
 
 	// =============================
 	// check display header

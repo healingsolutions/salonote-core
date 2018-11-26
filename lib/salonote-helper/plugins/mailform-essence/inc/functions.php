@@ -418,10 +418,9 @@ function essence_mailform_get_post(){
 		//オプションの禁止ワードを追加
     $span_word_option = !empty($mail_form_essence_opt['spam_list']) ? $mail_form_essence_opt['spam_list'] : null ;
     if( !empty($span_word_option) ){
-      $span_word_option = explode("\n", $span_word_option); // 行に分割
-      $span_word_option = array_map('trim', $span_word_option); // 各行にtrim()をかける
-      $span_word_option = array_filter($span_word_option, 'strlen'); // 文字数が0の行を取り除く
-      $span_word_option = array_values($span_word_option); // これはキーを連番に振りなおす
+			
+			$span_word_option = br2array($span_word_option);
+			
       $spam_word_list = array_merge($spam_word_list,$span_word_option);
     }
 

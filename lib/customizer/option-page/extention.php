@@ -47,6 +47,11 @@ $field_arr = array(
       'label' => __('Insert Head Tag global','salonote-essence'),
       'type' => 'textarea',
   ),
+	
+	'header_html_user' => array(
+      'label' => __('Insert Header Html global','salonote-essence'),
+      'type' => 'textarea',
+  ),
   
 );
 ?>

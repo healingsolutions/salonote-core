@@ -1,0 +1,32 @@
+/* CSS Document */
+
+		
+		
+.upload_images{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+li.upload_images_wrap{
+	list-style: none;
+	margin: 3px;
+
+	.upload_images_bkg{
+		width: 150px;
+		height: 150px;
+		background-size: cover;
+		background-position: center center;
+	}
+
+	.upload_images_remove{
+		position: absolute;
+		background-color: white;
+		width: 1.4em;
+		height: 1.4em;
+		border-radius: 50%;
+		text-align: center;
+		line-height: 1.4;
+	}
+
+}
+		

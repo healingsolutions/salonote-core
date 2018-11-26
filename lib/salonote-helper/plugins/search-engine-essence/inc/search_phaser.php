@@ -32,7 +32,8 @@ License: GPL2
 
 	//必要ライブラリ
 	if( empty($search_engine_opt['disable_phpquery']) ){
-		require_once( SEARCH_ENGINE_ESSENCE_PLUGIN_PATH. '/lib/phpQuery/phpQuery-onefile.php');
+		//require_once( SEARCH_ENGINE_ESSENCE_PLUGIN_PATH. '/lib/phpQuery/phpQuery-onefile.php');
+		require_once( SALONOTE_HELPER__PLUGIN_PATH. '/phpQuery/phpQuery-onefile.php' );
 	}
 
 

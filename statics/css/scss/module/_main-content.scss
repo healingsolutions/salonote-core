@@ -67,7 +67,9 @@ section.content-section{
 
 
 
-body.no-slider{
+body.no-slider.no-header_nav{
+	padding-top: 5em;
+	
 	.main-content-wrap.first-cover
 	.main-content-unit.none_sidebar{
 		.main-content-block{

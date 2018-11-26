@@ -101,10 +101,8 @@ if( !empty($shop_menu_opt['reserve_type']) && in_array( 'hearing' , $shop_menu_o
 	<?php
 	if( !empty($shop_menu_opt['hearing_date_time']) ){
 		$hearing_date_time = !empty($shop_menu_opt['hearing_date_time']) ? esc_attr($shop_menu_opt['hearing_date_time']) : null;
-		$hearing_date_time = explode("\n", $hearing_date_time); // とりあえず行に分割
-		$hearing_date_time = array_map('trim', $hearing_date_time); // 各行にtrim()をかける
-		$hearing_date_time = array_filter($hearing_date_time, 'strlen'); // 文字数が0の行を取り除く
-		$_date_time = array_values($hearing_date_time); // これはキーを連番に振りなおしてるだけ
+		$_date_time = br2array($hearing_date_time);
+		
 	}else{
 		$_date_time = array(
 			'午前中　早め',
@@ -182,10 +180,7 @@ if( !empty($shop_menu_opt['reserve_type']) && in_array( 'preferred' , $shop_menu
 	
 		$reserve_times = !empty($shop_menu_opt['reserve_times']) ? esc_attr($shop_menu_opt['reserve_times']) : null;
 		if( $reserve_times ){
-			$reserve_times_arr = explode("\n", $reserve_times); // とりあえず行に分割
-			$reserve_times_arr = array_map('trim', $reserve_times_arr); // 各行にtrim()をかける
-			$reserve_times_arr = array_filter($reserve_times_arr, 'strlen'); // 文字数が0の行を取り除く
-			$reserve_times_arr = array_values($reserve_times_arr); // これはキーを連番に振りなおしてるだけ
+			$reserve_times_arr = br2array($reserve_times);
 		}else{
 			$reserve_times_arr = null;
 		}
@@ -242,8 +237,10 @@ if( !empty($shop_menu_opt['reserve_type']) && in_array( 'preferred' , $shop_menu
 	
 	echo '<div class="mb-5">
 	<p class="heading">ご予約についてのご希望などをお聞かせください</p>
-	<textarea class="form-control" rows="7" name="hearing[reason]" placeholder="例：子どもが学校から帰ってくる時間よりも前に帰りたい
-																																					例：午後から美容院に行く予約がある"></textarea>
+	<textarea class="form-control" rows="7" name="hearing[reason]" placeholder="例：◯◯時までにサロンを出たい
+	例：妊娠〇ヶ月です
+	例：子どもが学校から帰ってくる時間よりも前に帰りたい
+	例：午後から美容院に行く予約がある"></textarea>
 	</div>';
 
 

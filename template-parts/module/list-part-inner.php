@@ -25,6 +25,24 @@ if(
 				$_thumbnail_url = !empty($matches[2]) ? '<img src="http://img.youtube.com/vi/'.$matches[2].'/0.jpg" />' : null ;
 			}
 		}
+	
+	
+		//if display first attachment to thumbnail
+		if(
+			in_array('first_thumbnail',$post_type_set) &&
+			!has_post_thumbnail($post->ID)
+		){
+			$thumb_size = !empty( $post_type_set['thumbnail_size'] ) ? $post_type_set['thumbnail_size'] : 'thumbnail' ;
+			$_thumbnail_url = !empty( get_post_first_thumbnail($post->ID, $thumb_size) ) ? '<img src="'.get_post_first_thumbnail($post->ID, $thumb_size).'"/>' : null;
+			
+			if(
+				in_array('first_attachement',$post_type_set) &&
+				!has_post_thumbnail($post->ID) &&
+				!empty( get_post_first_thumbnail($post->ID, $thumb_size, 'id') )
+			){
+					set_post_thumbnail($post->ID, get_post_first_thumbnail($post->ID, $thumb_size, 'id') );
+			}
+		}
 
 		//if display thumbnail
 		if(
@@ -100,19 +118,19 @@ if(
 
 //excerpt
 if(
-  !empty( $post_type_set ) &&
+  !empty( $post_type_set['list_show_excerpt'] ) &&
 	$post_type_set['list_show_excerpt'] === 'body'
 	&& has_excerpt()  
 ){
   echo '<p class="list_block_excerpt">'.get_the_excerpt().'</p>';
 }elseif(
-	!empty( $post_type_set ) &&
+	!empty( $post_type_set['list_show_excerpt'] ) &&
   $post_type_set['list_show_excerpt'] === 'trim'
 ){
   echo '<p class="list_block_excerpt">'.get_the_excerpt().'</p>';
 }
 elseif(
-	!empty( $post_type_set ) &&
+	!empty( $post_type_set['list_show_excerpt'] ) &&
   $post_type_set['list_show_excerpt'] === 'hide'
 ){
 	echo '';

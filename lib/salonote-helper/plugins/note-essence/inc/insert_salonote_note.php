@@ -26,6 +26,10 @@ function insert_salonote_note($_insert_text){
 	global $insert_id;
 	
 	$post_value = [];
+
+	if(is_user_logged_in()){
+		//echo '<pre>_POST'; print_r($_POST); echo '</pre>';
+	}
 	
 	//echo $_insert_text;
 	
@@ -50,26 +54,24 @@ function insert_salonote_note($_insert_text){
 
 	
 	if( !empty( $_POST['post_new'] ) ){
-		$post_value['post_title'] = !empty($_POST['post_title']) ? esc_html($_POST['post_title']) : 'new title' ;
+		$post_value['post_title'] = !empty($_POST['post_title']) ? wp_strip_all_tags($_POST['post_title']) : 'new title' ;
 		$post_value['post_status'] = 'publish';
 		$post_value['post_type'] = !empty($_POST['post_type']) ? esc_html($_POST['post_type']) : null ;
 		$post_value['post_content'] = !empty($_insert_text) ? $_insert_text : '' ;
 		
-		echo '<pre>post_value'; print_r($post_value); echo '</pre>';
+		//echo '<pre>post_value　new'; print_r($post_value); echo '</pre>';
+		$insert_id = wp_insert_post($post_value);
+		return $insert_id;
 		
-		return $insert_id = wp_insert_post($post_value);
 	}else{
 		$post_value['ID'] = !empty($post_id) ? esc_html($post_id) : null ;
 		$post_value['post_type'] = !empty($_POST['edit_post_type']) ? esc_html($_POST['edit_post_type']) : null ;
 		$post_value['post_content'] = !empty($_insert_text) ? $_insert_text : '' ;
-		
-		echo '<pre>post_value'; print_r($post_value); echo '</pre>';
-		
-		return $insert_id = wp_update_post($post_value);
+
+		//echo '<pre>post_value rewrite'; print_r($post_value); echo '</pre>';
+		$insert_id = wp_update_post($post_value);
+		return $insert_id;
 	}
-	
-	
-	
 	
 
 }

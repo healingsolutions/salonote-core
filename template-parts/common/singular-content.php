@@ -1,4 +1,5 @@
 <?php
+global $post;
 global $theme_opt;
 global $post_type_name;
 global $post_type_set;
@@ -86,13 +87,13 @@ echo '<main class="'.implode(' ',$main_content).'">';
   endif;
 
 
-	echo !empty(get_the_content() ) ? '<article>' : '';
+	echo !empty( $post->post_content ) ? '<article>' : '';
   if(have_posts()): while(have_posts()): the_post();
     get_template_part('template-parts/module/single-content', $post_type_name);
   endwhile; endif;
 	
 
-	echo !empty(get_the_content() ) ? '<footer>' : '<div>';
+	echo !empty($post->post_content ) ? '<footer>' : '<div>';
 	if(
       !empty($page_info['single_child_unit']) &&
 		  $page_info['single_child_unit']
@@ -130,8 +131,8 @@ echo '<main class="'.implode(' ',$main_content).'">';
     //dynamic_sidebar('content_footer');
   endif;
 
-	echo !empty(get_the_content() ) ? '</footer>' : '</div>';
-	echo !empty(get_the_content() ) ? '</article>' : '';
+	echo !empty($post->post_content) ? '</footer>' : '</div>';
+	echo !empty($post->post_content) ? '</article>' : '';
   
 echo '</main>';//main_content
 
