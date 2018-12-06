@@ -62,7 +62,7 @@ function es_slider_upload_postmeta(){ //投稿ページに表示されるカス�
 						<!-- image -->
 						
 						<input type="hidden" name="es_slider_upload_images['.$key.'][image]" value="'.$value['image'].'" />
-						<input class="slider-text" type="text" name="es_slider_upload_images['.$key.'][text]" value="'. (!empty($value['text']) ? $value['text'] : '') .'">
+						<textarea class="slider-text" name="es_slider_upload_images['.$key.'][text]">'. (!empty($value['text']) ? $value['text'] : '') .'</textarea>
 						<textarea class="slider-textarea" name="es_slider_upload_images['.$key.'][textarea]">'. ( !empty($value['textarea']) ? $value['textarea'] : '' ).'</textarea>
 						</div>
 						</li>';

@@ -79,4 +79,29 @@ time.entry_block_date{
 		max-width: 100%;
 		height: auto;
 	}
+	
+	a{
+		img{
+			position: relative;
+			top: 0;
+			box-shadow: 0 0 0 #CCCCCC;
+			-webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -ms-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
+		}
+	}
+	
+	a:hover{
+		img{
+			top: -0.3em;
+			box-shadow: 1px 0 7px #CCCCCC ;
+			-webkit-transition: all 0.3s;
+        -moz-transition: all 0.3s;
+        -ms-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
+		}
+	}
 }

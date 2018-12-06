@@ -58,7 +58,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					'menu_position'       => 54,
 					'menu_icon'           => 'dashicons-store',
 					'has_archive'         => $_public,
-					'supports'            => array('title','thumbnail'),
+					'supports'            => array('title','editor','thumbnail'),
 					'exclude_from_search' => true,
 					'show_in_rest'			  => true,
 					'rest_base'   				=> 'shop_menu'

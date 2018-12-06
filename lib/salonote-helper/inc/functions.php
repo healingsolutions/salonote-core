@@ -26,7 +26,6 @@ add_action( 'wp_enqueue_scripts', 'salonote_essence_helper_head_enqueue' ,1);
 add_filter('the_content', 'edit_content_hook',10);
 function edit_content_hook($content){
 	
-	if ( !wp_is_mobile() ) {
 
 		require_once( SALONOTE_HELPER__PLUGIN_PATH. '/phpQuery/phpQuery-onefile.php' );
  
@@ -104,8 +103,7 @@ function edit_content_hook($content){
 		
 
 		return do_shortcode(replace_headline_text_content($doc)); //only pc
-	}
-	return do_shortcode(replace_headline_text_content($content)); //only sp
+	
 }
 
 function replace_headline_text_content( $content ){

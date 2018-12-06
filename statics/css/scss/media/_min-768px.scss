@@ -283,15 +283,16 @@
 				-ms-transition: opacity 1.6s ease;
 				-o-transition: opacity 1.6s ease;
 				transition: opacity 1.6s ease;
+				padding:  10px 2em;
 			}
 
 			&.is_active .block-group.group-col-2.has_text{
 				@include opacity(94);
-				-webkit-transition: opacity 1.6s 1s;
-				-moz-transition: opacity 1.6s 1s;
-				-ms-transition: opacity 1.6s 1s;
-				-o-transition: opacity 1.6s 1s;
-				transition: opacity 1.6s 1s;
+				-webkit-transition: opacity 1.6s 0.5s;
+				-moz-transition: opacity 1.6s 0.5s;
+				-ms-transition: opacity 1.6s 0.5s;
+				-o-transition: opacity 1.6s 0.5s;
+				transition: opacity 1.6s 0.5s;
 			}
 
 			

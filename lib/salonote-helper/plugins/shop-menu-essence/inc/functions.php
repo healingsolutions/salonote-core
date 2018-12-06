@@ -331,6 +331,7 @@ function print_shop_menu_item( $field_set=null , $shop_menu_arr=null, $not_reser
 	
 	echo '<div id="" class="shop_menu_block_id shop_menu_block '.$list_type.'-view">';
 
+
 	
 
 	foreach( $shop_menu_arr as $key => $item ){

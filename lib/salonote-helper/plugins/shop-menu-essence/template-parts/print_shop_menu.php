@@ -28,6 +28,7 @@ global $search;
 global $field_set;
 
 
+
 // ========================================
 // shop menu print
 

@@ -238,9 +238,7 @@ if( !empty($shop_menu_opt['reserve_type']) && in_array( 'preferred' , $shop_menu
 	echo '<div class="mb-5">
 	<p class="heading">ご予約についてのご希望などをお聞かせください</p>
 	<textarea class="form-control" rows="7" name="hearing[reason]" placeholder="例：◯◯時までにサロンを出たい
-	例：妊娠〇ヶ月です
-	例：子どもが学校から帰ってくる時間よりも前に帰りたい
-	例：午後から美容院に行く予約がある"></textarea>
+	例：妊娠〇ヶ月です"></textarea>
 	</div>';
 
 

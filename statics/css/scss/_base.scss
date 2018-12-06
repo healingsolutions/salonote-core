@@ -80,12 +80,17 @@ hr{
 				}
     }
  
-.inline-block{
-	display: inline-block;
-}
+body{
+	.display-block{
+		display: block;
+	}
+	.inline-block{
+		display: inline-block;
+	}
 
-.position-fixed{
-	position: fixed;
+	.position-fixed{
+		position: fixed;
+	}
 }
 
 

@@ -283,10 +283,13 @@ hr {
   .flex-block-wrap.row:before {
     content: none; }
 
-.inline-block {
+body .display-block {
+  display: block; }
+
+body .inline-block {
   display: inline-block; }
 
-.position-fixed {
+body .position-fixed {
   position: fixed; }
 
 .absolute {
@@ -1799,7 +1802,10 @@ span.line_marker {
     height: auto !important;
     padding: 40px 5px;
     background-position: center center;
-    background-repeat: no-repeat; } }
+    background-repeat: no-repeat; }
+  .text-cover-block .bkg-white-text {
+    color: inherit;
+    text-shadow: inherit; } }
 
 #body-wrap hr.block-horizon {
   display: none;
@@ -2526,7 +2532,7 @@ body {
 hr {
   display: inline-block;
   border: 0;
-  height: 2px;
+  height: 15px;
   background-color: #ccc;
   width: 100%;
   clear: both;

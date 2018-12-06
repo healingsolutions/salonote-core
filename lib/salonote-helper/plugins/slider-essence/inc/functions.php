@@ -322,7 +322,7 @@ function slider_essence(){
 		if(preg_match('/\[|\]/',$_content)){
 			echo '<div class="slick-text"><div class="slick-text-inner">'.wpautop(do_shortcode($_content)).'</div></div>';
 		}else{
-			echo '<div class="slick-text"><div class="slick-text-inner"><h2 class="bkg-white-text" style="font-size:2.2em;">'.nl2br(esc_html($_content)).'</h2></div></div>';
+			echo '<div class="slick-text"><div class="slick-text-inner"><h2 style="font-size:2.2em;">'.nl2br(esc_html($_content)).'</h2></div></div>';
 		}
 		
 		echo '</div>';

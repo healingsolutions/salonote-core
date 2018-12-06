@@ -63,6 +63,11 @@
       line-height: 50px;
 			font-size: 1.25em;
 			
+			h1.site-description{
+				font-size: .45rem;
+				margin-top: -1.5em;
+			}
+			
       img{
         max-height: 36px;
         width: auto;
@@ -858,10 +863,13 @@ body.admin-bar .site-header-block{
 
 			li.btn-item{
 				padding: 2em 1em;
+				padding: 0em 1em\0;
+				
 				-webkit-writing-mode: vertical-rl;
 				-ms-writing-mode: tb-rl;
 						writing-mode: vertical-rl;
 				
+
 				.nav_thumbnail{
 					display: none;
 				}

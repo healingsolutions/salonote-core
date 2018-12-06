@@ -45,6 +45,11 @@ function print_shop_menu_list($atts) {
 	
 	
   ob_start();
+	
+	
+
+	echo get_post_field('post_content', $id);
+	
   require( SHOP_MENU_ESSENCE_PLUGIN_PATH. "/template-parts/print_shop_menu.php");
 
   return ob_get_clean();
