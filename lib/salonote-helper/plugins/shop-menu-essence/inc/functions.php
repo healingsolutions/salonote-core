@@ -202,7 +202,7 @@ function shop_menu_reserve_hook($content){
 
 		require_once( SHOP_MENU_ESSENCE_PLUGIN_PATH. "/template-parts/action/send_notification.php");
 		require_once( SHOP_MENU_ESSENCE_PLUGIN_PATH. "/template-parts/action/register_reserve_info.php");
-		echo 'ご予約が完了しました。ありがとうございます。';
+		echo !empty($shop_menu_opt['return_text']) ? wpautop($shop_menu_opt['return_text']) : '予約希望を受付いたしました。ありがとうございます。';		
 		return;
 	}
 	

@@ -63,8 +63,9 @@ function set_image_tag_class($class){
 }
 add_filter('get_image_tag_class','set_image_tag_class',10);
 
-//lazy load
 
+/*
+//lazy load
 function customize_img_attribute( $content ) {
   $re_content = str_replace('alt=""', 'alt="image-'.wp_title('',false).'"', $content);
 	
@@ -76,7 +77,7 @@ function customize_img_attribute( $content ) {
   return $re_content;
 }
 add_filter('the_content','customize_img_attribute');
-
+*/
 
 
 
@@ -162,7 +163,25 @@ function add_custom_image_size_select( $size_names ) {
 
 add_filter( 'image_size_names_choose', 'add_custom_image_size_select',10 );
 
-
+/**
+ * Set sizes atribute for responsive images and better performance
+ * @param  array        $attr       markup attributes
+ * @param  object       $attachment WP_Post image attachment post
+ * @param  string|array $size       named image size or array
+ * @return array        markup attributes
+ */
+function armd_resp_img_sizes( $attr, $attachment, $size ) {
+	
+	global $essence_custom_image_sizes;
+	$custom_sizes = get_intermediate_image_sizes();
+	foreach ( $custom_sizes as $custom_size ) {
+			if ( isset( $essence_custom_image_sizes[$custom_size]['selectable'] ) && $essence_custom_image_sizes[$custom_size]['selectable'] ) {
+				$attr['sizes'] = $essence_custom_image_sizes[$custom_size]['width'];
+			}
+	}
+	return $attr;
+}
+add_filter( 'wp_get_attachment_image_attributes', 'armd_resp_img_sizes', 25, 3 );
 
 
 

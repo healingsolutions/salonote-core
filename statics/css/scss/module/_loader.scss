@@ -54,6 +54,7 @@
 // is_active =================================
 body.use_content_fade{
 	.entry_block_content > div.block-group-wrap,
+	.wp-block-media-text,
 	.landing-page-item{
 		position: relative;
 		top: 50px;
@@ -66,6 +67,7 @@ body.use_content_fade{
 	}
 
 	.entry_block_content > div.block-group-wrap.is_active,
+	.wp-block-media-text.is_active,
 	.landing-page-item.is_active{
 		position: relative;
 		top: 0px;

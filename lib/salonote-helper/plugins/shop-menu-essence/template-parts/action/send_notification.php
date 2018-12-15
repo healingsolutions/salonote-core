@@ -80,7 +80,7 @@ if( !empty($_admin_mail) && !empty($_POST) ){
 
 
 //確認メール
-$return_text = '予約を付けました。'.PHP_EOL.
+$return_text = '予約希望を受付けいたしました。'.PHP_EOL.
 '管理者用の確認メールを送信いたします。'.PHP_EOL.
 PHP_EOL.
 PHP_EOL;
@@ -200,7 +200,8 @@ PHP_EOL;
 	'ご予約の確認メールを送信いたします。'.PHP_EOL.
 	PHP_EOL.
 	PHP_EOL;
-	$return_text .= PHP_EOL. 'ご予約ありがとうございました。'.PHP_EOL;
+	
+	//$return_text .= PHP_EOL. 'ご予約ありがとうございました。'.PHP_EOL;
 	
 	$to      = $user_email;
   $subject = get_bloginfo('name') .'【ご予約確認メール】　ご予約希望ありがとうございます';

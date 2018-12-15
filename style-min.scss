@@ -88,6 +88,8 @@ Tags: one-column, two-columns, right-sidebar, left-sidebar, custom-header, custo
 @import "statics/css/scss/module/landing";
 @import "statics/css/scss/module/widgets";
 
+@import "statics/css/scss/module/gutenberg";
+
 //wordpress
 @import "statics/css/scss/wordpress";
 @import "statics/css/scss/woocommerce/woo";
@@ -109,4 +111,5 @@ Tags: one-column, two-columns, right-sidebar, left-sidebar, custom-header, custo
 @import "statics/css/scss/media/max-481px";
 @import "statics/css/scss/media/max-321px";
 
-
+//dashicons
+//@import "statics/css/scss/dashicons";

@@ -292,7 +292,7 @@ $color_customize_array = array(
 
 );
 
-add_action('wp_print_styles','print_style_head', 10,2);
+
 function print_style_head(){
   global $color_customize_array;
   global $color_set;
@@ -301,5 +301,32 @@ function print_style_head(){
 	$color_set = preg_replace('/\n|\r|\r\n|\s(?=\s)/', '', $color_set );
 	echo '<style>'.$color_set.'</style>';
 }
+add_action('wp_print_styles','print_style_head', 10,2);
+
+
+
+
+/*
+ * CSS を追加する
+ * use the `amp_post_template_css` action. 
+ *
+ * License: GPLv2 or later
+ */
+function nendebcom_amp_additional_css_styles( $amp_template ) {
+	global $color_customize_array;
+  global $color_set;
+	ob_start();
+	get_template_part('lib/module/print_color_style');
+	$color_set = preg_replace('/\n|\r|\r\n|\s(?=\s)/', '', $color_set );
+	echo $color_set;
+	
+	$compress = ob_get_clean();
+	$compress = preg_replace('/\s+/', ' ', $compress);
+	$compress = preg_replace('/\!important/', ' ', $compress);
+	$compress = preg_replace('/\/\*[^\/]+\*\//', '', $compress);
+	echo $compress;
+}
+add_action( 'amp_post_template_css', 'nendebcom_amp_additional_css_styles' );
+
 
 ?>

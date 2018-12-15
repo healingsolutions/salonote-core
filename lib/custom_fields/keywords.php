@@ -29,7 +29,7 @@ function add_keywords(){
 			$post_type_set  = !empty($theme_opt['post_type'][$post_type_name]) ? $theme_opt['post_type'][$post_type_name] : null ;
 
 			if( !empty($post_type_set) && in_array('check_words_count',$post_type_set) ){
-					add_meta_box('keywords', 'キーワード', 'insert_keywords', $post_type_name, 'normal', 'high');
+					add_meta_box('keywords', 'キーワード', 'insert_keywords', $post_type_name, 'side','high');
 			}
     }
 }

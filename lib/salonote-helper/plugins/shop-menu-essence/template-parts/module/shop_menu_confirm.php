@@ -35,6 +35,7 @@ echo '
 echo !empty($shop_menu_items[$menu_item_id]['menu_global_name']) ? '<dt class="hidden">メニュー名</dt><dd class="menu_name none_dt">'. $shop_menu_items[$menu_item_id]['menu_global_name'].'</dd>' : '' ;
 echo !empty($shop_menu_items[$menu_item_id]['menu_global_time']) ? '<dt>所要時間</dt><dd>'. $shop_menu_items[$menu_item_id]['menu_global_time'].'</dd>' : '' ;
 echo !empty($shop_menu_items[$menu_item_id]['menu_global_price']) ? '<dt>料金</dt><dd>'. $shop_menu_items[$menu_item_id]['menu_global_price'].'円</dd>' : '' ;
+echo !empty($shop_menu_items[$menu_item_id]['menu_campaing']) ? '<dt>キャンペーン料金</dt><dd>'. $shop_menu_items[$menu_item_id]['menu_campaing'].'</dd>' : '' ;
 
 echo '
 </dl>

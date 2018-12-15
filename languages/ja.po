@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: salonote-essence\n"
-"POT-Creation-Date: 2018-11-13 22:02+0900\n"
-"PO-Revision-Date: 2018-11-13 22:08+0900\n"
+"POT-Creation-Date: 2018-12-08 18:56+0900\n"
+"PO-Revision-Date: 2018-12-08 18:58+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ja\n"
@@ -48,31 +48,31 @@ msgstr "コメントは受け付けていません。"
 msgid "(c)"
 msgstr "©"
 
-#: functions.php:243
+#: functions.php:256
 msgid "Top"
 msgstr "トップ"
 
-#: functions.php:244
+#: functions.php:257
 msgid "Header"
 msgstr "ヘッダー"
 
-#: functions.php:245
+#: functions.php:258
 msgid "Header Bottom"
 msgstr "ヘッダーの下"
 
-#: functions.php:246
+#: functions.php:259
 msgid "Footer Top"
 msgstr "フッター上"
 
-#: functions.php:247
+#: functions.php:260
 msgid "Footer SiteMap"
 msgstr "フッターサイトマップ"
 
-#: functions.php:248
+#: functions.php:261
 msgid "SmartPhone Display Navi"
 msgstr "スマートフォン下部ナビ"
 
-#: functions.php:530
+#: functions.php:537
 msgid "Recent Posts"
 msgstr "最近の投稿"
 
@@ -102,45 +102,49 @@ msgstr "Containerを使う"
 msgid "Page Information"
 msgstr "ページ情報"
 
-#: lib/custom_fields/page_info.php:24 lib/custom_fields/page_info.php:110
+#: lib/custom_fields/page_info.php:24 lib/custom_fields/page_info.php:111
 msgid "Full Size"
 msgstr "全画面表示"
 
-#: lib/custom_fields/page_info.php:25 lib/custom_fields/page_info.php:111
+#: lib/custom_fields/page_info.php:25 lib/custom_fields/page_info.php:112
 #: lib/customizer/option-page/post-type.php:164
 #: lib/customizer/option-page/post-type.php:236
 msgid "Hide Sidebar"
 msgstr "メインのみ"
 
-#: lib/custom_fields/page_info.php:26 lib/custom_fields/page_info.php:112
+#: lib/custom_fields/page_info.php:26 lib/custom_fields/page_info.php:113
 msgid "Show Sidebar"
 msgstr "サイドを表示"
 
-#: lib/custom_fields/page_info.php:27 lib/custom_fields/page_info.php:113
+#: lib/custom_fields/page_info.php:27 lib/custom_fields/page_info.php:114
 msgid "Show Children"
 msgstr "子ページを表示する"
 
-#: lib/custom_fields/page_info.php:28 lib/custom_fields/page_info.php:114
+#: lib/custom_fields/page_info.php:28 lib/custom_fields/page_info.php:115
 msgid "Tab navigation"
 msgstr "トップナビゲーション"
 
-#: lib/custom_fields/page_info.php:29 lib/custom_fields/page_info.php:115
+#: lib/custom_fields/page_info.php:29 lib/custom_fields/page_info.php:116
 msgid "Hide in list"
 msgstr "リストに表示しない"
 
-#: lib/custom_fields/page_info.php:30 lib/custom_fields/page_info.php:116
+#: lib/custom_fields/page_info.php:30 lib/custom_fields/page_info.php:117
 msgid "HIde Title"
 msgstr "タイトルを表示しない"
 
-#: lib/custom_fields/page_info.php:31 lib/custom_fields/page_info.php:117
+#: lib/custom_fields/page_info.php:31 lib/custom_fields/page_info.php:118
 msgid "Small container"
 msgstr "コンテンツの幅を狭める"
 
-#: lib/custom_fields/page_info.php:32 lib/custom_fields/page_info.php:118
+#: lib/custom_fields/page_info.php:32
+msgid "overlaid block_group text"
+msgstr "テキストブロックを画像に重ねる"
+
+#: lib/custom_fields/page_info.php:33 lib/custom_fields/page_info.php:119
 msgid "Hide header description"
 msgstr "ヘッダーの概要を隠す"
 
-#: lib/custom_fields/page_info.php:71
+#: lib/custom_fields/page_info.php:72
 msgid "Side Content"
 msgstr "サイドコンテンツ"
 
@@ -300,9 +304,13 @@ msgstr "管理者以外に挿入されるheadタグ"
 msgid "Insert Head Tag global"
 msgstr "公開するheadタグ"
 
-#: lib/customizer/option-page/extention.php:55
+#: lib/customizer/option-page/extention.php:52
+msgid "Insert Header Html global"
+msgstr "headタグに挿入するhtml"
+
+#: lib/customizer/option-page/extention.php:60
 #: lib/customizer/option-page/main.php:267
-#: lib/customizer/option-page/post-type.php:280
+#: lib/customizer/option-page/post-type.php:284
 #: lib/customizer/theme-options.php:10
 msgid "Theme Setting"
 msgstr "テーマ設定"
@@ -773,34 +781,38 @@ msgstr "動画サムネイル"
 
 #: lib/customizer/option-page/post-type.php:262
 msgid "Use First Image for Thumbnail"
-msgstr "最初の画像をサムネイルに使用"
+msgstr "最初の画像をサムネイルとして表示"
 
 #: lib/customizer/option-page/post-type.php:266
+msgid "Set First Image to eyecache"
+msgstr "最初の画像をサムネイルとして保存"
+
+#: lib/customizer/option-page/post-type.php:270
 msgid "Use Thumbnail for Side List "
 msgstr "サイドリストにサムネイルを使用する"
 
-#: lib/customizer/option-page/post-type.php:271
+#: lib/customizer/option-page/post-type.php:275
 msgid "Hide Gallery Caption"
 msgstr "ギャラリーのキャプションを非表示"
 
-#: lib/customizer/option-page/post-type.php:439
+#: lib/customizer/option-page/post-type.php:443
 msgid "Common Setting"
 msgstr "共通の設定"
 
-#: lib/customizer/option-page/post-type.php:440
+#: lib/customizer/option-page/post-type.php:444
 msgid "Archice Setting"
 msgstr "リストの表示設定"
 
-#: lib/customizer/option-page/post-type.php:441
+#: lib/customizer/option-page/post-type.php:445
 msgid "Singular Setting"
 msgstr "シングルページの表示設定"
 
-#: lib/customizer/option-page/post-type.php:442
+#: lib/customizer/option-page/post-type.php:446
 msgid "Thumbnail Setting"
 msgstr "サムネイル設定"
 
-#: lib/customizer/option-page/post-type.php:506
-#: lib/customizer/option-page/post-type.php:522 lib/widget/widgets.php:129
+#: lib/customizer/option-page/post-type.php:510
+#: lib/customizer/option-page/post-type.php:526 lib/widget/widgets.php:129
 msgid "front-page"
 msgstr "フロントページ"
 
@@ -1041,11 +1053,11 @@ msgstr " ページ"
 msgid "page"
 msgstr "ページ"
 
-#: lib/inc/functions.php:291 template-parts/module/related_entries.php:63
+#: lib/inc/functions.php:292 template-parts/module/related_entries.php:63
 msgid "posts"
 msgstr "投稿"
 
-#: lib/inc/functions.php:501
+#: lib/inc/functions.php:502
 msgid "Search"
 msgstr "検索"
 
@@ -1409,11 +1421,11 @@ msgstr "class"
 msgid "marker"
 msgstr "マーカー"
 
-#: lib/salonote-helper/inc/functions.php:189
+#: lib/salonote-helper/inc/functions.php:202
 msgid "Words count"
 msgstr "文字数"
 
-#: lib/salonote-helper/inc/functions.php:193
+#: lib/salonote-helper/inc/functions.php:206
 msgid "Headline count"
 msgstr "見出し回数"
 
@@ -2272,7 +2284,7 @@ msgstr "投稿無し"
 msgid "page / all"
 msgstr "ページ目／ 全"
 
-#: template-parts/module/list-part-inner.php:77
+#: template-parts/module/list-part-inner.php:95
 #: template-parts/module/single-content-shop_menu.php:28
 #: template-parts/module/single-content-staff.php:27
 #: template-parts/module/single-content-style.php:27
@@ -2280,7 +2292,7 @@ msgstr "ページ目／ 全"
 msgid ","
 msgstr "、"
 
-#: template-parts/module/list-part-inner.php:129
+#: template-parts/module/list-part-inner.php:147
 msgid "gallery"
 msgstr "ギャラリー"
 

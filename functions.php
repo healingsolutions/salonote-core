@@ -45,6 +45,18 @@ add_editor_style( get_template_directory_uri(). "/statics/css/editor-style.css")
 add_editor_style( get_template_directory_uri(). "/lib/customizer/theme-colors.css");
 
 
+//editor style
+function salonote_custom_editor_style() {
+    add_theme_support( 'editor-styles' );
+ 
+    // admin editor css
+		add_editor_style( get_template_directory_uri(). "/statics/css/editor-style.css");
+		//add_editor_style( get_template_directory_uri(). "/statics/css/theme-style.php");
+		add_editor_style( get_template_directory_uri(). "/lib/customizer/theme-colors.css");
+}
+add_action( 'after_setup_theme', 'salonote_custom_editor_style' );
+
+
 if( !empty( $theme_opt['base'] ) && in_array('childStyles',$theme_opt['base'])  ){
   add_editor_style( get_stylesheet_directory_uri(). "/style.css");
 }
@@ -82,7 +94,7 @@ function essence_head_enqueue() {
     //wp_enqueue_style('colorbox', get_template_directory_uri().'/statics/js/colorbox/colorbox.css');
   }
 	
-	if( !empty($theme_opt['extention']) && in_array('use_slick',$theme_opt['extention']) ){
+	if( !empty($theme_opt['extention']) && in_array('use_slick',$theme_opt['extention']) && !wp_is_mobile() ){
 		wp_enqueue_script('slick', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js', array(), '1.6.0' ,true);
 		wp_enqueue_style ('slick', '//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css', array(), '1.6.0');
 		wp_enqueue_style ('slick-theme', '//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css', array(), '1.9.0');
@@ -101,7 +113,8 @@ function essence_head_enqueue() {
 	wp_enqueue_script('inview', '//cdnjs.cloudflare.com/ajax/libs/jquery.inview/1.0.0/jquery.inview.min.js', array(), '1.0.0' ,true);
 	}
 	
-	//wp_enqueue_style('dashicons',true);
+	//wp_deregister_style( 'dashicons' ); 
+	wp_enqueue_style('dashicons',true);
 
 
 }
@@ -273,7 +286,8 @@ function include_library() {
 
   require_once( get_template_directory(). '/lib/inc/functions.php' );
 	
-  require_once( get_template_directory(). '/lib/module/tinymce.php' );
+  require_once( get_template_directory(). '/lib/module/tinymce/tinymce.php' );
+	require_once( get_template_directory(). '/lib/module/gutenberg/gutenberg.php' );
   require_once( get_template_directory(). '/lib/module/images.php' );
 	
   require_once( get_template_directory(). '/lib/customizer/theme-customizer.php' );

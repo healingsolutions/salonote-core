@@ -49,6 +49,12 @@ jQuery(document).ready(function($){
 	}
 	
 	
+	if($('.wp-block-media-text__content').length ){
+		$('.wp-block-media-text__content').each(function(){
+			$(this).wrap('<div class="wp-block-media-text__content-block"></div>');
+		})
+	}
+	
 	if($('.img-diamond').length ){
 		$('.img-diamond').each(function(){
 			var img_width = $(this).width();
@@ -197,11 +203,20 @@ jQuery(document).ready(function($){
 			var winScroll = $(window).scrollTop();
 			var scrollPos = winScroll + (winHeight * 0.85);
 
+			/*
 			$('.entry_block_content').find('div.block-group-wrap').each(function() {
 				if($(this).offset().top < scrollPos) {
 						$(this).addClass('is_active');
 				}
 			});
+			*/
+			
+			$('.entry_block_content').children('div').each(function() {
+				if($(this).offset().top < scrollPos) {
+						$(this).addClass('is_active');
+				}
+			});
+
 			
 			$('.character_essence').each(function() {
 				if($(this).offset().top < scrollPos) {
@@ -234,7 +249,8 @@ jQuery(document).ready(function($){
 	
 	
 	//lazy image
-	if($('body.use_lazy_load').length && ( $(window).width() > 768 ) ){
+	//if($('body.use_lazy_load').length && ( $(window).width() > 768 ) ){
+	if($('body.use_lazy_load').length ){
 	
 		$('body.use_lazy_load .entry_block_content img[class*="wp-image-"]').each(function() {
 			if( $(this).hasClass('img-cover-block') ){

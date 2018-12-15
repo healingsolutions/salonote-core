@@ -78,7 +78,14 @@ function posted_note_essence(){
 			//echo '<pre>_use_files'; print_r($_use_files); echo '</pre>';
 			
 			//$note_body = mb_convert_encoding($note_body, bloginfo('charset'), "auto");
-			$_insert_text = create_salonote_body($note_body , $_use_files);
+			
+			if( function_exists( 'use_block_editor_for_post' ) && use_block_editor_for_post( $post )) { 
+				$_insert_text = create_salonote_gutenberg($note_body , $_use_files);
+			}   
+			else {
+				$_insert_text = create_salonote_body($note_body , $_use_files);
+			}   
+			
 			
 			
 			//echo $note_body[0];

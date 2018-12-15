@@ -1,0 +1,57 @@
+/* CSS Document */
+
+.wp-block-gallery{
+	margin-top: 3em;
+}
+
+
+.wp-block-columns{
+	.wp-block-column{
+		figure.wp-block-image{
+			text-align: center;
+		}
+	}//wp-block-column
+	
+	
+	&.panel-block{
+		.wp-block-column{
+			border: 3px solid;
+			padding: 1em 2em;
+			border-radius: 7px;
+			
+			h2{
+				border-bottom: 1px solid;
+			}
+			h3{
+				
+			}
+		}
+	}
+}
+
+
+.has-caption-label{
+	figure.wp-block-image{
+		position: relative;
+		
+		figcaption{
+			position: absolute;
+			bottom: -1.5em;
+			left: 0;
+			right: 0;
+			font-size: 0.8em;
+			text-align: center;
+			background-color: black;
+			color: white;
+			display: inline-block;
+			padding: 1.2em 1.5em;
+			margin-left: auto;
+			margin-right: auto;
+			max-width: 25%;
+			filter:alpha(opacity=90);
+    -moz-opacity: 0.9;
+    opacity: 0.9;
+		}
+	}
+	
+} 

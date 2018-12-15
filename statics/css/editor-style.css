@@ -2021,7 +2021,8 @@ h6, .h6 {
     margin-left: auto;
     margin-right: auto; }
 
-hr.short-horizon {
+hr.short-horizon,
+hr.wp-block-separator:not(.is-style-wide):not(.is-style-dots) {
   width: 12%;
   margin-left: auto;
   margin-right: auto;
@@ -2241,6 +2242,40 @@ hr.short-horizon {
     font-size: 5em;
     color: #FFFFFF;
     text-shadow: 1px 1px 4px gray; }
+
+/* CSS Document */
+.wp-block-gallery {
+  margin-top: 3em; }
+
+.wp-block-columns .wp-block-column figure.wp-block-image {
+  text-align: center; }
+
+.wp-block-columns.panel-block .wp-block-column {
+  border: 3px solid;
+  padding: 1em 2em;
+  border-radius: 7px; }
+  .wp-block-columns.panel-block .wp-block-column h2 {
+    border-bottom: 1px solid; }
+
+.has-caption-label figure.wp-block-image {
+  position: relative; }
+  .has-caption-label figure.wp-block-image figcaption {
+    position: absolute;
+    bottom: -1.5em;
+    left: 0;
+    right: 0;
+    font-size: 0.8em;
+    text-align: center;
+    background-color: black;
+    color: white;
+    display: inline-block;
+    padding: 1.2em 1.5em;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 25%;
+    filter: alpha(opacity=90);
+    -moz-opacity: 0.9;
+    opacity: 0.9; }
 
 /* CSS Document */
 .character_essence {
@@ -2570,40 +2605,53 @@ div:before{
 	color: #FFFFFF;
 }
 */
+.wp-block .mce-content-body {
+  padding: 1em; }
+
+.wp-block .mce-content-body p,
 body#tinymce p {
   position: relative; }
 
+.wp-block .mce-content-body .text-cover-block,
 body#tinymce .text-cover-block {
   clear: both;
   position: relative; }
+  .wp-block .mce-content-body .text-cover-block:before,
   body#tinymce .text-cover-block:before {
     content: '↑ 上の要素に重なります'; }
 
+.wp-block .mce-content-body .block-unit,
 body#tinymce .block-unit {
   display: table-cell;
   padding: 0;
   vertical-align: top;
   box-sizing: border-box;
   min-width: 250px; }
+  .wp-block .mce-content-body .block-unit:before,
   body#tinymce .block-unit:before {
     content: '横並びブロック'; }
+  .wp-block .mce-content-body .block-unit > *:first-child,
   body#tinymce .block-unit > *:first-child {
     margin-top: 0;
     padding-top: 0; }
+    .wp-block .mce-content-body .block-unit > *:first-child img,
     body#tinymce .block-unit > *:first-child img {
       margin-top: 0; }
 
-body#tinymce div {
+.wp-block .mce-content-body > div,
+body#tinymce > div {
   position: relative;
   border: 4px solid #CCCCCC;
   border-radius: 5px;
   padding: 15px;
   margin: 15px auto; }
-  body#tinymce div span {
+  .wp-block .mce-content-body > div span,
+  body#tinymce > div span {
     border: 2px solid #EEEEEE;
     padding: 2px; }
 
-body#tinymce div::before {
+.wp-block .mce-content-body > div::before,
+body#tinymce > div::before {
   content: 'div';
   position: absolute;
   top: -15px;
@@ -2615,17 +2663,20 @@ body#tinymce div::before {
   line-height: 10px;
   color: #FFFFFF; }
 
-body#tinymce section {
+.wp-block .mce-content-body > section,
+body#tinymce > section {
   position: relative;
   border: 4px solid #F0EECE;
   border-radius: 5px;
   padding: 15px;
   margin: 15px auto; }
-  body#tinymce section span {
+  .wp-block .mce-content-body > section span,
+  body#tinymce > section span {
     border: 2px solid #EEEEEE;
     padding: 2px; }
 
-body#tinymce section::before {
+.wp-block .mce-content-body > section::before,
+body#tinymce > section::before {
   content: 'section';
   position: absolute;
   top: -15px;
@@ -2637,33 +2688,43 @@ body#tinymce section::before {
   line-height: 10px;
   color: #FFFFFF; }
 
-body#tinymce section[class*="l-box_style"],
-body#tinymce div[class*="l-box_style"],
-body#tinymce div[class*="point_block"] {
+.wp-block .mce-content-body > section[class*="l-box_style"],
+.wp-block .mce-content-body > div[class*="l-box_style"],
+.wp-block .mce-content-body > div[class*="point_block"],
+body#tinymce > section[class*="l-box_style"],
+body#tinymce > div[class*="l-box_style"],
+body#tinymce > div[class*="point_block"] {
   position: relative;
   border: 4px solid #CCCCCC;
   border-radius: 5px;
   padding: 15px;
   margin: 15px auto; }
 
+.wp-block .mce-content-body div[data-mce-bogus="all"],
 body#tinymce div[data-mce-bogus="all"] {
   border: none;
   padding: auto;
   margin: auto; }
 
+.wp-block .mce-content-body div[data-mce-bogus="all"]::before,
 body#tinymce div[data-mce-bogus="all"]::before {
   content: none; }
 
-body#tinymce div.separate-block::befor {
+.wp-block .mce-content-body > div.separate-block::befor,
+body#tinymce > div.separate-block::befor {
   content: '分割ブロック'; }
 
-body#tinymce div.separate-block > div {
+.wp-block .mce-content-body > div.separate-block > div,
+body#tinymce > div.separate-block > div {
   position: relative;
   border: 4px solid #D1E2F1;
   border-radius: 5px;
   padding: 15px;
   margin: 15px auto; }
 
+.wp-block .mce-content-body section[class*="l-box_style"]:before,
+.wp-block .mce-content-body div[class*="point_block"]:before,
+.wp-block .mce-content-body div[class*="l-box_style"]:before,
 body#tinymce section[class*="l-box_style"]:before,
 body#tinymce div[class*="point_block"]:before,
 body#tinymce div[class*="l-box_style"]:before {
@@ -2678,11 +2739,13 @@ body#tinymce div[class*="l-box_style"]:before {
   line-height: 10px;
   color: #FFFFFF; }
 
+.wp-block .mce-content-body > section.content-section,
 body#tinymce > section.content-section {
   position: relative;
   border: 3px solid #F16C6E !important;
   padding: 50px 10px;
   margin: 25px 0; }
+  .wp-block .mce-content-body > section.content-section::before,
   body#tinymce > section.content-section::before {
     content: 'super section' !important;
     position: absolute;
@@ -2695,14 +2758,20 @@ body#tinymce > section.content-section {
     line-height: 10px;
     color: #FFFFFF; }
 
+.wp-block .mce-content-body img.alignleft,
+.wp-block .mce-content-body img.alignright,
 body#tinymce img.alignleft,
 body#tinymce img.alignright {
   max-width: 50vw; }
 
+.wp-block .mce-content-body div > img.alignleft,
+.wp-block .mce-content-body div > img.alignright,
 body#tinymce div > img.alignleft,
 body#tinymce div > img.alignright {
   max-width: 100%; }
 
+.wp-block .mce-content-body div.vertical-middle,
+.wp-block .mce-content-body div.block-vertical-rl,
 body#tinymce div.vertical-middle,
 body#tinymce div.block-vertical-rl {
   position: relative;
@@ -2713,6 +2782,8 @@ body#tinymce div.block-vertical-rl {
   border-radius: 5px;
   padding: 15px;
   margin: 15px auto; }
+  .wp-block .mce-content-body div.vertical-middle::after,
+  .wp-block .mce-content-body div.block-vertical-rl::after,
   body#tinymce div.vertical-middle::after,
   body#tinymce div.block-vertical-rl::after {
     content: '縦書きブロック';
@@ -2727,15 +2798,19 @@ body#tinymce div.block-vertical-rl {
     color: #FFFFFF;
     text-indent: 0em; }
 
+.wp-block .mce-content-body div.block-vertical-rl::after,
 body#tinymce div.block-vertical-rl::after {
   content: '縦書きブロック'; }
 
+.wp-block .mce-content-body div.vertical-middle::after,
 body#tinymce div.vertical-middle::after {
   content: '縦中央揃え'; }
 
+.wp-block .mce-content-body hr.block-horizon.has_bkg,
 body#tinymce hr.block-horizon.has_bkg {
-  height: 30px; }
+  height: 5em; }
 
+.wp-block .mce-content-body hr.hidden,
 body#tinymce hr.hidden {
   display: block !important;
   filter: alpha(opacity=50);
@@ -2743,19 +2818,25 @@ body#tinymce hr.hidden {
   opacity: 0.5;
   background-color: #BEBEBE; }
 
+.wp-block .mce-content-body ul.list-block > li,
 body#tinymce ul.list-block > li {
   border-bottom: 1px dotted #CCCCCC; }
 
+.wp-block .mce-content-body ol.list-numbering > li:before,
+.wp-block .mce-content-body ol.list-flow > li:before,
 body#tinymce ol.list-numbering > li:before,
 body#tinymce ol.list-flow > li:before {
   background-color: #656565; }
 
+.wp-block .mce-content-body ol.list-flow:before,
 body#tinymce ol.list-flow:before {
   border-left-color: #656565; }
 
+.wp-block .mce-content-body ol.list-flow:after,
 body#tinymce ol.list-flow:after {
   background-color: #656565; }
 
+.wp-block .mce-content-body div.shop_menu_tag,
 body#tinymce div.shop_menu_tag {
   display: block;
   position: relative;
@@ -2766,6 +2847,7 @@ body#tinymce div.shop_menu_tag {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none; }
+  .wp-block .mce-content-body div.shop_menu_tag:before,
   body#tinymce div.shop_menu_tag:before {
     content: 'ショップメニュー';
     background-color: #A57E7F;
@@ -2775,22 +2857,26 @@ body#tinymce div.shop_menu_tag {
     top: -1em;
     font-size: 70%; }
 
+.wp-block .mce-content-body dl dt,
 body#tinymce dl dt {
   font-size: 1.1em;
   border-left: 5px solid #CCCCCC;
   padding-left: 1em;
   margin-bottom: 1em; }
 
+.wp-block .mce-content-body dl dd,
 body#tinymce dl dd {
   margin-left: 0;
   margin-bottom: 2em;
   border-left: 3px solid #CCCCCC;
   padding-left: 1.5em; }
 
+.wp-block .mce-content-body dl.question-dl dt,
 body#tinymce dl.question-dl dt {
   position: relative;
   border-left: none;
   padding-left: 3em; }
+  .wp-block .mce-content-body dl.question-dl dt::before,
   body#tinymce dl.question-dl dt::before {
     position: absolute;
     left: 0;
@@ -2802,10 +2888,12 @@ body#tinymce dl.question-dl dt {
     color: white;
     background-color: #868686; }
 
+.wp-block .mce-content-body dl.question-dl dd,
 body#tinymce dl.question-dl dd {
   position: relative;
   border-left: none;
   padding-left: 3em; }
+  .wp-block .mce-content-body dl.question-dl dd::before,
   body#tinymce dl.question-dl dd::before {
     position: absolute;
     left: 0;
@@ -2816,30 +2904,39 @@ body#tinymce dl.question-dl dd {
     background-color: #817677;
     color: white; }
 
+.wp-block .mce-content-body dl.toggle-dl dd,
 body#tinymce dl.toggle-dl dd {
   display: block; }
 
+.wp-block .mce-content-body .mceTemp,
 body#tinymce .mceTemp {
   border: none; }
+  .wp-block .mce-content-body .mceTemp::before,
   body#tinymce .mceTemp::before {
     content: none; }
+  .wp-block .mce-content-body .mceTemp dl.wp-caption,
   body#tinymce .mceTemp dl.wp-caption {
     width: auto !important; }
-    body#tinymce .mceTemp dl.wp-caption dt, body#tinymce .mceTemp dl.wp-caption dd {
+    .wp-block .mce-content-body .mceTemp dl.wp-caption dt, .wp-block .mce-content-body .mceTemp dl.wp-caption dd,
+    body#tinymce .mceTemp dl.wp-caption dt,
+    body#tinymce .mceTemp dl.wp-caption dd {
       border-left: none;
       font-size: 1em;
       padding-left: 0; }
 
+.wp-block .mce-content-body .square_label_block,
 body#tinymce .square_label_block {
   filter: alpha(opacity=100);
   -moz-opacity: 1;
   opacity: 1; }
 
+.wp-block .mce-content-body .wp-caption-dd,
 body#tinymce .wp-caption-dd {
   border-top: 1px solid #CCCCCC;
   border-bottom: 1px solid #CCCCCC;
   padding: 5px; }
 
+.wp-block .mce-content-body .character_essence,
 body#tinymce .character_essence {
   filter: alpha(opacity=100);
   -moz-opacity: 1;
@@ -2847,14 +2944,19 @@ body#tinymce .character_essence {
   left: 0;
   right: 0;
   background-color: #F2F2F2; }
+  .wp-block .mce-content-body .character_essence::before,
   body#tinymce .character_essence::before {
     content: 'キャラクター'; }
+  .wp-block .mce-content-body .character_essence .char_content,
   body#tinymce .character_essence .char_content {
     flex-wrap: wrap; }
+    .wp-block .mce-content-body .character_essence .char_content p,
     body#tinymce .character_essence .char_content p {
       width: 100%; }
+    .wp-block .mce-content-body .character_essence .char_content::before,
     body#tinymce .character_essence .char_content::before {
       content: none; }
+  .wp-block .mce-content-body .character_essence img,
   body#tinymce .character_essence img {
     top: 0; }
 

@@ -153,7 +153,6 @@ if( !empty($theme_opt['base']['google_map']) && !$hide_footer ){
     ?>
 
 <noscript id="deferred-styles">
-	<link rel="stylesheet" id="dashicons-css" href="<?php echo home_url();?>/wp-includes/css/dashicons.min.css?ver=4.9.5" type="text/css" media="all" />
 	<link rel="stylesheet" id="colorbox-css" href="<?php echo get_template_directory_uri();?>/statics/js/colorbox/colorbox.css?ver=4.9.5" type="text/css" media="all" />
 </noscript>
 <script>

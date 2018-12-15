@@ -256,6 +256,15 @@ form .sfPrototypeMan label {
 		<input type="email" name="shop_menu_essence_options[admin_mail]" value="<?php echo (!empty($shop_menu_opt['admin_mail']) ? esc_attr($shop_menu_opt['admin_mail']) : ''); ?>">
   </td>
 </tr>
+	
+<tr>
+	<th scope="row"><label for="manage_member">返信メールテキスト</label></th>
+	<td>
+		<textarea rows="5" class="large-text" name="shop_menu_essence_options[return_text]"><?php echo (!empty($shop_menu_opt['return_text']) ? esc_attr($shop_menu_opt['return_text']) : ''); ?></textarea>
+		<p class="hint">返信メールと、サンクスページに表示されます</p>
+	</td>
+</tr>
+	
 </tbody>
 </table>
 
