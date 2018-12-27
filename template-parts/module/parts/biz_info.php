@@ -11,6 +11,12 @@ echo '<div class="biz_info-block">';
 		';
 	}
 
+	if( !empty($theme_opt['base']['fax_number']) ){
+		echo '
+		<div class="biz_info-phone text-left">FAX / '.$theme_opt['base']['tel_number'].'</div>
+		';
+	}
+
 	if( !empty($theme_opt['base']['zip_code']) || !empty($theme_opt['base']['contact_address']) ){
 		echo '<div class="biz_info-address text-left">';
 			if( !empty($theme_opt['base']['zip_code']) ){

@@ -21,6 +21,7 @@ function staff_custom_post_type()
         'public' => true,
         'publicly_queryable' => true,
         'show_ui' => true,
+				'show_in_rest' => true,
         'query_var' => true,
         'rewrite' => true,
         'capability_type' => 'post',

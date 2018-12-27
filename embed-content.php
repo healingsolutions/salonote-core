@@ -83,21 +83,21 @@
 
 		if ( $thumbnail_id && 'rectangular' === $shape ) : ?>
 			<div class="wp-embed-featured-image rectangular">
-				<a href="<?php the_permalink(); ?>" target="_top">
+				<a href="<?php the_permalink(); ?>" target="_blank">
 					<?php echo wp_get_attachment_image( $thumbnail_id, $image_size ); ?>
 				</a>
 			</div>
 		<?php endif; ?>
 
 		<p class="wp-embed-heading">
-			<a href="<?php the_permalink(); ?>" target="_top">
+			<a href="<?php the_permalink(); ?>" target="_blank">
 				<?php the_title(); ?>
 			</a>
 		</p>
 
 		<?php if ( $thumbnail_id && 'square' === $shape ) : ?>
 			<div class="wp-embed-featured-image square">
-				<a href="<?php the_permalink(); ?>" target="_top">
+				<a href="<?php the_permalink(); ?>" target="_blank">
 					<?php echo wp_get_attachment_image( $thumbnail_id, $image_size ); ?>
 				</a>
 			</div>

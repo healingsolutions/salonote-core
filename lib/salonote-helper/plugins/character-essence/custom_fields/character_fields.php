@@ -64,7 +64,15 @@ function es_character_upload_postmeta(){ //投稿ページに表示されるカ�
 	);
 	
 	foreach($fields_arr as $key => $label){
-		$assets[$key] = !empty($es_character_upload_images[$key]) ? esc_html($es_character_upload_images[$key]) : null ;
+
+		if( !empty($es_character_upload_images[$key]) && is_array($es_character_upload_images[$key]) ){
+			$assets[$key]['url'] = !empty($es_character_upload_images[$key]['url']) ? esc_html($es_character_upload_images[$key]['url']) : null ;
+			$assets[$key]['id'] = !empty($es_character_upload_images[$key]['id']) ? esc_html($es_character_upload_images[$key]['id']) : null ;
+		}else{
+			$assets[$key]['url'] = !empty($es_character_upload_images[$key]) ? esc_html($es_character_upload_images[$key]) : null ;
+			$assets[$key]['id'] = !empty($es_character_upload_images[$key]) ? esc_html(get_attachment_id($es_character_upload_images[$key])) : null ;
+		}
+
 	}
 	
 ?>
@@ -79,16 +87,28 @@ function es_character_upload_postmeta(){ //投稿ページに表示されるカ�
 		<tr>
 			<th><?php echo $label; ?></div>
 			<td class="character_td">
-					<a rel="character_<?php echo $key; ?>" type="button" class="button character_image_upload" title="画像を追加・変更"<?php if( !empty($assets[$key])) echo ' style="display:none;"';?>>追加・削除</a>
+					<a rel="character_<?php echo $key; ?>" type="button" class="button character_image_upload" title="画像を追加・変更"<?php if( !empty($assets[$key]['url'])) echo ' style="display:none;"';?>>追加・削除</a>
 					
 					<div id="character_<?php echo $key; ?>_asset">
 						<div class="character_asset_block salonote_images_upload_block">
 							<?php
-							if( !empty($assets[$key]) ){
+							if( !empty($assets[$key]['url']) ){
+					
 								echo '<a href="#" class="salonote_images_upload_images_remove" title="画像を削除する"></a>';
-								echo '<img src="'.$assets[$key].'" />';
-								echo '<input id="character_'.$key.'" type="hidden" name="es_character_upload_images['.$key.']" value="'.$assets[$key].'" />';
-							} 
+								
+							
+								if( is_array($assets[$key]) ){
+									echo '<img src="'.$assets[$key]['url'].'" />';
+									echo '<input id="character_'.$key.'_url" type="hidden" name="es_character_upload_images['.$key.'][url]" value="'.$assets[$key]['url'].'" />';
+									echo '<input id="character_'.$key.'_id" type="hidden" name="es_character_upload_images['.$key.'][id]" value="'.$assets[$key]['id'].'" />';
+								}else{
+									echo '<img src="'.$assets[$key].'" />';
+									echo '<input id="character_'.$key.'_url" type="hidden" name="es_character_upload_images['.$key.'][url]" value="'.$assets[$key].'" />';
+									echo '<input id="character_'.$key.'_id" type="hidden" name="es_character_upload_images['.$key.'][id]" value="'.get_attachment_id($assets[$key]).'" />';
+								}
+			
+								
+							}
 							?>
 						</div>
 					</div>

@@ -2277,6 +2277,10 @@ hr.wp-block-separator:not(.is-style-wide):not(.is-style-dots) {
     -moz-opacity: 0.9;
     opacity: 0.9; }
 
+.entry_block_content div[class*="background-color"].wp-block-media-text {
+  margin: 1em -1.5em;
+  padding: 1.5em; }
+
 /* CSS Document */
 .character_essence {
   position: relative;
@@ -2959,6 +2963,24 @@ body#tinymce .character_essence {
   .wp-block .mce-content-body .character_essence img,
   body#tinymce .character_essence img {
     top: 0; }
+
+.wp-block .mce-content-body .headline_nav,
+body#tinymce .headline_nav {
+  position: relative; }
+  .wp-block .mce-content-body .headline_nav::before,
+  body#tinymce .headline_nav::before {
+    content: '目次見出し';
+    position: absolute;
+    top: -1.7em;
+    left: 0;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: normal;
+    background-color: #F1B6B7;
+    color: white;
+    border-radius: 4px 4px 0 0;
+    padding: 0.3em 1em;
+    line-height: 1; }
 
 .gallery-columns-1 .gallery-item {
   width: 100%; }

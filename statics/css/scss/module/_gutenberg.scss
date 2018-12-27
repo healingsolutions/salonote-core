@@ -54,4 +54,11 @@
 		}
 	}
 	
-} 
+}
+
+.entry_block_content{
+	div[class*="background-color"].wp-block-media-text{
+		margin: 1em -1.5em;
+		padding: 1.5em;
+	}
+}

@@ -138,15 +138,17 @@ function essence_tinymce($initArray) {
             'classes' => 'unit_headline'
         ),
         array(
-            'title' => __('inline headline H2','salonote-essence'),
-            'block' => 'h2',
-            'classes' => 'headline_nav'
-        ),
-        array(
             'title' => __('inline headline','salonote-essence'),
             'inline' => 'span',
             'classes' => 'inline_title'
         ),
+				
+				array(
+            'title' => __('headline nav','salonote-essence'),
+            'selector' => 'h1,h2,h3,h4,h5,h6',
+            'classes' => 'headline_nav'
+        ),
+				
 				
       ),
 

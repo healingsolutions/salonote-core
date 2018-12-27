@@ -79,11 +79,13 @@ function essence_head_enqueue() {
   //wp_enqueue_style('normalize', '//cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css', array(), '1.0');
   //wp_enqueue_style('yakuhanjp', '//cdn.jsdelivr.net/npm/yakuhanjp@2.0.0/dist/css/yakuhanjp.min.css', array(), '2.0.0');
 	if(is_user_logged_in()){
-		//$_salonote_ver = time();
-		$_salonote_ver = '1.0.0.35';
+		$_salonote_ver = '1.0.0.39';
 	}else{
-		$_salonote_ver = '1.0.0.35';
+		$_salonote_ver = '1.0.0.39';
 	}
+	
+	$_salonote_ver = time();
+	
 	wp_enqueue_style('essence', get_template_directory_uri().'/style-min.css', array(), $_salonote_ver);
 	wp_enqueue_script('essence', get_template_directory_uri().'/statics/js/main-min.js', array(), $_salonote_ver ,true);
   
@@ -577,4 +579,8 @@ add_action('widgets_init', 'wp_my_widget_register');
 
 
 
-
+//browser check
+$browser = strtolower($_SERVER['HTTP_USER_AGENT']);
+if (strstr($browser , 'trident') || strstr($browser , 'msie')) {
+	add_filter( 'wp_calculate_image_srcset', '__return_false' );
+}

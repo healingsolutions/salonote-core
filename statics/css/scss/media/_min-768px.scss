@@ -233,6 +233,20 @@
 		//height: 4em;
 	}
 	
+	#super-top-nav{
+		.super-top-container{
+			> ul > li.btn-item{
+				.main_nav{
+					display: block;
+				}
+				.sub_nav{
+					display: block;
+					font-size: .7em;
+					font-weight: normal;
+				}
+			}
+		}
+	}
 	
 	.scroll_down{
 		#header.hide_header{

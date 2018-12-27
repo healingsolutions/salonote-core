@@ -17,11 +17,16 @@ get_header();
     elseif(is_author()){
       get_template_part('template-parts/content/author');
     }
+		elseif(is_category()){
+			//echo 'is_category';
+      get_template_part('template-parts/content/index');
+    }
 		elseif(is_tax()){
 			//echo 'is_tax';
       get_template_part('template-parts/content/index');
     }
     elseif(is_archive()){
+			//echo 'is_archive';
       get_template_part('template-parts/content/index');
     }
 		

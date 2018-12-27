@@ -25,8 +25,7 @@ if(
 				$_thumbnail_url = !empty($matches[2]) ? '<img src="http://img.youtube.com/vi/'.$matches[2].'/0.jpg" />' : null ;
 			}
 		}
-	
-	
+
 		//if display first attachment to thumbnail
 		if(
 			in_array('first_thumbnail',$post_type_set) &&
@@ -35,11 +34,13 @@ if(
 			$thumb_size = !empty( $post_type_set['thumbnail_size'] ) ? $post_type_set['thumbnail_size'] : 'thumbnail' ;
 			$_thumbnail_url = !empty( get_post_first_thumbnail($post->ID, $thumb_size) ) ? '<img src="'.get_post_first_thumbnail($post->ID, $thumb_size).'"/>' : null;
 			
+			
+			
 			if(
 				in_array('first_attachement',$post_type_set) &&
 				!has_post_thumbnail($post->ID) &&
 				!empty( get_post_first_thumbnail($post->ID, $thumb_size, 'id') )
-			){
+			){				
 					set_post_thumbnail($post->ID, get_post_first_thumbnail($post->ID, $thumb_size, 'id') );
 			}
 		}
@@ -55,13 +56,23 @@ if(
 				'alt'   => trim( strip_tags( get_the_title() )),
 				'title' => trim( strip_tags( get_the_title() )),
 			);
+
 			$_thumbnail_url = get_the_post_thumbnail($post->ID,$thumb_size,$thumb_attr);
 		}// has_thumbnail
 	
-	
-	
+
 	
 	if( !empty($_thumbnail_url) ){
+	
+		$thumbnail_id = get_post_thumbnail_id($post->ID);
+		$image = wp_get_attachment_image_src( $thumbnail_id, 'full' );
+		$url = $image[0];
+		$width = $image[1];
+
+		if( $image[1] === 0 ){
+			update_attachment_filename($thumbnail_id, $url);
+		}
+	
 	//print_thumbnail
 	echo '<figure class="list_block_figure hover_figure">';
 		

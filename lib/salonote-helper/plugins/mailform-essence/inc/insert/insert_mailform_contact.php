@@ -49,8 +49,7 @@ if($insert_id) {
 	if(is_user_logged_in()){
 		//echo '<pre>_fields'; print_r($_fields); echo '</pre>';
 	}
-	
-	
+
 	
 	foreach( $_fields as $field_label => $field_item ){
 		$_field = str_replace('es_mail_', '', $field_label);

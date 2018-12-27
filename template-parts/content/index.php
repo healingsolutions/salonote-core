@@ -17,6 +17,8 @@ if( is_tax() || is_category() ){
 	}
 }
 
+
+
 $post_type_set  = !empty($post_type_name) ? $theme_opt['post_type'][$post_type_name] : $theme_opt['post_type']['post'];
 
 
@@ -100,6 +102,11 @@ if( is_tax() ){
 			'terms' => $term,
 			)
 		);
+}
+
+if( is_category() ){
+	$args['post_type'] = $post_type_name;
+	$args['cat'] = get_query_var('cat');
 }
 
 if( is_month() ){

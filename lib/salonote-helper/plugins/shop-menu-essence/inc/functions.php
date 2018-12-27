@@ -113,11 +113,8 @@ function shop_menu_style_wp_enqueue_scripts() {
 	global $post;
 	
 	if(
-		!empty($post->post_content) && 
-			(
-				strpos($post->post_content,'[shop_menu ') !== false ||
-				is_singular('shop_menu')
-			)
+			(!empty($post->post_content) && strpos($post->post_content,'[shop_menu ') !== false)||
+			is_singular('shop_menu')
 		)
 	{
 		wp_enqueue_style( 'shop_menu_style', SHOP_MENU_ESSENCE_PLUGIN_URI . '/statics/css/shop-menu-public_style.css',array(),'1.0.0.2' );

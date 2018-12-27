@@ -103,9 +103,11 @@ if(
 	
 
 // thumbnail =======================================
+
+$post_thumbnail = !empty( $page_info['post_thumbnail'] ) ? intval( $page_info['post_thumbnail']) : null ;
 if(
   !empty( $post_type_set ) &&
-  in_array('post_thumbnail',$post_type_set )&&
+  ( in_array('post_thumbnail',$post_type_set ) || $post_thumbnail )&&
 	$page === 1 &&
   has_post_thumbnail()
 ){

@@ -29,16 +29,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 function es_mailform_custom_post_type()
 {
     $labels = array(
-        'name'                => _x('お問い合わせ', 'post type general name'),
-        'singular_name'       => _x('お問い合わせ', 'post type singular name'),
-        'add_new'             => _x('お問い合わせを追加', 'mailform'),
-        'add_new_item'        => __('新しいお問い合わせを追加'),
-        'edit_item'           => __('お問い合わせを編集'),
-        'new_item'            => __('新しいお問い合わせ'),
-        'view_item'           => __('お問い合わせを表示'),
-        'search_items'        => __('お問い合わせを探す'),
-        'not_found'           => __('お問い合わせはありません'),
-        'not_found_in_trash'  => __('ゴミ箱にお問い合わせはありません'),
+        'name'                => _x('お問合わせフォーム', 'post type general name'),
+        'singular_name'       => _x('お問い合わせフォーム', 'post type singular name'),
+        'add_new'             => _x('お問い合わせフォームを追加', 'mailform'),
+        'add_new_item'        => __('新しいお問い合わせフォームを追加'),
+        'edit_item'           => __('お問い合わせフォームを編集'),
+        'new_item'            => __('新しいお問い合わせフォーム'),
+        'view_item'           => __('お問い合わせフォームを表示'),
+        'search_items'        => __('お問い合わせフォームを探す'),
+        'not_found'           => __('お問い合わせフォームはありません'),
+        'not_found_in_trash'  => __('ゴミ箱にお問い合わせフォームはありません'),
         'parent_item_colon'   => ''
     );
     $args = array(

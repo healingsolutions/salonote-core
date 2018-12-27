@@ -14,11 +14,17 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+
+
+
 //async
 jQuery(document).ready(function($){
 	
+	var ua = window.navigator.userAgent;
+	var msie = ua.indexOf("MSIE ");
 	
-	console.log($(window).width());
+	
+	//console.log($(window).width());
 
 	
 	if($('body.use_content_fade').length ){
@@ -197,8 +203,23 @@ jQuery(document).ready(function($){
 	if($('.entry_block_content').length ){
 		
 		var winHeight = $(window).height();
+		
+		if($('.index-nav-block').length && ( $(window).width() <= 768 ) ){
+			var index_nav_block_h = $('.index-nav-block').height();
+			var headline_nav_flag = [];
+			var hide_index_nav = false;
+			var entry_height = $('.entry_block_content').height() - 200;
+			//var headline_nav_item_index = $('.headline_nav_item').length - 1;
+		}
+		
 	//scroll check ====================
+		var scroll_flug = true;
 		$(window).scroll(function(){
+			
+			if(scroll_flug){
+			scroll_flug = false;
+			setTimeout(function(){
+			
 			
 			var winScroll = $(window).scrollTop();
 			var scrollPos = winScroll + (winHeight * 0.85);
@@ -224,7 +245,78 @@ jQuery(document).ready(function($){
 				}
 			});
 			
+			
+			// ページインデックス処理　=================================================
+			if($('.index-nav-block').length && ( $(window).width() <= 768 ) ){
+			
+				if( $('.index-nav-block').offset().top < winScroll - ($('.index-nav-block').height() + 100) ){
+
+					if( !hide_index_nav) {
+						$('.index-nav-block').addClass('is_hide');
+						$('.entry_block_content').css('padding-top',index_nav_block_h+'px');
+						var hide_index_nav = true;
+					}
+					
+					if( ( ($('.entry_block_content').offset().top + entry_height) < winScroll ) && hide_index_nav) {
+						$('.index-nav-block').removeClass('is_hide');
+						$('.entry_block_content').css('padding-top','0px');
+						var hide_index_nav = false;
+					}
+					
+
+
+					$('.headline_nav_item').each(function(i) {
+						if($(this).offset().top < winScroll) {
+
+							if( headline_nav_flag[i] !== true) {
+								$(this).addClass('is_show');
+								var show_rel = $(this).attr('rel');
+								var prev_show_rel = $(this).prev('.headline_nav_item').attr('rel');
+
+								$('#'+show_rel).addClass('show_nav');
+								$('#'+prev_show_rel).removeClass('show_nav');
+								headline_nav_flag[i] = true;
+								
+								if( i == 0) {
+									$('body').addClass('index-nav-block-is_hide');
+								}
+								
+							}
+
+						}else{
+							$(this).removeClass('is_show');
+	
+								if( headline_nav_flag[i]) {
+									var remove_rel = $(this).attr('rel');
+									$('#'+remove_rel).removeClass('show_nav');
+									headline_nav_flag[i] = false;
+									
+									if( i == 0) {
+										$('body').removeClass('index-nav-block-is_hide');
+									}
+								}
+
+						}
+
+
+					});
+
+				}else{
+					$('.index-nav-block').removeClass('is_hide');
+					$('.entry_block_content').css('padding-top','0px');
+					var hide_index_nav = false;
+					
+				};// if scrolled index
+			}
+				
+				
+				scroll_flug = true;
+				return scroll_flug;
+				}, 300);
+			}
+			
 		});
+				
 	};
 	
 	
@@ -255,7 +347,7 @@ jQuery(document).ready(function($){
 		$('body.use_lazy_load .entry_block_content img[class*="wp-image-"]').each(function() {
 			if( $(this).hasClass('img-cover-block') ){
 				$(this).addClass('cover-figure');
-			}else{
+			}else if(msie === 0) {
 				var item_src = $(this).attr('src');
 				var item_srcset = $(this).attr('srcset');
 				$(this).attr('src','//dummyimage.com/1x1/ffffff/cccccc.gif');
@@ -464,7 +556,20 @@ jQuery(document).ready(function($){
 			rel:'group'
 		});
 		
+		$('body.use_colorbox .blocks-gallery-item a').colorbox({
+			maxWidth:"90%",
+			maxHeight:"90%",
+			opacity: 0.7,
+			rel:'group'
+		});
+
+		
 		$('body.use_colorbox .entry_block_content a[href$=jpg]').colorbox({
+			maxWidth:"90%",
+			maxHeight:"90%",
+			opacity: 0.7,
+		});
+		$('body.use_colorbox .entry_block_content a[href$=jpeg]').colorbox({
 			maxWidth:"90%",
 			maxHeight:"90%",
 			opacity: 0.7,

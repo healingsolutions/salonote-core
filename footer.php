@@ -40,7 +40,7 @@ if( !empty($theme_opt['base']['google_map']) && !$hide_footer ){
 ?>
 
 <footer class="site-footer-block footer<?php if (has_nav_menu('sp_display_nav') && wp_is_mobile() ) echo ' has_sp_display_nav' ?>">
-  <a class="footer_for_top footer_bkg smoothscroll" href="#header">TOP</a>
+  <a class="footer_for_top footer_bkg smoothscroll" href="#body-wrap">TOP</a>
   
   <?php
 	echo '<div class="container">';
@@ -81,7 +81,7 @@ if( !empty($theme_opt['base']['google_map']) && !$hide_footer ){
 						'theme_location' => 'FooterSiteMap',
 						'container'       => 'ul',
 						'menu_id'      => '',
-						'menu_class'      => 'footer-sitemap nav-font',
+						'menu_class'      => 'footer-sitemap footer-depth-nav nav-font',
 						'depth' => 3,
 						'echo'            => true,
 			) );

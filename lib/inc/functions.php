@@ -747,7 +747,7 @@ function br2array( $value, $count = null ){
 /*-------------------------------------------*/
 /*	サムネイル取得
 /*-------------------------------------------*/
-function get_post_first_thumbnail(  $post_id = null , $thumb_size='thumbnail' , $return_parama='url' ){
+function get_post_first_thumbnail( $post_id = null , $thumb_size='thumbnail' , $return_parama='url' ){
 	
 	if( empty($post_id) ) return;
 
@@ -762,18 +762,26 @@ function get_post_first_thumbnail(  $post_id = null , $thumb_size='thumbnail' , 
 	}
 
 	
-	if( strpos($image_url,'media/default.png') !== false  ){
-		$image_url_tmp = catch_that_image();
-		
+	
+	if( empty($image_url) || strpos($image_url,'media/default.png') !== false  ){
+		echo $image_url_tmp = catch_that_image();
+
 		if( isset($image_url_tmp) ){
+
 			$image_id = get_attachment_id($image_url_tmp);
+			
+			if( !$image_id ){
+				 echo $image_id = set_new_attachment( $image_url_tmp );
+			}
+			
+			
 			$image_url = wp_get_attachment_image_src($image_id, $thumb_size , true);
 			$image_url = $image_url[0];
 		}
 	}else{
 		$image_url = '';
 	}
-	
+
 		
 	if( $return_parama === 'url' ){
 		return $image_url;
@@ -789,16 +797,19 @@ function get_post_first_thumbnail(  $post_id = null , $thumb_size='thumbnail' , 
 //記事の一番最初の画像をキャッチイメージに設定
 function catch_that_image() {
     global $post, $posts;
+
+
     $first_img = '';
     ob_start();
     ob_end_clean();
     $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
-    if( isset($matches[1] [0]) ){
-        $first_img = $matches [1] [0];
+    if( isset($matches[1][0]) ){
+        $first_img = $matches[1][0];
         
         //画像登録されていない場合はエラーになるので、IDを取得しない仕様に変更
         //$first_img = get_attachment_image_src( $first_img_url, 'thumbnail' );
     }
+
  
     if(empty($first_img)){ //Defines a default image
         $first_img = null;
@@ -820,6 +831,9 @@ function get_attachment_id($url)
   global $wpdb;
   $sql = "SELECT ID FROM {$wpdb->posts} WHERE post_name = %s";
   preg_match('/([^\/]+?)(-e\d+)?(-\d+x\d+)?(\.\w+)?$/', $url, $matches);
+	
+	
+	
 	if( $matches ){
 		$post_name = $matches[1];
 		return (int)$wpdb->get_var($wpdb->prepare($sql, $post_name));

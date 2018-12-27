@@ -351,6 +351,11 @@ function set_post_attachment_loop(){
 }
 add_action( 'the_content', 'set_post_attachment_loop' );
 
+add_filter('stylesheet_directory_uri',function(){
+	return get_template_directory_uri();
+});
+
+*/
 
 
 function set_new_attachment( $url,$id=null ){
@@ -412,8 +417,18 @@ function set_new_attachment( $url,$id=null ){
 }
 
 
-add_filter('stylesheet_directory_uri',function(){
-	return get_template_directory_uri();
-});
+ function update_attachment_filename( $post_ID, $_thumbnail_url ) {
 
-*/
+		if( isset( $post_ID ) && isset( $_thumbnail_url ) ) {
+
+				//echo '['. $_thumbnail_url .']';
+
+				// Update attachment meta data
+				$file_updated_meta = wp_generate_attachment_metadata( $post_ID, $_thumbnail_url );
+				wp_update_attachment_metadata( $post_ID, $file_updated_meta );
+
+		}
+	 
+	 return;
+
+}

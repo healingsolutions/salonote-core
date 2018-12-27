@@ -28,6 +28,7 @@ function insert_page_info(){
 		'child_tab_nav' 		=> __('Tab navigation','salonote-essence'),
     'exclude_list' 			=> __('Hide in list','salonote-essence'),
     'disable_title' 		=> __('HIde Title','salonote-essence'),
+		'post_thumbnail' 		=> __('show thumbnail','salonote-essence'),
     'super_container' 	=> __('Small container','salonote-essence'),
 		'overlaid_block_group' 	=> __('overlaid block_group text','salonote-essence'),
 		'hide_header_description' 	=> __('Hide header description','salonote-essence'),

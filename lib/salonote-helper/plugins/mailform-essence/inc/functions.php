@@ -101,7 +101,7 @@ add_action( 'wp_enqueue_scripts', 'load_public_mailform_essence_enqueue',10 );
 
 
 add_action('wp_footer', function () {
- wp_enqueue_style( 'jquery-validationEngine', MAILFORM_ESSENCE_PLUGIN_URI.'/statics/jQuery-Validation-Engine/css/validationEngine.jquery.css');
+ //wp_enqueue_style( 'jquery-validationEngine', MAILFORM_ESSENCE_PLUGIN_URI.'/statics/jQuery-Validation-Engine/css/validationEngine.jquery.css');
 	
 	
 	if( !is_singular() )

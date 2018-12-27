@@ -26,22 +26,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 function es_contact_custom_post_type()
 {
     $labels = array(
-        'name'                => _x('コンタクト', 'post type general name'),
-        'singular_name'       => _x('コンタクト', 'post type singular name'),
+        'name'                => _x('お問い合わせ履歴', 'post type general name'),
+        'singular_name'       => _x('お問い合わせ履歴', 'post type singular name'),
         'add_new'             => _x('コンタクトを追加', 'es_contact'),
         'add_new_item'        => __('新しいコンタクトを追加'),
         'edit_item'           => __('コンタクトを編集'),
         'new_item'            => __('新しいコンタクト'),
-        'view_item'           => __('コンタクトを表示'),
-        'search_items'        => __('コンタクトを探す'),
-        'not_found'           => __('コンタクトはありません'),
-        'not_found_in_trash'  => __('ゴミ箱にコンタクトはありません'),
+        'view_item'           => __('お問い合わせ履歴を表示'),
+        'search_items'        => __('お問い合わせ履歴を探す'),
+        'not_found'           => __('お問い合わせ履歴はありません'),
+        'not_found_in_trash'  => __('ゴミ箱にお問い合わせ履歴はありません'),
         'parent_item_colon'   => ''
     );
     $args = array(
         'labels'              => $labels,
         'public'              => false,
-        'publicly_queryable'  => true,
+        'publicly_queryable'  => false,
+				'show_in_nav_menus' 	=> false,
         'show_ui'             => true,
         'query_var'           => true,
         'rewrite'             => false,
@@ -57,6 +58,11 @@ function es_contact_custom_post_type()
     }
 add_action('init', 'es_contact_custom_post_type',24);
 
+
+function remove_contact_menus(){
+  remove_menu_page( 'edit.php?post_type=es_contact' );
+}
+add_action( 'admin_menu', 'remove_contact_menus' );
 
 
 
@@ -201,5 +207,22 @@ function mailform_essence_orderby_columns( $vars ) {
 }
 add_filter( 'manage_edit-es_contact_sortable_columns', 'mailform_essence_sortable_columns' ); // manage_edit-[post_type]_sortable_columns
 add_filter( 'request', 'mailform_essence_orderby_columns' );
+
+
+
+
+add_action('admin_menu', 'es_contact_essence_pages');
+function es_contact_essence_pages() {
+	
+	$menu_slug = 'edit.php?post_type=es_mailform';
+	$capability = 'manage_options';
+
+  $submenu_page_title = 'お問い合わせ履歴';
+  $submenu_title = 'お問い合わせ履歴';
+  $submenu_slug = 'edit.php?post_type=es_contact';
+  add_submenu_page($menu_slug, $submenu_page_title, $submenu_title, $capability, $submenu_slug);
+}
+
+
 
 ?>

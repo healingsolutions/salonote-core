@@ -286,6 +286,11 @@ if(is_user_logged_in()){
 		if( $item['type'] === 'pagetitle'){
 			 echo '<input id="form-input-' . $counter .'" name="'.$form_field.'" class="form-control'.$_required_class.'" type="text" value="'.get_the_title($post->ID).'" readonly />';
 		}
+			
+			
+		if( $item['type'] === 'date'){
+			 //echo '<input id="form-input-' . $counter .'" name="'.$form_field.'" class="form-control'.$_required_class.'" type="text" value="'.get_the_title($post->ID).'" readonly />';
+		}
 		
 		
 		

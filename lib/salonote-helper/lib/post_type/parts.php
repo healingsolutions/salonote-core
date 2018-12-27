@@ -21,6 +21,7 @@ function parts_custom_post_type()
         'public' => false,
         'publicly_queryable' => true,
         'show_ui' => true,
+				'show_in_rest' => true,
         'query_var' => true,
         'rewrite' => true,
         'capability_type' => 'post',

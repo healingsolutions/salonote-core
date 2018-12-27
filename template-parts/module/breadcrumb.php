@@ -63,7 +63,7 @@ if( !is_front_page() && $post_type_name !== 'post' && $post_type_name !== 'page'
 	
 	$post_type_name = isset( $post_type_name ) ? $post_type_name :  get_post_type();
 
-	if( !empty($post_type_name) ){
+	if( !empty($post_type_name) && !is_tax() ){
 		$bread_arr[] = array(
 			'label' => esc_html(get_post_type_object($post_type_name)->label),
 			'url'   => get_post_type_archive_link($post_type_name)
@@ -100,6 +100,33 @@ if (is_singular() && intval($post->ID) !== intval($frontpage_id) ) {
       }
     }
   }
+	
+	
+	
+	
+	
+	$taxonomy_names = get_post_taxonomies($post->ID);
+	if($taxonomy_names ){
+		foreach($taxonomy_names as $tax_slug){
+
+			$terms = wp_get_post_terms( $post->ID, $tax_slug );
+			if ( $terms && ! is_wp_error( $terms ) ):
+				foreach ( $terms as $term ):
+					$term_id  = $term->term_id;
+					$term_name  = $term->name;
+					$term_slug  = $term->slug;
+					$term_link = get_term_link( $term_id, $tax_slug );
+
+					$bread_arr[] = array(
+						'label' => esc_html($term_name),
+						'url'   => esc_attr($term_link),
+					);
+
+				endforeach;
+			endif;
+		}
+	}
+	
   $bread_arr[] = array(
     'label' => esc_html(get_the_title($post->ID)),
     'url'   => get_the_permalink($post->ID),
