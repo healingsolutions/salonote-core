@@ -36,7 +36,7 @@
 		margin-bottom: 0;
 		
 		& > dd.menu_name{
-			font-size: 1.1em;
+			font-size: 1.3em;
 			font-weight: 700;
 		}
 		dt{
@@ -353,6 +353,46 @@ form.shop_menu_block .required-item .col-form-label{
         -o-transition: all 0.3s;
         transition: all 0.3s;
 				width: 33.33%;
+        
+        .image-type-menu{
+          margin-bottom: 1em;
+        }
+        
+        .menu_excerpt-item{
+          text-align: left;
+        }
+        
+        .menu_time-item{
+          border-bottom:  1px dotted #CCCCCC;
+          margin-bottom: 1.5em;
+          padding-bottom: 1em;
+          
+          .menu-body{
+            font-weight: bold;
+            font-size: 1.3em;
+          }
+        } 
+        
+        
+        
+        
+        dl{
+          border-width: 4px;
+          border-style: solid;
+          border-radius: 9px;
+          margin: 1em;
+          padding: 1em;
+        }
+        
+        dd.none_dt{
+          text-align: center;
+        }
+        
+        dt,dd{
+          border: none;
+          display: flex;
+        }
+        
 				
 				dl.has_upload_field,
 				.menu_assets.image_type_dd{
@@ -404,3 +444,5 @@ form.shop_menu_block .required-item .col-form-label{
 	}
 
 }
+
+

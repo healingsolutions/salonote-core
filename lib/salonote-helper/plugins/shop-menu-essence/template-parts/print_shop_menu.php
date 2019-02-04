@@ -26,7 +26,9 @@ global $show_title;
 global $list_type;
 global $search;
 global $field_set;
-
+global $change_button;
+global $sort_button;
+global $hide_button;
 
 
 // ========================================
@@ -40,10 +42,14 @@ $post_meta = get_post_custom($id);
 
 $shop_menu_items 				= get_post_meta($id,	'essence_shop_menu'	,true);
 $shop_menu_type_id 			= get_post_meta($id,	'shop_menu_type'		,true);
+$shop_menu_view 			   = get_post_meta($id,	'shop_menu_view'		,true);
 $shop_menu_fields_value = get_post_meta($shop_menu_type_id, 'essence_shop_menu_fields',true);
 $shop_menu_fields = $shop_menu_fields_value['fields'];
 
 if( empty($shop_menu_fields) ) return;
+
+
+$list_type  = !empty( $shop_menu_view ) ? $shop_menu_view : 'list';
 
 if( !empty($shop_menu_fields) ){
 	foreach( $shop_menu_fields as $key => $value ){
@@ -69,68 +75,15 @@ $shop_menu_arr = get_post_meta($id,'essence_shop_menu',true);
 
 if( empty($shop_menu_arr) ) return;
 
-
-
-
-
-global $change_button;
-global $sort_button;
-global $hide_button;
-
 echo '<div id="menu_block_unit_id" class="menu_block_unit">';
 
-if( !isset($change_button) && $change_button !== true && count($shop_menu_arr) > 2 ){
-	echo '<div class="shop_menu_change-button">';
-	if( !wp_is_mobile() ){
-		echo '<div class="shop_menu-list-view';
-		if($list_type === 'list') echo ' active';
-		echo '"><span class="dashicons dashicons-list-view"></span></div>';
-
-		echo '<div class="shop_menu-grid-view';
-		if($list_type === 'grid') echo ' active';
-		echo '"><span class="dashicons dashicons-screenoptions"></span></div>';
-	}
-	
-	//sort buttns
-	if( !isset($sort_button) && $sort_button !== true ){
-		/*
-		echo '<div class="shop_menu-sort-price';
-		echo '"><span class="dashicons dashicons-arrow-up-alt2"></span>安い順</div>';
-
-		echo '<div class="shop_menu-sort-time';
-		echo '"><span class="dashicons dashicons-arrow-down-alt2"></span>時間の長い順</div>';
-		*/
-	}
-	
-	
-
-	//sort buttns
-	if( !isset($hide_button) && $hide_button !== true ){
-		/*
-		echo '<div class="shop_menu_show-button-unit">';
-		foreach( $shop_menu_fields as $key => $value ){
-			echo '<div rel="'.$value['menu_field'].'" class="shop_menu_show-button btn-color active">'.$value['menu_label'].'</div>'; 
-		}
-		echo '</div>';
-		*/
-	}
-	
-	echo '</div>';
-
-	$change_button = true;
-}
-
-
-
-
-if( $show_title === true ){
-	echo '<h2 class="title_bdr_tbtm">'.get_the_title($id).'</h2>';
-}
-do_action('before_print_shop_menu');
-print_shop_menu_item( $field_set, $shop_menu_arr);
-do_action('after_print_shop_menu');
+  if( $show_title === true ){
+    echo '<h2 class="title_bdr_tbtm">'.get_the_title($id).'</h2>';
+  }
+  do_action('before_print_shop_menu');
+  print_shop_menu_item( $field_set, $shop_menu_arr);
+  do_action('after_print_shop_menu');
 
 echo '</div>';
+
 ?>
-
-

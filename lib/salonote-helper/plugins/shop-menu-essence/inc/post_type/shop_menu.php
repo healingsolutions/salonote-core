@@ -64,6 +64,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 					'rest_base'   				=> 'shop_menu'
 			);
 			register_post_type('shop_menu',$args);
+    
+    // カスタムタクソノミーを作成
+			$args = array(
+					'label' => 'ジャンル',
+					'public' => true,
+					'show_ui' => true,
+					'hierarchical' => true
+			);
+			register_taxonomy('menu_genre','shop_menu',$args);
 	}
 	add_action('init', 'shop_menu_custom_post_type',20);
 
@@ -94,3 +103,43 @@ function shop_menu_essence_add_shortcode_column($column_name) {
     }
 }
 add_action('manage_posts_custom_column', 'shop_menu_essence_add_shortcode_column');
+
+
+function set_custom_edit_shop_menu_columns($columns) {
+  $columns['menu_genre'] = "カテゴリー";
+  return $columns;
+}
+function custom_shop_menu_column($column_name, $post_id) {
+  if( $column_name == 'menu_genre' ) {
+    $tax = wp_get_object_terms($post_id, 'menu_genre');
+    if(  isset($tax[0]) ) $stitle = $tax[0]->name;
+  }
+ 
+  if ( isset($stitle) && $stitle ) {
+    echo '<a href="edit.php?post_type=shop_menu&amp;menu_genre='. urlencode(esc_html($tax[0]->name)).'">'.esc_attr($stitle).'</a>';
+  }
+}
+function my_add_post_taxonomy_restrict_filter() {
+  global $post_type;
+  if ( 'shop_menu' == $post_type ) {
+?>
+    <select name="menu_genre">
+      <option value="">カテゴリー指定なし</option>
+<?php
+      $terms = get_terms('menu_genre');
+      foreach ($terms as $term) { ?>
+        <option value="<?php echo $term->slug; ?>" <?php if ( !empty($_GET['menu_genre']) && $_GET['menu_genre'] == $term->slug ) { print 'selected'; } ?>><?php echo $term->name; ?></option>
+<?php
+      }
+?>
+    </select>
+<?php
+  }
+}
+
+add_filter( 'manage_shop_menu_posts_columns', 'set_custom_edit_shop_menu_columns' );
+add_action( 'manage_shop_menu_posts_custom_column' , 'custom_shop_menu_column', 10, 2 );
+
+add_action( 'restrict_manage_posts', 'my_add_post_taxonomy_restrict_filter' );
+
+?>

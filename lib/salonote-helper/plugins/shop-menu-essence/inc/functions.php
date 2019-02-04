@@ -215,7 +215,7 @@ function shop_menu_reserve_hook($content){
 		return $content;
 	}
 }
-add_filter('the_content','shop_menu_reserve_hook');
+add_filter('the_content','shop_menu_reserve_hook',99);
 	
 
 
@@ -319,20 +319,25 @@ function print_shop_menu_item( $field_set=null , $shop_menu_arr=null, $not_reser
 	
 	global $id;
 	global $list_type;
+  
+  $list_type = isset($list_type) ? $list_type : 'list' ;
 	
 	if(is_user_logged_in()){
 		//echo '<pre>field_set'; print_r($field_set); echo '</pre>';
 		//echo '<pre>$shop_menu_arr'; print_r($shop_menu_arr); echo '</pre>';
 	}
+  
+  
+  
 	
 	
 	echo '<div id="" class="shop_menu_block_id shop_menu_block '.$list_type.'-view">';
-
-
-	
-
+  
+  if( $list_type === 'grid' ){
+  echo '<div class="row panel-block">';
+  }
+  
 	foreach( $shop_menu_arr as $key => $item ){
-
 
 		if( !empty($search) ){
 			$search_match = false;
@@ -359,7 +364,7 @@ function print_shop_menu_item( $field_set=null , $shop_menu_arr=null, $not_reser
 		$menu_time =  !empty($item['menu_time']) ? $item['menu_time'] : 0 ;
 		$menu_time = preg_replace('/[^0-9]/', '', $menu_time);	
 
-		echo '<div id="shop_menu_block-item_'.$key.'" class="shop_menu_block-item menu_block_'.$key.'" data-index="'.$key.'" data-price="'.$item_price.'" data-time="'.$menu_time.'">';
+		
 
 		$field_images = 0;
 		foreach( $item as $field => $value ){
@@ -369,62 +374,149 @@ function print_shop_menu_item( $field_set=null , $shop_menu_arr=null, $not_reser
 		}
 
 
-		echo '<dl';
-		if( $field_images > 0 ){
-			echo ' class="has_upload_field"';
-		}
-		echo '>';
-		foreach( $item as $field => $value ){
+    
+    switch ($list_type) {
+    case 'list':
+    
+        echo '<div id="shop_menu_block-item_'.$key.'" class="shop_menu_block-item menu_block_'.$key.'" data-index="'.$key.'" data-price="'.$item_price.'" data-time="'.$menu_time.'">';
+        echo '<dl class="';
+          if( $field_images > 0 ){
+            echo ' has_upload_field';
+          }
+          if( get_post_meta($id,'shop_menu_view',true) === 'grid' ){
+            echo ' bdr_color';
+          }
+        echo '">';
+        foreach( $item as $field => $value ){
 
-			if( empty($value) || $field === 'menu_global_name' || $field === 'menu_global_price' || $field === 'menu_global_option' || $field === 'menu_global_reserve' ) continue;
+          if( empty($value) || $field === 'menu_global_name' || $field === 'menu_global_price' || $field === 'menu_global_option' || $field === 'menu_global_reserve' ) continue;
 
-			$_dd_class = '';
-			//echo '<pre>field'; print_r($field); echo '</pre>';
-			//echo '<pre>$field_set'; print_r($field_set); echo '</pre>';
+          $_dd_class = '';
+          //echo '<pre>field'; print_r($field); echo '</pre>';
+          //echo '<pre>$field_set'; print_r($field_set); echo '</pre>';
 
-			if( !empty($field_set[$field]['type']) && $field_set[$field]['type'] == 'upload' ){
-				echo '</dl><div class="'.$field.' image_type_dd">';
-				echo wp_get_attachment_image( $value, $field_set[$field]['size'] );
-				echo '</div><dl>';
-			}else{
+          if( !empty($field_set[$field]['type']) && $field_set[$field]['type'] == 'upload' ){
+            echo '</dl><div class="'.$field.' image_type_dd">';
+            echo wp_get_attachment_image( $value, $field_set[$field]['size'] );
+            echo '</div><dl>';
+          }else{
 
 
-				if( !empty($field_set[$field]['display']) && $field_set[$field]['display'] !== 'false' ){
-					echo '<dt class="'.$field.'">';
-					echo !empty($field_set[$field]['label']) ? esc_attr($field_set[$field]['label'] ) : '' ;
-					echo '</dt>';
-				}else{
-					echo '<dt class="hidden '.$field.'">';
-					echo !empty($field_set[$field]['label']) ? esc_attr($field_set[$field]['label'] ) : '' ;
-					echo '</dt>';
-					$_dd_class = ' none_dt';
-				}
+            if( !empty($field_set[$field]['display']) && $field_set[$field]['display'] !== 'false' ){
+              echo '<dt class="'.$field.'">';
+              echo !empty($field_set[$field]['label']) ? esc_attr($field_set[$field]['label'] ) : '' ;
+              echo '</dt>';
+            }else{
+              echo '<dt class="hidden '.$field.'">';
+              echo !empty($field_set[$field]['label']) ? esc_attr($field_set[$field]['label'] ) : '' ;
+              echo '</dt>';
+              $_dd_class = ' none_dt';
+            }
 
-				echo '<dd class="'.$field.$_dd_class.'">';
-					echo !empty($value) ? wpautop( $value ) : '' ;
-					//echo '<pre>fields'; print_r($value); echo '</pre>';
-				echo '</dd>';
-			}
-		}
+            echo '<dd class="'.$field.$_dd_class.'">';
+              echo !empty($value) ? wpautop( $value ) : '' ;
+              //echo '<pre>fields'; print_r($value); echo '</pre>';
+            echo '</dd>';
+          }
+        }
 
-		echo '</dl>';
+        echo '</dl>';
 
-		if( !empty($item['menu_global_option']) ){
-			echo '<div class="shop_menu_essence-option-btn btn-color">オプション</div>';
-		}elseif( !empty($item['menu_global_reserve']) && $not_reserve !== true ){
-			echo '
-			<form class="shop_menu_essence-reserve_button" action="" method="POST">
-				<input type="hidden" name="menu_post_id" value="'. $id .'">
-				<input type="hidden" name="menu_item_id" value="'. $key .'">
-				<button class="btn-item" type="send" name="menu_reserve" value="'. $item['menu_name'] .'">このメニューを予約する</button>
-			</form>
-			';
-		}
+        if( !empty($item['menu_global_option']) ){
+          echo '<div class="shop_menu_essence-option-btn btn-color">オプション</div>';
+        }elseif( !empty($item['menu_global_reserve']) && $not_reserve !== true ){
+          echo '
+          <form class="shop_menu_essence-reserve_button" action="" method="POST">
+            <input type="hidden" name="menu_post_id" value="'. $id .'">
+            <input type="hidden" name="menu_item_id" value="'. $key .'">
+            <button class="btn-item" type="send" name="menu_reserve" value="'. $item['menu_name'] .'">このメニューを予約する</button>
+          </form>
+          ';
+        }
 
-		echo '</div>';
-	}
+        echo '</div>';
+        
+  break;
+  // ===========================================
+  case 'grid':
+       
+        echo '<div class="panel-block-column shop_menu_block-item col-12 col-sm-6 col-md-4">';
+
+        foreach( $item as $field => $value ){
+
+          if( empty($value) || $field === 'menu_global_name' || $field === 'menu_global_price' || $field === 'menu_global_option' || $field === 'menu_global_reserve' ) continue;
+
+
+          if( !empty($field_set[$field]['type']) && $field_set[$field]['type'] == 'upload' ){
+            echo '<div class="'.$field.' image-type-menu">';
+            echo wp_get_attachment_image( $value, $field_set[$field]['size'] );
+            echo '</div>';
+          }elseif( !empty($field) && $field == 'menu_name' ){
+            echo '<h2 class="menu-block-item menu_name-item" style="text-align:center">';
+            echo !empty($value) ? nl2br( $value ) : '' ;
+            echo '</h2>';
+          }elseif( !empty($field) && $field == 'menu_price' ){
+            echo '<h3 class="menu-block-item menu_price-item" style="text-align:center">';
+            if ( !empty($value)){
+                echo empty(preg_match('/\¥|￥/', $value)) ? nl2br( '¥'.$value ) : nl2br( $value ) ;
+            }
+            echo '</h3>';
+          }else{
+            
+            echo '<div class="menu-block-item '.$field.'-item">';
+
+
+            if( !empty($field_set[$field]['display']) && $field_set[$field]['display'] !== 'false' ){
+              echo '<div class="menu-label">';
+              echo !empty($field_set[$field]['label']) ? esc_attr($field_set[$field]['label'] ) : '' ;
+              echo '</div>';
+            }
+
+            echo '<p class="menu-body">';
+              if( !empty($field) && $field == 'menu_campaing' ){
+                echo empty(preg_match('/\¥|￥/', $value)) ? '¥' : '' ;
+              }
+              echo !empty($value) ? nl2br( $value ) : '' ;
+              //echo '<pre>fields'; print_r($value); echo '</pre>';
+            echo '</p>';
+            
+            echo '</div>';
+          }
+        }
+
+        
+        
+        if( !empty($item['menu_global_option']) ){
+          echo '<div class="shop_menu_essence-option-btn btn-color">オプション</div>';
+        }elseif( !empty($item['menu_global_reserve']) && $not_reserve !== true ){
+          echo '
+          <div class="shop-menu-reserve-btn wp-block-button aligncenter">
+          
+            <form class="shop_menu_essence-reserve_button" action="" method="POST">
+              <input type="hidden" name="menu_post_id" value="'. $id .'">
+              <input type="hidden" name="menu_item_id" value="'. $key .'">
+              <button class="wp-block-button__link has-background btn-item" type="send" name="menu_reserve" value="'. $item['menu_name'] .'">このメニューを予約する</button>
+            </form>
+          </div>
+          ';
+        }
+        
+        echo '</div>';
+
+      
+  break;
+  }
+      
+  
+  
+  }
+  
+  if( $list_type === 'grid' ){
+  echo '</div>';
+  }
+  
+  echo '</div>';
 	
-	echo '</div>';
 	
 };
 

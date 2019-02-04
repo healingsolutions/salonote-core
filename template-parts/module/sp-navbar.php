@@ -18,7 +18,7 @@ global $theme_opt;
       echo $head_logo;
 	
 			if( !empty( $theme_opt['base']['description'] ) && in_array('header_h1_txt',$theme_opt['base'] )){
-				echo '<h1 class="site-description">'.$theme_opt['base']['description'].'</h1>';
+				echo '<p class="site-description">'.$theme_opt['base']['description'].'</p>';
 			}
 	
     echo '</a></div>';

@@ -60,13 +60,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	}
 	add_action('init', 'menu_fields_custom_post_type',20);
 
-function remove_menu_fields_menu(){
-  remove_menu_page( 'edit.php?post_type=menu_fields' );
-}
-add_action( 'admin_menu', 'remove_menu_fields_menu' );
 
-
-
+/*
 add_action('admin_menu', 'menu_fields_essence_pages');
 function menu_fields_essence_pages() {
 	
@@ -75,4 +70,11 @@ function menu_fields_essence_pages() {
   add_submenu_page($menu_slug, 'メニューフィールド','メニューフィールド', 'manage_options', 'edit.php?post_type=menu_fields');
 	add_submenu_page($menu_slug, 'メニューフィールドを追加','メニューフィールドを追加', 'manage_options', 'post-new.php?post_type=menu_fields');
 }
+
+add_action( 'admin_menu', 'remove_menu_fields_menu');
+function remove_menu_fields_menu(){
+  remove_menu_page( 'edit.php?post_type=menu_fields' );
+}
+*/
+
 

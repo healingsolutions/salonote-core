@@ -419,8 +419,7 @@ function set_new_attachment( $url,$id=null ){
 
  function update_attachment_filename( $post_ID, $_thumbnail_url ) {
 
-		if( isset( $post_ID ) && isset( $_thumbnail_url ) ) {
-
+		if( isset( $post_ID ) && isset( $_thumbnail_url ) && is_readable($_thumbnail_url) ) {
 				//echo '['. $_thumbnail_url .']';
 
 				// Update attachment meta data

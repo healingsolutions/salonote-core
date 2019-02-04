@@ -141,6 +141,8 @@ echo '<div class="'.$row_class.'">';
 					echo '<p class="entry_block_title nav_font"'. ((mb_strlen(esc_html( $obj->name )) > 6 ) ? ' style="font-size:1em;"' : '' ).'>'.strtoupper(str_replace('_',' ',esc_html( $obj->name ))).'</p>';
 				
 					echo '<p class="entry_block_sub_title body_font">'.esc_html( $obj->label ).'</p>';
+        
+        
 				
 				echo '</div>';
 			}
@@ -166,6 +168,12 @@ echo '<div class="'.$row_class.'">';
 					echo '</div>';
 			}
 
+      if( $paged > 1 ){
+        echo '<div class="paged_title_block">' .$paged. __('page / all','salonote-essence').($query->max_num_pages / $args['posts_per_page'] * 10 ). __('pages','salonote-essence').'</div>';
+      }
+
+      
+
 		echo '</div>';
 
 		
@@ -188,9 +196,7 @@ echo '<div class="'.$row_class.'">';
 
 
 
-			if( $paged > 1 ){
-				echo '<div class="paged_title_block">' .$paged. __('page / all','salonote-essence').($query->max_num_pages / $args['posts_per_page'] * 10 ). __('pages','salonote-essence').'</div>';
-			}
+			
 
 
 

@@ -30,7 +30,7 @@ function parts_custom_post_type()
         'menu_icon' => 'dashicons-tagcloud',
         'has_archive' => true,
         'supports' => array('title','editor','custom-fields'),
-        'exclude_from_search' => true
+        'exclude_from_search' => true,
     );
     register_post_type('parts',$args);
 }

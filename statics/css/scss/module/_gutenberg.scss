@@ -13,11 +13,46 @@
 	}//wp-block-column
 	
 	
-	&.panel-block{
-		.wp-block-column{
+	
+}
+
+
+.panel-block{
+    width: 100%;
+		.panel-block-column{
 			border: 3px solid;
 			padding: 1em 2em;
 			border-radius: 7px;
+      text-align: center;
+      
+      .menu-label{
+        font-size: 0.75em;
+      }
+      .menu-body{
+        font-size: 1.15em;
+      }
+
+      .menu_name-item{
+        font-size: 1.65em;
+      }
+      .menu_price-item{
+        font-size: 1.86em;
+        margin-bottom: 1.5em;
+      }
+      
+      .menu_campaing-item{
+        font-size: 1.6em;
+        color:  #A12B2D;
+        text-align: center;
+        font-weight: bold;
+        .menu-body{
+          font-size: 1.15em;
+        }
+      }
+      
+      form.shop_menu_essence-reserve_button{
+        text-align: center;
+      }
 			
 			h2{
 				border-bottom: 1px solid;
@@ -25,10 +60,11 @@
 			h3{
 				
 			}
+      
+      
+      
 		}
 	}
-}
-
 
 .has-caption-label{
 	figure.wp-block-image{
@@ -62,3 +98,4 @@
 		padding: 1.5em;
 	}
 }
+

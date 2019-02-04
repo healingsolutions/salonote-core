@@ -155,7 +155,7 @@ $color_customize_array = array(
 
   'bdr_color' => array(
     'target'   => '.bdr_color',
-    'element'  => 'color',
+    'element'  => 'border-color',
     'default'  => null,
     'label_jp' => __('border-color','salonote-essence'),
     'section'  => 'colors',

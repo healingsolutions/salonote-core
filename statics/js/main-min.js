@@ -140,6 +140,15 @@ $(this).children(".block-item-inner").each(function(){0==$(this).find(".block-ve
 // ブロックをグルーピング　=======================================================
 if($(".left-and-right-unit").length&&$(window).width()<=768){group_text=[];var a=0,o="",n=$(".left-and-right-unit .block-group-wrap:eq(0) > .block-group").length;$(".block-group-wrap").each(function(){for(var e=0;e<n;e++)0===e&&(group_text[a]=[]),group_text[a][e]=$(this).children(".block-group").eq(e).html();$(this).next("hr").remove(),$(this).remove(),++a});for(var s=0;s<n;s++)$.each(group_text,function(e,t){$(".left-and-right-unit .entry_block_content").append('<div class="block-group-wrap">'+t[s]+"</div>")})}$(".entry_block_content header + .cover-image").length&&$(".main-content-wrap").addClass("first-cover")
 /*
+  $(function() {
+    $(".each_char_headline").children().addBack().contents().each(function(){
+        if (this.nodeType == 3) {
+            $(this).replaceWith($(this).text().replace(/(\S)/g, "<span>$&</span>"));
+        }
+    });
+  });
+  */,$(".each_char_headline").each(function(){var a=$(this),e=$(this).html().split("");$(this).html(""),$.each(e,function(e,t){var i,i;$("#slider-essence").length?((i=$("<span/>").text(t)).appendTo(a),i.delay(70*e)):((i=$("<span/>").text(t).css({opacity:0})).appendTo(a),i.delay(70*e),i.animate({opacity:1},1100))})}),
+/*
 	$('#slider-essence h2').addClass('animation-style_01');
 	$('.animation-style_01').children().addBack().contents().each(function() {
     if (this.nodeType == 3) {
@@ -155,6 +164,7 @@ if($(".left-and-right-unit").length&&$(window).width()<=768){group_text=[];var a
 			})
 		});
 	});
-	*/,$("body").removeClass("no-scroll"),$("#content-loader").fadeOut().queue(function(){this.remove()}),$("#body-wrap").removeClass("fader"),0==document.body.scrollTop&&setTimeout(function(){scrollTo(0,1)},1)}),jQuery(function(e){essence_resize_script()}),$(window).on("resize",function(){essence_resize_script()}),
+	*/
+$("body").removeClass("no-scroll"),$("#content-loader").fadeOut().queue(function(){this.remove()}),$("#body-wrap").removeClass("fader"),0==document.body.scrollTop&&setTimeout(function(){scrollTo(0,1)},1)}),jQuery(function(e){essence_resize_script()}),$(window).on("resize",function(){essence_resize_script()}),
 // デバイスの向きが変わったら　=================================================
 $(window).on("orientationchange",function(){essence_resize_script()});var default_width=$(window).width(),timer=!1;$(window).resize(function(){!1!==timer&&clearTimeout(timer),timer=setTimeout(function(){768<default_width&&$(window).width()<=768&&location.reload(),default_width<768&&768<=$(window).width()&&location.reload()},200)}),function(n,t,i,e){n.fn.doubleTapToGo=function(e){return!!("ontouchstart"in t||navigator.msMaxTouchPoints||navigator.userAgent.toLowerCase().match(/windows phone os 7/i))&&(this.each(function(){var o=!1;n(this).on("click",function(e){var t=n(this);t[0]!=o[0]&&(e.preventDefault(),o=t)}),n(i).on("click touchstart MSPointerDown",function(e){for(var t=!0,i=n(e.target).parents(),a=0;a<i.length;a++)i[a]==o[0]&&(t=!1);t&&(o=!1)})}),this)}}(jQuery,window,document);

@@ -61,6 +61,8 @@ $opt['sp_right']		= !empty($slider_essence_opt['sp_right']) 		? $slider_essence_
 $opt['speed']				= !empty($slider_essence_opt['speed']) 				? $slider_essence_opt['speed'] : 8 ;
 $opt['size']				= !empty($slider_essence_opt['size']) 				? $slider_essence_opt['size'] : 'full';
 $opt['zoom']				= !empty($slider_essence_opt['zoom']) 				? $slider_essence_opt['zoom'] : 0;
+$opt['title_class'] = !empty($slider_essence_opt['title_class'])  ? $slider_essence_opt['title_class'] : '';
+$opt['body_class']  = !empty($slider_essence_opt['body_class'])   ? $slider_essence_opt['body_class'] : '';
 ?>
   
 <table class="form-table">
@@ -70,6 +72,20 @@ $opt['zoom']				= !empty($slider_essence_opt['zoom']) 				? $slider_essence_opt[
   <th scope="row"><label for="place">配置する場所</label></th>
   <td>
     <input type="text" name="slider_essence_options[place]" value="<?php echo $opt['place'];?>">
+  </td>
+</tr>
+  
+<tr valign="top">
+  <th scope="row"><label for="title_class">タイトルのclass</label></th>
+  <td>
+    <input id="title_class" type="text" name="slider_essence_options[title_class]" value="<?php echo $opt['title_class'];?>">
+  </td>
+</tr>
+  
+<tr valign="top">
+  <th scope="row"><label for="body_class">本文のclass</label></th>
+  <td>
+    <input id="body_class" type="text" name="slider_essence_options[body_class]" value="<?php echo $opt['body_class'];?>">
   </td>
 </tr>
 	

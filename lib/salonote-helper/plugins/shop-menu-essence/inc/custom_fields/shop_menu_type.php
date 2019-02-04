@@ -39,7 +39,6 @@ function insert_shop_menu_type(){
 	wp_nonce_field(wp_create_nonce(__FILE__), 'shop_menu_type_nonce');
   
   $shop_menu_type_id = get_post_meta($post->ID,'shop_menu_type',true);
-	
 
 	
 	$args = array(
@@ -103,6 +102,61 @@ function save_shop_menu_type($post_id){
 		update_post_meta($post_id, 'shop_menu_type', $data);
 	}elseif($data == ""){
 		delete_post_meta($post_id, 'shop_menu_type', get_post_meta($post_id, 'shop_menu_type', true));
+	}
+}
+
+
+
+
+
+//=======================
+
+
+add_action('admin_menu', 'add_shop_menu_view');
+add_action('save_post', 'save_shop_menu_view');
+ 
+function add_shop_menu_view(){
+  add_meta_box('shop_menu_view', 'メニュー表示タイプ', 'insert_shop_menu_view', 'shop_menu', 'side', 'low');
+}
+ 
+function insert_shop_menu_view(){
+	global $post;
+	wp_nonce_field(wp_create_nonce(__FILE__), 'shop_menu_view_nonce');
+  
+	$shop_menu_view    = get_post_meta($post->ID,'shop_menu_view',true);
+	
+	echo '
+  <div>
+  <select name="shop_menu_view">
+    <option value="list"'. ( $shop_menu_view === 'list' ? ' selected' : '' ) .'>リスト</option>
+    <option value="grid"'. ( $shop_menu_view === 'grid' ? ' selected' : '' ) .'>グリッド</option>
+    <option value="select"'. ( $shop_menu_view === 'select' ? ' selected' : '' ) .'>切り替え</option>
+  </select>
+  </div>
+	';
+
+}
+ 
+function save_shop_menu_view($post_id){
+	$shop_menu_view_nonce = isset($_POST['shop_menu_view_nonce']) ? $_POST['shop_menu_view_nonce'] : null;
+	if(!wp_verify_nonce($shop_menu_view_nonce, wp_create_nonce(__FILE__))) {
+		return $post_id;
+	}
+	if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) { return $post_id; }
+	if(!current_user_can('edit_post', $post_id)) { return $post_id; }
+ 
+  if( !empty($_POST['shop_menu_view']) ){
+    $data = $_POST['shop_menu_view'];
+  }else{
+    $data = null;
+  }
+ 
+	if(get_post_meta($post_id, 'shop_menu_view') == ""){
+		add_post_meta($post_id, 'shop_menu_view', $data, true);
+	}elseif($data != get_post_meta($post_id, 'shop_menu_view', true)){
+		update_post_meta($post_id, 'shop_menu_view', $data);
+	}elseif($data == ""){
+		delete_post_meta($post_id, 'shop_menu_view', get_post_meta($post_id, 'shop_menu_view', true));
 	}
 }
 

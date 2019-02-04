@@ -112,21 +112,24 @@
 	}
 
 	@media screen and (max-width: 769px) {
-		.slick-text{
-			margin: 0 7px;
-			h2{
-				font-size: 1.9em;
+		.slick-fixed-text{
+			.slick-text{
+				margin: 0 7px;
+				h2{
+					font-size: 1.9em;
+				}
 			}
-		}
-		.slick-textarea{
-			margin: 25px 7%;
-			
+			.slick-textarea{
+				margin: 25px 7%;
+
+			}
 		}
 		
 	}
 	@media screen and (max-width: 768px) {
 		.slick-block-essence{
-			.slick-item{
+			.slick-item,
+			{
 				.slick-text{
 					filter:alpha(opacity=0);
 					-moz-opacity: 0;

@@ -9,6 +9,10 @@
     margin-bottom: 0px;
     @include clearfix;
     
+    li{
+      list-style: none;
+    }
+    
     //---------------
     //base
     
@@ -319,9 +323,13 @@
 			> li.flexnav{
 				position: static;
 			}
+			
+			> li.flexnav:hover ul.sub-menu > li{
+				//display: inline-block;
+			}
+			
 			> li.flexnav > ul.sub-menu{
 				width: 100vw;
-				
 				left: 0;
 				right: 0;
 				display: flex;
@@ -339,6 +347,8 @@
 					padding-left: calc(5% + 15px) ;
 					padding-right: calc(5% + 15px) ;
 				}
+				
+				
 				
 				> li{
 					display: inline-block;
@@ -629,8 +639,8 @@ body.admin-bar .site-header-block{
 					//@include _transition_(max-height,0.3);
 					@include _transition_(opacity,0.3);
 
+
 					li{
-						display: block;
 						clear: both;
 						position: relative;
 						word-break: keep-all;
@@ -777,8 +787,8 @@ body.admin-bar .site-header-block{
 		min-height: 4em;
 	
 	.header_logo-block img{
-		max-height: 5em;
-		height: 36px;
+		max-height: 2.6em;
+		//height: 36px;
 		padding: 5px 0;
 	}
 	.header_logo-block.has_excerpt img{
@@ -796,6 +806,8 @@ body.admin-bar .site-header-block{
 			display: block;
 			margin-bottom: 0;
 			padding-top: 0.5em;
+			
+			
 
 			> li{
 				display: inline-block;

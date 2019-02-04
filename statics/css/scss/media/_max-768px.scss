@@ -348,8 +348,21 @@
 		height: 0em;
 	}
 	.super-top-container{
+		
+		ul{
+			text-align: center;
+		}
 		li.btn-item{
 			display: inline-block;
+			
+			span.main_nav{
+				display: block;
+			}
+			span.sub_nav{
+				display: block;
+				font-size: 0.7em;
+				font-weight: normal;
+			}
 		}
 		
 	}

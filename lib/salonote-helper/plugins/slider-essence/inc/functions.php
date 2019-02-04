@@ -67,6 +67,9 @@ function slider_essence(){
 	$opt['speed'] = !empty($slider_essence_opt['speed']) ? $slider_essence_opt['speed'] : 8 ;
 	$opt['size'] = !empty($slider_essence_opt['size']) ? $slider_essence_opt['size'] : 'large';
 	$opt['zoom'] = !empty($slider_essence_opt['zoom']) ? $slider_essence_opt['zoom'] : false;
+  
+  $opt['title_class'] = !empty($slider_essence_opt['title_class'])  ? ' class="'.$slider_essence_opt['title_class'].'"' : '';
+  $opt['body_class']  = !empty($slider_essence_opt['body_class'])   ? ' '.$slider_essence_opt['body_class'] : '';
 	
 	global $user_setting;
 	
@@ -89,7 +92,7 @@ function slider_essence(){
 	}
 		
 	<?php
-	/*
+	/**/
 	if( !empty($_sp_height) && $_sp_height > 60 ){
 		
 	echo '
@@ -107,7 +110,7 @@ function slider_essence(){
 		}';
 	
 	}
-	*/
+	
 	
 		
 
@@ -281,15 +284,15 @@ function slider_essence(){
 			echo '<div class="slick-text"><div class="slick-text-inner">'.apply_filters('the_content', do_shortcode($value['text']));
 			
 			if(!empty($value['textarea'])){
-				echo '<div class="slick-textarea">'.apply_filters('the_content', do_shortcode($value['textarea'])).'</div>';
+				echo '<div class="slick-textarea'.$opt['body_class'].'">'.apply_filters('the_content', do_shortcode($value['textarea'])).'</div>';
 			}
 			
 			echo '</div></div>';
 		}else{
-			echo '<div class="slick-text"><div class="slick-text-inner"><h2>'.nl2br(esc_html($value['text'])).'</h2>';
+			echo '<div class="slick-text"><div class="slick-text-inner"><h2'.$opt['title_class'].'>'.nl2br(esc_html($value['text'])).'</h2>';
 			
 			if(!empty($value['textarea'])){
-				echo '<div class="slick-textarea">'.apply_filters('the_content', do_shortcode($value['textarea'])).'</div>';
+				echo '<div class="slick-textarea'.$opt['body_class'].'">'.apply_filters('the_content', do_shortcode($value['textarea'])).'</div>';
 			}
 			
 			echo '</div></div>';
@@ -320,9 +323,9 @@ function slider_essence(){
 		echo '<div class="slick-fixed-text">';
 		
 		if(preg_match('/\[|\]/',$_content)){
-			echo '<div class="slick-text"><div class="slick-text-inner">'.wpautop(do_shortcode($_content)).'</div></div>';
+			echo '<div class="slick-text"><div class="slick-text-inner'.$opt['body_class'].'">'.wpautop(do_shortcode($_content)).'</div></div>';
 		}else{
-			echo '<div class="slick-text"><div class="slick-text-inner"><h2 style="font-size:2.2em;">'.nl2br(esc_html($_content)).'</h2></div></div>';
+			echo '<div class="slick-text"><div class="slick-text-inner'.$opt['body_class'].'"><h2'.$opt['title_class'].' style="font-size:2.2em;">'.nl2br(esc_html($_content)).'</h2></div></div>';
 		}
 		
 		echo '</div>';

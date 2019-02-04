@@ -54,6 +54,7 @@ class SALONOTE_HELPER__Class {
 		require_once( get_template_directory(). '/lib/salonote-helper/plugins/slider-essence/slider_essence.php' );
 		require_once( get_template_directory(). '/lib/salonote-helper/plugins/search-engine-essence/search-engine-essence.php' );
 		require_once( get_template_directory(). '/lib/salonote-helper/plugins/mailform-essence/mailform-essence.php' );
+		require_once( get_template_directory(). '/lib/salonote-helper/plugins/categories-images/categories-images.php' );
 		
 		// user parts post_type =======================================
 		if( !empty( $theme_opt['base'] ) && in_array('enable_parts',$theme_opt['base'] ) ){

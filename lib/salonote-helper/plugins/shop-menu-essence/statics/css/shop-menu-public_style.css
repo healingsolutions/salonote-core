@@ -2,6 +2,7 @@
 /* CSS Document */
 .shop_menu_block .hidden {
   display: none; }
+
 .shop_menu_block .shop_menu_block-item {
   margin-bottom: 35px;
   position: relative; }
@@ -21,7 +22,7 @@
       height: 0;
       width: 0; }
     .shop_menu_block .shop_menu_block-item dl > dd.menu_name {
-      font-size: 1.1em;
+      font-size: 1.3em;
       font-weight: 700; }
     .shop_menu_block .shop_menu_block-item dl dt {
       display: block;
@@ -69,6 +70,7 @@
     -ms-transition: transform 0.3s;
     -o-transition: transform 0.3s;
     transition: transform 0.3s; }
+
 .shop_menu_block .shop_menu_check {
   margin: 1em auto;
   text-align: left;
@@ -258,11 +260,34 @@ form.shop_menu_block .required-item .col-form-label {
       -o-transition: all 0.3s;
       transition: all 0.3s;
       width: 33.33%; }
+      .shop_menu_block.grid-view .shop_menu_block-item .image-type-menu {
+        margin-bottom: 1em; }
+      .shop_menu_block.grid-view .shop_menu_block-item .menu_excerpt-item {
+        text-align: left; }
+      .shop_menu_block.grid-view .shop_menu_block-item .menu_time-item {
+        border-bottom: 1px dotted #CCCCCC;
+        margin-bottom: 1.5em;
+        padding-bottom: 1em; }
+        .shop_menu_block.grid-view .shop_menu_block-item .menu_time-item .menu-body {
+          font-weight: bold;
+          font-size: 1.3em; }
+      .shop_menu_block.grid-view .shop_menu_block-item dl {
+        border-width: 4px;
+        border-style: solid;
+        border-radius: 9px;
+        margin: 1em;
+        padding: 1em; }
+      .shop_menu_block.grid-view .shop_menu_block-item dd.none_dt {
+        text-align: center; }
+      .shop_menu_block.grid-view .shop_menu_block-item dt, .shop_menu_block.grid-view .shop_menu_block-item dd {
+        border: none;
+        display: flex; }
       .shop_menu_block.grid-view .shop_menu_block-item dl.has_upload_field,
       .shop_menu_block.grid-view .shop_menu_block-item .menu_assets.image_type_dd {
         width: 100% !important; }
       .shop_menu_block.grid-view .shop_menu_block-item form.shop_menu_essence-reserve_button {
         text-align: center; } }
+
 @media screen and (max-width: 767px) {
   .shop_menu_block {
     font-size: 80%; }
@@ -274,7 +299,6 @@ form.shop_menu_block .required-item .col-form-label {
         max-width: 100%; }
     .shop_menu_block form.shop_menu_essence-reserve_button {
       text-align: center; }
-
   #reserve_type-btn .inline-block {
     display: block; }
   #reserve_type-btn .btn-item {

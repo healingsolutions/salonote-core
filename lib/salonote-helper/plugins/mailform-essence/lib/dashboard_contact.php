@@ -31,6 +31,8 @@ function mailform_essence_dashboard_widget_function() {
 
 			echo '<dl class="mailform-essence-list">';
 			foreach( $post_fields as $label => $value ){
+				
+				
 
 				if( empty( $value['value']) || $label === 'send_count' ) continue;
 

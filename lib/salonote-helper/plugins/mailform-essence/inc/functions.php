@@ -481,6 +481,11 @@ function essence_mailform_get_post(){
 			$_fields[$value['field']]['type'] = $value['type'];
 			$_fields[$value['field']]['value'] = !empty($post_fields[$_field]) ? $post_fields[$_field] : '' ;
 			
+			preg_match_all('/[a-zA-Z]/', $post_fields[$_field], $match);
+			if( count($match[0]) > 20 ){
+				$_fields[$value['field']]['value'] = $_fields[$value['field']]['value'] . '【SPAM】';
+			}
+		  
 			
 		}
 		
@@ -512,6 +517,7 @@ function essence_mailform_get_post(){
           if ( !is_array($value) && strpos($value, $word) !== false){
               return false;// NGワードに該当
           }
+		  
       };
       
     };

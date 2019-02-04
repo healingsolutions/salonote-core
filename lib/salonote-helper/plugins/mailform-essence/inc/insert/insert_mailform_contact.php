@@ -29,6 +29,9 @@ global $image_item;
 
 //date_default_timezone_set('Asia/Tokyo');
 
+
+
+
 $post_value = array(
 		'post_title'    => get_the_title($post_fields['post_id']) . date('Y-m-d H:i:s',strtotime( $post_fields['post_date'])),    // 投稿のタイトル
 		'post_type'     => 'es_contact',      // 投稿タイプ
@@ -44,6 +47,17 @@ if($insert_id) {
 	$_fields['send_count']['name'] 	= '入力時間';
 	$_fields['send_count']['value'] = $post_fields['send_count'];
 	$_fields['send_count']['type']	= 'number';
+	
+	$_fields['spam_check']['name'] 	= 'スパム判定';
+	if( preg_match('/[ぁ-ん]/',$value) == '0' ){
+		//echo '【SPAM】';
+		$_fields['spam_check']['value'] = true;
+	}else{
+		$_fields['spam_check']['value'] = false;
+	}
+	$_fields['spam_check']['type']	= 'text';
+	
+	
   update_post_meta( $insert_id,  'post_fields' , $_fields );
 	
 	if(is_user_logged_in()){

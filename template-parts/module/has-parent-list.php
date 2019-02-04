@@ -59,7 +59,8 @@ function child_list_func($post,$_child_class = null){
 		if(
 			!is_tax() &&
 			!empty( $post_type_set ) &&
-			in_array('display_list_term',$post_type_set)
+			in_array('display_list_term',$post_type_set) &&
+      !empty ($post_taxonomies[0])
 		){
 			$term_list = wp_get_post_terms($post->ID, $post_taxonomies[0], array('fields' => 'all') );
 			echo isset( $term_list[0]->name ) ? '<span class="taxonomy_label label-block">'.esc_attr($term_list[0]->name).'</span>' : '' ;
