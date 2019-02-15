@@ -1,14 +1,15 @@
 @charset "utf-8"; 
 
+a.wp-block-button__link,
 .btn-item{
 	top: 0;
 	position: relative;
-	font-weight: 700;
+	//font-weight: 700;
 	line-height: 1.2;
 	display: inline-block;
 	text-align: center;
 	margin:10px auto;
-	padding: 10px 60px;
+	padding: 1em 60px;
 	opacity: 1;
 	cursor: pointer;
 	@include _transition_(all,0.5);
@@ -91,4 +92,16 @@
 	-webkit-animation: moving_btn 1s ease .2s infinite alternate;
 	-o-animation: moving_btn 1s ease .2s infinite alternate;
 	-ms-animation: moving_btn 1s ease .2s infinite alternate;
+}
+
+
+.list_block_post-type{
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  a{
+    display: block;
+    font-size: 11px;
+    padding: 0.4em 0.7em;
+  }
 }

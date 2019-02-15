@@ -212,18 +212,22 @@ if(is_user_logged_in()){
     if( $item['type'] === 'zip' ){
 			
 			echo '
-
-			
-
-			<div class="row">
+      <div class="row">
 				<div class="col-sm-5" style="display:inline-block">
 				<input id="form-input-' . $counter .'" name="'.$form_field.'" class="form-control'.$_required_class.'" type="'.$item['type'].'" value="" '.$_required_label.'/>
-				</div>
+				</div>';
+      
+      /*
+      if( isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ){
+      echo '
 				<div class="col-sm-5" style="display:inline-block">
 				<button type="button" id="get_address">自動入力</button>
-				</div>
-			</div>
-			';
+				</div>';
+      }
+      */
+      
+      
+			echo '</div>';
 		}
     
     if( $item['type'] === 'textarea' ) echo '<textarea id="form-input-' . $counter .'" class="form-control'.$_required_class.'" name="'.$form_field.'" rows="8"'.$_required_label.'></textarea>';

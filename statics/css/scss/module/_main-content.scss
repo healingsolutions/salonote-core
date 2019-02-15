@@ -4,7 +4,9 @@
 	z-index: 1;
 	position: relative;
 }
-
+.main-content-row{
+  clear: both;
+}
 
 .main-content-unit{
   @include clearfix;

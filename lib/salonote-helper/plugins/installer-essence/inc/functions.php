@@ -19,7 +19,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+$opt_values = get_option('insert_essence',true);
+//$opt_values['finish'] = false;
+//$opt_values['installer_end'] = false;
 
+//echo '<pre>opt_values'; print_r($opt_values); echo '</pre>';
+
+//update_option('insert_essence',$opt_values);
 
 function clear_installer_start(){
 	if( !empty($_GET['clear_insert_essence']) ) delete_option('insert_essence');
@@ -37,7 +43,7 @@ function installer_start(){
 
 	$count_posts = wp_count_posts('page');
 	
-	//update_option('insert_essence',null);
+	//update_option('insert_essence',$opt_values);
 	
 	if( is_front_page() && is_home() && ($count_posts->publish + $count_posts->draft) <= 2 && current_user_can( 'activate_plugins' ) ){
 

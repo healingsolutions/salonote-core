@@ -355,6 +355,7 @@ function filter_handler( $seconds ) {
 //read files hook directory
 add_action('template_redirect','get_template_hook');
 function get_template_hook(){
+
   
 	global $post;
   global $theme_opt;
@@ -373,7 +374,10 @@ function get_template_hook(){
       wp_enqueue_style('essence-child', get_stylesheet_directory_uri().'/style.css', array(), '1.0');
     }
     add_action( 'wp_enqueue_scripts', 'essence_child_head_enqueue' ,20);
+    add_action( 'enqueue_block_editor_assets', 'essence_child_head_enqueue' );
   }
+  
+  
   
 
   // setting post_type =======================================
@@ -406,12 +410,14 @@ function get_template_hook(){
 
   //echo $post_type_name.':'.$post_type_tmpl .'<br>';
   
-  if( !empty($post_type_name) )
+  if( !empty($post_type_name) ){
   $post_type_set  = !empty($theme_opt['post_type'][$post_type_name]) ? $theme_opt['post_type'][$post_type_name] : null ;
+  }
 	
 	//post_type taxonomy
 	$post_taxonomies = [];
-	
+
+  //$post_type_name = 'post';
   $post_type_taxonomies = get_object_taxonomies( ( ($post_type_name !== 'front_page') ? $post_type_name : 'post') , 'objects' );
 	
 	if ( !empty($post_type_taxonomies) ) {
@@ -584,3 +590,7 @@ $browser = strtolower($_SERVER['HTTP_USER_AGENT']);
 if (strstr($browser , 'trident') || strstr($browser , 'msie')) {
 	add_filter( 'wp_calculate_image_srcset', '__return_false' );
 }
+
+
+
+

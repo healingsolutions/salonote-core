@@ -58,6 +58,7 @@ $field_arr = array(
         'timeline' => __('timeline','salonote-essence'),
 				'calendar' => __('calendar','salonote-essence'),
 				'qanda' => __('Q & A','salonote-essence'),
+        'plane' => __('plane','salonote-essence'),
       ),
   ),
   'posts_per_page' => array(

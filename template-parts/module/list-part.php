@@ -3,6 +3,7 @@
 
 
 global $post;
+global $post_type;
 global $post_type_set;
 global $user_setting;
 global $theme_mods;
@@ -13,6 +14,7 @@ $page_info = get_post_meta($post->ID,'page_info',true);
 
 $exclude_list = !empty( $page_info['exclude_list'] ) ? intval( $page_info['exclude_list']) : null ;
 if( $exclude_list !== 1){
+
 
 
 ?>
@@ -39,6 +41,20 @@ if(
 ){
 	echo ' excertp_position-'.$post_type_set['list_position_excerpt'];
 }
+  
+if( has_category()){
+  $cat_arr = wp_get_post_categories( $post->ID );
+  if( !empty($cat_arr)){
+    foreach( $cat_arr as $cat_item ){
+      $cat_info = get_category( $cat_item );
+      echo ' cat_name-' . esc_attr($cat_info->name);
+      echo ' cat_slug-' . esc_attr($cat_info->slug);
+    }
+  }
+	
+}              
+                         
+                         
 ?>">
 <?php
 												 
@@ -84,11 +100,41 @@ if(
 		!empty( $post_type_set ) &&
 		in_array('display_list_term',$post_type_set)
 	){
+    $post_type_name  = get_post_type();
+    $post_taxonomies = [];
+    $post_type_taxonomies = get_object_taxonomies( ( ($post_type_name !== 'front_page') ? $post_type_name : 'post') , 'objects' );
+
+    if ( !empty($post_type_taxonomies) ) {
+      foreach( $post_type_taxonomies as $post_type_taxonomy ) {
+        if( is_object($post_type_taxonomy) ){
+          $post_taxonomies[] = $post_type_taxonomy->name;
+        }
+      }
+    }
+    
 		echo '<div class="list-taxonomy-block">';
 		foreach($post_taxonomies as $tax_item){
 			echo get_the_term_list($post->ID ,$tax_item, '<span>', '</span><span>', '</span>');
 		}
 		echo '</div>';
+	}
+                         
+                         
+                         
+  if(
+    
+		!empty( $post_type_set ) &&
+		in_array('display_post_type',$post_type_set) &&
+    count($post_type_set['show_post_type']) > 1
+	){
+    $entry_post_type = get_post_type( $post );
+		if( isset($entry_post_type) ){
+        
+        $obj = get_post_type_object( $entry_post_type );
+				echo '<div class="list_block_post-type">
+				<a class="btn-color" href="'. get_post_type_archive_link( $entry_post_type ) .'">' .$obj->labels->singular_name. '</a>
+				</div>';
+		}
 	}
 ?>
 </section>

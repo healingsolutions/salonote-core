@@ -59,10 +59,12 @@ $opt['height']			= !empty($slider_essence_opt['height'])				? $slider_essence_op
 $opt['sp_height']		= !empty($slider_essence_opt['sp_height']) 		? $slider_essence_opt['sp_height'] : '' ;
 $opt['sp_right']		= !empty($slider_essence_opt['sp_right']) 		? $slider_essence_opt['sp_right'] : 0 ;
 $opt['speed']				= !empty($slider_essence_opt['speed']) 				? $slider_essence_opt['speed'] : 8 ;
+$opt['font_size']   = !empty($slider_essence_opt['font_size'])    ? $slider_essence_opt['font_size'] : 2.2;
 $opt['size']				= !empty($slider_essence_opt['size']) 				? $slider_essence_opt['size'] : 'full';
 $opt['zoom']				= !empty($slider_essence_opt['zoom']) 				? $slider_essence_opt['zoom'] : 0;
 $opt['title_class'] = !empty($slider_essence_opt['title_class'])  ? $slider_essence_opt['title_class'] : '';
 $opt['body_class']  = !empty($slider_essence_opt['body_class'])   ? $slider_essence_opt['body_class'] : '';
+$opt['center_mode'] = !empty($slider_essence_opt['center_mode'])  ? $slider_essence_opt['center_mode'] : false;
 ?>
   
 <table class="form-table">
@@ -112,6 +114,13 @@ $opt['body_class']  = !empty($slider_essence_opt['body_class'])   ? $slider_esse
     <input type="number" name="slider_essence_options[speed]" value="<?php echo $opt['speed'];?>">秒
   </td>
 </tr>
+  
+<tr valign="top">
+  <th scope="row"><label for="font_size">フォントサイズ</label></th>
+  <td>
+    <input type="number" step="0.1" name="slider_essence_options[font_size]" value="<?php echo $opt['font_size'];?>">em
+  </td>
+</tr>
 	
 <tr valign="top">
   <th scope="row"><label for="size">画像サイズ</label></th>
@@ -128,6 +137,14 @@ $opt['body_class']  = !empty($slider_essence_opt['body_class'])   ? $slider_esse
   <td>
     <input type="checkbox" name="slider_essence_options[zoom]" value="1"<?php echo ($opt['zoom']) ? ' checked' : '' ;?>>
 		<p class="hint">スライドした時にゆっくり画像をズームさせる</p>
+  </td>
+</tr>
+  
+<tr valign="top">
+  <th scope="row"><label for="center_mode">センターモード</label></th>
+  <td>
+    <input type="checkbox" name="slider_essence_options[center_mode]" value="1"<?php echo ($opt['center_mode']) ? ' checked' : '' ;?>>
+		<p class="hint">左右に余白を表示する</p>
   </td>
 </tr>
 

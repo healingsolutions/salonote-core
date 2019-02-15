@@ -336,4 +336,30 @@ function cdTimer1() {
 add_shortcode('countdown', 'count_down_func');
 
 
+
+
+
+//YouTube list
+function search_icon_block_func($atts) {
+    extract(shortcode_atts(array(
+        's_post_type' => null,
+        's_category' => null,
+        's_tag' => null,
+        's_term' => null,
+    ), $atts));
+  
+    ob_start();
+
+    global $s_post_type;
+    global $s_category;
+    global $s_tag;
+    global $s_term;
+  
+    get_template_part('template-parts/module/tools/search_icon_block');
+        
+    return ob_get_clean();
+  
+}
+add_shortcode('search_icon_block', 'search_icon_block_func');
+
 ?>

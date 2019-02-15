@@ -65,12 +65,13 @@ function slider_essence(){
 	$opt['sp_height'] = !empty($slider_essence_opt['sp_height']) ? $slider_essence_opt['sp_height'] : '' ;
 	$opt['sp_right'] = !empty($slider_essence_opt['sp_right']) ? $slider_essence_opt['sp_right'] : 0 ;
 	$opt['speed'] = !empty($slider_essence_opt['speed']) ? $slider_essence_opt['speed'] : 8 ;
+  $opt['font_size']   = !empty($slider_essence_opt['font_size'])    ? $slider_essence_opt['font_size'] : 2.2;
 	$opt['size'] = !empty($slider_essence_opt['size']) ? $slider_essence_opt['size'] : 'large';
 	$opt['zoom'] = !empty($slider_essence_opt['zoom']) ? $slider_essence_opt['zoom'] : false;
   
   $opt['title_class'] = !empty($slider_essence_opt['title_class'])  ? ' class="'.$slider_essence_opt['title_class'].'"' : '';
   $opt['body_class']  = !empty($slider_essence_opt['body_class'])   ? ' '.$slider_essence_opt['body_class'] : '';
-	
+	$opt['center_mode'] = !empty($slider_essence_opt['center_mode'])  ? $slider_essence_opt['center_mode'] : false;
 	global $user_setting;
 	
 	$es_slider_info = get_post_meta( $post->ID, 'es_slider_info',true );
@@ -81,12 +82,15 @@ function slider_essence(){
 
 	?>
 	<style>
-	.slick-block-essence .slick-item{
+	.slick-block-essence .slick-item,
+  .slick-block-essence .slick-text{
 		height: <?php echo $_height; ?>;
 		overflow: hidden;
 	}
 	@media screen and (max-width: 768px) {
-		.slick-block-essence .slick-item{
+		.slick-block-essence .slick-item,
+    .slick-block-essence .slick-text
+    {
 			height: <?php echo $opt['sp_height']; ?>;
 		}
 	}
@@ -125,11 +129,31 @@ function slider_essence(){
 			text-shadow: 1px 1px 7px '.$mods['slide_shadow'].';
 		}';
 	}
+  if( !empty($mods['slide_bkg']) ){
+		echo '.slick-block-essence {
+			background-color:'.$mods['slide_bkg'].';
+		}';
+	}
 
 	if( !empty($opt['zoom']) ){
 		?>
 		.slick-item img{
 			animation: keyvisual_zoom_in <?php echo $opt['speed'] + 2; ?>s ease 0s forwards;
+		}
+		<?php
+	}
+  
+  if( $opt['center_mode'] ){
+		?>
+		.slick-item{
+			filter:alpha(opacity=30);
+      -moz-opacity: 0.3;
+      opacity: 0.3;
+		}
+    .slick-item.slick-active{
+			filter:alpha(opacity=100);
+      -moz-opacity: 1;
+      opacity: 1;
 		}
 		<?php
 	}
@@ -148,10 +172,25 @@ function slider_essence(){
 					dots: true,
 					infinite: true,
 					speed: 500,
+          centerMode: true,
+          centerPadding: '15%',
 					autoplaySpeed: <?php echo ($opt['speed'] * 1000); ?>,
 					slidesToShow: 1,
-					fade: true,
-					responsive: [
+					<?php if( $opt['center_mode'] ){
+                  //echo 'fade: true,';
+                }else{
+                  echo 'fade: true,';
+                } ?>
+					responsive: [<?php
+  if( $opt['center_mode'] ){
+          ?>
+              {
+                breakpoint: 1200,
+                settings: {centerPadding: 0,fade: true}
+              },
+<?php 
+  }
+   ?>
 						{
 							breakpoint: 600,
 							settings: {
@@ -281,28 +320,23 @@ function slider_essence(){
 		
 
 		if(preg_match('/\[|\]/',$value['text'])){
-			echo '<div class="slick-text"><div class="slick-text-inner">'.apply_filters('the_content', do_shortcode($value['text']));
+			echo '<div class="slick-text"><div class="slick-text-inner">'.apply_filters('the_content', do_shortcode($value['text'])).'</div></div>';
 			
 			if(!empty($value['textarea'])){
 				echo '<div class="slick-textarea'.$opt['body_class'].'">'.apply_filters('the_content', do_shortcode($value['textarea'])).'</div>';
 			}
 			
-			echo '</div></div>';
 		}else{
-			echo '<div class="slick-text"><div class="slick-text-inner"><h2'.$opt['title_class'].'>'.nl2br(esc_html($value['text'])).'</h2>';
-			
+      if( $value['text'] ){
+        echo '<div class="slick-text"><div class="slick-text-inner"><h2'.$opt['title_class'].'>'.nl2br(esc_html($value['text'])).'</h2></div></div>';
+      }
 			if(!empty($value['textarea'])){
 				echo '<div class="slick-textarea'.$opt['body_class'].'">'.apply_filters('the_content', do_shortcode($value['textarea'])).'</div>';
 			}
-			
-			echo '</div></div>';
+
 		}
 		
-		
-		
-		
-		
-		
+
 		
 		if ($value === end($sliders)) {
 			// action essence_slider_before =============================
@@ -321,11 +355,13 @@ function slider_essence(){
 	
 	if( !empty( $_content ) ){
 		echo '<div class="slick-fixed-text">';
+    
+
 		
 		if(preg_match('/\[|\]/',$_content)){
 			echo '<div class="slick-text"><div class="slick-text-inner'.$opt['body_class'].'">'.wpautop(do_shortcode($_content)).'</div></div>';
 		}else{
-			echo '<div class="slick-text"><div class="slick-text-inner'.$opt['body_class'].'"><h2'.$opt['title_class'].' style="font-size:2.2em;">'.nl2br(esc_html($_content)).'</h2></div></div>';
+			echo '<div class="slick-text"><div class="slick-text-inner'.$opt['body_class'].'"><h2'.$opt['title_class'].' style="font-size:'.$opt['font_size'].'em;">'.nl2br(esc_html($_content)).'</h2></div></div>';
 		}
 		
 		echo '</div>';
@@ -359,10 +395,18 @@ class Slide_Essence_Theme_Customize
 					'section' => 'colors',
 					'settings' => 'slide_shadow',
 			) ) );
+      
+      $wp_customize->add_setting( 'slide_bkg', array( 'default' => null,'sanitize_callback' => 'sanitize_hex_color' ) );
+			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'slide_bkg' , array(
+					'label' => 'スライドの背景',
+					'section' => 'colors',
+					'settings' => 'slide_bkg',
+			) ) );
 
 			//リアルタイム反映
 			$wp_customize->get_setting('slide_text')->transport = 'postMessage';
 			$wp_customize->get_setting('slide_shadow')->transport = 'postMessage';
+      $wp_customize->get_setting('slide_bkg')->transport = 'postMessage';
 			
     }
 

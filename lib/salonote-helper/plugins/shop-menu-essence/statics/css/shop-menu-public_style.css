@@ -2,10 +2,11 @@
 /* CSS Document */
 .shop_menu_block .hidden {
   display: none; }
-
 .shop_menu_block .shop_menu_block-item {
   margin-bottom: 35px;
   position: relative; }
+  .shop_menu_block .shop_menu_block-item p {
+    text-align: center !important; }
   .shop_menu_block .shop_menu_block-item dl {
     display: block;
     clear: both;
@@ -70,7 +71,6 @@
     -ms-transition: transform 0.3s;
     -o-transition: transform 0.3s;
     transition: transform 0.3s; }
-
 .shop_menu_block .shop_menu_check {
   margin: 1em auto;
   text-align: left;
@@ -192,6 +192,11 @@ form.shop_menu_block .required-item .col-form-label {
   font-size: 80%;
   padding: 3px 14px; }
 
+span.menu_tax {
+  font-size: 0.75em;
+  font-weight: normal;
+  margin-left: 0.5em; }
+
 .wrap {
   max-width: 980px;
   margin: 10px auto 0; }
@@ -287,7 +292,6 @@ form.shop_menu_block .required-item .col-form-label {
         width: 100% !important; }
       .shop_menu_block.grid-view .shop_menu_block-item form.shop_menu_essence-reserve_button {
         text-align: center; } }
-
 @media screen and (max-width: 767px) {
   .shop_menu_block {
     font-size: 80%; }
@@ -299,6 +303,7 @@ form.shop_menu_block .required-item .col-form-label {
         max-width: 100%; }
     .shop_menu_block form.shop_menu_essence-reserve_button {
       text-align: center; }
+
   #reserve_type-btn .inline-block {
     display: block; }
   #reserve_type-btn .btn-item {

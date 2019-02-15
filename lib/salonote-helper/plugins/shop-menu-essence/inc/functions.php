@@ -320,6 +320,13 @@ function print_shop_menu_item( $field_set=null , $shop_menu_arr=null, $not_reser
 	global $id;
 	global $list_type;
   
+  $shop_menu_opt = get_option('shop_menu_essence_options');
+  $show_tax_arr = array(
+    'show' => '(税別)',
+    'show_2' => '(+税)',
+    'in_tax' => '(税込)',
+  );
+  
   $list_type = isset($list_type) ? $list_type : 'list' ;
 	
 	if(is_user_logged_in()){
@@ -414,7 +421,14 @@ function print_shop_menu_item( $field_set=null , $shop_menu_arr=null, $not_reser
             }
 
             echo '<dd class="'.$field.$_dd_class.'">';
-              echo !empty($value) ? wpautop( $value ) : '' ;
+              echo !empty($value) ? nl2br( $value ) : '' ;
+            
+              if ( !empty($field) && $field == 'menu_price' && !empty($shop_menu_opt['menu_tax'])){
+                echo '<span class="menu_tax">'.$show_tax_arr[$shop_menu_opt['menu_tax']].'</span>';
+              }
+            if ( !empty($field) && $field == 'menu_campaing' && !empty($shop_menu_opt['menu_tax'])){
+                echo '<span class="menu_tax">'.$show_tax_arr[$shop_menu_opt['menu_tax']].'</span>';
+              }
               //echo '<pre>fields'; print_r($value); echo '</pre>';
             echo '</dd>';
           }
@@ -460,6 +474,9 @@ function print_shop_menu_item( $field_set=null , $shop_menu_arr=null, $not_reser
             if ( !empty($value)){
                 echo empty(preg_match('/\¥|￥/', $value)) ? nl2br( '¥'.$value ) : nl2br( $value ) ;
             }
+            if ( !empty($field) && $field == 'menu_price' && !empty($shop_menu_opt['menu_tax'])){
+              echo '<span class="menu_tax">'.$show_tax_arr[$shop_menu_opt['menu_tax']].'</span>';
+            }
             echo '</h3>';
           }else{
             
@@ -477,6 +494,9 @@ function print_shop_menu_item( $field_set=null , $shop_menu_arr=null, $not_reser
                 echo empty(preg_match('/\¥|￥/', $value)) ? '¥' : '' ;
               }
               echo !empty($value) ? nl2br( $value ) : '' ;
+              if ( !empty($field) && $field == 'menu_campaing' && !empty($shop_menu_opt['menu_tax'])){
+                echo '<span class="menu_tax">'.$show_tax_arr[$shop_menu_opt['menu_tax']].'</span>';
+              }
               //echo '<pre>fields'; print_r($value); echo '</pre>';
             echo '</p>';
             

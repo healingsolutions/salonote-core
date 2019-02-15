@@ -1,12 +1,11 @@
 <?php
-
 $zipcord ="";
 $user= array();
 if(isset($_GET["zipcord"])){
 $zipcord =$_GET["zipcord"];
 }
 if(!empty($zipcord)){
-$data = 'http://api.zipaddress.net/?zipcode='. $zipcord;
+$data = '//api.zipaddress.net/?zipcode='. $zipcord;
 
   
 $json = @file_get_contents($data);

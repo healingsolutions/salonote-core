@@ -92,6 +92,10 @@ $args['orderby'] = !empty($post_type_set['posts_order']) ? $post_type_set['posts
 
 $args['paged'] = get_query_var( 'paged', 1 );
 
+if( is_tag() ){
+  $args['tag_id'] = get_query_var('tag_id');
+}
+
 if( is_tax() ){
 	$args['post_type'] = $post_type_name;
 	
@@ -105,7 +109,7 @@ if( is_tax() ){
 }
 
 if( is_category() ){
-	$args['post_type'] = $post_type_name;
+	$args['post_type'] = 'any';
 	$args['cat'] = get_query_var('cat');
 }
 
@@ -140,7 +144,15 @@ echo '<div class="'.$row_class.'">';
 
 					echo '<p class="entry_block_title nav_font"'. ((mb_strlen(esc_html( $obj->name )) > 6 ) ? ' style="font-size:1em;"' : '' ).'>'.strtoupper(str_replace('_',' ',esc_html( $obj->name ))).'</p>';
 				
-					echo '<p class="entry_block_sub_title body_font">'.esc_html( $obj->label ).'</p>';
+					echo '<p class="entry_block_sub_title body_font">';
+          if( $obj->name === 'post' ){
+            echo !empty($theme_opt['base']['custom_post_label']) ? esc_html($theme_opt['base']['custom_post_label']) : esc_html( $obj->label );
+          }else{
+            echo esc_html( $obj->label );
+          }
+          
+            
+          echo '</p>';
         
         
 				

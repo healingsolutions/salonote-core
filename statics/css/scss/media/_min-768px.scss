@@ -42,6 +42,7 @@
 	.main-content-row{
 		margin-left: -15px;
 		margin-right: -15px;
+
 	}
 	
 
@@ -356,6 +357,15 @@
 		}
 		
 	}//overlaid_block_group
+  
+  .wp-block-media-text{
+      &.has-media-on-the-right .wp-block-media-text__content{
+				padding-left: 0%;
+			}
+      &.has-media-on-the-left .wp-block-media-text__content{
+				padding-right: 0%;
+			}
+  }
 	
 	
 }

@@ -24,6 +24,7 @@ if(
 			if( !empty($matches[2]) ){
 				$_thumbnail_url = !empty($matches[2]) ? '<img src="http://img.youtube.com/vi/'.$matches[2].'/0.jpg" />' : null ;
 			}
+
 		}
 
 		//if display first attachment to thumbnail
@@ -33,8 +34,7 @@ if(
 		){
 			$thumb_size = !empty( $post_type_set['thumbnail_size'] ) ? $post_type_set['thumbnail_size'] : 'thumbnail' ;
 			$_thumbnail_url = !empty( get_post_first_thumbnail($post->ID, $thumb_size) ) ? '<img src="'.get_post_first_thumbnail($post->ID, $thumb_size).'"/>' : null;
-			
-			
+
 			
 			if(
 				in_array('first_attachement',$post_type_set) &&
@@ -58,6 +58,7 @@ if(
 			);
 
 			$_thumbnail_url = get_the_post_thumbnail($post->ID,$thumb_size,$thumb_attr);
+
 		}// has_thumbnail
 	
 
@@ -121,9 +122,22 @@ if(
   !empty( $post_type_set ) &&
   in_array('display_post_date',$post_type_set)
 ){
+  
+  
+  
 	$data_format = !empty($post_type_set['post_data_format']) ? esc_attr($post_type_set['post_data_format']) : 'Y.m.d' ;
-	
-  echo '<time class="list_block_date">'.get_the_date($data_format).'</time>';
+  
+  if(strpos($data_format,'F') !== false){
+    
+    $data_format = str_replace("F", "$$$", $data_format);
+    $en_month = get_post_time('F',$post_id);
+
+    echo '<time class="list_block_date">'.str_replace('$$$',$en_month, get_the_date($data_format,$post_id)).'</time>';
+  }else{
+    echo '<time class="list_block_date">'.get_the_date($data_format).'</time>';
+  }
+  
+  
 }
 
 

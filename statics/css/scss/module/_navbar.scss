@@ -67,14 +67,42 @@
       line-height: 50px;
 			font-size: 1.25em;
 			
-			h1.site-description{
+			.site-description{
 				font-size: .45rem;
 				margin-top: -1.5em;
+        line-height: 1;
+        padding: 0;
 			}
 			
       img{
         max-height: 36px;
         width: auto;
+        margin-top: -.7em;
+      }
+    }
+    
+    .tel-button{
+      border-radius: 50%;
+      height: 40px;
+      width: 40px;
+      line-height: 1.5;
+      text-align: center;
+      vertical-align: middle;
+      position: absolute;
+      right: 45px;
+      top: 10px;
+      z-index: 9999;
+      display: block;
+      
+      span.dashicons{
+        font-size: 25px;
+        display: block;
+        width: auto;
+      }
+      span.tel-button-label{
+        font-size: 11px;
+        display: block;
+        margin-top: 2px;
       }
     }
     
@@ -784,7 +812,7 @@ body.admin-bar .site-header-block{
 
 
 #super-top-nav{
-		min-height: 4em;
+  //min-height: 4em;
 	
 	.header_logo-block img{
 		max-height: 2.6em;
@@ -792,7 +820,7 @@ body.admin-bar .site-header-block{
 		padding: 5px 0;
 	}
 	.header_logo-block.has_excerpt img{
-		max-height: 3em;
+		max-height: 2em;
 	}
 	
 	.super-top-container{

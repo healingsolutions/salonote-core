@@ -68,6 +68,7 @@
         float: right;
     }
     img {
+        min-width: 100%;
         display: block;
     }
     &.slick-loading img {

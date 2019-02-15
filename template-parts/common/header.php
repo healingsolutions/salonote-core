@@ -36,7 +36,7 @@ if (has_nav_menu('HeaderBottom')) {
 }
 
 ?>
-<header id="header" class="check <?php echo implode(' ',$header_class);?>">
+<header id="header" class="<?php echo implode(' ',$header_class);?>">
   <?php
     // action essence_before_header =============================
     if ( current_user_can( 'administrator' ) && $user_setting['display_shortcode'] ) { echo '<span class="do_action">do_action: [essence_before_header]</span>';}

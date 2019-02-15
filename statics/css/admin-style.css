@@ -27,11 +27,15 @@ i.dashicons-dashicons-money::before {
 
 /* widget */
 .widget-content dl {
-  clear: both; }
+  clear: both;
+  padding: 1em 0.4em; }
+  .widget-content dl:nth-child(even) {
+    background-color: #EFEFEF; }
   .widget-content dl dt {
     width: 20%; }
   .widget-content dl dt, .widget-content dl dd {
     display: inline-block;
+    vertical-align: middle;
     padding: 0 5px;
     margin: 0; }
 

@@ -157,6 +157,25 @@ if( !empty($theme_opt['base']['body_font']) ){
 
 
 
+//if navbar_gradient_bkg  color
+if( !empty(get_theme_mod('navbar_bkg')) && !empty(get_theme_mod('navbar_gradient_bkg')) ){
+  
+    $rgb_start = implode(',', (salonote_hex2rgb(get_theme_mod('navbar_bkg'))) );
+    $rgb_end   = implode(',', (salonote_hex2rgb(get_theme_mod('navbar_gradient_bkg'))) );
+    
+  
+		$color_set .= '.navbar-block, .sp-navbar-unit ,header ul.sub-menu, .pagination > *, .list-icon li::before, .list-taxonomy-block span a, .label-block, .sp_display_nav-container{
+      background: '.get_theme_mod('navbar_bkg').';
+      background: -moz-linear-gradient(top,rgba('. $rgb_start .',1),rgba('. $rgb_end .',1));
+      background: -o-linear-gradient(rgba('. $rgb_start .',1),rgba('. $rgb_end .',1));
+      background: -webkit-gradient(linear,left top,left bottom,from(rgba('. $rgb_start .',1)),to(rgba('. $rgb_end .',1)));
+      background: linear-gradient(top,rgba('. $rgb_start .',1),rgba('. $rgb_end .',1));
+      background: linear-gradient(to bottom, rgba('. $rgb_start .',1), rgba('. $rgb_end .',1));
+    }
+		';
+}
+
+
 //if sidebar color
 if( !empty(get_theme_mod('sidebar')) ){
 		$color_set .= '

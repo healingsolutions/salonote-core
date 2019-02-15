@@ -59,7 +59,7 @@ if( !empty($theme_opt['base']['google_map']) && !$hide_footer ){
 					'theme_location' => 'FooterNavi',
 					'container'       => 'ul',
 					'menu_id'      => '',
-					'menu_class'      => 'footer-sitemap nav-font',
+					'menu_class'      => 'footer-sitemap footer-inline-nav nav-font',
 					'depth' => 3,
 					'echo'            => true,
 		) );
@@ -72,7 +72,7 @@ if( !empty($theme_opt['base']['google_map']) && !$hide_footer ){
   do_action( 'essence_after_footer_content' );
   // ^action =============================
 
-	echo '<br class="clear" />';
+	//echo '<br class="clear" />';
 
 	//if display footer
 	if( !$hide_footer ){

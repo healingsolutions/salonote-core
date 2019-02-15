@@ -152,8 +152,14 @@ jQuery(document).on('change', ':file', function($) {
 });
 
 			jQuery( function($) {
-				$(\'#get_address\').click(function(){
-					var zipcord = $(\'#mailform_essence_form-'.$counter.' input\').val(); //郵便版番号入力値 名前はそれぞれ
+				$('#get_address').on('click',function(){
+					var zipcord = $('input[type="zip"]').val(); //郵便版番号入力値 名前はそれぞれ
+          var zip_parent = $('input[type="zip"]').parents('.form-group').next('.form-group').find('input[type="text"]');
+          var json_file = <?php echo json_encode(MAILFORM_ESSENCE_PLUGIN_URI .'/lib/get_address.php?zipcord='); ?>;
+          
+          //console.log('zipcord'+zipcord);
+          //console.log('zip_parent'+zip_parent.next('.form-group').find('input[type="text"]').attr('id'));
+          
 					if (zipcord != "" ){
 						//loadingとか入れたいとき用　使用時は //を外します
 						//$(\'#loading_address\').fadeIn();
@@ -161,21 +167,25 @@ jQuery(document).on('change', ':file', function($) {
 						// IE対策 キャッシュクリア
 						cache: false, });
 						$.ajax({
-							type: \'GET\',
-							url: \''.MAILFORM_ESSENCE_PLUGIN_URI.'/lib/get_address.php?zipcord=\'+zipcord,
-							datatype: \'json\',
+							type: 'GET',
+							url: json_file+zipcord,
+							datatype: 'json',
 							success: function(json){
+                
+                console.log('json'+json);
+                
 								$.each(json, function(i, item){
-								$(\'#mailform_essence_form-'.$counter.' + div input\').val(item.location1);
+                $(zip_parent).val(item.location1);
+								//$('#mailform_essence_form-'.$counter.' + div input').val(item.location1);
 								//$(\'#loading_address\').fadeOut();//loadingとか入れた人はこいつで読み込み後消せます。
 								});
 							}, error: function(){
 								// $(\'#loading_address\').fadeOut();//loadingとか入れた人はこいつで読み込み後消せます。
-								alert(\'error\');
+								alert('error');
 							}
 						});
 					} else {
-						alert(\'error\');
+						alert('error');
 					}
 				});
 			});

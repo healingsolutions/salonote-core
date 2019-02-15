@@ -19,7 +19,7 @@ if(is_user_logged_in()){
 	$userinfo = null;
 }
 
-
+$shop_menu_opt = get_option('shop_menu_essence_options');
 ?>
 
 <div id='progress'><div id='progress-complete'></div></div>
@@ -122,12 +122,15 @@ if(is_user_logged_in()){
 						<div class="form-group required-item">
 							<div class="col-form-label"><label for="user_address">性別</label></div>
 		
-							
+							<?php
+              /*
 							<div class="text-center">
 							<input id="user_gender-female" name="user_gender" type="radio" value="female"<?php if( !empty($userinfo->user_gender) &&  $userinfo->user_gender === 'female' ){
 								echo ' selected';
 							} ; ?> required /><label for="user_gender-female" class="radio-inline"><span>女性</span></label>
 							</div>
+              */
+              ?>
 							
 							<!--
 							<div class="text-center">
@@ -147,7 +150,7 @@ if(is_user_logged_in()){
             </div>
 					
 					<?php
-					if( !is_user_logged_in()){
+					if( !is_user_logged_in() && $shop_menu_opt['register_user'] === 'register'){
 						echo '<div class="form-group">
 							<label for="register">ユーザー登録</label>
 							<input id="register" name="register" type="checkbox"/>

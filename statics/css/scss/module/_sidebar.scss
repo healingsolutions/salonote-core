@@ -23,6 +23,46 @@
 
 // side list =======================
 
+body.use_side_hover{
+  .side_list{
+    ul.list-bordered{
+      li{
+        &.current{
+          a{
+            border-right-style: solid;
+            border-right-width: 4px;
+            margin-right: -4px;
+            padding-left: 0.5em;
+            
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            -ms-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            transition: all 0.3s;
+            
+            
+          }
+        }
+        &:hover{
+          padding-left: 0.5em;
+          filter:alpha(opacity=50);
+            -moz-opacity: 0.5;
+            opacity: 0.5;
+          border-right-style: solid;
+          border-right-width: 4px;
+          margin-right: -4px;
+
+          -webkit-transition: all 0.3s;
+          -moz-transition: all 0.3s;
+          -ms-transition: all 0.3s;
+          -o-transition: all 0.3s;
+          transition: all 0.3s;
+        }
+      }
+    }
+  }
+}
+
 .side_list{
 	margin-bottom: 3em;
 
@@ -40,16 +80,7 @@
 			&.child-list-item{
 				padding-left: 15px;
 			}
-			
-			&.current{
-				a{
-					border-right-style: solid;
-					border-right-width: 4px;
-					margin-right: -4px;
-					padding-left: 0.5em;
-				}
-			}
-			
+
 			time.list_block_date{
 				display: block;
 				text-align: right;
@@ -66,27 +97,9 @@
 				position: relative;
 				z-index: 100;
 				padding-left: 0;
-				-webkit-transition: all 0.3s;
-        -moz-transition: all 0.3s;
-        -ms-transition: all 0.3s;
-        -o-transition: all 0.3s;
-        transition: all 0.3s;
 				
-				&:hover{
-					padding-left: 0.5em;
-					filter:alpha(opacity=50);
-						-moz-opacity: 0.5;
-						opacity: 0.5;
-					border-right-style: solid;
-					border-right-width: 4px;
-					margin-right: -4px;
-					
-					-webkit-transition: all 0.3s;
-					-moz-transition: all 0.3s;
-					-ms-transition: all 0.3s;
-					-o-transition: all 0.3s;
-					transition: all 0.3s;
-				}
+				
+				
 				
 				> .side_list_content{
 					span.taxonomy_label{

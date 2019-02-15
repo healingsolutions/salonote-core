@@ -4,6 +4,7 @@ global $theme_opt;
 
 echo '<div class="biz_info-block">';
 
+  echo '<div class="biz_info-basic-unit">';
 
 	if( !empty($theme_opt['base']['tel_number']) ){
 		echo '
@@ -13,7 +14,7 @@ echo '<div class="biz_info-block">';
 
 	if( !empty($theme_opt['base']['fax_number']) ){
 		echo '
-		<div class="biz_info-phone text-left">FAX / '.$theme_opt['base']['tel_number'].'</div>
+		<div class="biz_info-phone text-left">FAX / '.$theme_opt['base']['fax_number'].'</div>
 		';
 	}
 
@@ -54,6 +55,16 @@ echo '<div class="biz_info-block">';
 		</dl>
 		';
 	}
+
+
+  if( !empty($theme_opt['base']['biz_access']) ){
+		echo '
+		<div class="biz_info-access">'.apply_filters( 'the_content', $theme_opt['base']['biz_access'] ).'</div>
+		';
+	}
+
+
+  echo '</div>';
 
 
 	if( !empty($theme_opt['base']['biz_message']) ){

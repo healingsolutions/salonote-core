@@ -62,6 +62,10 @@ $field_arr = array(
       'label'       => __('Business Parking','salonote-essence'),
       'type'        => 'textarea'
   ),
+  'biz_access' => array(
+      'label'       => __('Business Access','salonote-essence'),
+      'type'        => 'textarea'
+  ),
 	'biz_message' => array(
       'label'       => __('Business Message','salonote-essence'),
       'type'        => 'textarea'
@@ -136,6 +140,10 @@ $field_arr = array(
   ),
 	'enable_shop_menu' => array(
       'label' =>  __('ShopMenu PostType','salonote-essence'),
+      'type'  => 'checkbox',
+  ),
+  'enable_event' => array(
+      'label' =>  __('Event PostType','salonote-essence'),
       'type'  => 'checkbox',
   ),
 	'enable_character' => array(
@@ -260,6 +268,13 @@ $field_arr = array(
 							'headline_bdr-left' => 'headline_bdr',
       )
   ),
+  
+  'custom_post_label' => array(
+      'label'       => __('Custom Post Label','salonote-essence'),
+      'type'        => 'text'
+  ),
+  
+  
 );
 ?>
 

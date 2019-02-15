@@ -50,6 +50,14 @@ $color_customize_array = array(
     'label_jp' => __('nav background-color','salonote-essence'),
     'section'  => 'colors',
   ),
+  
+  'navbar_gradient_bkg' => array(
+    'target'   => '.navbar_gradient_bkg',
+    'element'  => 'background-color',
+    'default'  => null,
+    'label_jp' => __('nav background-gradient-color','salonote-essence'),
+    'section'  => 'colors',
+  ),
 
 
   'navbar_color' => array(
@@ -241,7 +249,7 @@ $color_customize_array = array(
 
 
   'btn_bkg' => array(
-    'target'   => '.btn-primary, .btn-color, .btn-item',
+    'target'   => '.btn-primary, .btn-color, .btn-item, a.wp-block-button__link',
     'element'  => 'background-color',
     'default'  => null,
     'label_jp' => __('button background-color','salonote-essence'),
@@ -249,7 +257,7 @@ $color_customize_array = array(
   ),
 	
 	'btn_color' => array(
-    'target'   => '.btn-primary, .btn-color, .btn-item, .btn-item a, .btn-item a:hover',
+    'target'   => '.btn-primary, .btn-color, .btn-item, .btn-item a, .btn-item a:hover, a.wp-block-button__link, a.wp-block-button__link:hover',
     'element'  => 'color',
     'default'  => null,
     'label_jp' => __('button font-color','salonote-essence'),

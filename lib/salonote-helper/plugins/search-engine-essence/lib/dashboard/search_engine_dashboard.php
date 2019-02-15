@@ -24,7 +24,7 @@ License: GPL2
 
 add_action('wp_dashboard_setup', 'search_engine_essence_dashboard_widgets');
 function search_engine_essence_dashboard_widgets() {
-	wp_add_dashboard_widget('search_engine_essence_ranking_widget', '検索順位チェック', 'search_engine_essence_dashboard_widget_function');
+	wp_add_dashboard_widget('search_engine_essence_ranking_widget', '検索順位チェック(2週間)', 'search_engine_essence_dashboard_widget_function');
 }
 function search_engine_essence_dashboard_widget_function() {
 
@@ -45,8 +45,12 @@ $_year = !empty($_POST['rank_year']) ? $_POST['rank_year'] : date('Y');
 $_month = !empty($_POST['rank_month']) ? $_POST['rank_month'] : date('m');
 $_last_day = date('t', strtotime($_year.'-'.$_month.'-01'));
 
-$_from_date = $_year.'-'.$_month.'-01 00:00:00';
-$_last_date = $_year.'-'.$_month.'-'.$_last_day.' 00:00:00';
+//$_from_date = $_year.'-'.$_month.'-01 00:00:00';
+//$_last_date = $_year.'-'.$_month.'-'.$_last_day.' 00:00:00';
+	
+$_from_date = date("Y-m-d H:i:s",strtotime("-1 week"));
+$_last_date = date("Y-m-d H:i:s");
+	
 
 if( empty( $_POST['rank_keyword'] ) ){
 	$results = $wpdb->get_results("

@@ -586,4 +586,39 @@ function markdown_char($content){
 }
 
 
+
+if( !empty($theme_opt['base']['custom_post_label']) ){
+
+
+  //デフォルトの投稿のラベル変更
+  function salonote_change_post_menu_label() {
+    global $menu;
+    global $submenu;
+    global $theme_opt;
+    $menu[5][0] = $theme_opt['base']['custom_post_label'];
+    $submenu['edit.php'][5][0] = $theme_opt['base']['custom_post_label'] . '一覧';
+    $submenu['edit.php'][10][0] = '新しい'.$theme_opt['base']['custom_post_label'];
+    $submenu['edit.php'][16][0] = 'タグ';
+  //echo ";
+  }
+  function salonote_change_post_object_label() {
+    global $wp_post_types;
+    global $theme_opt;
+    $labels = &$wp_post_types['post']->labels;
+    $labels->name = $theme_opt['base']['custom_post_label'];
+    $labels->singular_name = $theme_opt['base']['custom_post_label'];
+    $labels->add_new = _x('追加', $theme_opt['base']['custom_post_label']);
+    $labels->add_new_item = $theme_opt['base']['custom_post_label'].'の新規追加';
+    $labels->edit_item = $theme_opt['base']['custom_post_label'].'の編集';
+    $labels->new_item = '新規'.$theme_opt['base']['custom_post_label'];
+    $labels->view_item = $theme_opt['base']['custom_post_label'].'を表示';
+    $labels->search_items = $theme_opt['base']['custom_post_label'].'を検索';
+    $labels->not_found = $theme_opt['base']['custom_post_label'].'が見つかりませんでした';
+    $labels->not_found_in_trash = 'ゴミ箱に'.$theme_opt['base']['custom_post_label'].'は見つかりませんでした';
+  }
+  add_action( 'init', 'salonote_change_post_object_label' );
+  add_action( 'admin_menu', 'salonote_change_post_menu_label' );
+  
+}
+
 ?>

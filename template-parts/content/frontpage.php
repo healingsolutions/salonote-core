@@ -128,7 +128,6 @@ echo '<div class="'.$row_class.'">';
       }
 
       
-      
 	//ポストタイプウィジェット
   if(!function_exists('dynamic_sidebar') || !dynamic_sidebar($post_type_tmpl . '_after_widgets')): 
     //dynamic_sidebar( $post_type_name . 'widgets');
@@ -142,7 +141,9 @@ echo '<div class="'.$row_class.'">';
 				// ページネーション
 				if (function_exists("essence_pagination")) {
 						essence_pagination($query->max_num_pages,$args['posts_per_page']);
+          
 				}else{
+          
 					//pagenation
 					$big = 9999999999;
 					$arg = array(

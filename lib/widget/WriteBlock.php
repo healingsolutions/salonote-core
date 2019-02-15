@@ -14,18 +14,20 @@ class My_Write_Block_Widget extends WP_Widget{
 
         global $post_type_name , $options;
         if( is_singular() ){
+          
+          
         
           $writer_field=isset($instance['writer_field']) ? $instance['writer_field']: null;
           $auther_ID = get_the_author_meta('ID');
           $auther_description = get_the_author_meta('description');
-          $auther_image = get_avatar($auther_ID, 100, true);
+          $auther_image = !empty(get_the_author_meta('user_meta_image')) ? '<img src="'.get_the_author_meta('user_meta_image').'" width="150">' : get_avatar($auther_ID, 100, true);
           $auther_url 	= get_author_posts_url( get_the_author_meta( 'ID' ));
           $name 	= get_the_author_meta( 'display_name' );
           $user_company = get_the_author_meta( 'user_company' );
-          
+
           echo $args['before_widget'];
  
-           echo ' <div class="widget_author_block label-block">';
+           echo ' <div class="widget_author_block">';
 					
 					if( isset( $writer_field ) ){
                 echo '<div class="widget-title text-center mb-5">'.$writer_field . '</div>';

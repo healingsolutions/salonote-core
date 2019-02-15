@@ -29,6 +29,11 @@ $field_arr = array(
       'type' => 'checkbox',
   ),
   
+  'use_side_hover' => array(
+      'label' => __('Use Side Hover Effect','salonote-essence'),
+      'type' => 'checkbox',
+  ),
+  
   'fb_appid' => array(
       'label' => __('Facebook appID','salonote-essence'),
       'type' => 'text',
@@ -51,6 +56,16 @@ $field_arr = array(
 	'header_html_user' => array(
       'label' => __('Insert Header Html global','salonote-essence'),
       'type' => 'textarea',
+  ),
+  
+  'error_page' => array(
+      'label' =>  __('404 error page','salonote-essence'),
+      'type'  => 'select',
+      'selecter' => array(
+							''  =>  __('','salonote-essence'),
+			        '301(恒久的)' 	=>  __('301','salonote-essence'),
+							'302(一時的)'  =>  __('302','salonote-essence'),
+      )
   ),
   
 );

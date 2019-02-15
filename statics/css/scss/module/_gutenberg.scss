@@ -12,7 +12,7 @@
 		}
 	}//wp-block-column
 	
-	
+  
 	
 }
 
@@ -97,5 +97,21 @@
 		margin: 1em -1.5em;
 		padding: 1.5em;
 	}
+}
+
+@media screen and (max-width: 768px) {
+  body{
+    .wp-block-media-text .wp-block-media-text__content{
+      padding: 0;
+    }
+    
+    .wp-block-columns{
+      &.sp-has-2-columns{
+        .wp-block-column{
+          flex-basis: 50%;
+        }
+      }
+    }
+  }
 }
 

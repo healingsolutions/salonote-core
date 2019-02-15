@@ -64,7 +64,7 @@ function set_image_tag_class($class){
 add_filter('get_image_tag_class','set_image_tag_class',10);
 
 
-/*
+/**/
 //lazy load
 function customize_img_attribute( $content ) {
   $re_content = str_replace('alt=""', 'alt="image-'.wp_title('',false).'"', $content);
@@ -77,7 +77,7 @@ function customize_img_attribute( $content ) {
   return $re_content;
 }
 add_filter('the_content','customize_img_attribute');
-*/
+
 
 
 
@@ -378,7 +378,7 @@ function set_new_attachment( $url,$id=null ){
 	//画像をサーバーに保存 =======================
 
 	//保存するフォルダ名
-	$save_folder = $upload_dir['basedir'].'/'.$_directory;
+	$save_folder = $upload_dir['basedir'].'/'.$_directory.'/';
 
 	//保存するファイル名
 	$save_filename = $save_folder.'/'.$pathData['basename'];

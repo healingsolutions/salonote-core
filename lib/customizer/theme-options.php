@@ -99,6 +99,24 @@ function essence_theme_opiton_form($field_key = null,$fields_arr = null, $_optio
       <?php echo !empty($field['description']) ? '<span class="hint">'.esc_attr( $field['description'] ).'</span>' : ''; ?></label>
       </<?php echo $style_3;?>>
   <?php
+    }elseif( $field['type'] === 'checkboxlist' ){
+  ?>
+      <<?php echo $style_2;?> scope="row"><?php echo $field['label']; ?></<?php echo $style_2;?>>
+      <<?php echo $style_3;?>>
+        <ul>
+          <?php
+            foreach($field['selecter'] as $item_key => $item_label){
+              echo '<li><input type="checkbox" name="'.$value_key.'[]" value="'.$item_key.'"';
+              if( !empty($value) && in_array($item_key,$value) ){
+                echo ' checked';
+              }
+              echo '>'.$item_label.'</li>';
+            }
+          ?>
+        </ul>
+      <?php echo !empty($field['description']) ? '<span class="hint">'.esc_attr( $field['description'] ).'</span>' : ''; ?>
+      </<?php echo $style_3;?>>
+  <?php
     }elseif( $field['type'] === 'select' ){
   ?>
       <<?php echo $style_2;?> scope="row"><?php echo $field['label']; ?></<?php echo $style_2;?>>
@@ -108,7 +126,7 @@ function essence_theme_opiton_form($field_key = null,$fields_arr = null, $_optio
           <?php
             foreach($field['selecter'] as $item_key => $item_label){
               echo '<option value="'.$item_key.'"';
-              if( $value == $item_key ){
+              if( !empty($value) && $value == $item_key ){
                 echo ' selected';
               }
               echo '>'.$item_label.'</option>';

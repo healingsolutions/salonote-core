@@ -103,7 +103,7 @@ echo '<div class="'.$row_class.'">';
 
 
 			if( get_avatar($userObj->ID, 150, true) ){
-					$auther_image = get_avatar( $userObj->ID, 150, false, get_the_title() );
+        $auther_image = !empty(get_the_author_meta('user_meta_image')) ? '<img src="'.get_the_author_meta('user_meta_image').'" width="150">' : get_avatar( $userObj->ID, 150, false, get_the_title() );
 					$auther_url 	= get_author_posts_url( $userObj->ID);
 			}
 			if( isset($auther_image) ){

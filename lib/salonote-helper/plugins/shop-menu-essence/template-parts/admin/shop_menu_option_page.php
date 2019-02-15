@@ -88,6 +88,49 @@ $shop_menu_opt = get_option('shop_menu_essence_options');
   </td>
 </tr>
 
+  
+  
+  <tr valign="top">
+	
+
+  <th scope="row"><label for="menu_tax">税表示</label></th>
+  <td>
+		<select name="shop_menu_essence_options[menu_tax]">
+			<option value="">表示しない</option>
+			<option value="show"<?php
+							if( !empty($shop_menu_opt['menu_tax']) && $shop_menu_opt['menu_tax'] == 'show' ){
+								echo ' selected';
+							}
+							?>>(税別)</option>
+      <option value="show_2"<?php
+							if( !empty($shop_menu_opt['menu_tax']) && $shop_menu_opt['menu_tax'] == 'show_2' ){
+								echo ' selected';
+							}
+							?>>(+税)</option>
+      <option value="in_tax"<?php
+							if( !empty($shop_menu_opt['menu_tax']) && $shop_menu_opt['menu_tax'] == 'in_tax' ){
+								echo ' selected';
+							}
+							?>>(税込)</option>
+		</select>
+  </td>
+</tr>
+  
+  
+<tr valign="top">
+	
+
+  <th scope="row"><label for="register_user">ユーザー登録</label></th>
+  <td>
+		<label for="register_user">
+		<input id="register_user" type="checkbox" name="shop_menu_essence_options[register_user]" value="register"<?php
+					 if( !empty($shop_menu_opt['register_user']) && $shop_menu_opt['register_user'] === 'register' ){
+						 echo ' checked';
+					 }
+		?>>する</label>
+  </td>
+</tr>
+
 	
 <tr>
 	

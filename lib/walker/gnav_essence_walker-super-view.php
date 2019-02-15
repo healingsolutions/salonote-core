@@ -239,22 +239,49 @@ class nav_essence_walker_super_view extends Walker_Nav_Menu {
 			
 				$thumbnail	= '';
 				$excerpt		= '';
-				if( has_post_thumbnail( $page_id ) && $item->navtype ){
+				if( $item->navtype ){
 					
 					$post = get_post($page_id);
 					
-					$thumb_attr = array(
-						'alt'   => trim( strip_tags( !empty($post->post_excerpt) ? $post->post_excerpt : $post->post_title ) ),
-						'title' => trim( strip_tags( $post->post_title ) ),
-					);
+					
 
-					$thumbnail 	= '<div class="nav_thumbnail">'.get_the_post_thumbnail( $page_id, 'thumbnail', $thumb_attr ).'</div>';
+          if( $item->type === 'taxonomy' ){
+            //$term_id = $item->object_id;
+            //$term_name = $item->object;
+            
+            $term_info = get_term_by('id', $item->object_id, $item->object);
+            
+            if( $item->object_id ){
+              $thumb_attr = array(
+                'alt'   => trim( strip_tags( !empty($term_info->description) ? $term_info->description : $item->title ) ),
+                'title' => trim( strip_tags( $item->title ) ),
+              );
+            $thumbnail 	= '<div class="nav_thumbnail"><img src="'.salonte_taxonomy_image_url( $item->object_id, 'thumbnail', TRUE ).'">"</div>';
+            }
+          }else{
+            if( has_post_thumbnail( $page_id ) ){
+              $thumb_attr = array(
+                'alt'   => trim( strip_tags( !empty($post->post_excerpt) ? $post->post_excerpt : $post->post_title ) ),
+                'title' => trim( strip_tags( $post->post_title ) ),
+              );
+            $thumbnail 	= '<div class="nav_thumbnail">'.get_the_post_thumbnail( $page_id, 'thumbnail', $thumb_attr ).'</div>';
+            }
+          }
 					$excerpt 		= '<div class="nav_excerpt">
 					<h1><span class="main_nav">'.apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth ).'</span></h1>';
 					
-					if( has_excerpt($page_id) ){
-						$excerpt 		.= '<p>'.nl2br($post->post_excerpt) .'</p>';
-					};
+          
+          
+          
+          if( $item->type === 'taxonomy' ){
+            if( isset($item->description) ){
+              $excerpt 		.= '<p>'.nl2br($term_info->description) .'</p>';
+            };
+          }else{
+            if( has_excerpt($page_id) ){
+              $excerpt 		.= '<p>'.nl2br($post->post_excerpt) .'</p>';
+            };
+          }
 					
 					$excerpt 		.= '</div>';
 					$title = '';

@@ -194,6 +194,14 @@ ul.footer-sitemap{
 	.footer_logo-block{
 		max-width: 20%;
 	}
+  .biz_info-block{
+    display: flex;
+    .biz_info-basic-unit,
+    .biz_info-message{
+      flex-basis: 50%;
+      vertical-align: top;
+    }
+  }
 }
 @media screen and (max-width: 768px) {
     .footer_for_top{

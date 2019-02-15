@@ -24,6 +24,13 @@ global $theme_opt;
     echo '</a></div>';
     ?>
 
+  <?php
+  if( !empty($theme_opt['base']['tel_number']) ){
+		echo '
+		<div class="tel-button"><a href="tel:'.$theme_opt['base']['tel_number'].'"><span class="dashicons dashicons-phone"></span><span class="tel-button-label">TEL</span></a></div>
+		';
+	}
+  ?>
   <div id="navbar-button" class="navbar-button"><span>MENU</span></div>
   <div class="navbar-block">
     <?php

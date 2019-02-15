@@ -49,6 +49,12 @@ i.dashicons-dashicons-money::before {
 .widget-content{
 	dl{
 		clear: both;
+    
+    padding: 1em 0.4em;
+    
+    &:nth-child(even){
+      background-color: #EFEFEF;
+    }
 		
 		dt{
 			width:20%;
@@ -56,8 +62,11 @@ i.dashicons-dashicons-money::before {
 		
 		dt,dd{
 			display: inline-block;
+      vertical-align: middle;
 			padding: 0 5px;
 			margin:  0;
+      
+      
 		}
 	}
 }

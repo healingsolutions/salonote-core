@@ -48,8 +48,8 @@ if(
 }else{
     $main_unit[]    = 'none_sidebar';
 		
-    $main_content[] = 'col-12';
-    $main_content[] = 'col-md-12';
+    //$main_content[] = 'col-12';
+    //$main_content[] = 'col-md-12';
 }
 
 
