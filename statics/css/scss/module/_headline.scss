@@ -153,23 +153,30 @@
 }
 
 
-.side_bdr_headline{
-	position: relative;
-	display: inline-block;
-	padding: 0 55px;
-	&:before, &:after{
-		content: '';
-		position: absolute;
-		top: 50%;
-		display: inline-block;
-		width: 45px;
-		height: 1px;
-		background-color: black;
-	}
 
-	&:before {left:0;}
-	&:after {right: 0;}
+
+.side_bdr_headline {
+	color: #444;
+	font-size: 24px;
+	display: flex;
+	align-items: center;
+
+  &::before,
+  &::after {
+    content: "";
+    flex-grow: 1;
+    height: 1px;
+    background: #444;
+    display: block;
+  }
+  &::before {
+    margin-right: .4em;
+  }
+  &::after {
+    margin-left: .4em;
+  }
 }
+
 
 
 .each_char_headline{

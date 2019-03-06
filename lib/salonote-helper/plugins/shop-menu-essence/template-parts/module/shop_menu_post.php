@@ -118,19 +118,18 @@ $shop_menu_opt = get_option('shop_menu_essence_options');
 
 -->
 					
-					
+					<?php
+              /*
 						<div class="form-group required-item">
 							<div class="col-form-label"><label for="user_address">性別</label></div>
 		
-							<?php
-              /*
+							
 							<div class="text-center">
-							<input id="user_gender-female" name="user_gender" type="radio" value="female"<?php if( !empty($userinfo->user_gender) &&  $userinfo->user_gender === 'female' ){
+							<input id="user_gender-female" name="user_gender" type="radio" value="female"<?php if(  !empty($userinfo) && !empty($userinfo->user_gender) &&  $userinfo->user_gender === 'female' ){
 								echo ' selected';
 							} ; ?> required /><label for="user_gender-female" class="radio-inline"><span>女性</span></label>
 							</div>
-              */
-              ?>
+              
 							
 							<!--
 							<div class="text-center">
@@ -141,7 +140,8 @@ $shop_menu_opt = get_option('shop_menu_essence_options');
 -->
 							
             </div>
-					
+					*/
+              ?>
 	
 					
 						<div class="form-group">
@@ -150,13 +150,14 @@ $shop_menu_opt = get_option('shop_menu_essence_options');
             </div>
 					
 					<?php
-					if( !is_user_logged_in() && $shop_menu_opt['register_user'] === 'register'){
+					if( !is_user_logged_in() && !empty($shop_menu_opt['register_user']) && $shop_menu_opt['register_user'] === 'register'){
 						echo '<div class="form-group">
 							<label for="register">ユーザー登録</label>
 							<input id="register" name="register" type="checkbox"/>
 							<p class="hint">ユーザー登録をしておかれると次回以降は入力が楽になります。</p>
             </div>';
 					}else{
+            if( !empty($userinfo->ID))
 						echo '<input type="hidden" name="user_id" value="'.$userinfo->ID.'">';
 					}
 					?>

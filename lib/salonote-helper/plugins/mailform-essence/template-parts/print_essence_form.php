@@ -93,10 +93,7 @@ if( isset($_start_date) || isset($_end_date) ){
   ?>
 
 <style>
-	#controls-essence-mailform{
-		padding-left: 15px;
-		padding-right: 15px;
-	}
+
 	.required-item .col-form-label::before{
 		border-radius: 4px;
 		padding: 4px 10px;

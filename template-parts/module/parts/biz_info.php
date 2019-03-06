@@ -59,7 +59,7 @@ echo '<div class="biz_info-block">';
 
   if( !empty($theme_opt['base']['biz_access']) ){
 		echo '
-		<div class="biz_info-access">'.apply_filters( 'the_content', $theme_opt['base']['biz_access'] ).'</div>
+		<div class="biz_info-access">'.wpautop($theme_opt['base']['biz_access']).'</div>
 		';
 	}
 
@@ -69,7 +69,7 @@ echo '<div class="biz_info-block">';
 
 	if( !empty($theme_opt['base']['biz_message']) ){
 		echo '
-		<div class="biz_info-message">'.apply_filters( 'the_content', $theme_opt['base']['biz_message'] ).'</div>
+		<div class="biz_info-message">'.wpautop($theme_opt['base']['biz_message'] ).'</div>
 		';
 	}
 
