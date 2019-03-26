@@ -11,6 +11,17 @@ global $theme_opt;
 /*-------------------------------------------*/
     if (function_exists('register_sidebar')) {
 			
+    //ロゴ横
+    register_sidebar(array(
+        'name' => __('side of logo','salonote-essence'),
+        'id' => 'logo_widgets',
+        'description' => __('display widghet in side of logo','salonote-essence'),
+        'before_widget' => '<div id="%1$s" class="%2$s logo_widgets">',
+        'after_widget' => '</div>',
+        //'before_title' => '<div class="widget-title bdr-btm-1">',
+        //'after_title' => '</div>'
+    ));
+      
 		//ページ最上部
     register_sidebar(array(
         'name' => __('top of page','salonote-essence'),

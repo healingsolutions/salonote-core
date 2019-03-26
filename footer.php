@@ -43,7 +43,7 @@ if( !empty($theme_opt['base']['google_map']) && !$hide_footer ){
   <a class="footer_for_top footer_bkg smoothscroll" href="#body-wrap">TOP</a>
   
   <?php
-	echo '<div class="container">';
+	echo '<div class="container footer-container">';
 
   
   // action essence_before_footer_content =============================

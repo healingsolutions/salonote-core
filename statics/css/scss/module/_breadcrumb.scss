@@ -34,4 +34,10 @@ body{
     vertical-align: middle;
     font-family: "dashicons";
   }
+  
+  .breadcrumb-item > ul{
+    padding-left: 40px;
+    display: inline-block;
+    vertical-align: top;
+  }
 }

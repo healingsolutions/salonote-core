@@ -354,6 +354,20 @@
 		}
 		li.btn-item{
 			display: inline-block;
+      
+      &.dashicons{
+          width: auto;
+          height: auto;
+          font-size: 1.2em;
+          padding: 0.5em;
+          &::before{
+            display: inline-block;
+            padding: 0.3em;
+          }
+          a{
+            display: inline-block;
+          }
+        }
 			
 			span.main_nav{
 				display: block;
@@ -373,6 +387,13 @@
 			text-shadow: 1px 1px 3px #000000;
 		}
 	}//entry_block_content
+  
+  
+  
+  .wp-block-gallery .blocks-gallery-item{
+    width: auto !important;
+    margin: auto !important;
+  }
 	
 
   

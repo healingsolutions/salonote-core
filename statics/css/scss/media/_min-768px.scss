@@ -237,6 +237,7 @@
 	#super-top-nav{
 		.super-top-container{
 			> ul > li.btn-item{
+
 				.main_nav{
 					display: block;
 				}
@@ -255,6 +256,10 @@
 				.super-top-container{
 					> ul > li.btn-item{
 						display: block;
+            &.dashicons::before{
+              left: -10px;
+              position: relative;
+            }
 					}
 				}
 			}
@@ -367,5 +372,14 @@
 			}
   }
 	
+  
+  footer .footer-container{
+    //display: flex;
+    //flex-wrap: wrap;
+    
+    > div{
+      //max-width: 50%;
+    }
+  }
 	
 }

@@ -46,6 +46,12 @@ if (has_nav_menu('HeaderBottom')) {
 	
 		if (has_nav_menu('Top')) {
 			echo '<div id="super-top-nav" class="super-top-block">';
+      
+      //header_top_widgets widget
+      if(!function_exists('dynamic_sidebar') || !dynamic_sidebar('logo_widgets')):
+        //header_top_widgets
+      endif;
+      
 			wp_nav_menu( array(
 				'theme_location' => 'Top',
 				'container_class' => 'super-top-container',

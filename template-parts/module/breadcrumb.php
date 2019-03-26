@@ -79,10 +79,7 @@ if( !is_front_page() && $post_type_name !== 'post' && $post_type_name !== 'page'
 	
 	if( !empty($post_type_name) && is_tax() ){
 
-		$bread_arr[] = array(
-			'label' => esc_html(get_post_type_object($post_type_name)->label),
-			'url'   => get_post_type_archive_link($post_type_name)
-		);
+
 		
 		$bread_arr[] = array(
 			'label' => single_term_title('',false),
@@ -118,18 +115,24 @@ if (is_singular() && intval($post->ID) !== intval($frontpage_id) ) {
 
 			$terms = wp_get_post_terms( $post->ID, $tax_slug );
 			if ( $terms && ! is_wp_error( $terms ) ):
+      
+        $bread_sub_arr = [];
+      
 				foreach ( $terms as $term ):
 					$term_id  = $term->term_id;
 					$term_name  = $term->name;
 					$term_slug  = $term->slug;
 					$term_link = get_term_link( $term_id, $tax_slug );
 
-					$bread_arr[] = array(
+					$bread_sub_arr[] = array(
 						'label' => esc_html($term_name),
 						'url'   => esc_attr($term_link),
 					);
 
 				endforeach;
+      
+        $bread_arr[] = $bread_sub_arr;
+      
 			endif;
 		}
 	}
@@ -150,7 +153,17 @@ if( $bread_arr ){
   echo '<ol class="'.implode(' ',$breadcrumb_class).'">';
   foreach( $bread_arr as $bread_item ){
     echo '<li class="breadcrumb-item">';
-    echo '<a href="'. (!empty($bread_item['url']) ? $bread_item['url'] : '#') .'">'.$bread_item['label'].'</a></li>';
+    
+    if( count($bread_item) > 2 ){
+      echo '<ul>';
+      foreach( $bread_item as $bread_sub_item ){
+        echo '<li><a href="'. (!empty($bread_sub_item['url']) ? $bread_sub_item['url'] : '#') .'">'.$bread_sub_item['label'].'</a></li>';
+      }
+      echo '</ul></li>';
+    }else{
+      echo '<a href="'. (!empty($bread_item['url']) ? $bread_item['url'] : '#') .'">'.$bread_item['label'].'</a></li>';
+    }
+    
   }
   echo '</ol>';
 }

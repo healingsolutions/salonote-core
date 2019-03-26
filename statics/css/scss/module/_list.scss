@@ -592,6 +592,7 @@ ol.list-flow{
 		border-radius: 50%;
 		position: absolute;
 	}
+  
 	
 	> li{
 		position: relative;
@@ -609,7 +610,7 @@ ol.list-flow{
 			color: #fff;
 			margin-right: .3em;
 			position: absolute;
-			left: 10px;
+			left: -20px;
 			top: -5px;
 			border: 5px solid white;
 		}

@@ -840,6 +840,26 @@ body.admin-bar .site-header-block{
 			> li{
 				display: inline-block;
 				box-shadow: 0 0 .1em #999999;
+        
+        &.btn-item{
+          
+          &.dashicons{
+            width: auto;
+            height: auto;
+            font-size: 1.2em;
+            padding: 0.5em;
+            &::before{
+              display: inline-block;
+              padding: 0.3em;
+            }
+            a{
+              display: inline-block;
+            }
+          }
+          
+        }
+        
+        
 
 				&.btn-item:hover{
 					top: -3px;

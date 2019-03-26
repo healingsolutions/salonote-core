@@ -95,7 +95,15 @@ if(
 }// display_thumbnail
 
 // content =======================================
-echo '<div class="list_block_inner">';
+echo '<div class="list_block_inner';
+if(
+  !empty( $post_type_set ) &&
+	in_array('list_show_body',$post_type_set)
+	&& get_the_content()
+){
+  echo '-content';
+}
+echo '">';
 
 
 if(
@@ -177,7 +185,8 @@ if(
 	in_array('list_show_body',$post_type_set)
 	&& get_the_content()
 ){
-	echo '<div class="content-block mt-3 mb-5">'.nl2br(strip_tags(get_the_content(),'<img><p><br><a><span><ul><li><ol>')).'</div>';
+	//echo '<div class="content-block mt-3 mb-5">'.nl2br(strip_tags(get_the_content(),'<img><p><br><a><span><ul><li><ol>')).'</div>';
+  echo '<div class="content-block mt-3 mb-5">'.get_the_content().'</div>';
 }
 
 echo '</div>';
