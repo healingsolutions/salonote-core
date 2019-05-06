@@ -88,6 +88,11 @@ function slider_essence(){
 		overflow: hidden;
 	}
 	@media screen and (max-width: 768px) {
+    
+    #slider-essence .slick-block-essence .slick-item img{
+      width: 100%;
+      height: auto;
+    }
 		.slick-block-essence .slick-item,
     .slick-block-essence .slick-text
     {
@@ -102,14 +107,14 @@ function slider_essence(){
 	echo '
 		@media screen and (max-width: 768px) {
 				#slider-essence .slick-block-essence .slick-item img{
-					left: '. (60 - $_sp_height) * 0.8 .'%;
+					/* left: '. (60 - $_sp_height) * 0.8 .'%; */
 				}
 		}';
 
 	echo '
 		@media screen and (max-width: 600px) {
 				#slider-essence .slick-block-essence .slick-item img{
-					left: '. ((60 - $_sp_height) * 1.4 - $opt['sp_right']) .'%;
+					/* left: '. ((60 - $_sp_height) * 1.4 - $opt['sp_right']) .'%; */
 				}
 		}';
 	
@@ -320,19 +325,34 @@ function slider_essence(){
 		
 
 		if(preg_match('/\[|\]/',$value['text'])){
-			echo '<div class="slick-text"><div class="slick-text-inner">'.apply_filters('the_content', do_shortcode($value['text'])).'</div></div>';
-			
-			if(!empty($value['textarea'])){
-				echo '<div class="slick-textarea'.$opt['body_class'].'">'.apply_filters('the_content', do_shortcode($value['textarea'])).'</div>';
+			echo '<div class="slick-text">
+      <div class="slick-text-inner">';
+      
+      
+      echo apply_filters('the_content', do_shortcode($value['text']));
+      
+      if(!empty($value['textarea'])){
+				echo '<div class="slick-textarea'.$opt['body_class'].'" style="opacity:0;">'.apply_filters('the_content', do_shortcode($value['textarea'])).'</div>';
 			}
+      
+      echo '</div></div>';
+			
+			
 			
 		}else{
       if( $value['text'] ){
-        echo '<div class="slick-text"><div class="slick-text-inner"><h2'.$opt['title_class'].'>'.nl2br(esc_html($value['text'])).'</h2></div></div>';
+        echo '<div class="slick-text">
+        <div class="slick-text-inner">
+        
+        <h2'.$opt['title_class'].'>'.nl2br(esc_html($value['text'])).'</h2>';
+        
+        if(!empty($value['textarea'])){
+          echo '<div class="slick-textarea'.$opt['body_class'].'" style="opacity:0;">'.apply_filters('the_content', do_shortcode($value['textarea'])).'</div>';
+        }
+        
+        echo '</div></div>';
       }
-			if(!empty($value['textarea'])){
-				echo '<div class="slick-textarea'.$opt['body_class'].'">'.apply_filters('the_content', do_shortcode($value['textarea'])).'</div>';
-			}
+			
 
 		}
 		
@@ -355,9 +375,7 @@ function slider_essence(){
 	
 	if( !empty( $_content ) ){
 		echo '<div class="slick-fixed-text">';
-    
 
-		
 		if(preg_match('/\[|\]/',$_content)){
 			echo '<div class="slick-text"><div class="slick-text-inner'.$opt['body_class'].'">'.wpautop(do_shortcode($_content)).'</div></div>';
 		}else{

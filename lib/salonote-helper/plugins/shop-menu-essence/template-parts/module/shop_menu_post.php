@@ -120,12 +120,14 @@ $shop_menu_opt = get_option('shop_menu_essence_options');
 					
 					<?php
               /*
+              	*/
+              ?>
 						<div class="form-group required-item">
-							<div class="col-form-label"><label for="user_address">性別</label></div>
+							<div class="col-form-label"><label for="user_gender">性別</label></div>
 		
 							
 							<div class="text-center">
-							<input id="user_gender-female" name="user_gender" type="radio" value="female"<?php if(  !empty($userinfo) && !empty($userinfo->user_gender) &&  $userinfo->user_gender === 'female' ){
+							<input id="user_gender-female" name="user_gender" type="radio" value="女性"<?php if(  !empty($userinfo) && !empty($userinfo->user_gender) &&  $userinfo->user_gender === 'female' ){
 								echo ' selected';
 							} ; ?> required /><label for="user_gender-female" class="radio-inline"><span>女性</span></label>
 							</div>
@@ -140,9 +142,24 @@ $shop_menu_opt = get_option('shop_menu_essence_options');
 -->
 							
             </div>
-					*/
-              ?>
-	
+					
+          
+          
+          <div class="form-group inline-block required-item">
+							<div class="col-form-label"><label for="user_beginner">初回・2回目以降</label></div>
+		
+							
+							<div class="block">
+							<input id="user_beginner-beginner" name="user_beginner" type="radio" value="初回" required /><label for="user_beginner-beginner" class="radio-inline"><span>初回</span></label>
+							</div>
+              
+							
+							<div class="block">
+							<input id="user_beginner-repeater" name="user_beginner" type="radio" value="2回目以降" required/><label for="user_beginner-repeater" class="radio-inline"><span>2回目以降</span></label>
+							</div>
+							
+            </div>
+
 					
 						<div class="form-group">
 							<div class="col-form-label"><label for="user_message">ご質問やご要望</label></div>

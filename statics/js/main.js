@@ -642,6 +642,26 @@ jQuery(document).ready(function($){
 			autoplaySpeed: 4000,
 		});
 	};
+  
+  
+  /*
+  odometer
+  $(function() {
+    // 引き金となる要素を設定
+    var triggerNode = $(".odometer");
+    var triggerNumber = $(".odometer").attr('odometer_num');
+     // 画面スクロール毎に判定を行う
+    $(window).scroll(function(){
+        // 引き金となる要素の位置を取得
+        var triggerNodePosition = $(triggerNode).offset().top;  
+        // 現在のスクロール位置が引き金要素の位置より下にあれば‥
+        if ($(window).scrollTop() > triggerNodePosition - 200) {
+            // 動かすJSの指示
+            $('.odometer').html(triggerNumber);
+        }
+    });
+  });
+  */
 	
 
 	

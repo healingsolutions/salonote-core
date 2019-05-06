@@ -44,10 +44,16 @@ if( !empty($_admin_mail) && !empty($_POST) ){
 	$user_tel 		= !empty($_POST['user_tel']) 			? esc_attr($_POST['user_tel']) 			: '' ;
 	$user_address = !empty($_POST['user_address']) 	? esc_attr($_POST['user_address']) 	: '' ;
 	$user_message = !empty($_POST['user_message']) 	? esc_attr($_POST['user_message']) 	: '' ;
+  
+  $user_beginner = !empty($_POST['user_beginner']) 	? esc_attr($_POST['user_beginner']) 	: '' ;
+	$user_gender = !empty($_POST['user_gender']) 	? esc_attr($_POST['user_gender']) 	: '' ;
 	
 	$rsv_message = [];
 	$rsv_memo['address'] 		=	$user_address;
 	$rsv_memo['message'] 		=	$user_message;
+  
+  $rsv_memo['user_beginner'] 		=	$user_beginner;
+  $rsv_memo['user_gender'] 		=	$user_gender;
 
 	// register wp user
 	$register 		= !empty($_POST['register']) 			? esc_attr($_POST['register']) 			: null ;
@@ -93,6 +99,12 @@ PHP_EOL;
 	$return_text .= (!empty($user_tel) ? 'TEL：　'.$user_tel : '') . PHP_EOL;
 	$return_text .= (!empty($user_address) ? 'ご住所：　'.$user_address : '') . PHP_EOL;
 	$return_text .= (!empty($user_memo) ? 'メッセージ：　'.$user_memo : '') . PHP_EOL;
+  
+  
+  $return_text .= (!empty($user_gender) ? '性別：　'.$user_gender : '') . PHP_EOL;
+	$return_text .= (!empty($user_beginner) ? '初回・2回目以降：　'.$user_beginner : '') . PHP_EOL;
+  
+  
 	
 	$return_text .= (!empty($register) ? 'ユーザー登録：　する': '') . PHP_EOL;
 	

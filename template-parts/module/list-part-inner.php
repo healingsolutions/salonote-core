@@ -3,6 +3,7 @@
 global $theme_opt;
 global $post_type_set;
 global $post_type_name;
+global $user_setting;
 
 
 // thumbnail =======================================
@@ -188,6 +189,13 @@ if(
 	//echo '<div class="content-block mt-3 mb-5">'.nl2br(strip_tags(get_the_content(),'<img><p><br><a><span><ul><li><ol>')).'</div>';
   echo '<div class="content-block mt-3 mb-5">'.get_the_content().'</div>';
 }
+
+
+
+// action essence_list_part_inner =============================
+  if ( current_user_can( 'administrator' ) && $user_setting['display_shortcode'] ) { echo '<span class="do_action">do_action: [essence_list_part_inner_content]</span>';}
+  do_action( 'essence_list_part_inner_content' );
+  // ^action =============================
 
 echo '</div>';
 

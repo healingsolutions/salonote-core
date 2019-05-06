@@ -318,22 +318,22 @@
 				background-color: white;
 				box-shadow: 1px 1px 7px #CCCCCC;
 				@include opacity(0);
-				-webkit-transition: opacity 1.6s ease;
-				-moz-transition: opacity 1.6s ease;
-				-ms-transition: opacity 1.6s ease;
-				-o-transition: opacity 1.6s ease;
-				transition: opacity 1.6s ease;
+				-webkit-transition: opacity .6s ease;
+				-moz-transition: opacity .6s ease;
+				-ms-transition: opacity .6s ease;
+				-o-transition: opacity .6s ease;
+				transition: opacity .6s ease;
 				padding:  10px 2em;
 			}
 
 			&.is_active .wp-block-media-text__content-block,
 			&.is_active .block-group.group-col-2.has_text{
 				@include opacity(94);
-				-webkit-transition: opacity 1.6s 0.5s;
-				-moz-transition: opacity 1.6s 0.5s;
-				-ms-transition: opacity 1.6s 0.5s;
-				-o-transition: opacity 1.6s 0.5s;
-				transition: opacity 1.6s 0.5s;
+				-webkit-transition: opacity .6s 0.2s;
+				-moz-transition: opacity .6s 0.2s;
+				-ms-transition: opacity .6s 0.2s;
+				-o-transition: opacity .6s 0.2s;
+				transition: opacity .6s 0.2s;
 			}
 
 			

@@ -20,6 +20,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+/*
+require 'plugin-update-checker-4.5.1/plugin-update-checker.php';
+$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+ 'https://salonote.com/wp-content/themes/salonote-essence/theme-update.json',
+ __FILE__,
+ 'salonote-essence' //テーマ名
+);
+*/
+
+
 global $theme_opt;
 
 $theme_opt['base']      = get_option('essence_base');

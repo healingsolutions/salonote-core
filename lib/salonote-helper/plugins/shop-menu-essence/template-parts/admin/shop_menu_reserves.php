@@ -148,6 +148,9 @@ if( !empty($reserves_result) ){
 		//echo '<pre>rsv_memo'; print_r($rsv_memo); echo '</pre>';
 		echo $rsv_memo['address'] ? '<dt>ご住所</dt><dd>'.$rsv_memo['address'].'</dd>' : '';
 		echo $rsv_memo['message'] ? '<dt>メッセージ・ご要望</dt><dd>'.$rsv_memo['message'].'</dd>' : '';
+    
+    echo !empty($rsv_memo['user_gender']) ? '<dt>性別</dt><dd>'.$rsv_memo['user_gender'].'</dd>' : '';
+		echo !empty($rsv_memo['user_beginner']) ? '<dt>初回・2回目以降</dt><dd>'.$rsv_memo['user_beginner'].'</dd>' : '';
 
 		echo '</dl>';
 		

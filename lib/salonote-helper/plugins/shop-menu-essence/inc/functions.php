@@ -62,8 +62,11 @@ function shop_menu_print_footer_scripts($post){
 		wp_enqueue_script('shop_menu_essence', SHOP_MENU_ESSENCE_PLUGIN_URI . '/statics/js/shop-menu-public-min.js', array(), '1.0.3' ,true);
 		wp_enqueue_script('formtowizard', SHOP_MENU_ESSENCE_PLUGIN_URI . '/statics/js/jquery.formtowizard.js', array(), '1.0.0' ,true);
 
-		
-		// shop menu colors
+	}
+  
+  
+  if ( is_singular('shop_menu') || is_archive('shop_menu') || strpos($post->post_content,'[shop_menu ') !== false ){
+  // shop menu colors
 		$mods = get_theme_mods();	
 		echo '<style>';
 
@@ -98,8 +101,7 @@ function shop_menu_print_footer_scripts($post){
 		}
 
 		echo '</style>';
-		
-	}
+  }
 	
 }
 add_action('wp_enqueue_scripts','shop_menu_print_footer_scripts');
@@ -438,7 +440,7 @@ function print_shop_menu_item( $field_set=null , $shop_menu_arr=null, $not_reser
 
         if( !empty($item['menu_global_option']) ){
           echo '<div class="shop_menu_essence-option-btn btn-color">オプション</div>';
-        }elseif( !empty($item['menu_global_reserve']) && $not_reserve !== true ){
+        }elseif( !empty($item['menu_global_reserve']) && $not_reserve !== true && is_singular()){
           echo '
           <form class="shop_menu_essence-reserve_button" action="" method="POST">
             <input type="hidden" name="menu_post_id" value="'. $id .'">
@@ -508,7 +510,7 @@ function print_shop_menu_item( $field_set=null , $shop_menu_arr=null, $not_reser
         
         if( !empty($item['menu_global_option']) ){
           echo '<div class="shop_menu_essence-option-btn btn-color">オプション</div>';
-        }elseif( !empty($item['menu_global_reserve']) && $not_reserve !== true ){
+        }elseif( !empty($item['menu_global_reserve']) && $not_reserve !== true && is_singular() ){
           echo '
           <div class="shop-menu-reserve-btn wp-block-button aligncenter">
           

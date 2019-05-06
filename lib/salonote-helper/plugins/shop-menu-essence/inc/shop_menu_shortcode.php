@@ -57,4 +57,12 @@ function print_shop_menu_list($atts) {
 add_shortcode('shop_menu', 'print_shop_menu_list');
 
 
+function print_shop_menu_hook(){
+  global $not_reserve;
+  $not_reserve = false;
+  require( SHOP_MENU_ESSENCE_PLUGIN_PATH. "/template-parts/print_shop_menu.php");
+}
+add_action('essence_list_part_inner_content', 'print_shop_menu_hook');
+
+
 ?>
